@@ -1,3 +1,5 @@
+*.bak
+.DS_Store
 bin/
 dist/
 client-dist/
