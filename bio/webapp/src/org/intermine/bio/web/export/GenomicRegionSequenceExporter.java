@@ -121,8 +121,31 @@ public class GenomicRegionSequenceExporter
                     FastaFormat.PROPERTY_DESCRIPTIONLINE, header);
 
             // write it out
-            SeqIOTools.writeFasta(out, chrSeg);
+            //SeqIOTools.writeFasta(out, chrSeg);
+            writeFastaSequence(out, chrSeg);
         }
         out.flush();
+    }
+
+    /**
+     * Gets the header and sequence as string from the BioSequence object and writes it to OutputStream
+     * @param Sequence
+     * @param OutputStream
+     */
+    private void writeFastaSequence(OutputStream outputStream, Sequence sequence) throws IOException {
+        String sequenceHeader = ">" + sequence.getAnnotation().getProperty(FastaFormat.PROPERTY_DESCRIPTIONLINE) + "\n";
+        String sequenceString = sequence.seqString().toUpperCase();
+        outputStream.write(sequenceHeader.getBytes());
+        long length = 0;
+        for (int i = 0; i < sequenceString.length(); i += 60) {
+            length += 60;
+            if (i + 60 >= sequenceString.length()) {
+                outputStream.write((sequenceString.substring(i, sequenceString.length()) + "\n").getBytes());
+                break;
+            }
+            else {
+                outputStream.write((sequenceString.substring(i, i + 60) + "\n").getBytes());
+            }
+        }
     }
 }
