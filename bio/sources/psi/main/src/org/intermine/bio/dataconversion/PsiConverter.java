@@ -256,8 +256,14 @@ public class PsiConverter extends BioFileConverter
             // <secondaryRef db="sgd" dbAc="MI:0484" id="S000006331" secondary="YPR127W"/>
             } else if (("primaryRef".equals(qName) || "secondaryRef".equals(qName))
                             && stack.search("interactor") == 2 && attrs.getValue("db") != null) {
-                Util.addToSetMap(geneIdentifiers, attrs.getValue("db").toLowerCase(),
-                        attrs.getValue("id"));
+
+                if (!attrs.getValue("id").startsWith("ENSMUST") && !attrs.getValue("id").startsWith("ENSMUSP")
+                        && !attrs.getValue("id").startsWith("ENSBTAT") && !attrs.getValue("id").startsWith("ENSBTAP")
+                        && !attrs.getValue("id").startsWith("ENST") && !attrs.getValue("id").startsWith("ENSP")
+                        && !attrs.getValue("id").startsWith("ENSRNOP") && !attrs.getValue("id").startsWith("ENSRNOT")){
+                    Util.addToSetMap(geneIdentifiers, attrs.getValue("db").toLowerCase(),
+                            attrs.getValue("id"));
+                }
             // <interactorList><interactor id="4"><organism ncbiTaxId="7227">
             } else if ("organism".equals(qName) && "interactor".equals(stack.peek())) {
                 String taxId = attrs.getValue("ncbiTaxId");
@@ -651,7 +657,8 @@ public class PsiConverter extends BioFileConverter
             }
 
             for (String identifier : identifiers) {
-                String newIdentifier = resolveGeneIdentifier(taxonId, datasource, identifier);
+                //String newIdentifier = resolveGeneIdentifier(taxonId, datasource, identifier);
+                String newIdentifier = identifier;
                 if (StringUtils.isNotEmpty(newIdentifier)) {
                     String refId = storeGene(field, newIdentifier, taxonId);
                     refIds.add(refId);

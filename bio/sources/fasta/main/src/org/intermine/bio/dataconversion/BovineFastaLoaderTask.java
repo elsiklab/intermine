@@ -1,7 +1,7 @@
 package org.intermine.bio.dataconversion;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2014 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -17,6 +17,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
 import org.apache.commons.lang.StringUtils;
@@ -46,12 +48,14 @@ import org.intermine.metadata.Util;
  * @author Peter Mclaren
  */
 
-public class FastaLoaderTask extends FileDirectDataLoaderTask
+public class BovineFastaLoaderTask extends FileDirectDataLoaderTask
 {
-    private static final Logger LOG = Logger.getLogger(FastaLoaderTask.class);
+    private static final Logger LOG = Logger.getLogger(BovineFastaLoaderTask.class);
 
     private String sequenceType = "dna";
     private String classAttribute = "primaryIdentifier";
+    private String classAttributeAlias = "secondaryIdentifier";
+    private String classAttributeName = "name";
     private Organism org;
     private String className;
     private int storeCount = 0;
@@ -79,14 +83,6 @@ public class FastaLoaderTask extends FileDirectDataLoaderTask
     public void setFastaTaxonId(String fastaTaxonId) {
         this.fastaTaxonId = fastaTaxonId;
         parseTaxonIds();
-    }
-
-    /**
-     * Get the sequence type for the current sequence
-     * @return sequenceType
-     */
-    public String getSequenceType() {
-        return this.sequenceType;
     }
 
     /**
@@ -137,6 +133,24 @@ public class FastaLoaderTask extends FileDirectDataLoaderTask
     }
 
     /**
+     * The attribute of the class created to set with the identifying field.  If not set will
+     * be 'primaryIdentifier'.
+     * @param classAttributeAlias the class name
+     */
+    public void setClassAttributeAlias(String classAttributeAlias) {
+        this.classAttributeAlias = classAttributeAlias;
+    }
+
+    /**
+     * The attribute of the class created to set with the identifying field.  If not set will
+     * be 'primaryIdentifier'.
+     * @param classAttributeName the class name
+     */
+    public void setClassAttributeName(String classAttributeName) {
+        this.classAttributeName = classAttributeName;
+    }
+
+    /**
      * Datasource for any bioentities created
      * @param dataSourceName name of datasource for items created
      */
@@ -171,7 +185,6 @@ public class FastaLoaderTask extends FileDirectDataLoaderTask
             super.process();
             getIntegrationWriter().commitTransaction();
             getIntegrationWriter().beginTransaction();
-            getDirectDataLoader().close();
         } catch (ObjectStoreException e) {
             throw new BuildException("failed to store object", e);
         }
@@ -268,7 +281,7 @@ public class FastaLoaderTask extends FileDirectDataLoaderTask
      * @param bioJavaSequence the Sequence object
      * @throws ObjectStoreException if store() fails
      */
-    protected void processSequence(Organism organism, Sequence bioJavaSequence)
+    private void processSequence(Organism organism, Sequence bioJavaSequence)
         throws ObjectStoreException {
         // some fasta files are not filtered - they contain sequences from organisms not
         // specified in project.xml
@@ -299,15 +312,53 @@ public class FastaLoaderTask extends FileDirectDataLoaderTask
         }
         BioEntity imo = (BioEntity) getDirectDataLoader().createObject(imClass);
 
-        String attributeValue = getIdentifier(bioJavaSequence);
+        String sequenceHeader = getIdentifier(bioJavaSequence);
+        //List<String> refList = new ArrayList<String>( Arrays.asList(StringUtil.split(dbxref, ",")));
+        String attributeValue;
+        String attributeValueAlias;
+        String attributeValueName;
+        String[] headerAttributes = sequenceHeader.split("\\|");
 
-        try {
-            imo.setFieldValue(classAttribute, attributeValue);
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Error setting: " + className + "."
-                                               + classAttribute + " to: " + attributeValue
-                                               + ". Does the attribute exist?");
+        if (headerAttributes.length > 1) {
+            attributeValue = headerAttributes[0];
+            attributeValueAlias = headerAttributes[1];
+            attributeValueName = headerAttributes[2];
+            System.out.println(attributeValue + " " + attributeValueAlias + " " + attributeValueName);
+            try {
+                imo.setFieldValue(classAttribute, attributeValue);
+            } catch (Exception e) {
+                throw new IllegalArgumentException("Error setting: " + className + "."
+                                                   + classAttribute + " to: " + attributeValue
+                                                   + ". Does the attribute exist?");
+            }
+
+            try {
+                imo.setFieldValue(classAttributeAlias, attributeValueAlias);
+            } catch (Exception e) {
+                throw new IllegalArgumentException("Error setting: " + className + "."
+                                                   + classAttributeAlias + " to: " + attributeValueAlias
+                                                   + ". Does the attribute exist?");
+            }
+
+            try {
+                imo.setFieldValue(classAttributeName, attributeValueName);
+            } catch (Exception e) {
+                throw new IllegalArgumentException("Error setting: " + className + "."
+                        + classAttributeName + " to: " + attributeValueName
+                        + ". Does the attribute exist?");
+            }
         }
+        else {
+            attributeValue = headerAttributes[0];
+            try {
+                imo.setFieldValue(classAttribute, attributeValue);
+            } catch (Exception e) {
+                throw new IllegalArgumentException("Error setting: " + className + "."
+                                                   + classAttribute + " to: " + attributeValue
+                                                   + ". Does the attribute exist?");
+            }
+        }
+
         try {
             imo.setFieldValue("sequence", flymineSequence);
         } catch (Exception e) {
@@ -391,14 +442,15 @@ public class FastaLoaderTask extends FileDirectDataLoaderTask
      */
     protected String getIdentifier(Sequence bioJavaSequence) {
         String name = bioJavaSequence.getName() + idSuffix;
-        // description_line=sp|Q9V8R9-2|41_DROME
-        if (name.contains("|")) {
-            String[] bits = name.split("\\|");
-            if (bits.length < 2) {
-                return null;
-            }
-            name = bits[1];
-        }
+        // System.out.println(name);
+        // GK000001.2 Chr1
+        // if (name.contains(" ")) {
+        //     String[] bits = name.split(" ");
+        //     // if (bits.length < 2) {
+        //     //     return null;
+        //     // }
+        //     name = bits[1];
+        // }
         return name;
     }
 

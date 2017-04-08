@@ -237,7 +237,8 @@ public class HomologeneConverter extends BioFileConverter
         if (identifierType == null) {
             identifierType = DEFAULT_IDENTIFIER_TYPE;
         }
-        String resolvedIdentifier = resolveGene(taxonId, ncbiId, symbol);
+        // disabling id resolver
+        //String resolvedIdentifier = resolveGene(taxonId, ncbiId, symbol);
         if (resolvedIdentifier == null) {
             return null;
         }

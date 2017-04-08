@@ -43,7 +43,7 @@ public class EnsemblComparaConverter extends BioFileConverter
     private static final String EVIDENCE_CODE_NAME = "Amino acid sequence comparison";
     private Set<String> taxonIds;
     private Set<String> homologues = new HashSet<String>();
-    private static final String DATASET_TITLE = "Ensembl Compara data set";
+    private static final String DATASET_TITLE = "EnsemblCompara data set";
     private static final String DATA_SOURCE_NAME = "Ensembl";
     private Map<String, String> genes = new HashMap<String, String>();
     protected IdResolver rslv = null;
@@ -185,7 +185,7 @@ public class EnsemblComparaConverter extends BioFileConverter
             return null;
         }
         String newIdentifier = identifier;
-        if ("7227".equals(taxonId) || "9606".equals(taxonId)) {
+        if ("7227".equals(taxonId)) {
             newIdentifier = resolveGene(taxonId, identifier);
             if (newIdentifier == null) {
                 return null;
