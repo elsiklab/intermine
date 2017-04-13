@@ -11,6 +11,7 @@ package org.intermine.bio.web.export;
  */
 
 import java.io.OutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
