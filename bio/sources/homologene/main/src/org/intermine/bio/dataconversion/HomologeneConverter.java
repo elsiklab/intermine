@@ -239,6 +239,7 @@ public class HomologeneConverter extends BioFileConverter
         }
         // disabling id resolver
         //String resolvedIdentifier = resolveGene(taxonId, ncbiId, symbol);
+        String resolvedIdentifier = ncbiId;
         if (resolvedIdentifier == null) {
             return null;
         }
