@@ -684,9 +684,14 @@ public class GoConverter extends BioFileConverter
         if ("taxon:".equals(input)) {
             throw new IllegalArgumentException("Invalid taxon id read: " + input);
         }
-        String taxonId = input.split(":")[1];
-        if (taxonId.contains("|")) {
-            taxonId = taxonId.split("\\|")[0];
+        // TODO: Why was this change made? Was it because of an issue with the input GAF file?
+        String taxonId = input;
+        String[] taxonIdArr = input.split(":");
+        if (taxonIdArr.length == 2) {
+            taxonId = taxonIdArr[1];
+            if (taxonId.contains("|")) {
+                taxonId = taxonId.split("\\|")[0];
+            }
         }
         return taxonId;
     }
