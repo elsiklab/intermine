@@ -86,6 +86,11 @@ public class MaizeGffGFF3RecordHandler extends GFF3RecordHandler
                     setCrossReference(xRefIterator.next());
                 }
             }
+
+            if (record.getAttributes().get("description") != null) {
+                String description = record.getAttributes().get("description").iterator().next();
+                feature.setAttribute("description", description);
+            }
         }
     }
 
