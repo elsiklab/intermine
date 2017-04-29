@@ -61,7 +61,16 @@
     </fields>
   </class>
 
- <class className="org.intermine.model.bio.Location">
+  <class className="org.intermine.model.bio.Homologue">
+    <fields>
+      <fieldconfig fieldExpr="gene.primaryIdentifier" showInResults="false" showInInlineCollection="false" />
+      <fieldconfig fieldExpr="homologue.primaryIdentifier"/>
+      <fieldconfig fieldExpr="homologue.organism.shortName"/>
+      <fieldconfig fieldExpr="type"/>
+    </fields>
+  </class>
+
+  <class className="org.intermine.model.bio.Location">
     <fields>
       <fieldconfig fieldExpr="feature.primaryIdentifier"/>
       <fieldconfig fieldExpr="start"/>
@@ -69,7 +78,6 @@
       <fieldconfig fieldExpr="strand"/>
     </fields>
   </class>
-
 
   <class className="org.intermine.model.bio.SequenceFeature">
     <fields>
@@ -219,6 +227,12 @@
                      placement="Proteins"
                      types="Gene,Protein"/>
 
+    <reportdisplayer javaClass="org.intermine.bio.web.displayer.HomologueDisplayer"
+                     jspName="model/homologueDisplayer.jsp"
+                     replacesFields="homologues"
+                     placement="Homology"
+                     parameters="{'dataSets': []}"
+                     types="Gene"/>
   </reportdisplayers>
 
 <!-- widgets -->
