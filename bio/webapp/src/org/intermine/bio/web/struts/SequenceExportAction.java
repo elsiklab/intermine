@@ -105,7 +105,7 @@ public class SequenceExportAction extends InterMineAction
         throws IllegalSymbolException, IllegalAccessException, ChangeVetoException {
         BioSequence bioSequence;
         BioEntity bioEntity = (BioEntity) obj;
-        if (bioEntity instanceof Peptide || bioEntity instanceof Protein) {
+        if (bioEntity instanceof Polypeptide || bioEntity instanceof Protein) {
             bioSequence = BioSequenceFactory.make(bioEntity, SequenceType.PROTEIN);
         }
         else {
