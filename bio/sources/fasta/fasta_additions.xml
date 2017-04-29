@@ -14,7 +14,7 @@
   <class name="Polypeptide" extends="SequenceFeature" is-interface="true">
     <attribute name="geneIdentifier" type="java.lang.String"/>
     <attribute name="mrnaIdentifier" type="java.lang.String"/>
-    <reference name="gene" referenced-type="Gene" reverse-reference="peptides"/>
-    <reference name="mrna" referenced-type="MRNA" reverse-reference="peptide"/>
+    <reference name="gene" referenced-type="Gene" reverse-reference="polypeptides"/>
+    <reference name="mrna" referenced-type="MRNA" reverse-reference="polypeptides"/>
   </class>
 </classes>
