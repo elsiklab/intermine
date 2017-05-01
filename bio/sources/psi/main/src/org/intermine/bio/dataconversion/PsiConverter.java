@@ -677,18 +677,18 @@ public class PsiConverter extends BioFileConverter
         }
 
         private String resolveGeneIdentifier(String taxonId, String datasource, String id) {
-            if (rslv != null) {
-                String identifier = id;
-                int resCount = rslv.countResolutions(taxonId, identifier);
-                if (resCount != 1) {
-                    LOG.info("RESOLVER: failed to resolve gene to one identifier, "
-                            + "ignoring gene: " + identifier + " count: " + resCount + " : "
-                            + rslv.resolveId(taxonId, identifier));
-                    return null;
-                }
-                identifier = rslv.resolveId(taxonId, identifier).iterator().next();
-                return identifier;
-            }
+//            if (rslv != null) {
+//                String identifier = id;
+//                int resCount = rslv.countResolutions(taxonId, identifier);
+//                if (resCount != 1) {
+//                    LOG.info("RESOLVER: failed to resolve gene to one identifier, "
+//                            + "ignoring gene: " + identifier + " count: " + resCount + " : "
+//                            + rslv.resolveId(taxonId, identifier));
+//                    return null;
+//                }
+//                identifier = rslv.resolveId(taxonId, identifier).iterator().next();
+//                return identifier;
+//            }
 
             return id;
         }
