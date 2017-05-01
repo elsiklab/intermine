@@ -107,9 +107,19 @@
                        </span>
 
                        <%-- example span --%>
-                       <div style="text-align:left;">
-                           <html:link href="" onclick="javascript:loadExample(exampleSpans);return false;">
-                             (click to see an example)<img src="images/disclosed.gif" title="Click to Show example"/>
+                       <div class="example1" style="text-align:left;">
+                           <html:link href="" onclick="javascript:loadOrganism();loadExample1();return false;">
+                             (example for input format chr:1..1000)<img src="images/disclosed.gif" title="Click to Show example"/>
+                           </html:link>
+                       </div>
+                       <div class="example2" style="text-align:left;">
+                           <html:link href="" onclick="javascript:loadOrganism();loadExample2();return false;">
+                             (example for input format chr:1-1000)<img src="images/disclosed.gif" title="Click to Show example"/>
+                           </html:link>
+                       </div>
+                       <div class="example3" style="text-align:left;">
+                           <html:link href="" onclick="javascript:loadOrganism();loadExample3();return false;">
+                             (example for tab delimited input format)<img src="images/disclosed.gif" title="Click to Show example"/>
                            </html:link>
                        </div>
                        <html:textarea styleId="pasteInput" property="pasteInput" rows="10" cols="60" onclick="if(this.value != ''){switchInputs('paste','file');}else{openInputs();}" onkeyup="if(this.value != ''){switchInputs('paste','file');}else{openInputs();}" />

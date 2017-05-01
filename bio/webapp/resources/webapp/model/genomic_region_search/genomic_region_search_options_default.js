@@ -12,8 +12,9 @@
             htmlToInsert += '<option value="'+this+'">'+this+'</option>';
         });
 
-        htmlToInsert += '</select>' + '<span id="genomeBuild" style="padding:10px;"></span>'
-                        '</li><br>';
+        //htmlToInsert += '</select>' + '<span id="genomeBuild" style="padding:10px;"></span>'
+        //                '</li><br>';
+        htmlToInsert += '</select></li><br>';
 
         htmlToInsert += '<li>' +
                         '<p id="selectFeatureTypes" style="padding-bottom:8px;"></p>' +
@@ -193,10 +194,37 @@
        return true;
    }
 
-   function loadExample(exampleSpans) {
-      switchInputs('paste','file');
-      jQuery('#pasteInput').focus();
-      jQuery('#pasteInput').val(exampleSpans);
+    function loadOrganism() {
+        var organismName = "A. mellifera";
+        jQuery("#organisms").val(organismName).change();
+    }
 
-      return false;
+    function loadExample1() {
+        switchInputs('paste','file');
+        jQuery('#pasteInput').focus();
+        jQuery('#pasteInput').val(
+            "Group1:1..1000\n" +
+            "Group10:12000..25000\n" +
+            "Group13:1..100000\n"
+        );
+    }
+
+    function loadExample2() {
+        switchInputs('paste','file');
+        jQuery('#pasteInput').focus();
+        jQuery('#pasteInput').val(
+            "Group1:1-1000\n" +
+            "Group10:12000-25000\n" +
+            "Group13:1-100000\n"
+        );
+    }
+
+    function loadExample3() {
+        switchInputs('paste','file');
+        jQuery('#pasteInput').focus();
+        jQuery('#pasteInput').val(
+            "Group1\t1\t1000\n" +
+            "Group10\t12000\t25000\n" +
+            "Group13\t1\t100000\n"
+        );
     }
