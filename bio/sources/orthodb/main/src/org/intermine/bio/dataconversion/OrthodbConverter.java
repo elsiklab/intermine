@@ -379,18 +379,19 @@ public class OrthodbConverter extends BioFileConverter
     }
 
     private String resolveGene(String identifier, String taxonId) {
-        if (rslv == null || !rslv.hasTaxon(taxonId)) {
-            // no id resolver available, so return the original identifier
-            return identifier;
-        }
-        int resCount = rslv.countResolutions(taxonId, identifier);
-        if (resCount != 1) {
-            LOG.info("RESOLVER: failed to resolve gene to one identifier, ignoring gene: "
-                     + identifier + " count: " + resCount + " Resolved: "
-                     + rslv.resolveId(taxonId, identifier));
-            return null;
-        }
-        return rslv.resolveId(taxonId, identifier).iterator().next();
+//        if (rslv == null || !rslv.hasTaxon(taxonId)) {
+//            // no id resolver available, so return the original identifier
+//            return identifier;
+//        }
+//        int resCount = rslv.countResolutions(taxonId, identifier);
+//        if (resCount != 1) {
+//            LOG.info("RESOLVER: failed to resolve gene to one identifier, ignoring gene: "
+//                     + identifier + " count: " + resCount + " Resolved: "
+//                     + rslv.resolveId(taxonId, identifier));
+//            return null;
+//        }
+//        return rslv.resolveId(taxonId, identifier).iterator().next();
+        return identifier;
     }
 
     private class GeneHolder
