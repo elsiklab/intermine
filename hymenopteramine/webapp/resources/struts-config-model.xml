@@ -44,3 +44,7 @@
 <!-- End of Genomic Region Search configuration -->
 
 <action path="/initFriendlyMineLinkDisplayer" type="org.intermine.bio.web.FriendlyMineLinkController"/>
+
+<action path="/blast" forward="blast.page"/>
+<action path="/network" forward="network.page"/>
+<action path="/help" forward="help.page"/>
