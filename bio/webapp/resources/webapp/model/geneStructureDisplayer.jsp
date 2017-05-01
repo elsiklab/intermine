@@ -16,16 +16,16 @@
 <div class="header">
   <c:choose>
   <c:when test="${gene.id == actualId}">
-   <h3>Gene models - <c:out value="${gene.symbol} ${gene.primaryIdentifier}"/></h3>
+   <h3>All Transcripts for Gene - <c:out value="${gene.symbol} ${gene.primaryIdentifier}"/></h3>
   </c:when>
   <c:otherwise>
-    <h3>Gene models - <c:out value="${gene.symbol} ${gene.primaryIdentifier}"/></h3>
+    <h3>All Transcripts for Gene - <c:out value="${gene.symbol} ${gene.primaryIdentifier}"/></h3>
   </c:otherwise>
   </c:choose>
 
   <p>
     <img class="tinyQuestionMark" src="images/icons/information-small-blue.png" alt="?">
-    Gene models
+    All Transcripts for Gene
   </p>
 
   <c:choose>
@@ -311,3 +311,4 @@ if (geneStructureDisplayerSize > 1) {
 </div>
 
 <!-- /geneStructureDisplayer.jsp -->
+<%@include file="geneStructureModel.jsp" %>
