@@ -17,6 +17,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -38,6 +40,7 @@ import org.intermine.bio.web.export.ResidueFieldExporter;
 import org.intermine.model.InterMineObject;
 import org.intermine.model.bio.BioEntity;
 import org.intermine.model.bio.Protein;
+import org.intermine.model.bio.Polypeptide;
 import org.intermine.model.bio.Sequence;
 import org.intermine.model.bio.SequenceFeature;
 import org.intermine.objectstore.ObjectStore;
@@ -89,7 +92,8 @@ public class SequenceExportAction extends InterMineAction
             response.setContentType("text/plain");
             if (bioSequence != null) {
                 OutputStream out = response.getOutputStream();
-                SeqIOTools.writeFasta(out, bioSequence);
+                //SeqIOTools.writeFasta(out, bioSequence);
+                writeFastaSequence(out, bioSequence);
             } else {
                 PrintWriter out = response.getWriter();
                 out.write("Sequence information not availble for this sequence feature...");
@@ -100,11 +104,38 @@ public class SequenceExportAction extends InterMineAction
         return null;
     }
 
+    /**
+     * Gets the header and sequence as string from the BioSequence object and writes it to OutputStream
+     * @param BioSequence
+     * @param OutputStream
+     */
+    private void writeFastaSequence(OutputStream outputStream, BioSequence bioSequence) throws IOException {
+        String sequenceHeader = ">" + bioSequence.getAnnotation().getProperty(FastaFormat.PROPERTY_DESCRIPTIONLINE) + "\n";
+        String sequenceString = bioSequence.seqString().toUpperCase();
+        outputStream.write(sequenceHeader.getBytes());
+        long length = 0;
+        for (int i = 0; i < sequenceString.length(); i += 60) {
+            length += 60;
+            if (i + 60 >= sequenceString.length()) {
+                outputStream.write((sequenceString.substring(i, sequenceString.length()) + "\n").getBytes());
+                break;
+            }
+            else {
+                outputStream.write((sequenceString.substring(i, i + 60) + "\n").getBytes());
+            }
+        }
+    }
+
     private BioSequence createBioSequence(InterMineObject obj)
         throws IllegalSymbolException, IllegalAccessException, ChangeVetoException {
         BioSequence bioSequence;
         BioEntity bioEntity = (BioEntity) obj;
-        bioSequence = BioSequenceFactory.make(bioEntity, SequenceType.DNA);
+        if (bioEntity instanceof Polypeptide || bioEntity instanceof Protein) {
+            bioSequence = BioSequenceFactory.make(bioEntity, SequenceType.PROTEIN);
+        }
+        else {
+            bioSequence = BioSequenceFactory.make(bioEntity, SequenceType.DNA);
+        }
         if (bioSequence == null) {
             return null;
         }
