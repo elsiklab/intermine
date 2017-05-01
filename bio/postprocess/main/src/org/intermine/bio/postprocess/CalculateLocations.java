@@ -28,6 +28,8 @@ import org.intermine.model.bio.BioEntity;
 import org.intermine.model.bio.Chromosome;
 import org.intermine.model.bio.Location;
 import org.intermine.model.bio.SequenceFeature;
+import org.intermine.model.bio.SNP;
+import org.intermine.model.bio.Indel;
 import org.intermine.objectstore.ObjectStore;
 import org.intermine.objectstore.ObjectStoreException;
 import org.intermine.objectstore.ObjectStoreWriter;
@@ -381,7 +383,10 @@ public class CalculateLocations
 
         while (resIter.hasNext()) {
             ResultsRow<?> rr = (ResultsRow<?>) resIter.next();
-
+            if (rr.get(1) instanceof SNP || rr.get(1) instanceof Indel) {
+            // ignoring result entries of type SNP and Indel;
+                continue;
+            }
             Integer chrId = (Integer) rr.get(0);
             SequenceFeature lsf = (SequenceFeature) rr.get(1);
             Location locOnChr = (Location) rr.get(2);
