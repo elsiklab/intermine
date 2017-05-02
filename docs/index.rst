@@ -11,6 +11,8 @@ HymenopteraMine is an integrative resource for genomic data on Hymenoptera, incl
 
 Link to main site: http://hymenopteragenome.org/hymenopteramine
 
+Link to HGD YouTube Channel with HymenopteraMine Videos: https://www.youtube.com/channel/UC1NVFd9buEtlbA2mcdq0MXQ
+
 Link to PDF version of this documentation: https://media.readthedocs.org/pdf/hymenopteramine/stable/hymenopteramine.pdf
 
 Link to the available datasets in HymenopteraMine: http://hymenopteragenome.org/hymenopteramine/dataCategories.do
