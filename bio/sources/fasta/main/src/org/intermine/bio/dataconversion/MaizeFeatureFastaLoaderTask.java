@@ -1,7 +1,7 @@
 package org.intermine.bio.dataconversion;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2015 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -25,8 +25,8 @@ import org.intermine.model.bio.SequenceFeature;
 import org.intermine.objectstore.ObjectStoreException;
 
 /**
- * Code for loading fasta for MaizeMine and setting feature attribute from the FASTA header.
- * @author
+ * Code for loading fasta for MaizeMine, setting feature attribute from the FASTA header.
+ * @author Kim Rutherford
  */
 public class MaizeFeatureFastaLoaderTask extends MaizeFastaLoaderTask
 {
@@ -40,15 +40,15 @@ public class MaizeFeatureFastaLoaderTask extends MaizeFastaLoaderTask
      * @throws ObjectStoreException if problem fetching Chromosome
      */
     protected Chromosome getChromosome(String chromosomeId, Organism organism, String header)
-            throws ObjectStoreException {
+        throws ObjectStoreException {
         if (chrMap.containsKey(chromosomeId)) {
             return chrMap.get(chromosomeId);
         }
         Chromosome chr = getDirectDataLoader().createObject(Chromosome.class);
-        String source = getSource(header);
+	String source = getSource(header);
         chr.setPrimaryIdentifier(chromosomeId);
         chr.setOrganism(organism);
-        chr.setSource(source);
+	chr.setSource(source);
         chr.addDataSets(getDataSet());
         getDirectDataLoader().store(chr);
         chrMap.put(chromosomeId, chr);
@@ -66,7 +66,7 @@ public class MaizeFeatureFastaLoaderTask extends MaizeFastaLoaderTask
      */
     protected Location getLocationFromHeader(String header, SequenceFeature lsf,
                                              Organism organism)
-            throws ObjectStoreException {
+        throws ObjectStoreException {
         final String regexp = "^.+\\s+\\S+:\\S+:(\\S+):([0-9]+:[0-9]+):(\\S+)\\s+.+$";
         Pattern p = Pattern.compile(regexp);
         Matcher m = p.matcher(header);
@@ -156,37 +156,37 @@ public class MaizeFeatureFastaLoaderTask extends MaizeFastaLoaderTask
      * @throws ObjectStoreException if problem storing
      */
     protected InterMineObject getMRNA(String mrnaIdentifier, Organism organism, Model model, String source)
-            throws ObjectStoreException {
+        throws ObjectStoreException {
         InterMineObject mrna = null;
         if (model.hasClassDescriptor(model.getPackageName() + ".MRNA")) {
             @SuppressWarnings("unchecked") Class<? extends InterMineObject> mrnaCls =
-                    (Class<? extends InterMineObject>) model.getClassDescriptorByName("MRNA").getType();
+                (Class<? extends InterMineObject>) model.getClassDescriptorByName("MRNA").getType();
             mrna = getDirectDataLoader().createObject(mrnaCls);
             mrna.setFieldValue("primaryIdentifier", mrnaIdentifier);
             mrna.setFieldValue("organism", organism);
-            mrna.setFieldValue("source", source);
+	    mrna.setFieldValue("source", source);
             getDirectDataLoader().store(mrna);
         }
         return mrna;
     }
 
     protected InterMineObject getGene(String identifier, Organism organism, Model model, String source)
-            throws ObjectStoreException {
+        throws ObjectStoreException {
         InterMineObject gene = null;
         if (model.hasClassDescriptor(model.getPackageName() + ".Gene")) {
             @SuppressWarnings("unchecked") Class<? extends InterMineObject> geneCls =
-                    (Class<? extends InterMineObject>) model.getClassDescriptorByName("Gene").getType();
+                (Class<? extends InterMineObject>) model.getClassDescriptorByName("Gene").getType();
             gene = getDirectDataLoader().createObject(geneCls);
             gene.setFieldValue("primaryIdentifier", identifier);
             gene.setFieldValue("organism", organism);
-            gene.setFieldValue("source", source);
+	    gene.setFieldValue("source", source);
             getDirectDataLoader().store(gene);
         }
         return gene;
     }
 
-    protected String getSource(String header) {
-        return  header.split("\\s+")[2].split(":")[1];
-    }
+	protected String getSource(String header) {
+                return  header.split("\\s+")[2].split(":")[1];
+        }
 
 }

@@ -170,7 +170,7 @@ public class MaizeFastaLoaderTask extends FileDirectDataLoaderTask
         }
         long now = System.currentTimeMillis();
         LOG.info("Finished dataloading " + storeCount + " objects at " + ((60000L * storeCount)
-                / (now - start)) + " objects per minute (" + (now - start)
+                    / (now - start)) + " objects per minute (" + (now - start)
                 + " ms total) for source " + sourceName);
     }
 
@@ -262,7 +262,7 @@ public class MaizeFastaLoaderTask extends FileDirectDataLoaderTask
      * @throws ObjectStoreException if store() fails
      */
     private void processSequence(Organism organism, Sequence bioJavaSequence)
-            throws ObjectStoreException {
+        throws ObjectStoreException {
         // some fasta files are not filtered - they contain sequences from organisms not
         // specified in project.xml
         if (organism == null) {
@@ -288,7 +288,7 @@ public class MaizeFastaLoaderTask extends FileDirectDataLoaderTask
             }
         } catch (ClassNotFoundException e1) {
             throw new RuntimeException("unknown class: " + className
-                    + " while creating new Sequence object");
+                                       + " while creating new Sequence object");
         }
         BioEntity imo = (BioEntity) getDirectDataLoader().createObject(imClass);
 
@@ -297,8 +297,8 @@ public class MaizeFastaLoaderTask extends FileDirectDataLoaderTask
             imo.setFieldValue(classAttribute, attributeValue);
         } catch (Exception e) {
             throw new IllegalArgumentException("Error setting: " + className + "."
-                    + classAttribute + " to: " + attributeValue
-                    + ". Does the attribute exist?");
+                                               + classAttribute + " to: " + attributeValue
+                                               + ". Does the attribute exist?");
         }
         try {
             imo.setFieldValue("sequence", flymineSequence);
@@ -306,11 +306,11 @@ public class MaizeFastaLoaderTask extends FileDirectDataLoaderTask
             throw new IllegalArgumentException("Error setting: " + className + ".sequence to: "
                     + attributeValue + ". Does the attribute exist?");
         }
-
-        imo.setOrganism(organism);
-
-        String source = getSource(bioJavaSequence);
-        try {
+        
+	imo.setOrganism(organism);
+	
+	String source = getSource(bioJavaSequence);
+	try {
             imo.setFieldValue("source", source);
         } catch (Exception e) {
             throw new IllegalArgumentException("Error setting: " + className + ".source to: "
@@ -323,8 +323,8 @@ public class MaizeFastaLoaderTask extends FileDirectDataLoaderTask
             throw new IllegalArgumentException("Error setting: " + className + ".length to: "
                     + flymineSequence.getLength() + ". Does the attribute exist?");
         }
-
-        try {
+	
+	try {
             imo.setFieldValue("length", new Integer(flymineSequence.getLength()));
         } catch (Exception e) {
             throw new IllegalArgumentException("Error setting: " + className + ".length to: "
@@ -355,13 +355,13 @@ public class MaizeFastaLoaderTask extends FileDirectDataLoaderTask
         }
     }
 
-    protected String getSource(Sequence bioJavaSequence) {
-        String source;
-        Annotation annotation = bioJavaSequence.getAnnotation();
-        String header = (String) annotation.getProperty("description");
-        source = header.split("\\s+")[2].split(":")[1];
-        return source;
-    }
+	protected String getSource(Sequence bioJavaSequence) {
+		String source;
+		Annotation annotation = bioJavaSequence.getAnnotation();
+	        String header = (String) annotation.getProperty("description");
+		source = header.split("\\s+")[2].split(":")[1];
+		return source;
+	}
 
     /**
      * Return the DataSet to add to each object.
@@ -395,7 +395,7 @@ public class MaizeFastaLoaderTask extends FileDirectDataLoaderTask
      */
     protected void  extraProcessing(Sequence bioJavaSequence, org.intermine.model.bio.Sequence
             flymineSequence, BioEntity bioEntity, Organism organism, DataSet dataSet)
-            throws ObjectStoreException {
+        throws ObjectStoreException {
         // default - no extra processing
     }
 
@@ -461,3 +461,4 @@ public class MaizeFastaLoaderTask extends FileDirectDataLoaderTask
         }
     }
 }
+

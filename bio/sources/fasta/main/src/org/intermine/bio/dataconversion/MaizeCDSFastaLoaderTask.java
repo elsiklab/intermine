@@ -1,7 +1,7 @@
 package org.intermine.bio.dataconversion;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2015 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -29,36 +29,36 @@ import org.intermine.objectstore.ObjectStoreException;
 import org.intermine.util.DynamicUtil;
 
 /**
- * A fasta loader that understand the headers of Maize CDS fasta files and can make the
+ * A fasta loader that understand the headers of Maize fasta CDS fasta files and can make the
  * appropriate extra objects and references.
- * @author
+ * @author Kim Rutherford
  */
 public class MaizeCDSFastaLoaderTask extends MaizeFeatureFastaLoaderTask
 {
-    /**
+   /**
      * {@inheritDoc}
      */
     @Override
     protected void extraProcessing(Sequence bioJavaSequence,
-                                   org.intermine.model.bio.Sequence flymineSequence,
-                                   BioEntity bioEntity, Organism organism, DataSet dataSet)
-            throws ObjectStoreException {
+            org.intermine.model.bio.Sequence flymineSequence,
+            BioEntity bioEntity, Organism organism, DataSet dataSet)
+        throws ObjectStoreException {
         Annotation annotation = bioJavaSequence.getAnnotation();
         String header = (String) annotation.getProperty("description");
         String mrnaIdentifier = bioJavaSequence.getName();
-        String source = getSource(header);
+	String source = getSource(header);
 
         ObjectStore os = getIntegrationWriter().getObjectStore();
         Model model = os.getModel();
         if (model.hasClassDescriptor(model.getPackageName() + ".CDS")) {
             Class<? extends FastPathObject> cdsCls =
-                    model.getClassDescriptorByName("CDS").getType();
+                model.getClassDescriptorByName("CDS").getType();
             if (!DynamicUtil.isInstance(bioEntity, cdsCls)) {
                 throw new RuntimeException("the InterMineObject passed to "
                         + "MaizeCDSFastaLoaderTask.extraProcessing() is not a "
                         + "CDS: " + bioEntity);
             }
-            bioEntity.setFieldValue("source",source);
+	    bioEntity.setFieldValue("source",source);
             InterMineObject mrna = getMRNA(mrnaIdentifier, organism, model, source);
             if (mrna != null) {
                 bioEntity.setFieldValue("transcript", mrna);
