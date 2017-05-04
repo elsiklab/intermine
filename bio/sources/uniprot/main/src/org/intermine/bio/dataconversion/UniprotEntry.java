@@ -123,7 +123,10 @@ public class UniprotEntry
         reset();
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
+    /**
+     * @param collectionName name of collection
+     * @return the collection specified
+     */
     public List<String> getCollection(String collectionName) {
         List<String> values = collections.get(collectionName);
         if (values == null) {
