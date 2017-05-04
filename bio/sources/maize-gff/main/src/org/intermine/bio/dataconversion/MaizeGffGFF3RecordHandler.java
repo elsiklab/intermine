@@ -49,6 +49,7 @@ public class MaizeGffGFF3RecordHandler extends GFF3RecordHandler
         refsAndCollections.put("MRNA", "gene");
         refsAndCollections.put("MiRNA", "gene");
         refsAndCollections.put("LincRNA", "gene");
+        refsAndCollections.put("lincRNA", "gene");
         refsAndCollections.put("TRNA", "gene");
     }
 

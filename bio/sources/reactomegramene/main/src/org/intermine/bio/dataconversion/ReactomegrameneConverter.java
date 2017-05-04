@@ -1,7 +1,7 @@
 package org.intermine.bio.dataconversion;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2015 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -33,13 +33,13 @@ import org.intermine.xml.full.ReferenceList;
 
 
 /**
- * DataConverter to load pathways from PlantReactome (Gramene) and link them to Genes
+ * DataConverter to load ReactomeGramene Pathways and link them to Genes
  *
- * @author
+ * @author Xavier Watkins
  */
-public class PlantReactomeGrameneConverter extends BioFileConverter
+public class ReactomegrameneConverter extends BioFileConverter
 {
-    protected static final Logger LOG = Logger.getLogger(PlantReactomeGrameneConverter.class);
+    protected static final Logger LOG = Logger.getLogger(ReactomegrameneConverter.class);
     private static final String PROP_FILE = "reactomegramene_config.properties";
     private Map<String, Item> geneItems = new HashMap<String, Item>();
     private Map<String, String[]> config = new HashMap<String, String[]>();
@@ -56,7 +56,7 @@ public class PlantReactomeGrameneConverter extends BioFileConverter
      * @param writer the ItemWriter used to handle the resultant items
      * @param model the Model
      */
-    public PlantReactomeGrameneConverter(ItemWriter writer, Model model) {
+    public ReactomegrameneConverter(ItemWriter writer, Model model) {
         super(writer, model, "Reactome Gramene", "Reactome Gramene pathways data set");
         readConfig();
     }
@@ -87,7 +87,7 @@ public class PlantReactomeGrameneConverter extends BioFileConverter
             String[] attributes = key.split("\\.");
             if (attributes.length == 0) {
                 throw new RuntimeException("Problem loading properties '" + PROP_FILE + "' on line "
-                        + key);
+                                           + key);
             }
             String organism = attributes[0];
 
@@ -103,7 +103,7 @@ public class PlantReactomeGrameneConverter extends BioFileConverter
                 bits[1] = value;
             } else {
                 String msg = "Problem processing properties '" + PROP_FILE + "' on line " + key
-                        + ".  This line has not been processed.";
+                    + ".  This line has not been processed.";
                 LOG.error(msg);
             }
         }
@@ -192,7 +192,7 @@ public class PlantReactomeGrameneConverter extends BioFileConverter
     private Map<String, String> geneCollectionCheck = new HashMap<String, String>();
 
     private Item getGene(String geneCG, String organism, ReferenceList referenceList)
-            throws ObjectStoreException {
+        throws ObjectStoreException {
         String identifier = null;
 
         String taxonId = config.get(organism)[0];
@@ -200,8 +200,8 @@ public class PlantReactomeGrameneConverter extends BioFileConverter
             int resCount = rslv.countResolutions(taxonId, geneCG);
             if (resCount != 1) {
                 LOG.info("RESOLVER: failed to resolve gene to one identifier, ignoring gene: "
-                        + geneCG + " count: " + resCount + " FBgn: "
-                        + rslv.resolveId(taxonId, geneCG));
+                         + geneCG + " count: " + resCount + " FBgn: "
+                         + rslv.resolveId(taxonId, geneCG));
                 return null;
             }
             identifier = rslv.resolveId(taxonId, geneCG).iterator().next();
@@ -212,13 +212,13 @@ public class PlantReactomeGrameneConverter extends BioFileConverter
         Item gene = geneItems.get(identifier);
         if (gene == null) {
             gene = createItem("Gene");
-            String[] parts = identifier.split("\\|");
-            //  gene.setAttribute(config.get(organism)[1], parts[1]);
-            if (parts[0].length() != 0) {
-                gene.setAttribute(config.get(organism)[1], parts[0]);
-            } else {
-
-            }
+               String[] parts = identifier.split("\\|");
+          //  gene.setAttribute(config.get(organism)[1], parts[1]);
+             if (parts[0].length() != 0) {    
+            gene.setAttribute(config.get(organism)[1], parts[0]);
+          } else {
+                
+              }
             gene.setReference("organism", getOrganism(taxonId));
             gene.addCollection(referenceList);
             geneItems.put(identifier, gene);

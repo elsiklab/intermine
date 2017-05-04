@@ -34,13 +34,13 @@ import org.intermine.metadata.StringUtil;
 import org.intermine.xml.full.Item;
 
 /**
- * Data converter for orthologues from Ensembl Plants
+ * Ensemblplant data Converter
  *
- * @author
+ * @author Julie Sullivan
  */
-public class EnsemblPlantConverter extends BioFileConverter
+public class EnsemblplantConverter extends BioFileConverter
 {
-    private static final Logger LOG = Logger.getLogger(EnsemblPlantConverter.class);
+    private static final Logger LOG = Logger.getLogger(EnsemblplantConverter.class);
 
     private static final String DATASET_TITLE = "EnsemblCompara Plant Orthologue data set";
     private static final String DATA_SOURCE_NAME = "EnsemblCompara Plant";
@@ -118,7 +118,7 @@ public class EnsemblPlantConverter extends BioFileConverter
             7) UniProt_Description
             8) InterPro_domains
         */
-        //     createIDResolver();
+   //     createIDResolver();
         String previousGroup = null;
         Set<GeneHolder> homologues = new HashSet<GeneHolder>();
 
@@ -202,7 +202,7 @@ public class EnsemblPlantConverter extends BioFileConverter
     }
 
     private void processHomologuePair(GeneHolder gene, GeneHolder homologue)
-            throws ObjectStoreException {
+        throws ObjectStoreException {
 
         String geneTaxonId = gene.getTaxonId();
         String homologueTaxonId = homologue.getTaxonId();
@@ -248,7 +248,7 @@ public class EnsemblPlantConverter extends BioFileConverter
     }
 
     private void createHomologue(String gene1, String gene2, String type)
-            throws ObjectStoreException {
+        throws ObjectStoreException {
         Item homologue = createItem("Homologue");
         homologue.setReference("gene", gene1);
         homologue.setReference("homologue", gene2);
@@ -371,12 +371,12 @@ public class EnsemblPlantConverter extends BioFileConverter
 //    private void createIDResolver() {
 //        Set<String> allTaxonIds = new HashSet<String>();
 //        allTaxonIds.addAll(taxonIds);
-    //       allTaxonIds.addAll(homologueTaxonIds);
-    //      if (rslv == null) {
-    //         rslv = IdResolverService.getIdResolverByOrganism(allTaxonIds);
+ //       allTaxonIds.addAll(homologueTaxonIds);
+  //      if (rslv == null) {
+   //         rslv = IdResolverService.getIdResolverByOrganism(allTaxonIds);
 //        }
-    //       LOG.info("Taxons in resolver:" + rslv.getTaxons());
-    //   }
+ //       LOG.info("Taxons in resolver:" + rslv.getTaxons());
+ //   }
 
     private String resolveGene(String identifier, String taxonId) {
         if (rslv == null || !rslv.hasTaxon(taxonId)) {
@@ -386,8 +386,8 @@ public class EnsemblPlantConverter extends BioFileConverter
         int resCount = rslv.countResolutions(taxonId, identifier);
         if (resCount != 1) {
             LOG.info("RESOLVER: failed to resolve gene to one identifier, ignoring gene: "
-                    + identifier + " count: " + resCount + " Resolved: "
-                    + rslv.resolveId(taxonId, identifier));
+                     + identifier + " count: " + resCount + " Resolved: "
+                     + rslv.resolveId(taxonId, identifier));
             return null;
         }
         return rslv.resolveId(taxonId, identifier).iterator().next();
