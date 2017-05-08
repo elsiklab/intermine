@@ -97,10 +97,49 @@
       <property name="src.data.dir.includes" value="protein2ipr.dat"/>
       <property name="protein2ipr.organisms" value="4577"/>
     </source>
-    <source name="ensembl-plant-orthologue" type="ensemblplant">
-      <property name="src.data.dir" location="/db/intermine/Maizemine/dataset/ensembl-plant-orthologue"/>
+  <!--TEST
+
+    <source name="ensembl-plant-orthologue1" type="ensemblplant">
+      <property name="src.data.dir" location="/db/intermine/Maizemine/dataset/ensembl-plant-orthologue/part_I/"/>
+      <property name="ensemblplant.organisms" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 4530 4555 4565 4572 37682 15368 4513 4558"/>
+    </source>  
+    <source name="ensembl-plant-orthologue2" type="ensemblplant">
+      <property name="src.data.dir" location="/db/intermine/Maizemine/dataset/ensembl-plant-orthologue/part_II/"/>
       <property name="ensemblplant.organisms" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 4530 4555 4565 4572 37682 15368 4513 4558"/>
     </source>
+    <source name="ensembl-plant-orthologue3" type="ensemblplant">
+      <property name="src.data.dir" location="/db/intermine/Maizemine/dataset/ensembl-plant-orthologue/part_III/"/>
+      <property name="ensemblplant.organisms" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 4530 4555 4565 4572 37682 15368 4513 4558"/>
+    </source>
+   <source name="ensembl-plant-orthologue4" type="ensemblplant">
+      <property name="src.data.dir" location="/db/intermine/Maizemine/dataset/ensembl-plant-orthologue/part_IV/"/>
+      <property name="ensemblplant.organisms" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 4530 4555 4565 4572 37682 15368 4513 4558"/>
+    </source>
+   <source name="ensembl-plant-orthologue5" type="ensemblplant">
+      <property name="src.data.dir" location="/db/intermine/Maizemine/dataset/ensembl-plant-orthologue/part_V/"/>
+      <property name="ensemblplant.organisms" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 4530 4555 4565 4572 37682 15368 4513 4558"/>
+    </source>
+   <source name="ensembl-plant-orthologue6" type="ensemblplant">
+      <property name="src.data.dir" location="/db/intermine/Maizemine/dataset/ensembl-plant-orthologue/part_VI/"/>
+      <property name="ensemblplant.organisms" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 4530 4555 4565 4572 37682 15368 4513 4558"/>
+    </source>
+   <source name="ensembl-plant-orthologue7" type="ensemblplant">
+      <property name="src.data.dir" location="/db/intermine/Maizemine/dataset/ensembl-plant-orthologue/part_VII/"/>
+      <property name="ensemblplant.organisms" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 4530 4555 4565 4572 37682 15368 4513 4558"/>
+    </source>
+   <source name="ensembl-plant-orthologue8" type="ensemblplant">
+      <property name="src.data.dir" location="/db/intermine/Maizemine/dataset/ensembl-plant-orthologue/part_VIII/"/>
+      <property name="ensemblplant.organisms" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 4530 4555 4565 4572 37682 15368 4513 4558"/>
+    </source>
+  -->
+	 <source name="ensembl-plant-orthologue-biomart" type="ensembl-compara">
+ 		 <property name="src.data.dir" location="/db/intermine/Maizemine/dataset/ensembl-plant-orthologue/biomart"/>
+  		<property name="ensemblcompara.organisms" value="4577 3702"/>
+  		<property name="ensemblcompara.homologues" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 4530 4555 4565 4572 37682 15368 4513 4558"/>
+	</source> 
+
+
+
     <source name="reactome-gramene-pathway" type="reactomegramene">
       <property name="src.data.dir" location="/db/intermine/Maizemine/dataset/reactome_pathways/"/>
       <property name="reactomegramene.organisms" value="4577 3702"/>
