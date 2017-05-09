@@ -1,7 +1,7 @@
 package org.intermine.bio.dataconversion;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2015 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -31,40 +31,38 @@ import org.intermine.util.FormattedTextParser;
 import org.intermine.xml.full.Item;
 
 
+
 /**
- * Converter that process 4 column text file and produces homologues.
- * @author Julie Sullivan
+ * 
+ * @author
  */
-public class EnsemblComparaConverter extends BioFileConverter
+public class  EnsemblhomologConverter  extends BioFileConverter
 {
-    private static final Logger LOG = Logger.getLogger(EnsemblComparaConverter.class);
-    private static final String PROP_FILE = "ensembl-compara_config.properties";
-    private static final String EVIDENCE_CODE_ABBR = "AA";
-    private static final String EVIDENCE_CODE_NAME = "Amino acid sequence comparison";
+    //
+    private static final Logger LOG = Logger.getLogger(PedigreeConverter.class);
+    private static final String PROP_FILE = "config.properties";
     private Set<String> taxonIds;
-    private Set<String> homologues = new HashSet<String>();
-    private static final String DATASET_TITLE = "Ensembl Compara data set";
-    private static final String DATA_SOURCE_NAME = "Ensembl";
+    private static final String DATASET_TITLE = "Pedigree data set";
+    private static final String DATA_SOURCE_NAME = "UNKNOWN";
     private Map<String, String> genes = new HashMap<String, String>();
-    protected IdResolver rslv = null;
+    private Set<String> relates = new HashSet<String>();
+     protected IdResolver rslv = null;
     private Map<String, String> configs = new HashMap<String, String>();
-    private static String evidenceRefId = null;
+  private static String evidenceRefId = null;
+   
 
     /**
      * Constructor
      * @param writer the ItemWriter used to handle the resultant items
      * @param model the Model
      */
-    public EnsemblComparaConverter(ItemWriter writer, Model model) {
+    public  EnsemblhomologConverter(ItemWriter writer, Model model) {
         super(writer, model, DATA_SOURCE_NAME, DATASET_TITLE);
-        readConfig();
+       readConfig();
     }
 
-    /**
-     * Process all homologues for this organism.
-     * @param taxonIds list of taxon IDs to process
-     */
-    public void setEnsemblcomparaOrganisms(String taxonIds) {
+//
+     public void setPedigreeOrganisms(String taxonIds) {
         this.taxonIds = new HashSet<String>(Arrays.asList(StringUtils.split(taxonIds, " ")));
     }
 
@@ -73,8 +71,8 @@ public class EnsemblComparaConverter extends BioFileConverter
      * interest.  Otherwise ignore.
      * @param taxonIds list of taxon IDs to process
      */
-    public void setEnsemblcomparaHomologues(String taxonIds) {
-        this.homologues = new HashSet<String>(Arrays.asList(StringUtils.split(taxonIds, " ")));
+    public void setPedigreeRelates(String taxonIds) {
+        this.relates = new HashSet<String>(Arrays.asList(StringUtils.split(taxonIds, " ")));
     }
 
     private void readConfig() {
@@ -102,13 +100,9 @@ public class EnsemblComparaConverter extends BioFileConverter
     public void process(Reader reader) throws Exception {
 
         // init resolver
-        if (rslv == null) { // a workround for unit test
-            rslv = IdResolverService.getFlyIdResolver();
-            rslv = IdResolverService.getEnsemblIdResolver();
-        }
-
+    
         if (taxonIds == null || taxonIds.isEmpty()) {
-            throw new IllegalArgumentException("No organism data provided for Ensembl Plant");
+            throw new IllegalArgumentException("No organism data provided for Ensembl Compara");
         }
         File file = getCurrentFile();
         if (file == null) {
@@ -120,13 +114,12 @@ public class EnsemblComparaConverter extends BioFileConverter
         for (String bit : bits) {
             if (taxonIds.contains(bit)) {
                 processFile = true;
-            } else if (!homologues.isEmpty() && !homologues.contains(bit)) {
+            } else if (!relates.isEmpty() && !relates.contains(bit)) {
                 // this file contains an organism not listed in the project XML file
                 return;
             }
         }
         if (!processFile) {
-            // this file contains organisms listed in homologues collection, but not genes
             return;
         }
 
@@ -135,69 +128,78 @@ public class EnsemblComparaConverter extends BioFileConverter
         Iterator<String[]> lineIter = FormattedTextParser.parseTabDelimitedReader(reader);
         while (lineIter.hasNext()) {
             String[] line = lineIter.next();
-            if (line.length < 2 && StringUtils.isNotEmpty(line.toString())) {
+            if (line.length < 3 && StringUtils.isNotEmpty(line.toString())) {
                 throw new RuntimeException("Invalid line, should be 2 columns but is '"
                         + line.length + "' instead");
             }
 
-            String gene1 = line[0];
-            String gene2 = line[1];
-
-            if (gene1.startsWith("Ensembl")) {
-                // skip header that biomart starts with
-                continue;
-            }
+            String gene1 = line[1];
+            String gene2 = line[2];
+            String family = line[0];
+            String relate = line[3];
+            String relate1 = line[4];
+         
+            
 
             if (gene1.equals(lastGene1) && gene2.equals(lastGene2)) {
                 // file isn't unique
                 continue;
             }
 
-            String refId1 = parseGene(bits[0], gene1);
-            String refId2 = parseGene(bits[1], gene2);
-
+            String refId2 = parseIndividual(bits[1], gene2);
+            String refId1 = parseIndividual(bits[0], gene1);
             if (refId1 == null || refId2 == null) {
                 continue;
             }
-
-            // store homologues
-            processHomologue(refId1, refId2);
-            processHomologue(refId2, refId1);
+            processRelates(refId1, refId2, family, relate);
+            processRelates2(refId2, refId1, family, relate1);
             lastGene1 = gene1;
             lastGene2 = gene2;
         }
     }
 
-    // save homologue pair
-    private void processHomologue(String gene1, String gene2)
+
+       private void processRelates(String gene1, String gene2, String family, String relate)
         throws ObjectStoreException {
-        Item homologue = createItem("Homologue");
-        homologue.setReference("gene", gene1);
-        homologue.setReference("homologue", gene2);
-        homologue.addToCollection("evidence", getEvidence());
-        homologue.setAttribute("type", "homologue");
-        store(homologue);
+        Item rel = createItem("Relationships");
+        rel.setReference("relationships", gene1);
+        rel.setReference("individual", gene2);
+        rel.setReference("relationshiplookup", getRelate(relate));
+        String refId = rel.getIdentifier();
+        System.out.println(">>>>>>>>>>>>>>"+ refId);
+        rel.setAttribute("type", family);
+        store(rel);
+    }
+    private void processRelates2(String gene1, String gene2, String family, String relate1)
+        throws ObjectStoreException {
+        Item rel = createItem("Relationships");
+        rel.setReference("relationships", gene1);
+        rel.setReference("individual", gene2);
+        rel.setReference("relationshiplookup", getRelate(relate1));
+        String refId = rel.getIdentifier();
+        System.out.println(">>>>>>>>>>>>>>"+ refId);
+        rel.setAttribute("type", family);
+        store(rel);
     }
 
-    private String parseGene(String taxonId, String identifier)
+
+
+
+
+
+    private String parseIndividual(String taxonId, String identifier)
         throws ObjectStoreException {
         if (StringUtils.isBlank(identifier)) {
             return null;
         }
         String newIdentifier = identifier;
-        if ("7227".equals(taxonId) || "9606".equals(taxonId)) {
-            newIdentifier = resolveGene(taxonId, identifier);
-            if (newIdentifier == null) {
-                return null;
-            }
-        }
-        String refId = genes.get(newIdentifier);
+       String refId = genes.get(newIdentifier);
         if (refId == null) {
             String fieldName = getConfig(taxonId);
             if (fieldName == null) {
                 throw new IllegalArgumentException("no config found");
             }
-            Item item = createItem("Gene");
+            Item item = createItem("Individual");
             item.setAttribute(fieldName, newIdentifier);
             item.setReference("organism", getOrganism(taxonId));
             store(item);
@@ -207,24 +209,6 @@ public class EnsemblComparaConverter extends BioFileConverter
         return refId;
     }
 
-    private String resolveGene(String taxonId, String identifier) {
-        String id = identifier;
-
-        if (rslv == null || !rslv.hasTaxon(taxonId)) {
-            return identifier;
-        }
-        int resCount = rslv.countResolutions(taxonId, identifier);
-        if (resCount != 1) {
-            LOG.info("RESOLVER: failed to resolve gene to one identifier, ignoring gene: "
-                    + identifier + " count: " + resCount + " resolved to: "
-                    + rslv.resolveId(taxonId, identifier));
-            return null;
-        }
-        id = rslv.resolveId(taxonId, identifier).iterator().next();
-
-        return id;
-    }
-
     private String getConfig(String taxonId) {
         String identifierField = configs.get(taxonId);
         if (identifierField == null) {
@@ -232,31 +216,30 @@ public class EnsemblComparaConverter extends BioFileConverter
         }
         return identifierField;
     }
+  
+    
 
-    private String getEvidence()
-        throws ObjectStoreException {
-        if (evidenceRefId == null) {
-
-            Item item = createItem("OrthologueEvidenceCode");
-            item.setAttribute("abbreviation", EVIDENCE_CODE_ABBR);
-            item.setAttribute("name", EVIDENCE_CODE_NAME);
-            try {
-                store(item);
-            } catch (ObjectStoreException e) {
-                throw new ObjectStoreException(e);
-            }
-            String refId = item.getIdentifier();
-
-            item = createItem("OrthologueEvidence");
-            item.setReference("evidenceCode", refId);
-            try {
-                store(item);
-            } catch (ObjectStoreException e) {
-                throw new ObjectStoreException(e);
-            }
-
-            evidenceRefId = item.getIdentifier();
-        }
-        return evidenceRefId;
+    private String getRelate(String identifier) {
+          String newId = identifier;
+         Item relate = createItem("Relationshiplookup"); 
+          relate.setAttribute("primaryIdentifier", newId);     
+         try{ 
+         store(relate);
+         } catch(Exception e) {
+         System.out.println("Error while storing relate item: " + relate + "\nStacktrace: " + e);
+         }
+         String refId2 = relate.getIdentifier();
+         return refId2;
+       
     }
+
+
+
+
+
+    /**
+     * 
+     *
+     * {@inheritDoc}
+     */
 }
