@@ -166,54 +166,28 @@ public class EnsemblhomologConverter extends BioFileConverter
             }
 
             // store homologues
-            processHomologue(refId1, refId2, ancestor, confidence, kind);
-            processHomologue(refId2, refId1, ancestor, confidence, kind);
+            processHomologue(refId1, refId2, ancestor, kind, confidence);
+            processHomologue(refId2, refId1, ancestor, kind, confidence);
             lastGene1 = gene1;
             lastGene2 = gene2;
         }
     }
 
     // save homologue pair
-    private void processHomologue(String gene1, String gene2, String ancestor, String confidence, String kind)
+    private void processHomologue(String gene1, String gene2, String ancestor, String kind, String confidence)
         throws ObjectStoreException {
         Item homologue = createItem("Homologue");
         homologue.setReference("gene", gene1);
         homologue.setReference("homologue", gene2);
-        homologue.setReference("lastCommonAncestor", getRelate(ancestor));
-        homologue.setReference("confidenceScore", getConfidence(confidence));
-        homologue.setReference("type", getType(kind));
+        homologue.setAttribute("lastCommonAncestor", ancestor);
+        homologue.setAttribute("type", kind);
+        homologue.setAttribute("confidenceScore", confidence);
         homologue.addToCollection("evidence", getEvidence());
        // homologue.setAttribute("type", "homologue");
         store(homologue);
     }
 
-    private String getConfidence(String identifier) {
-          String newId = identifier;
-         Item relate = createItem("confidenceScore");
-          relate.setAttribute("primaryIdentifier", newId);
-         try{
-         store(relate);
-         } catch(Exception e) {
-         System.out.println("Error while storing relate item: " + relate + "\nStacktrace: " + e);
-         }
-         String refId2 = relate.getIdentifier();
-         return refId2;
-
-    }
-
-    private String getType(String identifier) {
-          String newId = identifier;
-         Item relate = createItem("type");
-          relate.setAttribute("primaryIdentifier", newId);
-         try{
-         store(relate);
-         } catch(Exception e) {
-         System.out.println("Error while storing relate item: " + relate + "\nStacktrace: " + e);
-         }
-         String refId2 = relate.getIdentifier();
-         return refId2;
-
-    }
+    
 
 
     private String parseGene(String taxonId, String identifier)
@@ -242,21 +216,6 @@ public class EnsemblhomologConverter extends BioFileConverter
             genes.put(newIdentifier, refId);
         }
         return refId;
-    }
-
-
-     private String getRelate(String identifier) {
-          String newId = identifier;
-         Item relate = createItem("lastCommonAncestor"); 
-          relate.setAttribute("primaryIdentifier", newId);     
-         try{ 
-         store(relate);
-         } catch(Exception e) {
-         System.out.println("Error while storing relate item: " + relate + "\nStacktrace: " + e);
-         }
-         String refId2 = relate.getIdentifier();
-         return refId2;
-       
     }
 
 

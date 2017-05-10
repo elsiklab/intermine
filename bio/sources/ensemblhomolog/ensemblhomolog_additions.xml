@@ -4,10 +4,11 @@
   <reference name="gene" referenced-type="Gene" reverse-reference="homologues"/>
   <reference name="homologue" referenced-type="Gene"/>
   <collection name="dataSets" referenced-type="DataSet"/>
+  <attribute name="type" type="java.lang.String"/>
+   <attribute name="confidenceScore" type="java.lang.String"/>
+   <attribute name="lastCommonAncestor" type="java.lang.String"/>
+
   <collection name="evidence" referenced-type="OrthologueEvidence"/>
-    <reference name="type" referenced-type="type" reverse-reference="homologues"/>
-    <reference name="confidenceScore" referenced-type="confidenceScore" reverse-reference="homologues"/>
-   <reference name="lastCommonAncestor" referenced-type="lastCommonAncestor" reverse-reference="homologues"/>
 </class>
 <class name="OrthologueEvidence" is-interface="true">
   <reference name="evidenceCode" referenced-type="OrthologueEvidenceCode"/>
@@ -20,30 +21,9 @@
 <class name="Gene" is-interface="true">
      <reference name="organism" referenced-type="Organism"/>
      <attribute name="primaryIdentifier" type="java.lang.String"/>
-      <reference name="lastCommonAncestor" referenced-type="lastCommonAncestor" reverse-reference="gene"/>
-      <reference name="confidenceScore" referenced-type="confidenceScore" reverse-reference="gene"/>
-      <reference name="type" referenced-type="type" reverse-reference="gene"/>
-      <collection name="homologues" referenced-type="Homologue" reverse-reference="gene"/>
      <collection name="homologues" referenced-type="Homologue" reverse-reference="gene"/>
 </class>
-    <class name="lastCommonAncestor" is-interface="true">
-        <attribute name="primaryIdentifier" type="java.lang.String"/>
-        <reference name="gene" referenced-type="Gene" reverse-reference="lastCommonAncestor"/>
-        <reference name="homologues" referenced-type="Homologue" reverse-reference="lastCommonAncestor"/>
-    </class>
-   <class name="confidenceScore" is-interface="true">
-        <attribute name="primaryIdentifier" type="java.lang.String"/>
-        <reference name="gene" referenced-type="Gene" reverse-reference="confidenceScore"/>
-        <reference name="homologues" referenced-type="Homologue" reverse-reference="confidenceScore"/>
-    </class>
- 
-      <class name="type" is-interface="true">
-        <attribute name="primaryIdentifier" type="java.lang.String"/>
-        <reference name="gene" referenced-type="Gene" reverse-reference="type"/>
-        <reference name="homologues" referenced-type="Homologue" reverse-reference="type"/>
-    </class>
+    
 
 
-
-confidenceScore
 </classes>
