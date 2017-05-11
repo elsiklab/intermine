@@ -180,7 +180,7 @@
   </tr> 
    
   <tr>
-    <td class="leftcol"><p> <h2>Gene Ontology</h2></p></td>
+    <td class="leftcol"><p> <h2>Gene Ontology Annotation</h2></p></td>
     <td>
         <p><i>B. taurus</i></p>
         <p><i>H. sapien</i></p>
@@ -189,11 +189,27 @@
         <p><i>C. hircus</i></p>
         <p><i>O. aries</i></p>
     </td>
-    <td> GO annotations </td>
+    <td> Gene Ontology Annotation </td>
     <td> GOA at UniProt (GOC Validation Date: 12/16/2016)</td>
     <td> <p>Huntley et al - PubMed <a href=http://www.ncbi.nlm.nih.gov/pubmed/?term=25378336>25378336</a></p><p>Gene Ontology Consortium - PubMed <a href=http://www.ncbi.nlm.nih.gov/pubmed/?term=25428369>25428369</a></p></td>
     <td> <a href="http://geneontology.org/page/download-annotation">GO Consortium Annotation Download</a></td>
   </tr>
+    <tr>
+    <td class="leftcol"><p> <h2>Ontology</h2></p></td>
+    <td>
+        <p><i>B. taurus</i></p>
+    </td>
+    <td> Ontologies: Brenda Tissue Ontology, Mouse Anatomy Ontology, Uberon Anatomy Ontology </td>
+    <td> GOA at UniProt (GOC Validation Date: 12/16/2016)</td>
+    <td> <p>Huntley et al - PubMed <a href=http://www.ncbi.nlm.nih.gov/pubmed/?term=25378336>25378336</a></p><p>Gene Ontology Consortium - PubMed <a href=http://www.ncbi.nlm.nih.gov/pubmed/?term=25428369>25428369</a></p></td>
+    <td> <a href="http://geneontology.org/page/download-annotation">GO Consortium Annotation Download</a></td>
+  </tr>
+
+
+
+
+
+
 
   <tr>
     <td class="leftcol" rowspan="3"><p><h2>Pathways</h2></p></td>
