@@ -8,14 +8,29 @@
         <!--<source name="brenda-tissue-ontology" type="brenda-ontology">-->
             <!--<property name="src.data.file" location="@DATA_DIR@/BRENDA/BrendaTissueOntology.obo"/>-->
         <!--</source>-->
-        <source name="evidence-code-ontology" type="evidence-ontology">
-            <property name="src.data.file" location="@DATA_DIR@/ECO/eco.obo"/>
+        <source name="clinical-measurement-ontology" type="clinical-measurement-ontology">
+            <property name="src.data.file" location="@DATA_DIR@/ontologies/clinical-measurement-ontology/clinical_measurement_ontology_2.40.obo"/>
+        </source>
+        <source name="livestock-breed-ontology" type="livestock-breed-ontology">
+            <property name="src.data.file" location="@DATA_DIR@/ontologies/livestock-breed-ontology/LBO_v2.2.obo"/>
+        </source>
+        <source name="livestock-product-trait-ontology" type="livestock-product-trait-ontology">
+            <property name="src.data.file" location="@DATA_DIR@/ontologies/livestock-product-trait-ontology/PT_v1.4.obo"/>
+        </source>
+        <source name="vertebrate-trait-ontology" type="vertebrate-trait-ontology">
+            <property name="src.data.file" location="@DATA_DIR@/ontologies/vertebrate-trait-ontology/VT_v7.3.obo"/>
+        </source>
+        <source name="evidence-ontology" type="evidence-ontology">
+            <property name="src.data.file" location="@DATA_DIR@/ontologies/evidence-ontology/eco.obo"/>
         </source>
         <source name="psi-mi-ontology" type="psi-mi-ontology" dump="true">
-            <property name="src.data.file" location="@DATA_DIR@/psi-mi-ontology/psi-mi.obo"/>
+            <property name="src.data.file" location="@DATA_DIR@/ontologies/psi-mi-ontology/psi-mi.obo"/>
         </source>
-        <source name="go" type="go">
-            <property name="src.data.file" location="@DATA_DIR@/GO/gene-ontology.obo"/>
+        <source name="sequence-ontology" type="so">
+            <property name="src.data.file" location="@DATA_DIR@/ontologies/sequence-ontology/so.obo"/>
+        </source>
+        <source name="gene-ontology" type="go">
+            <property name="src.data.file" location="@DATA_DIR@/ontologies/gene-ontology/go.obo"/>
         </source>
         <source name="human-gene-info" type="custom-gene-info" dump="true">
             <property name="src.data.dir" location="@DATA_DIR@/custom-gene-info/human"/>
