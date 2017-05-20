@@ -178,8 +178,80 @@
     <td> Hermjakob H et al - PubMed <a href=http://www.ncbi.nlm.nih.gov/pubmed/14681455>14681455</a></td>
     <td> <a href="ftp://ftp.ebi.ac.uk/pub/databases/IntAct/current/">IntAct FTP</a></td>
   </tr> 
-   
+
   <tr>
+    <td rowspan="11" class="leftcol"><p> <h2>Ontologies</h2></p></td>
+    <td></td>
+    <td>Uber Anatomy Ontology (UBERON)</td>
+    <td>Release Date: 04/25/2017</td>
+    <td><p>Mungall et al - PubMed <a href="https://www.ncbi.nlm.nih.gov/pubmed/?term=22293552">22293552</a></p></td>
+    <td><a href="https://bioportal.bioontology.org/ontologies/UBERON">UBERON</a></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Mouse Adult Gross Anatomy Ontology</td>
+    <td>Release Date: 12/22/2016</td>
+    <td></td>
+    <td><a href="https://bioportal.bioontology.org/ontologies/MA">MA</a></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Clinical Measurement Ontology</td>
+    <td>Release Date: 04/21/2017</td>
+    <td><p>Shimoyama et al - PubMed <a href="https://www.ncbi.nlm.nih.gov/pubmed/22654893">22654893</a></p></td>
+    <td><a href="https://bioportal.bioontology.org/ontologies/CMO">CMO</a></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Livestock Breed Ontology</td>
+    <td>Release Date: 04/12/2017</td>
+    <td></td>
+    <td><a href="https://bioportal.bioontology.org/ontologies/LBO">LBO</a></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Livestock Product Trait Ontology</td>
+    <td>Release Date: 03/02/2017</td>
+    <td></td>
+    <td><a href="https://bioportal.bioontology.org/ontologies/PTO">PTO</a></td>
+  </tr>
+  <tr>
+  <tr>
+    <td></td>
+    <td>Vertebrate Trait Ontology</td>
+    <td>Release Date: 03/06/2017</td>
+    <td></td>
+    <td><a href="https://bioportal.bioontology.org/ontologies/VT">VT</a></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Evidence Ontology</td>
+    <td>Release Date: 05/05/2017</td>
+    <td><p>Chibucos et al - PubMed <a href="https://www.ncbi.nlm.nih.gov/pubmed/?term=25052702">25052702</a></p></td>
+    <td><a href="https://bioportal.bioontology.org/ontologies/ECO">ECO</a></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>PSI MI Ontology</td>
+    <td>Release Date: 03/24/2017</td>
+    <td></td>
+    <td><a href="http://www.obofoundry.org/ontology/mi.html">MI</a></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Gene Ontology</td>
+    <td>Release Date: 05/17/2017</td>
+    <td><p>Gene Ontology Consortium - PubMed <a href="https://www.ncbi.nlm.nih.gov/pubmed/27899567">27899567</a></p></td>
+    <td><a href="https://bioportal.bioontology.org/ontologies/GO">GO</a></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Sequence Ontology</td>
+    <td>Release Date: 05/17/2017</td>
+    <td><p>Eilbeck et al - PubMed <a href="https://www.ncbi.nlm.nih.gov/pubmed/15892872">15892872</a></p></td>
+    <td><a href="https://bioportal.bioontology.org/ontologies/SO">SO</a></td>
+  </tr>
+
     <td class="leftcol"><p> <h2>Gene Ontology Annotation</h2></p></td>
     <td>
         <p><i>B. taurus</i></p>
@@ -194,22 +266,6 @@
     <td> <p>Huntley et al - PubMed <a href=http://www.ncbi.nlm.nih.gov/pubmed/?term=25378336>25378336</a></p><p>Gene Ontology Consortium - PubMed <a href=http://www.ncbi.nlm.nih.gov/pubmed/?term=25428369>25428369</a></p></td>
     <td> <a href="http://geneontology.org/page/download-annotation">GO Consortium Annotation Download</a></td>
   </tr>
-    <tr>
-    <td class="leftcol"><p> <h2>Ontology</h2></p></td>
-    <td>
-        <p><i>B. taurus</i></p>
-    </td>
-    <td> Ontologies: Brenda Tissue Ontology, Mouse Anatomy Ontology, Uberon Anatomy Ontology </td>
-    <td> GOA at UniProt (GOC Validation Date: 12/16/2016)</td>
-    <td> <p>Huntley et al - PubMed <a href=http://www.ncbi.nlm.nih.gov/pubmed/?term=25378336>25378336</a></p><p>Gene Ontology Consortium - PubMed <a href=http://www.ncbi.nlm.nih.gov/pubmed/?term=25428369>25428369</a></p></td>
-    <td> <a href="http://geneontology.org/page/download-annotation">GO Consortium Annotation Download</a></td>
-  </tr>
-
-
-
-
-
-
 
   <tr>
     <td class="leftcol" rowspan="3"><p><h2>Pathways</h2></p></td>
