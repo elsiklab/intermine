@@ -61,9 +61,12 @@ public class UniprotConverter extends BioDirectoryConverter
     private Map<String, String> genes = new HashMap<String, String>();
     private Map<String, String> goterms = new HashMap<String, String>();
     private Map<String, String> goEvidenceCodes = new HashMap<String, String>();
+    private Map<String, String> ecoTerms = new HashMap<String, String>();
     private Map<String, String> ecNumbers = new HashMap<String, String>();
     private Map<String, String> proteins = new HashMap<String, String>();
     private static final int POSTGRES_INDEX_SIZE = 2712;
+    private static final String EVIDENCE_ONTOLOGY = "Evidence Ontology";
+    private static final String GO_EVIDENCE_CODE = "GO Evidence Code";
 
     // don't allow duplicate identifiers
     private Set<String> identifiers = null;
@@ -956,8 +959,11 @@ public class UniprotConverter extends BioDirectoryConverter
                 Set<String> values = dbref.getValue();
                 if ("GO".equalsIgnoreCase(key)) {
                     for (String goTerm : values) {
-                        String code = getGOEvidenceCode(entry.getGOEvidence(goTerm));
-                        Item goEvidence = createItem("GOEvidence");
+                        Item goEvidence = null;
+                        String evidenceCodeString = entry.getGOEvidence(goTerm);
+                        System.out.println("EVIDENCE CODE STRING: " + evidenceCodeString);
+                        String code = getGOEvidenceCode(evidenceCodeString);
+                        goEvidence = createItem("GOEvidence");
                         goEvidence.setReference("code", code);
 
                         Item goAnnotation = createItem("GOAnnotation");
@@ -1278,28 +1284,67 @@ public class UniprotConverter extends BioDirectoryConverter
         return refId;
     }
 
-    // value is NAS:FlyBase
     private String getGOEvidenceCode(String value)
         throws SAXException {
-        String[] bits = value.split(":");
         String code = "";
-        if (bits == null) {
+        String refId;
+        if (value.startsWith("ECO:")) {
+            // value is an ECO ontology term
             code = value;
-        } else {
-            code = bits[0];
+            refId = goEvidenceCodes.get(value);
+            if (refId == null) {
+                Item item = createItem("GOEvidenceCode");
+                item.setAttribute("code", code);
+                item.setAttribute("source", EVIDENCE_ONTOLOGY);
+                item.setReference("evidenceOntology", getECOTerm(value));
+                refId = item.getIdentifier();
+                goEvidenceCodes.put(value, refId);
+                try {
+                    store(item);
+                } catch (ObjectStoreException e) {
+                    throw new SAXException(e);
+                }
+            }
         }
-        String refId = goEvidenceCodes.get(code);
+        else {
+            // value is a GO Evidence Code
+            String[] bits = value.split(":");
+            if (bits == null) {
+                code = value;
+            } else {
+                code = bits[0];
+            }
+            refId = goEvidenceCodes.get(code);
+            if (refId == null) {
+                Item item = createItem("GOEvidenceCode");
+                item.setAttribute("code", code);
+                item.setAttribute("source", GO_EVIDENCE_CODE);
+                refId = item.getIdentifier();
+                goEvidenceCodes.put(code, refId);
+                try {
+                    store(item);
+                } catch (ObjectStoreException e) {
+                    throw new SAXException(e);
+                }
+            }
+        }
+
+        return refId;
+    }
+
+    private String getECOTerm(String value) throws SAXException {
+        String refId = ecoTerms.get(value);
         if (refId == null) {
-            Item item = createItem("GOEvidenceCode");
-            item.setAttribute("code", code);
+            Item item = createItem("ECOTerm");
+            item.setAttribute("identifier", value);
+            item.setReference("ontology", setOntology(EVIDENCE_ONTOLOGY));
             refId = item.getIdentifier();
-            goEvidenceCodes.put(code, refId);
+            ecoTerms.put(value, refId);
             try {
                 store(item);
             } catch (ObjectStoreException e) {
                 throw new SAXException(e);
             }
-
         }
         return refId;
     }
@@ -1328,6 +1373,7 @@ public class UniprotConverter extends BioDirectoryConverter
             Item ontology = createItem("Ontology");
             ontology.setAttribute("name", title);
             ontologies.put(title, ontology.getIdentifier());
+            refId = ontology.getIdentifier();
             try {
                 store(ontology);
             } catch (ObjectStoreException e) {
