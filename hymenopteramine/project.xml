@@ -10,6 +10,10 @@
     <property name="src.data.file" location="@DATA_DIR@/GO_Feb27_2017/go.obo"/>
   </source>
 
+  <source name="evidence-ontology" type="evidence-ontology">
+    <property name="src.data.file" location="@DATA_DIR@/ECO/eco.obo"/>
+  </source>
+
   <!-- DBSNP Variation -->
   <source name="amel-dbsnp-variation" type="dbsnp-variation" dump="true">
     <property name="src.data.dir" location="@DATA_DIR@/dbSNP/dbSNP/"/>
