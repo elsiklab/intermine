@@ -8,6 +8,12 @@
         <!--<source name="brenda-tissue-ontology" type="brenda-ontology">-->
             <!--<property name="src.data.file" location="@DATA_DIR@/BRENDA/BrendaTissueOntology.obo"/>-->
         <!--</source>-->
+        <source name="uberon" type="uber-anatomy-ontology">
+            <property name="src.data.file" location="@DATA_DIR@/ontologies/uber-anatomy-ontology/uberon-basic.obo"/>
+        </source>
+        <source name="mouse-anatomy-ontology" type="mouse-anatomy-ontology">
+            <property name="src.data.file" location="@DATA_DIR@/ontologies/mouse-anatomy-ontology/ma.obo"/>
+        </source>
         <source name="clinical-measurement-ontology" type="clinical-measurement-ontology">
             <property name="src.data.file" location="@DATA_DIR@/ontologies/clinical-measurement-ontology/clinical_measurement_ontology_2.40.obo"/>
         </source>
