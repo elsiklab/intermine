@@ -297,6 +297,11 @@
   <div style="clear:both"></div>
 </div>
 
+<div>
+  <p><strong>Note:</strong> For the enrichment widgets you should change the background population from the default to one of the available gene sets or your own background gene list.</p>
+  <br/><br/>
+</div>
+
 <script language="javascript">
   (function() {
     jQuery('#toggle-widgets ol li').each(function(index) {
