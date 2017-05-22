@@ -107,8 +107,7 @@ public class BovineExpressionMetadataConverter extends BioFileConverter
             String source = line[33];
             String selection = line[34];
             String layout = line[35];
-            String additionalTerms = line[37];
-            System.out.println("ADD TERMS: " + additionalTerms);
+            //String additionalTerms = line[37];
             Item item = createItem("ExpressionMetadata");
             if (!label.isEmpty()) {
                 item.setAttribute("label", label);
@@ -173,23 +172,23 @@ public class BovineExpressionMetadataConverter extends BioFileConverter
             }
 
             // Additional terms
-            if (!additionalTerms.isEmpty()) {
-                String[] brendaTissueOntologyTerms = additionalTerms.split(",");
-                for (String brendaTissueOntologyTerm : brendaTissueOntologyTerms) {
-                    String[] pair = brendaTissueOntologyTerm.split("\\|");
-                    if (btoItems.containsKey(pair[1])) {
-                        item.addToCollection("brendaTissueOntology", btoItems.get(pair[1]).getIdentifier());
-                    }
-                    else {
-                        Item btoItem = createItem("BRENDATerm");
-                        btoItem.setAttribute("identifier", pair[1]);
-                        btoItem.setAttribute("name", pair[0]);
-                        item.addToCollection("brendaTissueOntology", btoItem.getIdentifier());
-                        btoItem.addToCollection("samples", item.getIdentifier());
-                        btoItems.put(pair[1], btoItem);
-                    }
-                }
-            }
+//            if (!additionalTerms.isEmpty()) {
+//                String[] brendaTissueOntologyTerms = additionalTerms.split(",");
+//                for (String brendaTissueOntologyTerm : brendaTissueOntologyTerms) {
+//                    String[] pair = brendaTissueOntologyTerm.split("\\|");
+//                    if (btoItems.containsKey(pair[1])) {
+//                        item.addToCollection("brendaTissueOntology", btoItems.get(pair[1]).getIdentifier());
+//                    }
+//                    else {
+//                        Item btoItem = createItem("BRENDATerm");
+//                        btoItem.setAttribute("identifier", pair[1]);
+//                        btoItem.setAttribute("name", pair[0]);
+//                        item.addToCollection("brendaTissueOntology", btoItem.getIdentifier());
+//                        btoItem.addToCollection("samples", item.getIdentifier());
+//                        btoItems.put(pair[1], btoItem);
+//                    }
+//                }
+//            }
 
             try {
                 store(item);
