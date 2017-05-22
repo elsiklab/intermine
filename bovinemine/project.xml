@@ -36,7 +36,7 @@
             <property name="src.data.file" location="@DATA_DIR@/ontologies/sequence-ontology/so.obo"/>
         </source>
         <source name="gene-ontology" type="go">
-            <property name="src.data.file" location="@DATA_DIR@/ontologies/gene-ontology/go.obo"/>
+            <property name="src.data.file" location="@DATA_DIR@/ontologies/gene-ontology/go-basic.obo"/>
         </source>
         <source name="human-gene-info" type="custom-gene-info" dump="true">
             <property name="src.data.dir" location="@DATA_DIR@/custom-gene-info/human"/>
@@ -395,7 +395,7 @@
             <property name="protein2ipr.organisms" value="9913 9606 10090 10116 9925 9940"/>
         </source>
         <source name="go-annotation" type="go-annotation">
-            <property name="ontologyfile" location="@DATA_DIR@/GO/go.obo"/>
+            <property name="ontologyfile" location="@DATA_DIR@/GO/go-basic.obo"/>
             <property name="src.data.dir" location="@DATA_DIR@/GO-annotation/"/>
         </source>
         <source name="reactome" type="reactome">
