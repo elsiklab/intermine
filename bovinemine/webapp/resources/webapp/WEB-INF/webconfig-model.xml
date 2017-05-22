@@ -69,7 +69,7 @@
       <fieldconfig fieldExpr="sraSampleAccession" label="SRA Sample Accession" showInSummary="false"/>
       <fieldconfig fieldExpr="bioSampleId" label="Bio Sample ID"/>
       <fieldconfig fieldExpr="sraRunAccession" label="SRA Run Accession"/>
-      <fieldconfig fieldExpr="label"/>
+      <fieldconfig fieldExpr="sampleLabel"/>
       <fieldconfig fieldExpr="tissue"/>
       <fieldconfig fieldExpr="btoName" label="Brenda Tissue Ontology name"/>
       <fieldconfig fieldExpr="breed"/>

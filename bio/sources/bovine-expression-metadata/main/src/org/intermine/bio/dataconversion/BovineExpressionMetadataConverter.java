@@ -110,10 +110,10 @@ public class BovineExpressionMetadataConverter extends BioFileConverter
             //String additionalTerms = line[37];
             Item item = createItem("ExpressionMetadata");
             if (!label.isEmpty()) {
-                item.setAttribute("label", label);
+                item.setAttribute("sampleLabel", label);
             }
             else {
-                System.out.println("label cannot be empty as it serves as a primaryIdentifier");
+                System.out.println("sampleLabel cannot be empty as it serves as a primaryIdentifier");
                 System.exit(1);
             }
 
