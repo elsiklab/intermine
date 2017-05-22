@@ -180,7 +180,7 @@
   </tr> 
 
   <tr>
-    <td rowspan="11" class="leftcol"><p> <h2>Ontologies</h2></p></td>
+    <td rowspan="12" class="leftcol"><p> <h2>Ontologies</h2></p></td>
     <td></td>
     <td>Uber Anatomy Ontology (UBERON)</td>
     <td>Release Date: 04/25/2017</td>
@@ -193,6 +193,13 @@
     <td>Release Date: 12/22/2016</td>
     <td></td>
     <td><a href="https://bioportal.bioontology.org/ontologies/MA">MA</a></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>BRENDA Tissue Ontology</td>
+    <td>Release Date: 08/04/2016</td>
+    <td></td>
+    <td><a href="https://bioportal.bioontology.org/ontologies/BTO">BTO</a></td>
   </tr>
   <tr>
     <td></td>
