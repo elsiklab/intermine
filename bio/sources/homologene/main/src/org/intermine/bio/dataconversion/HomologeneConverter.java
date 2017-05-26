@@ -52,6 +52,7 @@ public class HomologeneConverter extends BioFileConverter
 
     private static final String ORTHOLOGUE = "orthologue";
     private static final String PARALOGUE = "paralogue";
+    private static final String HOMOLOGUE = "homologue";
 
     private static final String EVIDENCE_CODE_ABBR = "AA";
     private static final String EVIDENCE_CODE_NAME = "Amino acid sequence comparison";
@@ -205,7 +206,8 @@ public class HomologeneConverter extends BioFileConverter
         homologue.setReference("gene", gene1);
         homologue.setReference("homologue", gene2);
         homologue.addToCollection("evidence", getEvidence());
-        homologue.setAttribute("type", taxonId1.equals(taxonId2) ? PARALOGUE : ORTHOLOGUE);
+        //homologue.setAttribute("type", taxonId1.equals(taxonId2) ? PARALOGUE : ORTHOLOGUE);
+        homologue.setAttribute("type", HOMOLOGUE);
         store(homologue);
     }
 
