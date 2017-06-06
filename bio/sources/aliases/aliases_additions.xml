@@ -9,6 +9,7 @@
         <attribute name="source" type="java.lang.String"/>
         <attribute name="identifier" type="java.lang.String"/>
         <reference name="organism" referenced-type="Organism"/>
+        <collection name="dataSets" referenced-type="DataSet"/>
         <collection name="features" referenced-type="SequenceFeature" reverse-reference="aliases"/>
     </class>
 </classes>

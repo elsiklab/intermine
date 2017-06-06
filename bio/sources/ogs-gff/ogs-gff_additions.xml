@@ -11,11 +11,13 @@
         <attribute name="source" type="java.lang.String"/>
         <attribute name="additionalIdentifiers" type="java.lang.String"/>
         <attribute name="description" type="java.lang.String"/>
-        <collection name="alias" referenced-type="AliasName" reverse-reference="gene"/>
+     <!--     <collection name="alias" referenced-type="AliasName" reverse-reference="gene"/> -->
     </class>
+<!--  
     <class name="AliasName" extends="SequenceFeature" is-interface="true">
         <collection name="gene" referenced-type="Gene" reverse-reference="alias"/>
     </class>
+-->
     <class name="Transcript" extends="SequenceFeature" is-interface="true"></class>
     <class name="MRNA" extends="Transcript" is-interface="true"></class>
 <!--    <class name="Polypeptide" extends="Transcript" is-interface="true"></class> -->
