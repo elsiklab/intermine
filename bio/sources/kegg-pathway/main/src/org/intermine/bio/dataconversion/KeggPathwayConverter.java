@@ -133,13 +133,13 @@ public class KeggPathwayConverter extends BioFileConverter
                 processPathway(line);
             } else if (matcher.find()) {
                 String organism = matcher.group(1);
-
                 String[] orgConfig = config.get(organism);
                 if (orgConfig == null) {
                     throw new RuntimeException("No config found for " + organism);
                 }
 
                 String taxonId = orgConfig[0];
+                   
                 // only process organisms set in project.xml
                 if (!taxonIds.isEmpty() && !taxonIds.contains(taxonId)) {
                     continue;
@@ -149,9 +149,10 @@ public class KeggPathwayConverter extends BioFileConverter
 
                     // There are some strange ids for D. melanogaster, the rest start with Dmel_,
                     // ignore any D. melanogaster ids without Dmel_ and strip this off the rest
-                    if ("7227".equals(taxonId) && !geneName.startsWith("Dmel_")) {
-                        continue;
-                    }
+                
+                //    if ("7227".equals(taxonId) && !geneName.startsWith("Dmel_")) {
+               //         continue;
+              //      }
 
                     // We don't want Dmel_ prefix on D. melanogaster genes
                     if (geneName.startsWith("Dmel_")) {
@@ -228,17 +229,19 @@ public class KeggPathwayConverter extends BioFileConverter
     }
 
     private void processPathway(String[] line) throws ObjectStoreException {
-        String identifier = line[0];
-        String name = line[1];
+         String taxon_id = line[0];
+        String identifier = line[1];
+        String name = line[2];
         String description = null;
-        if (line.length > 2) {
-            description = line[2];
+        if (line.length > 3) {
+            description = line[3];
         }
         Item pathway = pathwaysNotStored.remove(identifier);
         if (pathway == null) {
             pathway = getPathway(identifier);
         }
         pathway.setAttribute("name", name);
+        pathway.setReference("organism", getOrganism(taxon_id));
         if (StringUtils.isNotEmpty(description)) {
             pathway.setAttribute("description", description);
         }
