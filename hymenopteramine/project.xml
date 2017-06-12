@@ -9,6 +9,10 @@
   <source name="go" type="go">
     <property name="src.data.file" location="@DATA_DIR@/GO_Feb27_2017/go.obo"/>
   </source>
+   
+    <source name="hao" type="hao">
+    <property name="src.data.file" location="/home.george/aditi/dataset/datasets/HAO/hao.obo"/>
+  </source>
 
   <source name="evidence-ontology" type="evidence-ontology">
     <property name="src.data.file" location="@DATA_DIR@/ECO/eco.obo"/>
