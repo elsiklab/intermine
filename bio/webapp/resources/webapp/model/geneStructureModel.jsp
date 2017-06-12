@@ -45,24 +45,29 @@ var pid = '<c:out value="${gene.primaryIdentifier}"/>';
 
 
 var organismMap={
-    "A. mellifera": "26229",// Amel_4.5 NCBI Chromosome Assembly
-    "A. dorsata": "1896242",// Ador_1.3 NCBI Scaffold Assembly
-    "A. florea": "1583983", // Aflo_1.0 NCBI Scaffold Assembly
-    "B. impatiens": "1710934", // Bimp_2.0 NCBI Scaffold Assembly
-    "B. terrestris": "3116725", // Bter_1.0 NCBI Scaffold Assembly
-    "N. vitripennis": "1805105", // Nvit_2.1 NCBI Chromosome Assembly
-    "M. rotundata": "3122336" // Mrot_1.0 NCBI Scaffold Assembly
-    //"A. cephalotes": "1935105",// Attacep_1.0_ncbi
-    //"C. obscurior": "1697843",
-    //"A. echinatior": "1811476",
-    //"C. floridanus": "1911077",
-    //"H. saltator": "3073857",
-    //"L.  albipes": "91165",
-    //"L. humile": "1591930",
-    //"P. barbatus": "1825064",
-    //"S. invicta": "1820465",
-    //"W.	auropunctata": "1716495"
+    "A. mellifera": "26229",
+    "A. dorsata": "3168553",
+    "A. florea": "3176652",
+    "B. impatiens": "3184599",
+    "B. terrestris": "3190160",
+    "N. vitripennis": "3233525",
+    "M. rotundata": "3227255",
+    "A. cephalotes": "1935105",
+    "C. obscurior": "1697843",
+    "A. echinatior": "3164212",
+    "C. floridanus": "3200352",
+    "H. saltator": "3215328",
+    "L. albipes": "91165",
+    "L. humile": "3224223",
+    "P. barbatus": "3239625",
+    "S. invicta": "3244274",
+    "W. auropunctata": "3313787",
+    "D. novaeangliae": "3211148",
+    "E. mexicana": "3391423",
+    "H. laboriosa": "3766653",
+    "M. quadrifasciata": "3794222"
 };
+
 // Require bare bones jbrowse components without using the main browser object
 require({
    packages: [
@@ -95,8 +100,7 @@ require({
    'JBrowse/Store/Sequence/StaticChunked'
 ],
 function (cookie,dom,domConstruct,domStyle,domClass,Browser,HTMLFeatures,NCList,SimpleFeature,Layout,StaticChunkedSequence) {
-   //var hymine = new intermine.Service({root: "http://genomes.missouri.edu:8080/hymenopteramine"});
-   var hymine = new intermine.Service({root: "http://hymenopteragenome.org/hymenopteramine-release-1.1"});
+   var hymine = new intermine.Service({root: "http://hymenopteragenome.org/hymenopteramine"});
 
    var query = {
        from: 'Gene',
@@ -134,7 +138,7 @@ function (cookie,dom,domConstruct,domStyle,domClass,Browser,HTMLFeatures,NCList,
           "showLabels":false,
           "onClick"  : {
               "label": "Feature name {name}\nFeature start {start}\nFeature end {end}",
-              "url": "http://hymenopteragenome.org/Apollo2/jbrowse/index.html?organism=" + organismMap[organism]+ "&loc={name}",
+              "url": "http://hymenopteragenome.org/Apollo2/" + organismMap[organism] + "/jbrowse/index.html?&loc={name}",
               "action": "newWindow"
           },
           "menuTemplate":null
