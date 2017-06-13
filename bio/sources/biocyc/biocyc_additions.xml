@@ -5,6 +5,7 @@
     <attribute name="name" type="java.lang.String"/>
     <attribute name="description" type="java.lang.String"/>
     <collection name="genes" referenced-type="Gene" reverse-reference="pathways"/>
+    <reference name="organism" referenced-type="Organism"/>
     <collection name="dataSets" referenced-type="DataSet"/>
   </class>
   <class name="Gene" is-interface="true">
