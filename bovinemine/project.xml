@@ -419,15 +419,11 @@
         </source>
         <source name="ensembl-compara" type="ensembl-compara">
             <property name="src.data.dir" location="@DATA_DIR@/EnsemblCompara"/>
-            <property name="ensemblcompara.organisms" value="9913"/>
+            <property name="ensemblcompara.organisms" value="9913 9940 9606 10090 10116"/>
             <property name="ensemblcompara.homologues" value="9606 10090 10116 9615 9796 9823 9940"/>
         </source>
-        <source name="treefam" type="treefam" dump="true">
+        <source name="treefam-extended" type="treefam-extended" dump="true">
             <property name="src.data.dir" location="@DATA_DIR@/TreeFam"/>
-            <property name="src.data.dir.includes" value="ortholog.txt.table"/>
-            <property name="geneFile" value="@DATA_DIR@/TreeFam/genes.txt.table"/>
-            <property name="treefam.organisms" value="9913"/>
-            <property name="treefam.homologues" value="9606 9796 9615 10090 10116 9823 9940 9925"/>
         </source>
         <source name="bovine-homologene" type="homologene" dump="true">
             <property name="src.data.dir" location="@DATA_DIR@/homologene"/>
