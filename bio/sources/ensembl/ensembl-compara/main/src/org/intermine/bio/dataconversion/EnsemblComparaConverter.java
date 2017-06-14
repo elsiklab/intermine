@@ -193,7 +193,7 @@ public class EnsemblComparaConverter extends BioFileConverter
         homologue.setReference("gene", gene1);
         homologue.setReference("homologue", gene2);
         homologue.addToCollection("evidence", getEvidence());
-        homologue.setAttribute("type", homologyType.contains("ortholog") ? "orthologue" : "homologue");
+        homologue.setAttribute("type", homologyType.contains("ortholog") ? "orthologue" : "paralog");
         homologue.setAttribute("lastCommonAncestor", lastCommonAncestor);
         homologue.setAttribute("homologyType", homologyType);
         homologue.setAttribute("confidence", confidence);
@@ -220,7 +220,7 @@ public class EnsemblComparaConverter extends BioFileConverter
             }
             Item item = createItem("Gene");
             item.setAttribute(fieldName, newIdentifier);
-            item.setAttribute("source", version);
+            //item.setAttribute("source", version);
             item.setReference("organism", getOrganism(taxonId));
             store(item);
             refId = item.getIdentifier();
