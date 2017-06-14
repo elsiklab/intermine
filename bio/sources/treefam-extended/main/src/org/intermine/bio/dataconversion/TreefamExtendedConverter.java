@@ -106,9 +106,6 @@ public class TreefamExtendedConverter extends BioFileConverter
      * {@inheritDoc}
      */
     public void process(Reader reader) throws Exception {
-        if (version == null) {
-            throw new IllegalArgumentException("No version provided for TreeFam");
-        }
 
         String lastGene1 = "";
         String lastGene2 = "";
