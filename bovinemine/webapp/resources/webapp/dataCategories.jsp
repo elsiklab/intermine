@@ -155,8 +155,6 @@
         <p><i>H. sapien</i></p>
         <p><i>M. musculus</i></p>
         <p><i>R. norvegicus</i></p>
-        <p><i>C. hircus</i></p>
-        <p><i>O. aries</i></p>
     </td>
     <td> Interactions</td>
     <td> BioGRID - Version 3.4.144 </td>
