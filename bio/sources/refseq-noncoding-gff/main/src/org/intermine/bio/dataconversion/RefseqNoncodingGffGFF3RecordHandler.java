@@ -81,7 +81,7 @@ public class RefseqNoncodingGffGFF3RecordHandler extends GFF3RecordHandler
 
             if (record.getAttributes().get("description") != null) {
                 String description = record.getAttributes().get("description").iterator().next();
-                feature.setAttribute("description", URLDecoder.decode(description));
+                feature.setAttribute("description", URLDecode.decode(URLDecoder.decode(description)));
             }
 
             if (record.getAttributes().get("duplicate_entity") != null) {
