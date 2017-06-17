@@ -220,7 +220,9 @@ public class EnsemblComparaConverter extends BioFileConverter
             }
             Item item = createItem("Gene");
             item.setAttribute(fieldName, newIdentifier);
-            //item.setAttribute("source", version);
+            if ("9913".equals(taxonId) || "9940".equals(taxonId)) {
+                item.setAttribute("source", version);
+            }
             item.setReference("organism", getOrganism(taxonId));
             store(item);
             refId = item.getIdentifier();

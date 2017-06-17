@@ -74,7 +74,7 @@ public class TreefamExtendedConverter extends BioFileConverter
      * of Gene for integration
      * @param version the version
      */
-    public void setTreefamVersion(String version) {
+    public void setVersion(String version) {
         this.version = version;
     }
 
@@ -106,6 +106,10 @@ public class TreefamExtendedConverter extends BioFileConverter
      * {@inheritDoc}
      */
     public void process(Reader reader) throws Exception {
+
+        if (version == null) {
+            throw new IllegalArgumentException("No version provided for Ensembl");
+        }
 
         String lastGene1 = "";
         String lastGene2 = "";
@@ -163,7 +167,9 @@ public class TreefamExtendedConverter extends BioFileConverter
             }
             Item item = createItem("Gene");
             item.setAttribute(fieldName, identifier);
-            //item.setAttribute("source", version);
+            if ("9913".equals(taxonId) || "9940".equals(taxonId)) {
+                item.setAttribute("source", version);
+            }
             item.setReference("organism", getOrganism(taxonId));
             store(item);
             refId = item.getIdentifier();

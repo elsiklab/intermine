@@ -60,6 +60,7 @@ public class OrthodbConverter extends BioFileConverter
     private Properties props = new Properties();
     private Map<String, String> config = new HashMap<String, String>();
     private static String evidenceRefId = null;
+    protected String version = null;
 
     private Map<GeneHolder, Set<GeneHolder>> geneToHomologues = new HashMap<GeneHolder,
             Set<GeneHolder>>();
@@ -100,6 +101,15 @@ public class OrthodbConverter extends BioFileConverter
     }
 
     /**
+     * Set the version for OrthoDB. This value is used in 'source' attribute
+     * of Gene for integration
+     * @param version the version
+     */
+    public void setOrthodbVersion(String version) {
+        this.version = version;
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -124,6 +134,10 @@ public class OrthodbConverter extends BioFileConverter
 
         if (taxonIds.isEmpty()) {
             LOG.warn("orthodb.organisms property not set in project XML file, processing all data");
+        }
+
+        if (version == null) {
+            throw new IllegalArgumentException("No version provided for Ensembl");
         }
 
         Iterator<String[]> lineIter = FormattedTextParser.parseTabDelimitedReader(reader);
@@ -311,6 +325,9 @@ public class OrthodbConverter extends BioFileConverter
             }
             Item gene = createItem("Gene");
             gene.setAttribute(identiferType, holder.getIdentifier());
+            if("9913".equals(taxonId) || "9940".equals(taxonId)) {
+                gene.setAttribute("source", version);
+            }
             gene.setReference("organism", getOrganism(taxonId));
             refId = gene.getIdentifier();
             holder.setRefId(refId);

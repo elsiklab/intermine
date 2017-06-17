@@ -419,11 +419,13 @@
         </source>
         <source name="ensembl-compara" type="ensembl-compara">
             <property name="src.data.dir" location="@DATA_DIR@/EnsemblCompara"/>
+            <property name="ensemblcompara.version" value="Ensembl 89"/>
             <property name="ensemblcompara.organisms" value="9913 9940 9606 10090 10116"/>
             <property name="ensemblcompara.homologues" value="9606 10090 10116 9615 9796 9823 9940"/>
         </source>
         <source name="treefam-extended" type="treefam-extended" dump="true">
             <property name="src.data.dir" location="@DATA_DIR@/TreeFam"/>
+            <property name="version" value="Ensembl 89"/>
         </source>
         <source name="bovine-homologene" type="homologene" dump="true">
             <property name="src.data.dir" location="@DATA_DIR@/homologene"/>
@@ -431,13 +433,14 @@
         </source>
         <source name="bovine-orthodb" type="orthodb" dump="true">
             <property name="src.data.dir" location="@DATA_DIR@/OrthoDB9"/>
+            <property name="orthodb.version" value="Ensembl 89"/>
             <property name="orthodb.organisms" value="9913"/>
             <property name="orthodb.homologues" value="9606 9796 9615 10090 10116 9823 9925 9940"/>
         </source>
         <source name="bovine-biogrid" type="biogrid">
             <property name="src.data.dir" location="@DATA_DIR@/BIOGRID"/>
             <property name="src.data.dir.includes" value="*psi25.xml"/>
-            <property name="biogrid.organisms" value="9913 9606 10090 10116 9924 9940"/>
+            <property name="biogrid.organisms" value="9913 9606 10090 10116 9940"/>
         </source>
         <source name="psi-intact" type="psi" dump="true">
             <property name="src.data.dir" location="@DATA_DIR@/IntAct"/>
