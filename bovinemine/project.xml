@@ -452,7 +452,7 @@
         </source>
         <source name="kegg-pathway" type="kegg-pathway">
             <property name="src.data.dir" location="@DATA_DIR@/KEGG"/>
-            <property name="kegg.organisms" value="9913 9606 9796 9615 10090 10116 9823 9940 9925"/>
+            <property name="kegg.organisms" value="9913 9606 9796 9615 10090 10116 9823 9940 9925 9031"/>
         </source>
         <!--
         <source name="bio" type="pedigree">
