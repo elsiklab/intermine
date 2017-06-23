@@ -241,6 +241,7 @@ public class KeggPathwayConverter extends BioFileConverter
             pathway = getPathway(identifier);
         }
         pathway.setAttribute("name", name);
+          pathway.setReference("organism", getOrganism(taxon_id));
         if (StringUtils.isNotEmpty(description)) {
             pathway.setAttribute("description", description);
         }
