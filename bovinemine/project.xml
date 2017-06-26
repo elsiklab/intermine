@@ -403,13 +403,12 @@
             <property name="reactome.organisms" value="9913 9606 10090 10116 9925 9940"/>
         </source>
         <source name="ncbi-pubmed-gene" type="pubmed-gene">
-            <property name="src.data.dir" location="@DATA_DIR@/ncbi-pubmed/"/>
+            <property name="src.data.dir" location="@DATA_DIR@/ncbi-pubmed-gene/"/>
             <property name="pubmed.organisms" value="9913 9606 10090 10116 9940 9925"/>
             <property name="src.data.dir.includes" value="gene2pubmed"/>
-            <property name="infoFile" location="@DATA_DIR@/ncbi-pubmed/gene_info"/>
         </source>
         <source name="ensembl-pubmed-gene" type="pubmed-gene">
-            <property name="src.data.dir" location="@DATA_DIR@/ensembl-pubmed/"/>
+            <property name="src.data.dir" location="@DATA_DIR@/ensembl-pubmed-gene/"/>
             <property name="src.data.dir.includes" value="ensembl2pubmed"/>
             <property name="pubmed.organisms" value="9913 9940"/>
         </source>
