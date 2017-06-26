@@ -447,13 +447,24 @@
             <!--<property name="complexes.source" value="ensembl"/>-->
         <!--</source>-->
         <source name="biocyc" type="biocyc">
-            <property name="src.data.dir" location="@DATA_DIR@/BioCyc"/>
+            <property name="src.data.dir" location="@DATA_DIR@/biocyc"/>
             <property name="biocyc.organisms" value="9913 9606 10090"/>
         </source>
-        <source name="kegg-pathway" type="kegg-pathway">
+        <source name="kegg" type="kegg-pathway">
             <property name="src.data.dir" location="@DATA_DIR@/KEGG"/>
             <property name="kegg.organisms" value="9913 9606 9796 9615 10090 10116 9823 9940 9925 9031"/>
         </source>
+
+        <source name="kegg-compounds" type="kegg-compounds">
+            <property name="src.data.dir" location="@DATA_DIR@/compounds/"/>
+            <property name="src.data.dir.includes" value="*.tab"/>
+        </source>
+
+        <source name="kegg-metadata" type="kegg-metadata">
+            <property name="src.data.dir" location="@DATA_DIR@/meta"/>
+            <property name="src.data.dir.includes" value="*.tab"/>
+        </source>
+       
         <!--
         <source name="bio" type="pedigree">
             <property name="src.data.dir" location="@DATA_DIR@/pedigree-data"/>
