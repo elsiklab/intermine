@@ -81,7 +81,7 @@ public class RefseqNoncodingGffGFF3RecordHandler extends GFF3RecordHandler
 
             if (record.getAttributes().get("description") != null) {
                 String description = record.getAttributes().get("description").iterator().next();
-                feature.setAttribute("description", URLDecode.decode(URLDecoder.decode(description)));
+                feature.setAttribute("description", URLDecoder.decode(URLDecoder.decode(description)));
             }
 
             if (record.getAttributes().get("duplicate_entity") != null) {
@@ -505,7 +505,7 @@ public class RefseqNoncodingGffGFF3RecordHandler extends GFF3RecordHandler
             String[] splitList = biotype.split("_");
             returnType = StringUtils.capitalize(splitList[0]) + " " + StringUtils.capitalize(splitList[1]);
         }
-        else if (biotype.equals("pseudogene") || biotype.equals("other")) {
+        else if (biotype.equals("pseudogene") || biotype.equals("transcribed_pseudogene") || biotype.equals("other")) {
             returnType = StringUtils.capitalize(biotype);
         }
         else {
