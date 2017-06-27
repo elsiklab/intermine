@@ -191,7 +191,7 @@ public class TreefamExtendedConverter extends BioFileConverter
         homologue.setReference("gene", gene1);
         homologue.setReference("homologue", gene2);
         homologue.addToCollection("evidence", getEvidence());
-        homologue.setAttribute("type", homologyType.contains("ortholog") ? "orthologue" : "paralog");
+        homologue.setAttribute("type", homologyType.contains("ortholog") ? "orthologue" : "paralogue");
         homologue.setAttribute("lastCommonAncestor", lastCommonAncestor);
         homologue.setAttribute("homologyType", homologyType);
         store(homologue);
