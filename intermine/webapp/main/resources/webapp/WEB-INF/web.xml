@@ -3061,7 +3061,7 @@ The different token types are:
 <!-- ================================================================================= -->
 
   <session-config>
-    <session-timeout>1440</session-timeout>      <!-- 1440 = 24 * 60 = 1 day -->
+    <session-timeout>60</session-timeout>      <!-- 1440 = 24 * 60 = 1 day -->
   </session-config>
 
   <welcome-file-list>
