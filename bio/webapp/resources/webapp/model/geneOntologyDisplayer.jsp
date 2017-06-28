@@ -44,7 +44,7 @@
 			                </td>
 							<td>
 			                  <c:set var="term" value="${entry.key}" />
-			                  <html:link href="/${WEB_PROPERTIES['webapp.path']}/ontograph/single.html?term=${term.identifier}" title="${term.description}">
+			                  <html:link target="_blank" href="/${WEB_PROPERTIES['webapp.path']}/ontograph/single.html?term=${term.identifier}" title="${term.description}">
 			                  <img src="/${WEB_PROPERTIES['webapp.path']}/images/go-logo-icon.small.png" width="16" height="16"></img>
 			                  </html:link>
 			                </td>
