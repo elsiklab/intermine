@@ -184,7 +184,7 @@ public class RefseqProteincodingGffGFF3RecordHandler extends GFF3RecordHandler
             }
             if( record.getAttributes().get("description") != null) {
                 String description = record.getAttributes().get("description").iterator().next();
-                feature.setAttribute("description", description);
+                feature.setAttribute("description", URLDecoder.decode(URLDecoder.decode(description)));
             }
             if( record.getAttributes().get("feature_type") != null ) {
                 String ft = record.getAttributes().get("feature_type").iterator().next();

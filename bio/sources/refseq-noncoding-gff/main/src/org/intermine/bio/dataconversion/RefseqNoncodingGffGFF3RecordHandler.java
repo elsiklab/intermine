@@ -181,7 +181,7 @@ public class RefseqNoncodingGffGFF3RecordHandler extends GFF3RecordHandler
             }
             if (record.getAttributes().get("description") != null) {
                 String description = record.getAttributes().get("description").iterator().next();
-                feature.setAttribute("description", description);
+                feature.setAttribute("description", URLDecoder.decode(URLDecoder.decode(description)));
             }
 
 //            if (record.getAttributes().get("feature_type") != null) {
@@ -221,7 +221,7 @@ public class RefseqNoncodingGffGFF3RecordHandler extends GFF3RecordHandler
             }
             if (record.getAttributes().get("description") != null) {
                 String description = record.getAttributes().get("description").iterator().next();
-                feature.setAttribute("description", description);
+                feature.setAttribute("description", URLDecoder.decode(URLDecoder.decode(description)));
             }
 
 //            if (record.getAttributes().get("feature_type") != null) {
@@ -252,7 +252,7 @@ public class RefseqNoncodingGffGFF3RecordHandler extends GFF3RecordHandler
                     String description = entityAttributes.get(3).split(":")[1];
                     matureTranscriptItem.setAttribute("transcriptIdentifier", transcriptId);
                     matureTranscriptItem.setAttribute("mirbaseIdentifier", mirbaseId);
-                    matureTranscriptItem.setAttribute("description", description);
+                    matureTranscriptItem.setAttribute("description", URLDecoder.decode(URLDecoder.decode(description)));
 
                     try {
                         converter.store(matureTranscriptItem);
@@ -298,7 +298,7 @@ public class RefseqNoncodingGffGFF3RecordHandler extends GFF3RecordHandler
             }
             if (record.getAttributes().get("description") != null) {
                 String description = record.getAttributes().get("description").iterator().next();
-                feature.setAttribute("description", description);
+                feature.setAttribute("description", URLDecoder.decode(URLDecoder.decode(description)));
             }
 
 //            if (record.getAttributes().get("feature_type") != null) {
@@ -337,7 +337,7 @@ public class RefseqNoncodingGffGFF3RecordHandler extends GFF3RecordHandler
             }
             if (record.getAttributes().get("description") != null) {
                 String description = record.getAttributes().get("description").iterator().next();
-                feature.setAttribute("description", description);
+                feature.setAttribute("description", URLDecoder.decode(URLDecoder.decode(description)));
             }
 
 //            if (record.getAttributes().get("feature_type") != null) {
@@ -376,7 +376,7 @@ public class RefseqNoncodingGffGFF3RecordHandler extends GFF3RecordHandler
             }
             if (record.getAttributes().get("description") != null) {
                 String description = record.getAttributes().get("description").iterator().next();
-                feature.setAttribute("description", description);
+                feature.setAttribute("description", URLDecoder.decode(URLDecoder.decode(description)));
             }
 
 //            if (record.getAttributes().get("feature_type") != null) {
