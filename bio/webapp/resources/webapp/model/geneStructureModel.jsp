@@ -43,6 +43,9 @@
 <script>
 var pid = '<c:out value="${gene.primaryIdentifier}"/>';
 
+var organismMap = {
+    "B. taurus": "22875"
+};
 
 // Require bare bones jbrowse components without using the main browser object
 require({
@@ -88,14 +91,14 @@ function (cookie,dom,domConstruct,domStyle,domClass,Browser,HTMLFeatures,NCList,
            'transcripts.exons.chromosomeLocation.end',
            'transcripts.primaryIdentifier',
            'transcripts.secondaryIdentifier',
-           'transcripts.symbol'
+           'transcripts.symbol',
+           'organism.shortName'
        ],
        where: {
-           primaryIdentifier: pid,
-           organism: {lookup: 'B. taurus'}
+           primaryIdentifier: pid
        }
    };
-   var createJBrowse=function(features){
+   var createJBrowse=function(features, organism){
        var node=dom.byId("gene-structure-model");
        var height=15+Object.keys(features).length*31;
        domStyle.set(node,"height",height+'px');
@@ -111,13 +114,21 @@ function (cookie,dom,domConstruct,domStyle,domClass,Browser,HTMLFeatures,NCList,
           "storeClass" : "JBrowse/Store/SeqFeature/NCList",
           "type" : "FeatureTrack",
           "showLabels":false,
-          "onClick"  : {
-              "label": "Feature name {name}\nFeature start {start}\nFeature end {end}",
-              "url": "http://bovinegenome.org/Apollo2/22875/jbrowse/index.html?loc={seq}:{start}..{end}",
-              "action": "newWindow"
-          },
           "menuTemplate":null
        };
+
+       if (organism in organismMap) {
+          trackConfig.onClick = {
+              "label": "Feature name {name}\nFeature start {start}\nFeature end {end}",
+              "url": "http://bovinegenome.org/Apollo2/" + organismMap[organism] + "/jbrowse/index.html?loc={seq}:{start}..{end}",
+              "action": "newWindow"
+          }
+       }
+       else {
+          trackConfig.onClick = {
+              "label": "Feature name {name}\nFeature start {start}\nFeature end {end}"
+          }
+       }
 
        // Fake existence of jbrowse object
        var browser=new Browser({unitTestMode: true});
@@ -188,6 +199,7 @@ function (cookie,dom,domConstruct,domStyle,domClass,Browser,HTMLFeatures,NCList,
                        "name":row[6]
                    };
            }
+           organism=row[9];
            features[transcript].subfeatures.push({
                    "start": row[4],
                    "end": row[5],
@@ -196,7 +208,7 @@ function (cookie,dom,domConstruct,domStyle,domClass,Browser,HTMLFeatures,NCList,
                 });
        });
        
-       createJBrowse(features);
+       createJBrowse(features, organism);
    });
 });
 </script>
