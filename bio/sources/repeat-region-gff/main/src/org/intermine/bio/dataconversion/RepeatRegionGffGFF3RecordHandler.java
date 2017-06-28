@@ -46,4 +46,10 @@ public class RepeatRegionGffGFF3RecordHandler extends GFF3RecordHandler
             feature.removeAttribute("symbol");
         }
     }
+
+    @Override
+    public void setLocation(Item location) {
+        location.setAttribute("doNotComputeOverlaps", "Y");
+        items.put("_location", location);
+    }
 }
