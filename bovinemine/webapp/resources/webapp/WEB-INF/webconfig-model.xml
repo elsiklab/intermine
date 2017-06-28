@@ -46,6 +46,19 @@
     </fields>
   </class>
 
+  <class className="org.intermine.model.bio.Component">
+    <fields>
+      <fieldconfig fieldExpr="name"/>
+    </fields>
+  </class>
+
+  <class className="org.intermine.model.bio.CrossReference">
+    <fields>
+      <fieldconfig fieldExpr="identifier"/>
+      <fieldconfig fieldExpr="source.name" label="source"/>
+    </fields>
+  </class>
+
   <class className="org.intermine.model.bio.DataSet">
     <fields>
       <fieldconfig fieldExpr="name"/>
@@ -59,6 +72,19 @@
       <fieldconfig fieldExpr="url" doNotTruncate="true"/>
     </fields>
     <tabledisplayer src="/model/dataSourceShort.jsp"/>
+  </class>
+
+  <class className="org.intermine.model.bio.Expression">
+    <headerconfig>
+      <titles>
+        <title mainTitles="sampleName"/>
+      </titles>
+    </headerconfig>
+    <fields>
+      <fieldconfig fieldExpr="rawCounts"/>
+      <fieldconfig fieldExpr="normalizedCounts"/>
+      <fieldconfig fieldExpr="FPKM"/>
+    </fields>
   </class>
 
   <class className="org.intermine.model.bio.ExpressionMetadata">
@@ -100,9 +126,6 @@
       <fieldconfig fieldExpr="description"/>
        <fieldconfig fieldExpr="length" displayer="/model/sequenceShortDisplayerWithField.jsp" />
       <fieldconfig fieldExpr="chromosomeLocation" displayer="/model/chromosomeLocDisplayer.jsp" showInResults="false" />
-      <fieldconfig fieldExpr="chromosome.primaryIdentifier" showInInlineCollection="false" showInSummary="false" />
-      <fieldconfig fieldExpr="chromosomeLocation.start" showInInlineCollection="false" showInSummary="false" />
-      <fieldconfig fieldExpr="chromosomeLocation.end" showInInlineCollection="false" showInSummary="false" />
       <fieldconfig fieldExpr="organism.shortName" label="Organism"/>
     </fields>
   </class>
@@ -128,6 +151,8 @@
     <fields>
       <fieldconfig fieldExpr="participant1.symbol" />
       <fieldconfig fieldExpr="participant2.symbol" />
+      <fieldconfig fieldExpr="details.type" />
+      <fieldconfig fieldExpr="details.relationshipType" />
     </fields>
   </class>
 
@@ -151,7 +176,7 @@
       <fieldconfig fieldExpr="ontologyTerm.identifier"/>
       <fieldconfig fieldExpr="ontologyTerm.name"/>
       <fieldconfig fieldExpr="ontologyTerm.description"/>
-      <fieldconfig fieldExpr="dataSets.name"/>
+      <fieldconfig fieldExpr="dataSets.name" label="Dataset"/>
     </fields>
   </class>
 
@@ -192,6 +217,14 @@
     <fields>
       <fieldconfig fieldExpr="name"/>
       <fieldconfig fieldExpr="taxonId" />
+    </fields>
+  </class>
+
+  <class className="org.intermine.model.bio.Pathway">
+    <fields>
+      <fieldconfig fieldExpr="identifier"/>
+      <fieldconfig fieldExpr="name"/>
+      <fieldconfig fieldExpr="dataSets.name" label="Dataset"/>
     </fields>
   </class>
 
@@ -279,7 +312,6 @@
     <fields>
       <fieldconfig fieldExpr="primaryIdentifier"/>
       <fieldconfig fieldExpr="source"/>
-      <fieldconfig fieldExpr="description"/>
       <fieldconfig fieldExpr="length" displayer="/model/sequenceShortDisplayerWithField.jsp" />
       <fieldconfig fieldExpr="chromosomeLocation" displayer="/model/chromosomeLocDisplayer.jsp" showInResults="false"/>
       <fieldconfig fieldExpr="chromosome.primaryIdentifier" showInInlineCollection="false" showInSummary="false" />
