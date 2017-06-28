@@ -1000,10 +1000,10 @@ public class UniprotConverter extends BioDirectoryConverter
                 if (StringUtils.isEmpty(identifier)) {
                     continue;
                 }
-                if (GENE_PREFIXES.containsKey(taxId)) {
-                    // Prepend RGD:
-                    identifier = GENE_PREFIXES.get(taxId) + identifier;
-                }
+                //if (GENE_PREFIXES.containsKey(taxId)) {
+                //    // Prepend RGD:
+                //    identifier = GENE_PREFIXES.get(taxId) + identifier;
+                //}
                 gene = getGene(protein, uniprotEntry, identifier, taxId,
                         uniqueIdentifierField);
                 // if we only have one gene, store later, we may have other gene fields to update
@@ -1024,10 +1024,10 @@ public class UniprotConverter extends BioDirectoryConverter
                         if (StringUtils.isEmpty(geneIdentifier)) {
                             continue;
                         }
-                        if (GENE_PREFIXES.containsKey(taxId)) {
-                            // Prepend RGD:
-                            geneIdentifier = GENE_PREFIXES.get(taxId) + geneIdentifier;
-                        }
+                        //if (GENE_PREFIXES.containsKey(taxId)) {
+                        //    // Prepend RGD:
+                        //    geneIdentifier = GENE_PREFIXES.get(taxId) + geneIdentifier;
+                        //}
 
                         if ("primaryIdentifier".equals(geneField)) {
                             String resolvedId = resolveGene(taxId, geneIdentifier);
