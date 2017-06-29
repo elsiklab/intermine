@@ -48,7 +48,7 @@
     <put name="pageName" value="network"/>
 </definition>
 
-<definition name="network.tile" path="/Network.jsp"/>
+<definition name="network.tile" path="/network.jsp"/>
 
 <definition name="help.page" extends="layout.template">
     <put name="body" value="help.tile"/>
