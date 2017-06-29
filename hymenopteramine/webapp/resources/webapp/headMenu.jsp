@@ -102,7 +102,7 @@
         </a>
       </li>
       <li id="Blast"  <c:if test="${tab == 'Blast'}">class="activelink"</c:if>>
-        <a href="/${WEB_PROPERTIES['webapp.path']}/blast.do">
+        <a href="http://hymenopteragenome.org/hgd_blast/">
           <fmt:message key="menu.blast"/>
         </a>
       </li>
