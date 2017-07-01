@@ -60,7 +60,7 @@ public class TreefamExtendedConverter extends BioFileConverter
         super(writer, model, DATA_SOURCE_NAME, DATASET_TITLE);
         readConfig();
         organismMap.put("Bos taurus", "9913");
-        organismMap.put("Canis familiaris", "9915");
+        organismMap.put("Canis familiaris", "9615");
         organismMap.put("Homo sapiens", "9606");
         organismMap.put("Mus musculus", "10090");
         organismMap.put("Rattus norvegicus", "10116");
