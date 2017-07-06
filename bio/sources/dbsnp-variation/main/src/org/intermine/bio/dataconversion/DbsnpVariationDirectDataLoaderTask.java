@@ -56,7 +56,7 @@ import org.intermine.util.FormattedTextParser;
 
 public class DbsnpVariationDirectDataLoaderTask extends FileDirectDataLoaderTask {
 
-    private static final String DATASET_TITLE = "dbSNP (build 146) variants and variant annotations";
+    private static final String DATASET_TITLE = "dbSNP (build 149) variants and variant annotations";
     private static final String DATA_SOURCE_NAME = "NCBI dbSNP";
     private static final Logger LOG = Logger.getLogger(DbsnpVariationDirectDataLoaderTask.class);
     private Integer taxonId = 7460;
