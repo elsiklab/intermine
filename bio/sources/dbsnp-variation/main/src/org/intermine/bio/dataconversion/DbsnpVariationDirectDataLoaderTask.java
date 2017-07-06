@@ -56,14 +56,14 @@ import org.intermine.util.FormattedTextParser;
 
 public class DbsnpVariationDirectDataLoaderTask extends FileDirectDataLoaderTask {
 
-    private static final String DATASET_TITLE = "dbSNP (build 127) variants and variant annotations";
+    private static final String DATASET_TITLE = "dbSNP (build 146) variants and variant annotations";
     private static final String DATA_SOURCE_NAME = "NCBI dbSNP";
     private static final Logger LOG = Logger.getLogger(DbsnpVariationDirectDataLoaderTask.class);
     private Integer taxonId = 7460;
     final static String[] expectedHeaders = { "#CHROM", "POS", "ID", "REF", "ALT", "QUAL", "FILTER", "INFO" };
-    private static final String VARIANT_ANNOTATION_SOURCE = "SnpEff";
-    private static final ArrayList<String> FUNCTION_CLASS_TO_IGNORE = new ArrayList<String>(Arrays.asList("INTERGENIC"));
-    private String pattern = "(^\\D)(\\d+)(\\D?$)";
+    private static final String VARIANT_ANNOTATION_SOURCE = "Ensembl VEP";
+    private static final ArrayList<String> FUNCTION_CLASS_TO_IGNORE = new ArrayList<String>(Arrays.asList("downstream_gene_variant", "upstream_gene_variant", "intergenic_variant", "intron_variant"));
+
     private Organism organism = null;
     private DataSet dataSet = null;
     private DataSource dataSource = null;
@@ -188,7 +188,7 @@ public class DbsnpVariationDirectDataLoaderTask extends FileDirectDataLoaderTask
         String type = getKeyValuePair(infoElements, "VC=").get(1);
         String dbSnpBuild = getKeyValuePair(infoElements, "dbSNPBuildID=").get(1);
         ArrayList<String> aliases = getKeyValuePair(infoElements, "alias=");
-        ArrayList<String> variantAnnotation = getKeyValuePair(infoElements, "snpAnnotation=");
+        ArrayList<String> variantAnnotation = getKeyValuePair(infoElements, "variant_annotation=");
         ArrayList<HashSet> returnObject = new ArrayList<HashSet>();
         HashSet<Consequence> consequenceSet = new HashSet<Consequence>();
         HashSet<Transcript> transcriptSet = new HashSet<Transcript>();
@@ -201,7 +201,7 @@ public class DbsnpVariationDirectDataLoaderTask extends FileDirectDataLoaderTask
             snp.setOrganism(getOrganism());
             snp.setReferenceAllele(ref);
             snp.setLength(1);
-            snp.setAlternateAllele(alt.replace(",", ", "));
+            snp.setAlternateAllele(alt);
             snp.setPrimaryIdentifier(id);
             snp.setChromosome(chromosome);
             // set SNP -> dataSets collection
@@ -233,6 +233,7 @@ public class DbsnpVariationDirectDataLoaderTask extends FileDirectDataLoaderTask
                 returnObject = processVariantAnnotations((SequenceAlteration) snp, variantAnnotation.get(1));
                 consequenceSet = returnObject.get(0);
                 transcriptSet = returnObject.get(1);
+
 
                 if (consequenceSet != null) {
                     // set SNP -> consequences collection
@@ -274,7 +275,7 @@ public class DbsnpVariationDirectDataLoaderTask extends FileDirectDataLoaderTask
             imoTracker.put(indel.getId(), indel);
             indel.setOrganism(getOrganism());
             indel.setReferenceAllele(ref);
-            indel.setAlternateAllele(alt.replace(",", ", "));
+            indel.setAlternateAllele(alt);
             indel.setPrimaryIdentifier(id);
             indel.setChromosome(chromosome);
             // set INDEL -> dataSet collection
@@ -449,75 +450,48 @@ public class DbsnpVariationDirectDataLoaderTask extends FileDirectDataLoaderTask
         HashSet<Transcript> transcriptSet = new HashSet<Transcript>();
 
         for (int i = 0; i < annotations.length; i++) {
-            // order of info: [ Effect, Impact, Class, codon_change, amino_acid_change, amino_acid_length, GeneID, Gene_biotype, Coding, TranscriptID, Exon_rank, Genotype ]
+            // order of info: [ GeneID, TranscriptID, consequence, impact, cDNA_pos, CDS_pos, Protein_pos, AA_change, Codon_change ]
             HashSet<ConsequenceType> consequenceTypeSet = new HashSet<ConsequenceType>();
             String[] annotationInfo = annotations[i].split(":");
 
-            if (FUNCTION_CLASS_TO_IGNORE.contains(annotationInfo[0])) {
+            if (FUNCTION_CLASS_TO_IGNORE.contains(annotationInfo[2])) {
                 continue;
             }
             else {
-                String[] consequenceTypes = annotationInfo[0].replace("+", "|").split("\\|");
+                String[] consequenceTypes = annotationInfo[2].split("\\|");
                 for (String consequenceType : consequenceTypes) {
                     consequenceTypeSet.add(getConsequence(consequenceType));
                 }
             }
 
-            Transcript transcript = getTranscript(annotationInfo[9]);
+            Transcript transcript = getTranscript(annotationInfo[1]);
             Consequence consequence = getDirectDataLoader().createObject(Consequence.class);
             imoTracker.put(consequence.getId(), consequence);
             consequence.setRsId(saFeature.getPrimaryIdentifier());
-            consequence.setTranscriptIdentifier(annotationInfo[9]);
-
-//            consequence.setCdnaPosition(annotationInfo[4]);
-//            consequence.setCdsPosition(annotationInfo[5]);
-//            consequence.setAminoAcidPosition(annotationInfo[6]);
+            consequence.setTranscriptIdentifier(annotationInfo[1]);
+            consequence.setCdnaPosition(annotationInfo[4]);
+            consequence.setCdsPosition(annotationInfo[5]);
+            consequence.setAminoAcidPosition(annotationInfo[6]);
 
             // set Consequence -> consequenceType collection
+            // TODO: Issue on the webapp while trying to access consequenceType
             consequence.setConsequenceTypes(consequenceTypeSet);
 
-            if (! "-".equals(annotationInfo[3]) && ! annotationInfo[3].matches("^\\d+$")) {
-                String[] codons = annotationInfo[3].split("/");
-                if (codons.length > 0) {
-                    consequence.setReferenceCodon(codons[0].toUpperCase());
-                    consequence.setAlternateCodon(codons[1].toUpperCase());
+            String[] substitution = annotationInfo[7].split("/");
+            if (substitution.length > 0) {
+                consequence.setReferenceResidue(substitution[0]);
+                if (substitution.length != 2) {
+                    LOG.warn("Consequence type " + annotationInfo[2] + " with just one residue info: " + annotationInfo[7] + ". Treating it as referenceResidue");
+                } else {
+                    consequence.setAlternateResidue(substitution[1]);
                 }
             }
 
-
-            // Possible cases: G67, G539P
-            // Regex: (^\D)(\d+)(\D?$)
-            String substitution = annotationInfo[4];
-
-            Pattern p = Pattern.compile(pattern);
-            Matcher m = p.matcher(substitution);
-
-            if (m.find()) {
-                if (m.group(3).equals("")) {
-                    // G67
-                    if (annotationInfo[0].equals("SYNONYMOUS_CODING")) {
-                        // i.e. synonymous
-                        String referenceResidue = m.group(1);
-                        String aminoAcidPosition = m.group(2);
-                        consequence.setReferenceResidue(referenceResidue);
-                        consequence.setAlternateResidue(referenceResidue);
-                        consequence.setAminoAcidPosition(aminoAcidPosition);
-                    }
-                    else {
-                        //
-                        System.out.println("No alternate residue information for effect type: " + annotationInfo[0]);
-                    }
-
-                }
-                else {
-                    // G539P
-                    // i.e. non-synonymous
-                    String referenceResidue = m.group(1);
-                    String aminoAcidPosition = m.group(2);
-                    String alternateResidue = m.group(3);
-                    consequence.setReferenceResidue(referenceResidue);
-                    consequence.setAlternateResidue(alternateResidue);
-                    consequence.setAminoAcidPosition(aminoAcidPosition);
+            if (! "-".equals(annotationInfo[8])) {
+                String[] codons = annotationInfo[8].split("/");
+                if (codons.length > 0) {
+                    consequence.setReferenceCodon(codons[0].toUpperCase());
+                    consequence.setAlternateCodon(codons[1].toUpperCase());
                 }
             }
 
@@ -529,7 +503,6 @@ public class DbsnpVariationDirectDataLoaderTask extends FileDirectDataLoaderTask
             consequenceSet.add(consequence);
             transcriptSet.add(transcript);
         }
-
         return new ArrayList<HashSet> (Arrays.asList(consequenceSet, transcriptSet));
     }
 
