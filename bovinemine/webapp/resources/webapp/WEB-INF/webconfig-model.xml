@@ -130,6 +130,14 @@
     </fields>
   </class>
 
+  <class className="org.intermine.model.bio.GOEvidenceCode">
+    <fields>
+      <fieldconfig fieldExpr="source"/>
+      <fieldconfig fieldExpr="code"/>
+      <fieldconfig fieldExpr="evidenceOntology.name" label="name"/>
+    </fields>
+  </class>
+
   <class className="org.intermine.model.bio.Homologue">
     <fields>
       <fieldconfig fieldExpr="gene.primaryIdentifier" showInResults="false" showInInlineCollection="false" />
