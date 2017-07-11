@@ -52,14 +52,14 @@
             <td rowspan="4"  class="leftcol"><p><h2>Homology</h2></p></td>
             <td>
                 <p><i>B. taurus</i></p>
-                <p><i>C. canis familiaris</i></p>
+                <p><i>C. familiaris</i></p>
+                <p><i>C. hircus</i></p>
                 <p><i>E. caballus</i></p>
-                <p><i>H. sapien</i></p>
+                <p><i>H. sapiens</i></p>
                 <p><i>M. musculus</i></p>
+                <p><i>O. aries</i></p>
                 <p><i>R. norvegicus</i></p>
                 <p><i>S. scrofa</i></p>
-                <p><i>C. hircus</i></p>
-                <p><i>O. aries</i></p>
             </td>
             <td>Orthologue and paralogue relationships</td>
             <td>OrthoDB - Version 9.1</td>
@@ -69,13 +69,13 @@
         <tr>
             <td>
                 <p><i>B. taurus</i></p>
-                <p><i>C. canis familiaris</i></p>
+                <p><i>C. familiaris</i></p>
                 <p><i>E. caballus</i></p>
-                <p><i>H. sapien</i></p>
+                <p><i>H. sapiens</i></p>
                 <p><i>M. musculus</i></p>
+                <p><i>O. aries</i></p>
                 <p><i>R. norvegicus</i></p>
                 <p><i>S. scrofa</i></p>
-                <p><i>O. aries</i></p>
             </td>
             <td>Orthologue and paralogue relationships</td>
             <td>Treefam - release 9.0</td>
@@ -85,13 +85,13 @@
         <tr>
             <td>
                 <p><i>B. taurus</i></p>
-                <p><i>C. canis familiaris</i></p>
+                <p><i>C. familiaris</i></p>
                 <p><i>E. caballus</i></p>
-                <p><i>H. sapien</i></p>
+                <p><i>H. sapiens</i></p>
                 <p><i>M. musculus</i></p>
+                <p><i>O. aries</i></p>
                 <p><i>R. norvegicus</i></p>
                 <p><i>S. scrofa</i></p>
-                <p><i>O. aries</i></p>
             </td>
             <td>Orthologue and paralogue relationships</td>
             <td>Ensembl Compara</td>
@@ -101,12 +101,12 @@
         <tr>
             <td>
                 <p><i>B. taurus</i></p>
-                <p><i>C. canis familiaris</i></p>
-                <p><i>H. sapien</i></p>
+                <p><i>C. familiaris</i></p>
+                <p><i>H. sapiens</i></p>
                 <p><i>M. musculus</i></p>
+                <p><i>O. aries</i></p>
                 <p><i>R. norvegicus</i></p>
                 <p><i>S. scrofa</i></p>
-                <p><i>O. aries</i></p>
             </td>
             <td>Orthologue and paralogue relationships</td>
             <td>HomoloGene build 68</td>
@@ -116,12 +116,12 @@
         <tr>
             <td rowspan="2"  class="leftcol"><p><h2>Proteins</h2></p></td>
             <td>
-                <p><i>H. sapien</i></p>
-                <p><i>M. musculus</i></p>
-                <p><i>R. norvegicus</i></p>
                 <p><i>B. taurus</i></p>
                 <p><i>C. hircus</i></p>
+                <p><i>H. sapiens</i></p>
+                <p><i>M. musculus</i></p>
                 <p><i>O. aries</i></p>
+                <p><i>R. norvegicus</i></p>
             </td>
             <td> Protein annotation</td>
             <td> UniProt - Release 2017_06</td>
@@ -130,12 +130,12 @@
         </tr>
         <tr>
             <td>
-                <p><i>H. sapien</i></p>
-                <p><i>M. musculus</i></p>
-                <p><i>R. norvegicus</i></p>
                 <p><i>B. taurus</i></p>
                 <p><i>C. hircus</i></p>
+                <p><i>H. sapiens</i></p>
+                <p><i>M. musculus</i></p>
                 <p><i>O. aries</i></p>
+                <p><i>R. norvegicus</i></p>
             </td>
             <td> Protein domains</td>
             <td> InterPro Version 63.0  </td>
@@ -146,7 +146,7 @@
             <td rowspan="2"  class="leftcol"><p><h2>Interactions</h2></p></td>
             <td>
                 <p><i>B. taurus</i></p>
-                <p><i>H. sapien</i></p>
+                <p><i>H. sapiens</i></p>
                 <p><i>M. musculus</i></p>
                 <p><i>R. norvegicus</i></p>
             </td>
@@ -157,12 +157,12 @@
         </tr>
         <tr>
             <td>
-                <p><i>H. sapien</i></p>
-                <p><i>M. musculus</i></p>
-                <p><i>R. norvegicus</i></p>
                 <p><i>B. taurus</i></p>
                 <p><i>C. hircus</i></p>
+                <p><i>H. sapiens</i></p>
+                <p><i>M. musculus</i></p>
                 <p><i>O. aries</i></p>
+                <p><i>R. norvegicus</i></p>
             </td>
             <td> Interactions</td>
             <td> IntAct 2017-06-03 release</td>
@@ -250,11 +250,11 @@
             <td class="leftcol"><p> <h2>Gene Ontology Annotation</h2></p></td>
             <td>
                 <p><i>B. taurus</i></p>
-                <p><i>H. sapien</i></p>
-                <p><i>M. musculus</i></p>
-                <p><i>R. norvegicus</i></p>
                 <p><i>C. hircus</i></p>
+                <p><i>H. sapiens</i></p>
+                <p><i>M. musculus</i></p>
                 <p><i>O. aries</i></p>
+                <p><i>R. norvegicus</i></p>
             </td>
             <td> Gene Ontology Annotation </td>
             <td> GOA at UniProt (GOC Validation Date: 06/06/2017)</td>
@@ -264,12 +264,12 @@
         <tr>
             <td class="leftcol" rowspan="3"><p><h2>Pathways</h2></p></td>
             <td>
-                <p><i>H. sapien</i></p>
-                <p><i>M. musculus</i></p>
                 <p><i>B. taurus</i></p>
-                <p><i>R. norvegicus</i></p>
                 <p><i>C. hircus</i></p>
+                <p><i>H. sapiens</i></p>
+                <p><i>M. musculus</i></p>
                 <p><i>O. aries</i></p>
+                <p><i>R. norvegicus</i></p>
             </td>
             <td> Pathway information inferred through orthologues from curated human pathways</td>
             <td> Reactome - version 60, Apr 2017</td>
@@ -278,7 +278,7 @@
         </tr>
         <tr>
             <td>
-                <p><i>H. sapien</i></p>
+                <p><i>H. sapiens</i></p>
                 <p><i>M. musculus</i></p>
             </td>
             <td>Pathway information</td>
@@ -288,13 +288,13 @@
         </tr>
         <tr>
             <td>
-                <p><i>S. scrofa</i></p>
-                <p><i>H. sapien</i></p>
-                <p><i>M. musculus</i></p>
                 <p><i>B. taurus</i></p>
-                <p><i>R. norvegicus</i></p>
-                <p><i>C. canis familiaris</i></p>
+                <p><i>C. familiaris</i></p>
                 <p><i>E. caballus</i></p>
+                <p><i>H. sapiens</i></p>
+                <p><i>M. musculus</i></p>
+                <p><i>R. norvegicus</i></p>
+                <p><i>S. scrofa</i></p>
             </td>
             <td>Pathway information</td>
             <td>KEGG</td>
