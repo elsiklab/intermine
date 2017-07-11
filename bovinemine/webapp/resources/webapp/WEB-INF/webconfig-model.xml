@@ -485,10 +485,10 @@
 
   <enrichmentwidgetdisplayer id="pathway_enrichment"
                              title="Pathway Enrichment"
-                             description="Pathways enriched for genes in this list - data from Reactome"
+                             description="Pathways enriched for genes in this list - data from Reactome, KEGG and BioCyc"
                              label="Pathways"
                              filterLabel="DataSet"
-                             filters="All,Reactome data set"
+                             filters="All"
                              startClass="Gene"
                              startClassDisplay="primaryIdentifier"
                              enrich="pathways.name"
