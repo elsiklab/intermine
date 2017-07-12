@@ -488,7 +488,7 @@
                              description="Pathways enriched for genes in this list - data from Reactome, KEGG and BioCyc"
                              label="Pathways"
                              filterLabel="DataSet"
-                             filters="All"
+                             filters="KEGG pathways data set,Reactome pathways data set,Biocyc pathways data set,All"
                              startClass="Gene"
                              startClassDisplay="primaryIdentifier"
                              enrich="pathways.name"
