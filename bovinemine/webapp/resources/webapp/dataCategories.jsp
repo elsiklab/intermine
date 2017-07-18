@@ -310,7 +310,7 @@
             <td> <a target="_blank" href="ftp://ftp.ncbi.nlm.nih.gov/gene/DATA/">NCBI FTP</a></td>
         </tr>
         <tr>
-            <td class="leftcol" rowspan="4"><p><h2>Variation</h2></p></td>
+            <td class="leftcol" rowspan="5"><p><h2>Variation</h2></p></td>
             <td>
             <i>B. taurus</i>
             </td>
@@ -325,6 +325,13 @@
             <td> dbSNP v146</td>
             <td> Sherry et al - PubMed <a target="_blank" href="http://www.ncbi.nlm.nih.gov/pubmed/?term=11125122">11125122</a></td>
             <td><p><a target="_blank" href="ftp://ftp.ncbi.nih.gov/snp/organisms/cow_9913/VCF/">NCBI FTP</a></p><p><i> *SNP arrays and SNP NCBI IDs*</i></p></td>
+        </tr>
+        <tr>
+            <td><i>B. taurus</i></td>
+            <td>SNP Alias Identifiers</td>
+            <td> SNPchiMp v.3</td>
+            <td> Nicolazzi et al - PubMed <a target="_blank" href="http://www.ncbi.nlm.nih.gov/pubmed/?term=25881165">25881165</a></td>
+            <td><a target="_blank" href="http://bioinformatics.tecnoparco.org/SNPchimp/">SNPchiMp</a></td>
         </tr>
         <tr>
             <td><i>B. taurus</i></td>
