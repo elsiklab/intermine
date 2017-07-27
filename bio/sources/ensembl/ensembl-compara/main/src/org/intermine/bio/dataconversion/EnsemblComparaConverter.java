@@ -1,7 +1,7 @@
 package org.intermine.bio.dataconversion;
 
 /*
- * Copyright (C) 2002-2017 FlyMine
+ * Copyright (C) 2002-2016 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -43,12 +43,13 @@ public class EnsemblComparaConverter extends BioFileConverter
     private static final String EVIDENCE_CODE_NAME = "Amino acid sequence comparison";
     private Set<String> taxonIds;
     private Set<String> homologues = new HashSet<String>();
-    private static final String DATASET_TITLE = "EnsemblMetazoa data set";
+    private static final String DATASET_TITLE = "EnsemblCompara data set";
     private static final String DATA_SOURCE_NAME = "Ensembl";
     private Map<String, String> genes = new HashMap<String, String>();
     protected IdResolver rslv = null;
     private Map<String, String> configs = new HashMap<String, String>();
     private static String evidenceRefId = null;
+    protected String version = null;
 
     /**
      * Constructor
@@ -58,6 +59,15 @@ public class EnsemblComparaConverter extends BioFileConverter
     public EnsemblComparaConverter(ItemWriter writer, Model model) {
         super(writer, model, DATA_SOURCE_NAME, DATASET_TITLE);
         readConfig();
+    }
+
+    /**
+     * Set the version for EnsemblCompara. This value is used in 'source' attribute
+     * of Gene for integration
+     * @param version the version
+     */
+    public void setEnsemblcomparaVersion(String version) {
+        this.version = version;
     }
 
     /**
@@ -107,6 +117,10 @@ public class EnsemblComparaConverter extends BioFileConverter
             rslv = IdResolverService.getEnsemblIdResolver();
         }
 
+        if (version == null) {
+            throw new IllegalArgumentException("No version provided for Ensembl Compara");
+        }
+
         if (taxonIds == null || taxonIds.isEmpty()) {
             throw new IllegalArgumentException("No organism data provided for Ensembl Compara");
         }
@@ -135,13 +149,17 @@ public class EnsemblComparaConverter extends BioFileConverter
         Iterator<String[]> lineIter = FormattedTextParser.parseTabDelimitedReader(reader);
         while (lineIter.hasNext()) {
             String[] line = lineIter.next();
-            if (line.length < 2 && StringUtils.isNotEmpty(line.toString())) {
-                throw new RuntimeException("Invalid line, should be 2 columns but is '"
+            if (line[0].equals("[success]")) continue;
+            if (line.length < 5 && StringUtils.isNotEmpty(line.toString())) {
+                throw new RuntimeException("Invalid line, should be 5 columns but is '"
                         + line.length + "' instead");
             }
 
             String gene1 = line[0];
             String gene2 = line[1];
+            String lca = line[2];
+            String homologyType = line[3];
+            String confidence = line[4];
 
             if (gene1.startsWith("Ensembl")) {
                 // skip header that biomart starts with
@@ -161,21 +179,24 @@ public class EnsemblComparaConverter extends BioFileConverter
             }
 
             // store homologues
-            processHomologue(refId1, refId2);
-            processHomologue(refId2, refId1);
+            processHomologue(refId1, refId2, lca, homologyType, confidence);
+            processHomologue(refId2, refId1, lca, homologyType, confidence);
             lastGene1 = gene1;
             lastGene2 = gene2;
         }
     }
 
     // save homologue pair
-    private void processHomologue(String gene1, String gene2)
+    private void processHomologue(String gene1, String gene2, String lastCommonAncestor, String homologyType, String confidence)
         throws ObjectStoreException {
         Item homologue = createItem("Homologue");
         homologue.setReference("gene", gene1);
         homologue.setReference("homologue", gene2);
         homologue.addToCollection("evidence", getEvidence());
-        homologue.setAttribute("type", "homologue");
+        homologue.setAttribute("type", homologyType.contains("ortholog") ? "orthologue" : "homologue");
+        homologue.setAttribute("lastCommonAncestor", lastCommonAncestor);
+        homologue.setAttribute("homologyType", homologyType);
+        homologue.setAttribute("confidence", confidence);
         store(homologue);
     }
 
@@ -185,7 +206,7 @@ public class EnsemblComparaConverter extends BioFileConverter
             return null;
         }
         String newIdentifier = identifier;
-        if ("7227".equals(taxonId) || "9606".equals(taxonId)) {
+        if ("7227".equals(taxonId)) {
             newIdentifier = resolveGene(taxonId, identifier);
             if (newIdentifier == null) {
                 return null;
@@ -199,6 +220,7 @@ public class EnsemblComparaConverter extends BioFileConverter
             }
             Item item = createItem("Gene");
             item.setAttribute(fieldName, newIdentifier);
+            item.setAttribute("source", version);
             item.setReference("organism", getOrganism(taxonId));
             store(item);
             refId = item.getIdentifier();

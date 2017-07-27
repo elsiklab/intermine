@@ -1810,6 +1810,12 @@
             <property name="src.data.dir" location="@DATA_DIR@/TreeFam"/>
             <property name="version" value="Ensembl 89"/>
         </source>
+           <source name="ensembl-compara" type="ensembl-compara">
+            <property name="src.data.dir" location="@DATA_DIR@/EnsemblCompara"/>
+            <property name="ensemblcompara.version" value="Ensembl 89"/>
+            <property name="ensemblcompara.organisms" value="9913 9940 9606 10090 10116"/>
+            <property name="ensemblcompara.homologues" value="9606 10090 10116 9615 9796 9823 9940"/>
+        </source>
 
 
   <source name="pubmed" type="pubmed-gene">
