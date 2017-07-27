@@ -123,7 +123,10 @@
        <property name="ensemblcompara.homologues" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 39947 4555 4565 4572 37682 15368 4513 4558"/>
     </source>
 
-
+         <source name="treefam-extended" type="treefam-extended">
+            <property name="src.data.dir" location="@DATA_DIR@/TreeFam"/>
+            <property name="version" value="Ensembl 89"/>
+        </source>
 
 
 
