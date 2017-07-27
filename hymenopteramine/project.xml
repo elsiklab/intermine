@@ -11,7 +11,7 @@
   </source>
    
     <source name="hao" type="hao">
-    <property name="src.data.file" location="/home.george/aditi/dataset/datasets/HAO/hao.obo"/>
+    <property name="src.data.file" location="@DATA_DIR@/dataset/datasets/HAO/hao.obo"/>
   </source>
 
   <source name="evidence-ontology" type="evidence-ontology">
@@ -20,7 +20,7 @@
 
   <!-- DBSNP Variation -->
   <source name="amel-dbsnp-variation" type="dbsnp-variation" dump="true">
-    <property name="src.data.dir" location="@DATA_DIR@/dbSNP/dbSNP/"/>
+    <property name="src.data.dir" location="@DATA_DIR@/del"/>
     <property name="src.data.dir.includes" value="*.vcf"/>
   </source>
 
@@ -1626,7 +1626,7 @@
   </source>
 
   <source name="kegg" type="kegg-pathway">
-    <property name="src.data.dir" location="@DATA_DIR@/KEGG/"/>
+    <property name="src.data.dir" location="@DATA_DIR@/dataset/datasets/KEGG/"/>
     <property name="kegg.organisms" value="7460 7227 7425"/>
   </source>
 
@@ -1806,15 +1806,21 @@
     <property name="taxonId" value="132113"/>
   </source>
 
+     <source name="treefam-extended" type="treefam-extended">
+            <property name="src.data.dir" location="@DATA_DIR@/TreeFam"/>
+            <property name="version" value="Ensembl 89"/>
+        </source>
+
+
   <source name="pubmed" type="pubmed-gene">
-    <property name="src.data.dir" location="@DATA_DIR@/Pubmed/" />
+    <property name="src.data.dir" location="@DATA_DIR@/dataset/datasets/Pubmed-Amel" />
     <property name="pubmed.organisms" value="30195 7463 7462 143995 132113 7425 7460 7227 83485 104421 13686 103372 610380 144034 443821 178035 64793 166423 597456 516756 286306 88501"/>
     <property name="src.data.dir.includes" value="gene2pubmed"/>
     <property name="infoFile" location="@DATA_DIR@/Pubmed/gene_info"/>
   </source>
 
   <source name="amel-pubmed" type="pubmed-gene">
-    <property name="src.data.dir" location="@DATA_DIR@/Pubmed-Amel/" />
+    <property name="src.data.dir" location="@DATA_DIR@/dataset/datasets/Pubmed-Amel/" />
     <property name="pubmed.organisms" value="7460"/>
     <property name="src.data.dir.includes" value="gene2pubmed"/>
     <property name="infoFile" location="@DATA_DIR@/Pubmed/gene_info"/>
