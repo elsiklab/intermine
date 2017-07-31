@@ -107,7 +107,6 @@ import com.browseengine.bobo.facets.impl.SimpleFacetHandler;
 
 public final class KeywordSearch
 {
-    private static final String LUCENE_INDEX_DIR_PREFIX = "/tmp/intermine_search_indexes/bovinemine_keyword_search_index";
     private static final String LUCENE_INDEX_DIR = "keyword_search_index";
     private static final String LUCENE_INDEX_SIGNATURE = "keyword_search_signature";
 
@@ -129,6 +128,7 @@ public final class KeywordSearch
     private static LuceneIndexContainer index = null;
 
     private static Properties properties = null;
+    private static Properties indexProperties = null;
     private static String tempDirectory = null;
     private static String luceneIndexDirPrefix = null;
     private static Map<Class<? extends InterMineObject>, String[]> specialReferences;
@@ -908,16 +908,31 @@ public final class KeywordSearch
         return null;
     }
 
+    private static void parseProperties(String configFileName) {
+        if (configFileName != null) {
+            ClassLoader classLoader = KeywordSearch.class.getClassLoader();
+            InputStream configStream = classLoader.getResourceAsStream(configFileName);
+            indexProperties = new Properties();
+            try {
+                indexProperties.load(configStream);
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+
+        }
+    }
+
     private static Directory restoreSearchDirectory(String dirType, String path, Database db)
         throws SQLException, IOException, FileNotFoundException, ClassNotFoundException {
         InputStream is;
         String databaseSignature = null;
         String diskSignature = null;
         LOG.info(" dirType: " + dirType);
-        File indexDirectory = new File(LUCENE_INDEX_DIR_PREFIX);
+        parseProperties("keyword_search.properties");
+        File indexDirectory = new File(indexProperties.getProperty("index.lucene_index_dir_prefix"));
         if (!indexDirectory.exists()) {
-            LOG.info("Attempting to create lucene index directory: " + luceneIndexDirPrefix + " since it does not exist");
-            new File(LUCENE_INDEX_DIR_PREFIX).mkdirs();
+            LOG.info("Attempting to create lucene index directory: " + indexProperties.getProperty("index.lucene_index_dir_prefix") + " since it does not exist");
+            new File(indexProperties.getProperty("index.lucene_index_dir_prefix")).mkdirs();
         }
 
         if ("FSDirectory".equals(dirType)) {
@@ -943,8 +958,8 @@ public final class KeywordSearch
 
             if (databaseSignature != null) {
                 try {
-                    LOG.info("Looking for keyword_search_signature file at: " + LUCENE_INDEX_DIR_PREFIX + File.separator + LUCENE_INDEX_SIGNATURE);
-                    FileReader signatureFile = new FileReader(LUCENE_INDEX_DIR_PREFIX + File.separator + LUCENE_INDEX_SIGNATURE);
+                    LOG.info("Looking for keyword_search_signature file at: " + indexProperties.getProperty("index.lucene_index_dir_prefix") + File.separator + LUCENE_INDEX_SIGNATURE);
+                    FileReader signatureFile = new FileReader(indexProperties.getProperty("index.lucene_index_dir_prefix") + File.separator + LUCENE_INDEX_SIGNATURE);
                     BufferedReader br = new BufferedReader(signatureFile);
 
                     try {
@@ -964,18 +979,18 @@ public final class KeywordSearch
             }
 
             if (databaseSignature != null && diskSignature != null && diskSignature.equals(databaseSignature)) {
-                LOG.info("No need to restore keyword search index from the database. Will read from existing index from directory: " + LUCENE_INDEX_DIR_PREFIX + File.separator + LUCENE_INDEX_DIR);
+                LOG.info("No need to restore keyword search index from the database. Will read from existing index from directory: " + indexProperties.getProperty("index.lucene_index_dir_prefix") + File.separator + LUCENE_INDEX_DIR);
                 try {
-                    File directoryPath = new File(LUCENE_INDEX_DIR_PREFIX + File.separator + LUCENE_INDEX_DIR);
+                    File directoryPath = new File(indexProperties.getProperty("index.lucene_index_dir_prefix") + File.separator + LUCENE_INDEX_DIR);
                     if (directoryPath.exists()) {
                         FSDirectory directory = FSDirectory.open(directoryPath);
                         return directory;
                     }
                     else {
-                        LOG.warn("Cannot find index directory: " + LUCENE_INDEX_DIR_PREFIX + File.separator + LUCENE_INDEX_DIR);
+                        LOG.warn("Cannot find index directory: " + indexProperties.getProperty("index.lucene_index_dir_prefix") + File.separator + LUCENE_INDEX_DIR);
                     }
                 } catch (FileNotFoundException e){
-                    LOG.error("Cannot find index from directory: " + LUCENE_INDEX_DIR_PREFIX + File.separator + LUCENE_INDEX_DIR);
+                    LOG.error("Cannot find index from directory: " + indexProperties.getProperty("index.lucene_index_dir_prefix") + File.separator + LUCENE_INDEX_DIR);
                 }
             }
         }
@@ -989,13 +1004,13 @@ public final class KeywordSearch
                     // save the signature to the database
                     if (databaseSignature != null) {
                         try {
-                            File file = new File(LUCENE_INDEX_DIR_PREFIX + File.separator + LUCENE_INDEX_SIGNATURE);
+                            File file = new File(indexProperties.getProperty("index.lucene_index_dir_prefix") + File.separator + LUCENE_INDEX_SIGNATURE);
                             file.createNewFile();
                             FileWriter writer = new FileWriter(file);
                             writer.write(databaseSignature + "\n");
                             writer.flush();
                             writer.close();
-                            LOG.info("LUCENE_INDEX_SIGNATURE written to file: " + LUCENE_INDEX_DIR_PREFIX + File.separator + LUCENE_INDEX_SIGNATURE);
+                            LOG.info("LUCENE_INDEX_SIGNATURE written to file: " + indexProperties.getProperty("index.lucene_index_dir_prefix") + File.separator + LUCENE_INDEX_SIGNATURE);
                         } catch (IOException e) {
                             LOG.error("Cannot write LUCENE_INDEX_SIGNATURE to the file system");
                         }
@@ -1020,9 +1035,9 @@ public final class KeywordSearch
         throws IOException, FileNotFoundException {
         long time = System.currentTimeMillis();
         final int bufferSize = 2048;
-        //File directoryPath = new File(path + File.separator + LUCENE_INDEX_DIR);
-        File directoryPath = new File(LUCENE_INDEX_DIR_PREFIX + File.separator + LUCENE_INDEX_DIR);
-        LOG.debug("Directory path: " + directoryPath);
+        parseProperties("keyword_search.properties");
+        File directoryPath = new File(indexProperties.getProperty("index.lucene_index_dir_prefix") + File.separator + LUCENE_INDEX_DIR);
+        LOG.info("Index directory path: " + directoryPath);
 
         // make sure we start with a new index
         if (directoryPath.exists()) {
@@ -1354,6 +1369,7 @@ public final class KeywordSearch
         indexingQueue = null;
         index = null;
         properties = null;
+        indexProperties = null;
         tempDirectory = null;
         luceneIndexDirPrefix = null;
         specialReferences = null;
