@@ -330,10 +330,8 @@
 
    <class className="org.intermine.model.bio.xRef">
     <fields>
-      <fieldconfig fieldExpr="name"/>
-      <fieldconfig fieldExpr="source"/>
-      <fieldconfig fieldExpr="referee" label="Cross Reference"/>
       <fieldconfig fieldExpr="referee.primaryIdentifier" label="Identifier"/>
+      <fieldconfig fieldExpr="refereeSource" label="Source"/>
     </fields>
   </class>
 
