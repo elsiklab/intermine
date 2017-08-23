@@ -256,7 +256,123 @@
     <property name="src.data.dir" location="@DATA_DIR@/genome"/>
   </source>
 
+  <source name="fasta-acep" type="fasta">
+    <property name="fasta.taxonId" value="12957"/>
+    <property name="fasta.dataSetTitle" value="Atta cephalotes Reference Genome GCF_000143395.1_Attacep1.0"/>
+    <property name="fasta.dataSourceName" value="Hymenoptera Genome Database"/>
+    <property name="fasta.className" value="org.intermine.model.bio.Chromosome"/>
+    <property name="fasta.sequenceType" value="dna"/>
+    <property name="fasta.includes" value="Acep*.fa"/>
+    <property name="fasta.loaderClassName" value="org.intermine.bio.dataconversion.HymenopteraFastaLoaderTask"/>
+    <property name="src.data.dir" location="@DATA_DIR@/genome"/>
+  </source>
+
+  <source name="fasta-acer" type="fasta">
+    <property name="fasta.taxonId" value="7461"/>
+    <property name="fasta.dataSetTitle" value="Apis cerana Reference Genome GCF_001442555.1_ACSNU-2.0"/>
+    <property name="fasta.dataSourceName" value="Hymenoptera Genome Database"/>
+    <property name="fasta.className" value="org.intermine.model.bio.Chromosome"/>
+    <property name="fasta.sequenceType" value="dna"/>
+    <property name="fasta.includes" value="Acer*.fa"/>
+    <property name="fasta.loaderClassName" value="org.intermine.bio.dataconversion.HymenopteraFastaLoaderTask"/>
+    <property name="src.data.dir" location="@DATA_DIR@/genome"/>
+  </source>
+ 
+  <source name="fasta-ccal" type="fasta">
+    <property name="fasta.taxonId" value="156304"/>
+    <property name="fasta.dataSetTitle" value="Ceratina calcarata Reference Genome GCF_001652005.1_ASM165200v1"/>
+    <property name="fasta.dataSourceName" value="Hymenoptera Genome Database"/>
+    <property name="fasta.className" value="org.intermine.model.bio.Chromosome"/>
+    <property name="fasta.sequenceType" value="dna"/>
+    <property name="fasta.includes" value="Ccal*.fa"/>
+    <property name="fasta.loaderClassName" value="org.intermine.bio.dataconversion.HymenopteraFastaLoaderTask"/>
+    <property name="src.data.dir" location="@DATA_DIR@/genome"/>
+  </source>
+
+  <source name="fasta-mpha" type="fasta">
+    <property name="fasta.taxonId" value="307658"/>
+    <property name="fasta.dataSetTitle" value="Monomorium pharaonis Reference Genome GCF_000980195.1_M.pharaonis_V2.0"/>
+    <property name="fasta.dataSourceName" value="Hymenoptera Genome Database"/>
+    <property name="fasta.className" value="org.intermine.model.bio.Chromosome"/>
+    <property name="fasta.sequenceType" value="dna"/>
+    <property name="fasta.includes" value="Mpha*.fa"/>
+    <property name="fasta.loaderClassName" value="org.intermine.bio.dataconversion.HymenopteraFastaLoaderTask"/>
+    <property name="src.data.dir" location="@DATA_DIR@/genome"/>
+  </source>
+
   <!-- gene annotations -->
+  <source name="mpha-code-gff" type="refseq-proteincoding-gff" dump="true">
+    <property name="gff3.taxonId" value="307658"/>
+    <property name="gff3.seqClsName" value="Chromosome"/>
+    <property name="gff3.dataSetTitle" value="Mpha_RefSeq"/>
+    <property name="gff3.dataSourceName" value="Mpha_RefSeq"/>
+    <property name="gff3.seqDataSourceName" value="Mpha_RefSeq"/>
+    <property name="src.data.dir" location="@DATA_DIR@/GFF/mpha/proteincoding"/>
+  </source>
+
+  <source name="mpha-noncode-gff" type="refseq-noncoding-gff" dump="true">
+    <property name="gff3.taxonId" value="307658"/>
+    <property name="gff3.seqDataSourceName" value="Mpha_RefSeq"/>
+    <property name="gff3.dataSourceName" value="Mpha_RefSeq"/>
+    <property name="gff3.seqClsName" value="Chromosome"/>
+    <property name="gff3.dataSetTitle" value="Mpha_RefSeq"/>
+    <property name="src.data.dir" location="@DATA_DIR@/GFF/mpha/noncoding"/>
+  </source>
+
+   <source name="ccal-code-gff" type="refseq-proteincoding-gff" dump="true">
+    <property name="gff3.taxonId" value="156304"/>
+    <property name="gff3.seqClsName" value="Chromosome"/>
+    <property name="gff3.dataSetTitle" value="Ccal_RefSeq"/>
+    <property name="gff3.dataSourceName" value="Ccal_RefSeq"/>
+    <property name="gff3.seqDataSourceName" value="Ccal_RefSeq"/>
+    <property name="src.data.dir" location="@DATA_DIR@/GFF/ccal/proteincoding"/>
+  </source>
+
+  <source name="ccal-noncode-gff" type="refseq-noncoding-gff" dump="true">
+    <property name="gff3.taxonId" value="156304"/>
+    <property name="gff3.seqDataSourceName" value="Ccal_RefSeq"/>
+    <property name="gff3.dataSourceName" value="Ccal_RefSeq"/>
+    <property name="gff3.seqClsName" value="Chromosome"/>
+    <property name="gff3.dataSetTitle" value="Ccal_RefSeq"/>
+    <property name="src.data.dir" location="@DATA_DIR@/GFF/ccal/noncoding"/>
+  </source>
+
+  <source name="acer-code-gff" type="refseq-proteincoding-gff" dump="true">
+    <property name="gff3.taxonId" value="7461"/>
+    <property name="gff3.seqClsName" value="Chromosome"/>
+    <property name="gff3.dataSetTitle" value="Acer_RefSeq"/>
+    <property name="gff3.dataSourceName" value="Acer_RefSeq"/>
+    <property name="gff3.seqDataSourceName" value="Acer_RefSeq"/>
+    <property name="src.data.dir" location="@DATA_DIR@/GFF/acer/proteincoding"/>
+  </source>
+
+  <source name="acer-noncode-gff" type="refseq-noncoding-gff" dump="true">
+    <property name="gff3.taxonId" value="7461"/>
+    <property name="gff3.seqDataSourceName" value="Acer_RefSeq"/>
+    <property name="gff3.dataSourceName" value="Acer_RefSeq"/>
+    <property name="gff3.seqClsName" value="Chromosome"/>
+    <property name="gff3.dataSetTitle" value="Acer_RefSeq"/>
+    <property name="src.data.dir" location="@DATA_DIR@/GFF/acer/noncoding"/>
+  </source>
+
+  <source name="acep-code-gff" type="refseq-proteincoding-gff" dump="true">
+    <property name="gff3.taxonId" value="12957"/>
+    <property name="gff3.seqClsName" value="Chromosome"/>
+    <property name="gff3.dataSetTitle" value="Acep_RefSeq"/>
+    <property name="gff3.dataSourceName" value="Acep_RefSeq"/>
+    <property name="gff3.seqDataSourceName" value="Acep_RefSeq"/>
+    <property name="src.data.dir" location="/irving-array4/db/intermine/hymenopteramine_release_1.2_July2017/datasets/GFF/acep/proteincoding"/>
+  </source>
+
+  <source name="acep-noncode-gff" type="refseq-noncoding-gff" dump="true">
+    <property name="gff3.taxonId" value="12957"/>
+    <property name="gff3.seqDataSourceName" value="Acep_RefSeq"/>
+    <property name="gff3.dataSourceName" value="Acep_RefSeq"/>
+    <property name="gff3.seqClsName" value="Chromosome"/>
+    <property name="gff3.dataSetTitle" value="Acep_RefSeq"/>
+    <property name="src.data.dir" location="/irving-array4/db/intermine/hymenopteramine_release_1.2_July2017/datasets/GFF/acep/noncoding"/>
+  </source>
+
   <source name="cbir-code-gff" type="refseq-proteincoding-gff" dump="true">
     <property name="gff3.taxonId" value="443821"/>
     <property name="gff3.seqClsName" value="Chromosome"/>
@@ -1208,6 +1324,136 @@
     <property name="fasta.loaderClassName" value="org.intermine.bio.dataconversion.HymenopteraProteinFastaLoaderTask"/>
   </source>
 
+  <source name="acer-cds-fasta-ncbi" type="fasta" dump="true">
+    <property name="fasta.taxonId" value="7461"/>
+    <property name="fasta.className" value="org.intermine.model.bio.CDS"/>
+    <property name="fasta.classAttribute" value="primaryIdentifier"/>
+    <property name="fasta.dataSetTitle" value="Apis cerana CDS Fasta"/>
+    <property name="fasta.dataSourceName" value="Apis cerana CDS Fasta"/>
+    <property name="src.data.dir" location="@DATA_DIR@/CDS/cds_NCBI/"/>
+    <property name="fasta.includes" value="Acer*.fa"/>
+    <property name="fasta.sequenceType" value="dna"/>
+    <property name="fasta.loaderClassName" value="org.intermine.bio.dataconversion.HymenopteraCDSFastaLoaderTask"/>
+  </source>
+
+  <source name="acer-protein-ncbi" type="fasta" dump="true">
+    <property name="fasta.taxonId" value="7461"/>
+    <property name="fasta.className" value="org.intermine.model.bio.Polypeptide"/>
+    <property name="fasta.classAttribute" value="primaryIdentifier"/>
+    <property name="fasta.dataSourceName" value="Protein sequence for transcripts from NCBI RefSeq"/>
+    <property name="fasta.dataSetTitle" value="Protein sequence for transcripts from NCBI RefSeq for Apis cerana"/>
+    <property name="src.data.dir" location="@DATA_DIR@/protein/NCBI"/>
+    <property name="fasta.includes" value="Acer*.fa"/>
+    <property name="fasta.sequenceType" value="protein"/>
+    <property name="fasta.loaderClassName" value="org.intermine.bio.dataconversion.HymenopteraProteinFastaLoaderTask"/>
+  </source>
+
+   <source name="acep-cds-fasta-ncbi" type="fasta" dump="true">
+    <property name="fasta.taxonId" value="12957"/>
+    <property name="fasta.className" value="org.intermine.model.bio.CDS"/>
+    <property name="fasta.classAttribute" value="primaryIdentifier"/>
+    <property name="fasta.dataSetTitle" value="Atta cephalotes CDS Fasta"/>
+    <property name="fasta.dataSourceName" value="Atta cephalotes CDS Fasta"/>
+    <property name="src.data.dir" location="@DATA_DIR@/CDS/cds_NCBI/"/>
+    <property name="fasta.includes" value="Acep*.fa"/>
+    <property name="fasta.sequenceType" value="dna"/>
+    <property name="fasta.loaderClassName" value="org.intermine.bio.dataconversion.HymenopteraCDSFastaLoaderTask"/>
+  </source>
+
+  <source name="acep-protein-ncbi" type="fasta" dump="true">
+    <property name="fasta.taxonId" value="12957"/>
+    <property name="fasta.className" value="org.intermine.model.bio.Polypeptide"/>
+    <property name="fasta.classAttribute" value="primaryIdentifier"/>
+    <property name="fasta.dataSourceName" value="Protein sequence for transcripts from NCBI RefSeq"/>
+    <property name="fasta.dataSetTitle" value="Protein sequence for transcripts from NCBI RefSeq for Atta cephalotes"/>
+    <property name="src.data.dir" location="@DATA_DIR@/protein/NCBI"/>
+    <property name="fasta.includes" value="Acep*.fa"/>
+    <property name="fasta.sequenceType" value="protein"/>
+    <property name="fasta.loaderClassName" value="org.intermine.bio.dataconversion.HymenopteraProteinFastaLoaderTask"/>
+  </source>
+
+  <source name="ccal-cds-fasta-ncbi" type="fasta" dump="true">
+    <property name="fasta.taxonId" value="156304"/>
+    <property name="fasta.className" value="org.intermine.model.bio.CDS"/>
+    <property name="fasta.classAttribute" value="primaryIdentifier"/>
+    <property name="fasta.dataSetTitle" value="Ceratina calcarata CDS Fasta"/>
+    <property name="fasta.dataSourceName" value="Ceratina calcarata CDS Fasta"/>
+    <property name="src.data.dir" location="@DATA_DIR@/CDS/cds_NCBI/"/>
+    <property name="fasta.includes" value="Ccal*.fa"/>
+    <property name="fasta.sequenceType" value="dna"/>
+    <property name="fasta.loaderClassName" value="org.intermine.bio.dataconversion.HymenopteraCDSFastaLoaderTask"/>
+  </source>
+
+  <source name="ccal-protein-ncbi" type="fasta" dump="true">
+    <property name="fasta.taxonId" value="156304"/>
+    <property name="fasta.className" value="org.intermine.model.bio.Polypeptide"/>
+    <property name="fasta.classAttribute" value="primaryIdentifier"/>
+    <property name="fasta.dataSourceName" value="Protein sequence for transcripts from NCBI RefSeq"/>
+    <property name="fasta.dataSetTitle" value="Protein sequence for transcripts from NCBI RefSeq for Ceratina calcarata"/>
+    <property name="src.data.dir" location="@DATA_DIR@/protein/NCBI"/>
+    <property name="fasta.includes" value="Ccal*.fa"/>
+    <property name="fasta.sequenceType" value="protein"/>
+    <property name="fasta.loaderClassName" value="org.intermine.bio.dataconversion.HymenopteraProteinFastaLoaderTask"/>
+  </source>
+
+    <source name="mpha-cds-fasta-ncbi" type="fasta" dump="true">
+    <property name="fasta.taxonId" value="307658"/>
+    <property name="fasta.className" value="org.intermine.model.bio.CDS"/>
+    <property name="fasta.classAttribute" value="primaryIdentifier"/>
+    <property name="fasta.dataSetTitle" value="Ceratina calcarata CDS Fasta"/>
+    <property name="fasta.dataSourceName" value="Ceratina calcarata CDS Fasta"/>
+    <property name="src.data.dir" location="@DATA_DIR@/CDS/cds_NCBI/"/>
+    <property name="fasta.includes" value="Mpha*.fa"/>
+    <property name="fasta.sequenceType" value="dna"/>
+    <property name="fasta.loaderClassName" value="org.intermine.bio.dataconversion.HymenopteraCDSFastaLoaderTask"/>
+  </source>
+
+  <source name="mpha-protein-ncbi" type="fasta" dump="true">
+    <property name="fasta.taxonId" value="307658"/>
+    <property name="fasta.className" value="org.intermine.model.bio.Polypeptide"/>
+    <property name="fasta.classAttribute" value="primaryIdentifier"/>
+    <property name="fasta.dataSourceName" value="Protein sequence for transcripts from NCBI RefSeq"/>
+    <property name="fasta.dataSetTitle" value="Protein sequence for transcripts from NCBI RefSeq for Monomorium pharaonis"/>
+    <property name="src.data.dir" location="@DATA_DIR@/protein/NCBI"/>
+    <property name="fasta.includes" value="Mpha*.fa"/>
+    <property name="fasta.sequenceType" value="protein"/>
+    <property name="fasta.loaderClassName" value="org.intermine.bio.dataconversion.HymenopteraProteinFastaLoaderTask"/>
+  </source>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <source name="lhum-cds-fasta-ncbi" type="fasta" dump="true">
     <property name="fasta.taxonId" value="83485"/>
     <property name="fasta.className" value="org.intermine.model.bio.CDS"/>
@@ -1626,9 +1872,28 @@
   </source>
 
   <source name="kegg" type="kegg-pathway">
-    <property name="src.data.dir" location="@DATA_DIR@/dataset/datasets/KEGG/"/>
-    <property name="kegg.organisms" value="7460 7227 7425"/>
+    <property name="src.data.dir" location="/irving-array4/db/intermine/hymenopteramine_release_1.2_July2017/datasets/KEGG_genes/"/>
+    <property name="kegg.organisms" value="7227 7425 7460 12957 103372 132113 30195 104421 610380 83485 144034 13686"/>
   </source>
+
+  <source name="kegg-compounds" type="kegg-compounds">
+     <property name="src.data.dir" location="/irving-array4/db/intermine/hymenopteramine_release_1.2_July2017/datasets/KEGG_compounds"/>
+     <property name="src.data.dir.includes" value="*.tab"/>
+   </source>
+
+    <source name="kegg-metadata" type="kegg-metadata">
+      <property name="src.data.dir" location="/irving-array4/db/intermine/hymenopteramine_release_1.2_July2017/datasets/KEGG_meta/"/>
+      <property name="src.data.dir.includes" value="*.tab"/>
+    </source>
+
+    <source name="ensembl-compara" type="ensembl-compara">
+      <property name="src.data.dir" location="/irving-array4/db/intermine/hymenopteramine_release_1.2_July2017/datasets/ensemblcompara"/>
+      <property name="ensemblcompara.version" value="Ensembl 36"/>
+      <property name="ensemblcompara.organisms" value="12957 7460 132113 13686 7227 7425"/>
+      <property name="ensemblcompara.homologues" value="12957 7460 132113 13686 7227 7425"/>
+    </source>
+
+
 
   <!-- xRef and Aliases -->
   <source name="amel-alias" type="aliases">
@@ -1805,18 +2070,13 @@
     <property name="src.data.dir" location="@DATA_DIR@/alias/orthodb_gene/bimp/"/>
     <property name="taxonId" value="132113"/>
   </source>
-
+<!--
      <source name="treefam-extended" type="treefam-extended">
             <property name="src.data.dir" location="@DATA_DIR@/TreeFam"/>
             <property name="version" value="Ensembl 89"/>
         </source>
-           <source name="ensembl-compara" type="ensembl-compara">
-            <property name="src.data.dir" location="@DATA_DIR@/EnsemblCompara"/>
-            <property name="ensemblcompara.version" value="Ensembl 89"/>
-            <property name="ensemblcompara.organisms" value="9913 9940 9606 10090 10116"/>
-            <property name="ensemblcompara.homologues" value="9606 10090 10116 9615 9796 9823 9940"/>
-        </source>
-
+-->
+  
 
   <source name="pubmed" type="pubmed-gene">
     <property name="src.data.dir" location="@DATA_DIR@/dataset/datasets/Pubmed-Amel" />
