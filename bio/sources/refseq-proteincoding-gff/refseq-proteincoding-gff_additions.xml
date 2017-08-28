@@ -46,7 +46,7 @@
         <attribute name="source" type="java.lang.String"/>
         <attribute name="refereeSource" type="java.lang.String"/>
         <reference name="organism" referenced-type="Organism"/>
-        <reference name="referrer" referenced-type="BioEntity"/>
-        <reference name="referee" referenced-type="BioEntity"/>
+        <reference name="referrer" referenced-type="Gene"/>
+        <reference name="referee" referenced-type="Gene"/>
     </class>
 </classes>
