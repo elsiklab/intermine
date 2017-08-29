@@ -109,16 +109,15 @@ public class BovineExpressionMetadataConverter extends BioFileConverter
             String layout = line[35];
             //String additionalTerms = line[37];
             Item item = createItem("ExpressionMetadata");
-            if (!label.isEmpty()) {
-                item.setAttribute("sampleLabel", label);
+            if (!sampleName.isEmpty()) {
+                item.setAttribute("sampleName", sampleName);
             }
             else {
-                System.out.println("sampleLabel cannot be empty as it serves as a primaryIdentifier");
+                System.out.println("sampleName cannot be empty as it serves as a primaryIdentifier");
                 System.exit(1);
             }
 
             item.setAttribute("sampleType", sampleType);
-            item.setAttribute("libraryName", libraryName);
             item.setAttribute("btoName", btoName);
             item.setAttribute("sraExperimentAccession", sraExperimentAccession);
             item.setAttribute("experimentName", experimentName);
@@ -135,7 +134,6 @@ public class BovineExpressionMetadataConverter extends BioFileConverter
             item.setAttribute("breed", breed);
             item.setAttribute("sex", sex);
             item.setAttribute("age", age);
-            item.setAttribute("sampleName", sampleName);
             item.setAttribute("tissue", tissue);
             item.setAttribute("bioMaterialProvider", biomaterialProvider);
             item.setAttribute("sraRunAccession", sraRunAccession);

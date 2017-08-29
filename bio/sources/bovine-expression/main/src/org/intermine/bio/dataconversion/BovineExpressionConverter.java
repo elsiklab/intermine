@@ -170,7 +170,7 @@ public class BovineExpressionConverter extends BioFileConverter
                 else {
                     Item sampleItem = createItem("ExpressionMetadata");
                     Item tmpItem = items.get(key);
-                    sampleItem.setAttribute("sampleLabel", sampleName);
+                    sampleItem.setAttribute("sampleName", sampleName);
                     sampleItem.setReference("organism", getOrganism(TAXON_ID));
                     sampleItem.addToCollection("isoforms", tmpItem.getIdentifier());
                     sampleEntityMap.put(sampleName, sampleItem);

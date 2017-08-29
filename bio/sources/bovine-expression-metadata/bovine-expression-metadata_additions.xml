@@ -7,9 +7,7 @@
     </class>
     <!-- add any <class> elements here -->
     <class name="ExpressionMetadata" is-interface="true">
-        <attribute name="sampleLabel" type="java.lang.String"/>
         <attribute name="sampleType" type="java.lang.String"/>
-        <attribute name="libraryName" type="java.lang.String"/>
         <collection name="brendaTissueOntology" referenced-type="BRENDATerm" reverse-reference="samples"/>
         <attribute name="btoName" type="java.lang.String"/>
         <attribute name="sraExperimentAccession" type="java.lang.String"/>
