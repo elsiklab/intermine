@@ -124,7 +124,7 @@
                 <p><i>R. norvegicus</i></p>
             </td>
             <td> Protein annotation</td>
-            <td> UniProt - Release 2017_06</td>
+            <td> UniProt - Release 2017_08</td>
             <td> UniProt Consortium - PubMed <a target="_blank" href="http://www.ncbi.nlm.nih.gov/pubmed/?term=25348405">25348405</a></td>
             <td> <a target="_blank" href="ftp://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/">UniProt FTP</a></td>
         </tr>
@@ -138,7 +138,7 @@
                 <p><i>R. norvegicus</i></p>
             </td>
             <td> Protein domains</td>
-            <td> InterPro Version 63.0  </td>
+            <td> InterPro Version 64.0  </td>
             <td> Mitchell et al - PubMed <a target="_blank" href="http://www.ncbi.nlm.nih.gov/pubmed/?term=25428371">25428371</a></td>
             <td> <a target="_blank" href="ftp://ftp.ebi.ac.uk/pub/databases/interpro/63.0/">InterPro FTP</a></td>
         </tr>
@@ -151,7 +151,7 @@
                 <p><i>R. norvegicus</i></p>
             </td>
             <td> Interactions</td>
-            <td> BioGRID - Version 3.4.149</td>
+            <td> BioGRID - Version 3.4.151</td>
             <td> Chatr-Aryamontri et al - PubMed <a target="_blank" href="http://www.ncbi.nlm.nih.gov/pubmed/?term=25428363">25428363</a></td>
             <td> <a target="_blank" href="http://thebiogrid.org/download.php">BioGRID Download</a></td>
         </tr>
@@ -315,7 +315,7 @@
             <i>B. taurus</i>
             </td>
             <td>QTL data for Bos taurus</td>
-            <td> AnimalQTLdb release 32 (Apr 2017)</td>
+            <td> AnimalQTLdb release 33 (Aug 2017)</td>
             <td>Hu et al - PubMed <a target="_blank" href="http://www.ncbi.nlm.nih.gov/pubmed/?term=17135205">17135205</a></td>
             <td><a target="_blank" href="http://www.animalgenome.org/cgi-bin/QTLdb/BT/index">CattleQTLdb Download</a></td>
         </tr>
