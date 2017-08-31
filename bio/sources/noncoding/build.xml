@@ -1,0 +1,5 @@
+<project name="noncoding" default="default" basedir=".">
+  <description>build, test, package noncoding</description>
+  
+  <import file="../../../imbuild/source.xml"/>
+</project>
