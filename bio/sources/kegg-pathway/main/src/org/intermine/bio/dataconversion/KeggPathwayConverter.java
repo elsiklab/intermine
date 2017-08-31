@@ -56,7 +56,7 @@ public class KeggPathwayConverter extends BioFileConverter
      * @param model the Model
      */
     public KeggPathwayConverter(ItemWriter writer, Model model) {
-        super(writer, model, "GenomeNet", "KEGG pathways data set");
+        super(writer, model, "KEGG", "KEGG pathways data set");
         readConfig();
     }
 
@@ -149,9 +149,9 @@ public class KeggPathwayConverter extends BioFileConverter
 
                     // There are some strange ids for D. melanogaster, the rest start with Dmel_,
                     // ignore any D. melanogaster ids without Dmel_ and strip this off the rest
-                    if ("7227".equals(taxonId) && !geneName.startsWith("Dmel_")) {
-                        continue;
-                    }
+      //              if ("7227".equals(taxonId) && !geneName.startsWith("Dmel_")) {
+     //                   continue;
+     //               }
 
                     // We don't want Dmel_ prefix on D. melanogaster genes
                     if (geneName.startsWith("Dmel_")) {
@@ -228,17 +228,20 @@ public class KeggPathwayConverter extends BioFileConverter
     }
 
     private void processPathway(String[] line) throws ObjectStoreException {
-        String identifier = line[0];
-        String name = line[1];
+          String taxon_id = line[0];
+          String identifier = line[1];
+          String name = line[2];
+
         String description = null;
-        if (line.length > 2) {
-            description = line[2];
+        if (line.length > 3) {
+            description = line[3];
         }
         Item pathway = pathwaysNotStored.remove(identifier);
         if (pathway == null) {
             pathway = getPathway(identifier);
         }
         pathway.setAttribute("name", name);
+          pathway.setReference("organism", getOrganism(taxon_id));
         if (StringUtils.isNotEmpty(description)) {
             pathway.setAttribute("description", description);
         }
