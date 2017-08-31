@@ -39,6 +39,24 @@
       <property name="gff3.dataSetTitle" value="B73 RefGen_v3"/>
       <property name="src.data.dir" value="/db/intermine/Maizemine/dataset/gff3/V3"/>
     </source>
+    <source name="zmay-code-gff" type="proteincoding" dump="true">
+    <property name="gff3.taxonId" value="4577"/>
+    <property name="gff3.seqClsName" value="Chromosome"/>
+    <property name="gff3.dataSetTitle" value="Zmay_RefSeq"/>
+    <property name="gff3.dataSourceName" value="Zmay_RefSeq"/>
+    <property name="gff3.seqDataSourceName" value="Zmay_RefSeq"/>
+    <property name="src.data.dir" location="/db/intermine/Maizemine/dataset/gff3/RefSeq/proteincoding"/>
+  </source>
+
+   <source name="zmay-noncode-gff" type="noncoding" dump="true">
+    <property name="gff3.taxonId" value="4577"/>
+    <property name="gff3.seqDataSourceName" value="Zmay_RefSeq"/>
+    <property name="gff3.dataSourceName" value="Zmay_RefSeq"/>
+    <property name="gff3.seqClsName" value="Chromosome"/>
+    <property name="gff3.dataSetTitle" value="Zmay_RefSeq"/>
+    <property name="src.data.dir" location="/db/intermine/Maizemine/dataset/gff3/RefSeq/noncoding"/>
+  </source>
+
     <source name="maize-cds-v4-fasta" type="fasta" dump="true">
       <property name="fasta.className" value="org.intermine.model.bio.CDS"/>
       <property name="fasta.loaderClassName" value="org.intermine.bio.dataconversion.MaizeCDSFastaLoaderTask"/>
@@ -57,6 +75,31 @@
       <property name="fasta.includes" value="Zea_mays.AGPv3.31.cds.all.fa"/>
       <property name="src.data.dir" location="/db/intermine/Maizemine/dataset/CDS/V3/"/>
     </source>
+  
+  <source name="zmay-cds-refseq-fasta" type="fasta" dump="true">
+    <property name="fasta.taxonId" value="4577"/>
+    <property name="fasta.className" value="org.intermine.model.bio.CDS"/>
+    <property name="fasta.classAttribute" value="primaryIdentifier"/>
+    <property name="fasta.dataSetTitle" value="Zea Mays CDS Fasta"/>
+    <property name="fasta.dataSourceName" value="Zea MaysCDS Fasta"/>
+    <property name="src.data.dir" location="/db/intermine/Maizemine1.1/dataset/CDS/RefSeq"/>
+    <property name="fasta.includes" value="*.fa"/>
+    <property name="fasta.sequenceType" value="dna"/>
+    <property name="fasta.loaderClassName" value="org.intermine.bio.dataconversion.RefSeqCDSFastaLoaderTask"/>
+  </source>
+
+  <source name="zmay-protein" type="fasta" dump="true">
+    <property name="fasta.taxonId" value="4577"/>
+    <property name="fasta.className" value="org.intermine.model.bio.Polypeptide"/>
+    <property name="fasta.classAttribute" value="primaryIdentifier"/>
+    <property name="fasta.dataSourceName" value="Protein sequence for tranascripts from RefSeq for Zea mays"/>
+    <property name="fasta.dataSetTitle" value="Protein sequence for transcripts from RefSeq for Zea mays"/>
+    <property name="src.data.dir" location="/db/intermine/Maizemine1.1/dataset/proteins/RefSeq"/>
+    <property name="fasta.includes" value="*.fa"/>
+    <property name="fasta.sequenceType" value="protein"/>
+    <property name="fasta.loaderClassName" value="org.intermine.bio.dataconversion.RefSeqProteinFastaLoaderTask"/>
+  </source>
+
     <source name="maize-pep-v4-fasta" type="fasta" dump="true">
       <property name="fasta.className" value="org.intermine.model.bio.Polypeptide"/>
       <property name="fasta.loaderClassName" value="org.intermine.bio.dataconversion.MaizePolypeptideFastaLoaderTask"/>
@@ -77,10 +120,28 @@
       <property name="fasta.includes" value="Zea_mays.AGPv3.31.pep.all.fa"/>
       <property name="src.data.dir" location="/db/intermine/Maizemine/dataset/proteins/V3"/>
     </source>
+
+    
+  <source name="kegg" type="kegg-pathway">
+    <property name="src.data.dir" location="/irving-array4/db/intermine/hymenopteramine_release_1.2_July2017/datasets/KEGG_genes/"/>
+    <property name="kegg.organisms" value="4577"/>
+  </source>
+
+  <source name="kegg-compounds" type="kegg-compounds">
+     <property name="src.data.dir" location="/irving-array4/db/intermine/hymenopteramine_release_1.2_July2017/datasets/KEGG_compounds"/>
+     <property name="src.data.dir.includes" value="*.tab"/>
+   </source>
+
+    <source name="kegg-metadata" type="kegg-metadata">
+      <property name="src.data.dir" location="/irving-array4/db/intermine/hymenopteramine_release_1.2_July2017/datasets/KEGG_meta/"/>
+      <property name="src.data.dir.includes" value="*.tab"/>
+    </source>
+
     <source name="maize-uniprot" type="uniprot" >
       <property name="uniprot.organisms" value="4577"/>
       <property name="src.data.dir" location="/db/intermine/Maizemine/dataset/uniprot"/>
       <property name="creatego" value="true"/>
+       <property name="creategenes" value="true"/>
       <property name="allowduplicates" value="false"/>
       <property name="loadfragments" value="false"/>
       <property name="loadtrembl" value="true"/>
@@ -89,6 +150,21 @@
       <property name="src.data.dir" location="/db/intermine/Maizemine/dataset/uniprot/keywlist/"/>
       <property name="src.data.dir.includes" value="keywlist.xml"/>
     </source>
+  
+  <source name="uniprot-fasta" type="fasta">
+  <property name="fasta.taxonId" value="4577"/>
+  <property name="fasta.className" value="org.intermine.model.bio.Protein"/>
+  <property name="fasta.classAttribute" value="primaryAccession"/>
+  <property name="fasta.dataSetTitle" value="UniProt data set"/>
+  <property name="fasta.dataSourceName" value="UniProt"/>
+  <property name="src.data.dir" location="/db/intermine/Maizemine/dataset/uniprot/current"/>
+  <property name="fasta.includes" value="uniprot_sprot_varsplic.fasta"/>
+  <property name="fasta.sequenceType" value="protein" />
+  <property name="fasta.loaderClassName" value="org.intermine.bio.dataconversion.UniProtFastaLoaderTask"/>
+</source>
+
+
+
     <source name="interpro" type="interpro">
       <property name="src.data.dir" location="/db/intermine/Maizemine/dataset/interpro"/>
     </source>
@@ -122,19 +198,30 @@
        <property name="ensemblcompara.organisms" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 39947 4555 4565 4572 37682 15368 4513 4558"/>
        <property name="ensemblcompara.homologues" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 39947 4555 4565 4572 37682 15368 4513 4558"/>
     </source>
-
+<!--
          <source name="treefam-extended" type="treefam-extended">
             <property name="src.data.dir" location="@DATA_DIR@/TreeFam"/>
             <property name="version" value="Ensembl 89"/>
         </source>
-
-
+-->
+  <source name="zmay-xref" type="cross-references">
+    <property name="src.data.dir" location="@DATA_DIR@/xref/amel"/>
+    <property name="taxonId" value="4577"/>
+  </source>
 
 
     <source name="reactome-gramene-pathway" type="reactomegramene">
       <property name="src.data.dir" location="/db/intermine/Maizemine/dataset/reactome_pathways/"/>
       <property name="reactomegramene.organisms" value="4577 3702"/>
     </source>
+    
+    <source name="corncyc" type="corncyc">
+      <property name="src.data.dir" location="/db/intermine/Maizemine1.1/dataset/corncyc/"/>
+      <property name="corncyc.organisms" value="4577"/>
+    </source>
+
+
+
     <source name="go" type="go">
       <property name="src.data.file" location="/db/intermine/Maizemine/dataset/GO/go.obo"/>
     </source>
