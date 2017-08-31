@@ -1,7 +1,7 @@
 package org.intermine.bio.dataconversion;
 
 /*
- * Copyright (C) 2002-2015 FlyMine
+ * Copyright (C) 2002-2017 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -33,7 +33,7 @@ import org.intermine.xml.full.ReferenceList;
 
 
 /**
- * DataConverter to load ReactomeGramene Pathways and link them to Genes
+ * DataConverter to load Kegg Pathways and link them to Genes
  *
  * @author Xavier Watkins
  */
@@ -49,15 +49,14 @@ public class ReactomegrameneConverter extends BioFileConverter
     protected Map<String, Item> pathwaysNotStored = new HashMap<String, Item>();
 
     protected IdResolver rslv;
-    protected static final String HUMAN = "9606";
 
     /**
      * Constructor
      * @param writer the ItemWriter used to handle the resultant items
      * @param model the Model
      */
-    public ReactomegrameneConverter(ItemWriter writer, Model model) {
-        super(writer, model, "Reactome Gramene", "Reactome Gramene pathways data set");
+    public  ReactomegrameneConverter(ItemWriter writer, Model model) {
+        super(writer, model, "KEGG", "KEGG pathways data set");
         readConfig();
     }
 
@@ -66,7 +65,7 @@ public class ReactomegrameneConverter extends BioFileConverter
      *
      * @param taxonIds a space-separated list of taxonIds
      */
-    public void setReactomegrameneOrganisms(String taxonIds) {
+    public void setKeggOrganisms(String taxonIds) {
         this.taxonIds = new HashSet<String>(Arrays.asList(StringUtils.split(taxonIds, " ")));
         LOG.info("Setting list of organisms to " + this.taxonIds);
     }
@@ -120,8 +119,7 @@ public class ReactomegrameneConverter extends BioFileConverter
 
         // init resolver
         if (rslv == null) {
-            Set<String> taxons = new HashSet<String>(taxonIds);
-            rslv = IdResolverService.getIdResolverByOrganism(taxons);
+            rslv = IdResolverService.getIdResolverByOrganism(taxonIds);
         }
 
         while (lineIter.hasNext()) {
@@ -151,9 +149,9 @@ public class ReactomegrameneConverter extends BioFileConverter
 
                     // There are some strange ids for D. melanogaster, the rest start with Dmel_,
                     // ignore any D. melanogaster ids without Dmel_ and strip this off the rest
-              //      if ("7227".equals(taxonId) && !geneName.startsWith("Dmel_")) {
-             //           continue;
-             //       }
+      //              if ("7227".equals(taxonId) && !geneName.startsWith("Dmel_")) {
+     //                   continue;
+     //               }
 
                     // We don't want Dmel_ prefix on D. melanogaster genes
                     if (geneName.startsWith("Dmel_")) {
@@ -200,7 +198,7 @@ public class ReactomegrameneConverter extends BioFileConverter
             int resCount = rslv.countResolutions(taxonId, geneCG);
             if (resCount != 1) {
                 LOG.info("RESOLVER: failed to resolve gene to one identifier, ignoring gene: "
-                         + geneCG + " count: " + resCount + " FBgn: "
+                         + geneCG + " count: " + resCount + " Results: "
                          + rslv.resolveId(taxonId, geneCG));
                 return null;
             }
@@ -212,13 +210,7 @@ public class ReactomegrameneConverter extends BioFileConverter
         Item gene = geneItems.get(identifier);
         if (gene == null) {
             gene = createItem("Gene");
-               String[] parts = identifier.split("\\|");
-          //  gene.setAttribute(config.get(organism)[1], parts[1]);
-             if (parts[0].length() != 0) {    
-            gene.setAttribute(config.get(organism)[1], parts[0]);
-          } else {
-                
-              }
+            gene.setAttribute(config.get(organism)[1], identifier);
             gene.setReference("organism", getOrganism(taxonId));
             gene.addCollection(referenceList);
             geneItems.put(identifier, gene);
@@ -236,10 +228,9 @@ public class ReactomegrameneConverter extends BioFileConverter
     }
 
     private void processPathway(String[] line) throws ObjectStoreException {
-        String taxon_id = line[0];
+          String taxon_id = line[0];
           String identifier = line[1];
-          String name = line[2];      
- 
+          String name = line[2];
 
         String description = null;
         if (line.length > 3) {
@@ -250,7 +241,7 @@ public class ReactomegrameneConverter extends BioFileConverter
             pathway = getPathway(identifier);
         }
         pathway.setAttribute("name", name);
-        pathway.setReference("organism", getOrganism(taxon_id));
+          pathway.setReference("organism", getOrganism(taxon_id));
         if (StringUtils.isNotEmpty(description)) {
             pathway.setAttribute("description", description);
         }
