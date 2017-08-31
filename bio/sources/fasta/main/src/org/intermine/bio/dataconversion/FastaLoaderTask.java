@@ -82,6 +82,14 @@ public class FastaLoaderTask extends FileDirectDataLoaderTask
     }
 
     /**
+     * Get the sequence type for the current sequence
+     * @return sequenceType
+     */
+    public String getSequenceType() {
+        return this.sequenceType;
+    }
+
+    /**
      * Set the sequence type to be passed to the FASTA parser.  The default is "dna".
      * @param sequenceType the sequence type
      */
@@ -260,7 +268,7 @@ public class FastaLoaderTask extends FileDirectDataLoaderTask
      * @param bioJavaSequence the Sequence object
      * @throws ObjectStoreException if store() fails
      */
-    private void processSequence(Organism organism, Sequence bioJavaSequence)
+    protected void processSequence(Organism organism, Sequence bioJavaSequence)
         throws ObjectStoreException {
         // some fasta files are not filtered - they contain sequences from organisms not
         // specified in project.xml
