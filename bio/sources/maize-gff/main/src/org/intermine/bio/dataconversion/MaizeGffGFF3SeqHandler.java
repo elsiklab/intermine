@@ -28,7 +28,7 @@ public class MaizeGffGFF3SeqHandler extends GFF3SeqHandler
     public Item makeSequenceItem(GFF3Converter converter, String identifier, String source) {
         Item seq = createItem(converter);
         seq.setAttribute("primaryIdentifier", identifier);
-        seq.setAttribute("source", source);
+        //seq.setAttribute("source", source);
         return seq;
     }
 

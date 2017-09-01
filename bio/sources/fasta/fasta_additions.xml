@@ -3,6 +3,10 @@
 
 <classes>
   <!-- add any <class> elements here -->
+  <class name="Chromosome" extends="SequenceFeature" is-interface="true">
+    <attribute name="assembly" type="java.lang.String"/>
+  </class>
+
   <class name="Gene" is-interface="true">
     <collection name="polypeptides" referenced-type="Polypeptide" reverse-reference="gene"/>
   </class>

@@ -7,21 +7,25 @@
   <sources>
     <source name="maize-dna-v4-fasta" type="fasta" dump="true">
       <property name="fasta.className" value="org.intermine.model.bio.Chromosome"/>
+      <property name="fasta.sequenceType" value="dna"/>
+      <property name="fasta.assemblyVersion" value="B73 RefGen_v4"/>
       <property name="fasta.loaderClassName" value="org.intermine.bio.dataconversion.MaizeFastaLoaderTask"/>
       <property name="fasta.dataSourceName" value="GRAMENE"/>
       <property name="fasta.dataSetTitle" value="Zm-B73-REFERENCE-GRAMENE-4.0"/>
       <property name="fasta.taxonId" value="4577"/>
-      <property name="fasta.includes" value="Zea_mays.AGPv4.dna.toplevel.fa"/>
-      <property name="src.data.dir" value="/db/intermine/Maizemine/dataset/fasta/V4/"/>
+      <property name="fasta.includes" value="*.fa"/>
+      <property name="src.data.dir" value="/Users/deepak.unni3/Intermine/MaizeMine/datasets/fasta/V4/"/>
     </source>
     <source name="maize-dna-v3-fasta" type="fasta" dump="true">
       <property name="fasta.className" value="org.intermine.model.bio.Chromosome"/>
+      <property name="fasta.sequenceType" value="dna"/>
+      <property name="fasta.assemblyVersion" value="B73 RefGen_v3"/>
       <property name="fasta.loaderClassName" value="org.intermine.bio.dataconversion.MaizeFastaLoaderTask"/>
       <property name="fasta.dataSourceName" value="GRAMENE"/>
       <property name="fasta.dataSetTitle" value="B73 RefGen_v3"/>
       <property name="fasta.taxonId" value="4577"/>
-      <property name="fasta.includes" value="Zea_mays.AGPv3.31.dna.toplevel.fa"/>
-      <property name="src.data.dir" value="/db/intermine/Maizemine/dataset/fasta/V3/"/>
+      <property name="fasta.includes" value="*.fa"/>
+      <property name="src.data.dir" value="/Users/deepak.unni3/Intermine/MaizeMine/datasets/fasta/V3/"/>
     </source>
     <source name="maize-gene-model-v4-gff" type="maize-gff">
       <property name="gff3.seqClsName" value="Chromosome"/>
@@ -29,7 +33,7 @@
       <property name="gff3.seqDataSourceName" value="GRAMENE"/>
       <property name="gff3.dataSourceName" value="GRAMENE"/>
       <property name="gff3.dataSetTitle" value="Zm-B73-REFERENCE-GRAMENE-4.0"/>
-      <property name="src.data.dir" value="/db/intermine/Maizemine/dataset/gff3/V4"/>
+      <property name="src.data.dir" value="/Users/deepak.unni3/Intermine/MaizeMine/datasets/gff3/V4"/>
     </source>
     <source name="maize-gene-model-v3-gff" type="maize-gff">
       <property name="gff3.seqClsName" value="Chromosome"/>
@@ -37,7 +41,7 @@
       <property name="gff3.seqDataSourceName" value="GRAMENE"/>
       <property name="gff3.dataSourceName" value="GRAMENE"/>
       <property name="gff3.dataSetTitle" value="B73 RefGen_v3"/>
-      <property name="src.data.dir" value="/db/intermine/Maizemine/dataset/gff3/V3"/>
+      <property name="src.data.dir" value="/Users/deepak.unni3/Intermine/MaizeMine/datasets/gff3/V3"/>
     </source>
     <source name="zmay-code-gff" type="proteincoding" dump="true">
     <property name="gff3.taxonId" value="4577"/>
@@ -64,7 +68,7 @@
       <property name="fasta.dataSetTitle" value="Zm-B73-REFERENCE-GRAMENE-4.0"/>
       <property name="fasta.taxonId" value="4577"/>
       <property name="fasta.includes" value="Zea_mays.AGPv4.cds.all.fa"/>
-      <property name="src.data.dir" location="/db/intermine/Maizemine/dataset/CDS/V4/"/>
+      <property name="src.data.dir" location="/Users/deepak.unni3/Intermine/MaizeMine/datasets/CDS/V4/"/>
     </source>
     <source name="maize-cds-v3-fasta" type="fasta" dump="true">
       <property name="fasta.className" value="org.intermine.model.bio.CDS"/>
@@ -73,7 +77,7 @@
       <property name="fasta.dataSetTitle" value="B73 RefGen_v3"/>
       <property name="fasta.taxonId" value="4577"/>
       <property name="fasta.includes" value="Zea_mays.AGPv3.31.cds.all.fa"/>
-      <property name="src.data.dir" location="/db/intermine/Maizemine/dataset/CDS/V3/"/>
+      <property name="src.data.dir" location="/Users/deepak.unni3/Intermine/MaizeMine/datasets/CDS/V3/"/>
     </source>
   
   <source name="zmay-cds-refseq-fasta" type="fasta" dump="true">
@@ -108,7 +112,7 @@
       <property name="fasta.dataSetTitle" value="Zm-B73-REFERENCE-GRAMENE-4.0"/>
       <property name="fasta.taxonId" value="4577"/>
       <property name="fasta.includes" value="Zea_mays.AGPv4.pep.all.fa"/>
-      <property name="src.data.dir" location="/db/intermine/Maizemine/dataset/proteins/V4/"/>
+      <property name="src.data.dir" location="/Users/deepak.unni3/Intermine/MaizeMine/datasets/proteins/V4/"/>
     </source>
     <source name="maize-pep-v3-fasta" type="fasta" dump="true">
       <property name="fasta.className" value="org.intermine.model.bio.Polypeptide"/>
@@ -118,7 +122,7 @@
       <property name="fasta.dataSetTitle" value="B73 RefGen_v3"/>
       <property name="fasta.taxonId" value="4577"/>
       <property name="fasta.includes" value="Zea_mays.AGPv3.31.pep.all.fa"/>
-      <property name="src.data.dir" location="/db/intermine/Maizemine/dataset/proteins/V3"/>
+      <property name="src.data.dir" location="/Users/deepak.unni3/Intermine/MaizeMine/datasets/proteins/V3"/>
     </source>
 
     
@@ -139,7 +143,7 @@
 
     <source name="maize-uniprot" type="uniprot" >
       <property name="uniprot.organisms" value="4577"/>
-      <property name="src.data.dir" location="/db/intermine/Maizemine/dataset/uniprot"/>
+      <property name="src.data.dir" location="/Users/deepak.unni3/Intermine/MaizeMine/datasets/uniprot"/>
       <property name="creatego" value="true"/>
        <property name="creategenes" value="true"/>
       <property name="allowduplicates" value="false"/>
@@ -147,7 +151,7 @@
       <property name="loadtrembl" value="true"/>
     </source>
     <source name="uniprot-keywords" type="uniprot-keywords" dump="true">
-      <property name="src.data.dir" location="/db/intermine/Maizemine/dataset/uniprot/keywlist/"/>
+      <property name="src.data.dir" location="/Users/deepak.unni3/Intermine/MaizeMine/datasets/uniprot/keywlist/"/>
       <property name="src.data.dir.includes" value="keywlist.xml"/>
     </source>
   
@@ -166,35 +170,35 @@
 
 
     <source name="interpro" type="interpro">
-      <property name="src.data.dir" location="/db/intermine/Maizemine/dataset/interpro"/>
+      <property name="src.data.dir" location="/Users/deepak.unni3/Intermine/MaizeMine/datasets/interpro"/>
     </source>
     <source name="protein2ipr" type="protein2ipr">
-      <property name="src.data.dir" location="/db/intermine/Maizemine/dataset/ipr/"/>
+      <property name="src.data.dir" location="/Users/deepak.unni3/Intermine/MaizeMine/datasets/ipr/"/>
       <property name="src.data.dir.includes" value="protein2ipr.dat"/>
       <property name="protein2ipr.organisms" value="4577"/>
     </source>
     <source name="biomart-atha" type="ensemblhomolog">
-       <property name="src.data.dir" location="/db/intermine/Maizemine/dataset/ensembl-plant-biomart/atha/"/>
+       <property name="src.data.dir" location="/Users/deepak.unni3/Intermine/MaizeMine/datasets/ensembl-plant-biomart/atha/"/>
        <property name="ensemblcompara.organisms" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 39947 4555 4565 4572 37682 15368 4513 4558"/>
        <property name="ensemblcompara.homologues" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 39947 4555 4565 4572 37682 15368 4513 4558"/>
     </source> 
     <source name="biomart-ojap" type="ensemblhomolog">
-       <property name="src.data.dir" location="/db/intermine/Maizemine/dataset/ensembl-plant-biomart/Ojap/"/>
+       <property name="src.data.dir" location="/Users/deepak.unni3/Intermine/MaizeMine/datasets/ensembl-plant-biomart/Ojap/"/>
        <property name="ensemblcompara.organisms" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 39947 4555 4565 4572 37682 15368 4513 4558"/>
        <property name="ensemblcompara.homologues" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 39947 4555 4565 4572 37682 15368 4513 4558"/>
     </source>
        <source name="biomart-oind" type="ensemblhomolog">
-       <property name="src.data.dir" location="/db/intermine/Maizemine/dataset/ensembl-plant-biomart/Oind/"/>
+       <property name="src.data.dir" location="/Users/deepak.unni3/Intermine/MaizeMine/datasets/ensembl-plant-biomart/Oind/"/>
        <property name="ensemblcompara.organisms" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 39947 4555 4565 4572 37682 15368 4513 4558"/>
        <property name="ensemblcompara.homologues" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 39947 4555 4565 4572 37682 15368 4513 4558"/>
     </source>
        <source name="biomart-zmay" type="ensemblhomolog">
-       <property name="src.data.dir" location="/db/intermine/Maizemine/dataset/ensembl-plant-biomart/zmay/"/>
+       <property name="src.data.dir" location="/Users/deepak.unni3/Intermine/MaizeMine/datasets/ensembl-plant-biomart/zmay/"/>
        <property name="ensemblcompara.organisms" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 39947 4555 4565 4572 37682 15368 4513 4558"/>
        <property name="ensemblcompara.homologues" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 39947 4555 4565 4572 37682 15368 4513 4558"/>
     </source>
     <source name="biomart-paralogs" type="ensemblhomolog">
-       <property name="src.data.dir" location="/db/intermine/Maizemine/dataset/ensembl-plant-biomart/paralogs/"/>
+       <property name="src.data.dir" location="/Users/deepak.unni3/Intermine/MaizeMine/datasets/ensembl-plant-biomart/paralogs/"/>
        <property name="ensemblcompara.organisms" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 39947 4555 4565 4572 37682 15368 4513 4558"/>
        <property name="ensemblcompara.homologues" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 39947 4555 4565 4572 37682 15368 4513 4558"/>
     </source>
@@ -211,7 +215,7 @@
 
 
     <source name="reactome-gramene-pathway" type="reactomegramene">
-      <property name="src.data.dir" location="/db/intermine/Maizemine/dataset/reactome_pathways/"/>
+      <property name="src.data.dir" location="/Users/deepak.unni3/Intermine/MaizeMine/datasets/reactome_pathways/"/>
       <property name="reactomegramene.organisms" value="4577 3702"/>
     </source>
     
@@ -223,10 +227,10 @@
 
 
     <source name="go" type="go">
-      <property name="src.data.file" location="/db/intermine/Maizemine/dataset/GO/go.obo"/>
+      <property name="src.data.file" location="/Users/deepak.unni3/Intermine/MaizeMine/datasets/GO/go.obo"/>
     </source>
     <source name="go-annotation" type="go-annotation">
-      <property name="src.data.dir" location="/db/intermine/Maizemine/dataset/GO-annotation/"/>
+      <property name="src.data.dir" location="/Users/deepak.unni3/Intermine/MaizeMine/datasets/GO-annotation/"/>
     </source>
 
     <source name="entrez-organism" type="entrez-organism" dump="true">

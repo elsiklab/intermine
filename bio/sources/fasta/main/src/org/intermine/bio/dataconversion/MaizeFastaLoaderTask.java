@@ -52,6 +52,7 @@ public class MaizeFastaLoaderTask extends FileDirectDataLoaderTask
     private static final Logger LOG = Logger.getLogger(FastaLoaderTask.class);
 
     private String sequenceType = "dna";
+    private String assemblyVersion = null;
     private String classAttribute = "primaryIdentifier";
     private Organism org;
     private String className;
@@ -92,6 +93,14 @@ public class MaizeFastaLoaderTask extends FileDirectDataLoaderTask
         } else {
             this.sequenceType = sequenceType;
         }
+    }
+
+    /**
+     * Set the assembly version for chromosomes
+     * @param assemblyVersion
+     */
+    public void setAssemblyVersion(String assemblyVersion) {
+        this.assemblyVersion = assemblyVersion;
     }
 
     /**
@@ -292,29 +301,57 @@ public class MaizeFastaLoaderTask extends FileDirectDataLoaderTask
         }
         BioEntity imo = (BioEntity) getDirectDataLoader().createObject(imClass);
 
-        String attributeValue = getIdentifier(bioJavaSequence);
+        //String (primaryIdentifier, secondaryIdentifier, name) = getIdentifier(bioJavaSequence);
+        String sequenceHeader = bioJavaSequence.getName() + idSuffix;
+        String primaryIdentifier, secondaryIdentifier, name;
+        if (sequenceHeader.contains("|")) {
+            String[] bits = sequenceHeader.split("\\|");
+            if (bits.length == 1) {
+                primaryIdentifier = bits[0];
+                secondaryIdentifier = null;
+                name = null;
+            }
+            else if (bits.length == 2) {
+                primaryIdentifier = bits[0];
+                secondaryIdentifier = bits[1];
+                name = null;
+            }
+            else {
+                primaryIdentifier = bits[0];
+                secondaryIdentifier = bits[1];
+                name = bits[2];
+            }
+        }
+        else {
+            primaryIdentifier = sequenceHeader;
+            secondaryIdentifier = null;
+            name = null;
+        }
+
         try {
-            imo.setFieldValue(classAttribute, attributeValue);
+            if (primaryIdentifier != null) imo.setFieldValue("primaryIdentifier", primaryIdentifier);
+            if (secondaryIdentifier != null) imo.setFieldValue("secondaryIdentifier", secondaryIdentifier);
+            if (name != null) imo.setFieldValue("name", name);
         } catch (Exception e) {
             throw new IllegalArgumentException("Error setting: " + className + "."
-                                               + classAttribute + " to: " + attributeValue
+                                               + classAttribute + " to: " + primaryIdentifier
                                                + ". Does the attribute exist?");
         }
         try {
             imo.setFieldValue("sequence", flymineSequence);
         } catch (Exception e) {
             throw new IllegalArgumentException("Error setting: " + className + ".sequence to: "
-                    + attributeValue + ". Does the attribute exist?");
+                    + primaryIdentifier + ". Does the attribute exist?");
         }
         
 	imo.setOrganism(organism);
-	
-	String source = getSource(bioJavaSequence);
+
 	try {
-            imo.setFieldValue("source", source);
+        System.out.println("Setting assembly as " + assemblyVersion);
+            imo.setFieldValue("assembly", assemblyVersion);
         } catch (Exception e) {
             throw new IllegalArgumentException("Error setting: " + className + ".source to: "
-                    + attributeValue + ". Does the attribute exist?");
+                    + assemblyVersion + ". Does the attribute exist?");
         }
 
         try {
@@ -355,13 +392,13 @@ public class MaizeFastaLoaderTask extends FileDirectDataLoaderTask
         }
     }
 
-	protected String getSource(Sequence bioJavaSequence) {
-		String source;
-		Annotation annotation = bioJavaSequence.getAnnotation();
-	        String header = (String) annotation.getProperty("description");
-		source = header.split("\\s+")[2].split(":")[1];
-		return source;
-	}
+//	protected String getSource(Sequence bioJavaSequence) {
+//		String source;
+//		Annotation annotation = bioJavaSequence.getAnnotation();
+//	        String header = (String) annotation.getProperty("description");
+//		source = header.split("\\s+")[2].split(":")[1];
+//		return source;
+//	}
 
     /**
      * Return the DataSet to add to each object.
@@ -407,16 +444,7 @@ public class MaizeFastaLoaderTask extends FileDirectDataLoaderTask
      * @return an identifier
      */
     protected String getIdentifier(Sequence bioJavaSequence) {
-        String name = bioJavaSequence.getName() + idSuffix;
-        // description_line=sp|Q9V8R9-2|41_DROME
-        if (name.contains("|")) {
-            String[] bits = name.split("\\|");
-            if (bits.length < 2) {
-                return null;
-            }
-            name = bits[1];
-        }
-        return name;
+        return null;
     }
 
     private DataSource getDataSource() throws ObjectStoreException {
