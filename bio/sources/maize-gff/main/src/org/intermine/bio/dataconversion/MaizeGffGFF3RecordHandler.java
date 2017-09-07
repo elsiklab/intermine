@@ -59,25 +59,14 @@ public class MaizeGffGFF3RecordHandler extends GFF3RecordHandler
     @Override
     public void process(GFF3Record record) {
         Item feature = getFeature();
-
-//	System.out.println("DEBUG MESSAGE: record.seqID - "+ record.getSequenceID());
-//	System.out.println("DEBUG MESSAGE: feature.chromosomeid - " + feature.getAttribute("chromosome").getValue());
-
         String primaryIdentifier = feature.getAttribute("primaryIdentifier").getValue();
         feature.setAttribute("primaryIdentifier", primaryIdentifier.substring(primaryIdentifier.indexOf(':') + 1));
         feature.setAttribute("source", record.getSource());
         if("gene".equalsIgnoreCase(record.getType())){
-            if(record.getAttributes().get("Alias") != null){
-                String aliasSource = "B73 RefGen_v3";
-                List<String> aliasIdentifiers = record.getAttributes().get("v3_gene_id");
+            if(record.getAttributes().get("Alias") != null) {
+                List<String> aliasIdentifiers = record.getAttributes().get("Alias");
                 for (String aliasIdentifier : aliasIdentifiers){
-                    Item aliasItem = converter.createItem("AliasName");
-                    String aliasId = aliasItem.getIdentifier();
-                    aliasItem.setAttribute("identifier", aliasIdentifier);
-                    aliasItem.setAttribute("source", aliasSource);
-                    aliasItem.setReference("gene", feature.getIdentifier());
-                    feature.addToCollection("aliases", aliasId);
-                    addItem(aliasItem);
+                    setAliasName(aliasIdentifier);
                 }
             }
             if(record.getAttributes().get("xRef") != null){
@@ -87,7 +76,6 @@ public class MaizeGffGFF3RecordHandler extends GFF3RecordHandler
                     setCrossReference(xRefIterator.next());
                 }
             }
-
             if (record.getAttributes().get("description") != null) {
                 String description = record.getAttributes().get("description").iterator().next();
                 feature.setAttribute("description", description);
@@ -133,5 +121,22 @@ public class MaizeGffGFF3RecordHandler extends GFF3RecordHandler
             }
             addItem(xRefItem);
         }
+    }
+
+    public void setAliasName(String aliasIdentifier) {
+        Item feature = getFeature();
+        Item aliasItem = converter.createItem("AliasName");
+        List<String> aliasIdArray = new ArrayList<String>(Arrays.asList(StringUtil.split(aliasIdentifier, ":")));
+        if (aliasIdArray.size() == 2) {
+            aliasItem.setAttribute("identifier", aliasIdArray.get(0));
+            aliasItem.setAttribute("source", aliasIdArray.get(1));
+        }
+        else {
+            aliasItem.setAttribute("source", aliasIdentifier);
+        }
+        aliasItem.setAttribute("identifier", aliasIdentifier);
+        aliasItem.setReference("features", feature.getIdentifier());
+        feature.addToCollection("aliases", aliasItem);
+        addItem(aliasItem);
     }
 }
