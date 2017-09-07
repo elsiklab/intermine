@@ -28,9 +28,10 @@ import org.intermine.objectstore.ObjectStoreException;
  * Code for loading fasta for MaizeMine, setting feature attribute from the FASTA header.
  * @author Kim Rutherford
  */
-public class MaizeFeatureFastaLoaderTask extends MaizeFastaLoaderTask
+public class MaizeFeatureFastaLoaderTask extends FastaLoaderTask
 {
     private Map<String, Chromosome> chrMap = new HashMap<String, Chromosome>();
+    protected static final String HEADER_REGEX = ".+\\s+\\S+:(\\S+\\s\\S+):(\\S+):([0-9]+:[0-9]+):(\\S+)\\s\\S+:(\\S+)\\s\\S+:(\\S+).+$";
 
     /**
      * Return a Chromosome object for the given item.
@@ -39,16 +40,15 @@ public class MaizeFeatureFastaLoaderTask extends MaizeFastaLoaderTask
      * @return the Chromosome
      * @throws ObjectStoreException if problem fetching Chromosome
      */
-    protected Chromosome getChromosome(String chromosomeId, Organism organism, String header)
+    protected Chromosome getChromosome(String chromosomeId, Organism organism, String assemblyVersion)
         throws ObjectStoreException {
         if (chrMap.containsKey(chromosomeId)) {
             return chrMap.get(chromosomeId);
         }
         Chromosome chr = getDirectDataLoader().createObject(Chromosome.class);
-	String source = getSource(header);
         chr.setPrimaryIdentifier(chromosomeId);
         chr.setOrganism(organism);
-	chr.setSource(source);
+	    chr.setAssembly(assemblyVersion);
         chr.addDataSets(getDataSet());
         getDirectDataLoader().store(chr);
         chrMap.put(chromosomeId, chr);
@@ -64,16 +64,14 @@ public class MaizeFeatureFastaLoaderTask extends MaizeFastaLoaderTask
      * @return the Location
      * @throws ObjectStoreException there is a problem while creating the Location
      */
-    protected Location getLocationFromHeader(String header, SequenceFeature lsf,
-                                             Organism organism)
-        throws ObjectStoreException {
-        final String regexp = "^.+\\s+\\S+:\\S+:(\\S+):([0-9]+:[0-9]+):(\\S+)\\s+.+$";
-        Pattern p = Pattern.compile(regexp);
+    protected Location getLocationFromHeader(String header, SequenceFeature lsf, Organism organism) throws ObjectStoreException {
+        Pattern p = Pattern.compile(HEADER_REGEX);
         Matcher m = p.matcher(header);
         if (m.matches()) {
-            String chromosomeId = m.group(1);
-            String locationString = m.group(2);
-            String strand = m.group(3);
+            String assemblyVersion = m.group(1);
+            String chromosomeId = m.group(2);
+            String locationString = m.group(3);
+            String strand = m.group(4);
             int min = getMin(locationString);
             int max = getMax(locationString);
             Location loc = getDirectDataLoader().createObject(Location.class);
@@ -81,13 +79,13 @@ public class MaizeFeatureFastaLoaderTask extends MaizeFastaLoaderTask
             loc.setEnd(new Integer(max));
             loc.setStrand(strand);
             loc.setFeature(lsf);
-            Chromosome chromosome = getChromosome(chromosomeId, organism, header);
+            Chromosome chromosome = getChromosome(chromosomeId, organism, assemblyVersion);
             loc.setLocatedOn(chromosome);
             lsf.setChromosomeLocation(loc);
             lsf.setChromosome(chromosome);
             return loc;
         }
-        throw new RuntimeException("header doesn't match pattern \"" + regexp + "\": " + header);
+        throw new RuntimeException("header doesn't match pattern \"" + HEADER_REGEX + "\": " + header);
     }
 
     /**
@@ -147,30 +145,29 @@ public class MaizeFeatureFastaLoaderTask extends MaizeFastaLoaderTask
     }
 
     /**
-     * Create an MRNA with the given primaryIdentifier and organism or return null of MRNA is not in
-     * the data model.
+     * Create an MRNA with the given primaryIdentifier and organism or return null if MRNA is not in the data model.
      * @param mrnaIdentifier primaryIdentifier of MRNA to create
-     * @param organism orgnism of MRNA to create
+     * @param organism organism of MRNA
      * @param model the data model
-     * @return an InterMineObject representing an MRNA or null of MRNA not in the data model
+     * @return an InterMineObject representing an MRNA or null if MRNA not in the data model
      * @throws ObjectStoreException if problem storing
      */
-    protected InterMineObject getMRNA(String mrnaIdentifier, Organism organism, Model model, String source)
-        throws ObjectStoreException {
+    protected InterMineObject getMRNA(String mrnaIdentifier, Organism organism, Model model) throws ObjectStoreException {
         InterMineObject mrna = null;
-        if (model.hasClassDescriptor(model.getPackageName() + ".MRNA")) {
-            @SuppressWarnings("unchecked") Class<? extends InterMineObject> mrnaCls =
-                (Class<? extends InterMineObject>) model.getClassDescriptorByName("MRNA").getType();
-            mrna = getDirectDataLoader().createObject(mrnaCls);
-            mrna.setFieldValue("primaryIdentifier", mrnaIdentifier);
-            mrna.setFieldValue("organism", organism);
-	    mrna.setFieldValue("source", source);
-            getDirectDataLoader().store(mrna);
+        if (mrnaIdentifier != null) {
+            if (model.hasClassDescriptor(model.getPackageName() + ".MRNA")) {
+                @SuppressWarnings("unchecked") Class<? extends InterMineObject> mrnaCls =
+                    (Class<? extends InterMineObject>) model.getClassDescriptorByName("MRNA").getType();
+                mrna = getDirectDataLoader().createObject(mrnaCls);
+                mrna.setFieldValue("primaryIdentifier", mrnaIdentifier);
+                mrna.setFieldValue("organism", organism);
+                getDirectDataLoader().store(mrna);
+            }
         }
         return mrna;
     }
 
-    protected InterMineObject getGene(String identifier, Organism organism, Model model, String source)
+    protected InterMineObject getGene(String identifier, Organism organism, Model model)
         throws ObjectStoreException {
         InterMineObject gene = null;
         if (model.hasClassDescriptor(model.getPackageName() + ".Gene")) {
@@ -179,14 +176,9 @@ public class MaizeFeatureFastaLoaderTask extends MaizeFastaLoaderTask
             gene = getDirectDataLoader().createObject(geneCls);
             gene.setFieldValue("primaryIdentifier", identifier);
             gene.setFieldValue("organism", organism);
-	    gene.setFieldValue("source", source);
             getDirectDataLoader().store(gene);
         }
         return gene;
     }
-
-	protected String getSource(String header) {
-                return  header.split("\\s+")[2].split(":")[1];
-        }
 
 }

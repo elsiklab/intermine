@@ -52,8 +52,8 @@ public class MaizeFastaLoaderTask extends FileDirectDataLoaderTask
     private static final Logger LOG = Logger.getLogger(FastaLoaderTask.class);
 
     private String sequenceType = "dna";
-    private String assemblyVersion = null;
     private String classAttribute = "primaryIdentifier";
+    private String assemblyVersion = null;
     private Organism org;
     private String className;
     private int storeCount = 0;
@@ -270,8 +270,7 @@ public class MaizeFastaLoaderTask extends FileDirectDataLoaderTask
      * @param bioJavaSequence the Sequence object
      * @throws ObjectStoreException if store() fails
      */
-    private void processSequence(Organism organism, Sequence bioJavaSequence)
-        throws ObjectStoreException {
+    private void processSequence(Organism organism, Sequence bioJavaSequence) throws ObjectStoreException {
         // some fasta files are not filtered - they contain sequences from organisms not
         // specified in project.xml
         if (organism == null) {
@@ -301,7 +300,6 @@ public class MaizeFastaLoaderTask extends FileDirectDataLoaderTask
         }
         BioEntity imo = (BioEntity) getDirectDataLoader().createObject(imClass);
 
-        //String (primaryIdentifier, secondaryIdentifier, name) = getIdentifier(bioJavaSequence);
         String sequenceHeader = bioJavaSequence.getName() + idSuffix;
         String primaryIdentifier, secondaryIdentifier, name;
         if (sequenceHeader.contains("|")) {
@@ -344,13 +342,12 @@ public class MaizeFastaLoaderTask extends FileDirectDataLoaderTask
                     + primaryIdentifier + ". Does the attribute exist?");
         }
         
-	imo.setOrganism(organism);
+        imo.setOrganism(organism);
 
-	try {
-        System.out.println("Setting assembly as " + assemblyVersion);
+        try {
             imo.setFieldValue("assembly", assemblyVersion);
         } catch (Exception e) {
-            throw new IllegalArgumentException("Error setting: " + className + ".source to: "
+            throw new IllegalArgumentException("Error setting: " + className + ".assembly to: "
                     + assemblyVersion + ". Does the attribute exist?");
         }
 
@@ -360,8 +357,8 @@ public class MaizeFastaLoaderTask extends FileDirectDataLoaderTask
             throw new IllegalArgumentException("Error setting: " + className + ".length to: "
                     + flymineSequence.getLength() + ". Does the attribute exist?");
         }
-	
-	try {
+
+        try {
             imo.setFieldValue("length", new Integer(flymineSequence.getLength()));
         } catch (Exception e) {
             throw new IllegalArgumentException("Error setting: " + className + ".length to: "
@@ -391,14 +388,6 @@ public class MaizeFastaLoaderTask extends FileDirectDataLoaderTask
             throw new BuildException("store failed", e);
         }
     }
-
-//	protected String getSource(Sequence bioJavaSequence) {
-//		String source;
-//		Annotation annotation = bioJavaSequence.getAnnotation();
-//	        String header = (String) annotation.getProperty("description");
-//		source = header.split("\\s+")[2].split(":")[1];
-//		return source;
-//	}
 
     /**
      * Return the DataSet to add to each object.

@@ -53,12 +53,14 @@ public class RefSeqFastaLoaderTask extends FileDirectDataLoaderTask
     private static final Logger LOG = Logger.getLogger(RefSeqFastaLoaderTask.class);
 
     private String sequenceType = "dna";
+    private String assemblyVersion = null;
     private String classAttribute = "primaryIdentifier";
     private String classAttributeAlias = "secondaryIdentifier";
     private String classAttributeName = "name";
     private Organism org;
     private String className;
     private int storeCount = 0;
+    private String dataSetTitle;
     private String dataSourceName = null;
     private DataSource dataSource = null;
     private String fastaTaxonId = null;
@@ -71,8 +73,6 @@ public class RefSeqFastaLoaderTask extends FileDirectDataLoaderTask
 
     //Set this if we want to do some testing...
     private File[] files = null;
-
-    private String dataSetTitle;
 
     private Map<String, DataSet> dataSets = new HashMap<String, DataSet>();
 
@@ -95,6 +95,14 @@ public class RefSeqFastaLoaderTask extends FileDirectDataLoaderTask
         } else {
             this.sequenceType = sequenceType;
         }
+    }
+
+    /**
+     * Set the assembly version for chromosomes
+     * @param assemblyVersion
+     */
+    public void setAssemblyVersion(String assemblyVersion) {
+        this.assemblyVersion = assemblyVersion;
     }
 
     /**
@@ -164,6 +172,13 @@ public class RefSeqFastaLoaderTask extends FileDirectDataLoaderTask
      */
     public void setDataSetTitle(String dataSetTitle) {
         this.dataSetTitle = dataSetTitle;
+    }
+
+    /**
+     *
+     */
+    public String getDataSetTitle() {
+        return dataSetTitle;
     }
 
     /**
@@ -311,9 +326,8 @@ public class RefSeqFastaLoaderTask extends FileDirectDataLoaderTask
                                        + " while creating new Sequence object");
         }
         BioEntity imo = (BioEntity) getDirectDataLoader().createObject(imClass);
-
         String sequenceHeader = getIdentifier(bioJavaSequence);
-        //List<String> refList = new ArrayList<String>( Arrays.asList(StringUtil.split(dbxref, ",")));
+
         String attributeValue;
         String attributeValueAlias;
         String attributeValueName;
@@ -366,6 +380,14 @@ public class RefSeqFastaLoaderTask extends FileDirectDataLoaderTask
                     + attributeValue + ". Does the attribute exist?");
         }
         imo.setOrganism(organism);
+
+        try {
+            imo.setFieldValue("assembly", assemblyVersion);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Error setting: " + className + ".source to: "
+                    + assemblyVersion + ". Does the attribute exist?");
+        }
+
         try {
             imo.setFieldValue("length", new Integer(flymineSequence.getLength()));
         } catch (Exception e) {
@@ -403,6 +425,9 @@ public class RefSeqFastaLoaderTask extends FileDirectDataLoaderTask
      * @throws ObjectStoreException if there is an ObjectStore problem
      */
     public DataSet getDataSet() throws ObjectStoreException {
+        if (StringUtils.isEmpty(dataSetTitle)) {
+            throw new RuntimeException("DataSet title (fasta.dataSetTitle) not set");
+        }
         if (dataSets.containsKey(dataSetTitle)) {
             return dataSets.get(dataSetTitle);
         }
@@ -442,18 +467,14 @@ public class RefSeqFastaLoaderTask extends FileDirectDataLoaderTask
      */
     protected String getIdentifier(Sequence bioJavaSequence) {
         String name = bioJavaSequence.getName() + idSuffix;
-        // System.out.println(name);
-        // GK000001.2 Chr1
-        // if (name.contains(" ")) {
-        //     String[] bits = name.split(" ");
-        //     // if (bits.length < 2) {
-        //     //     return null;
-        //     // }
-        //     name = bits[1];
-        // }
         return name;
     }
 
+    /**
+     *
+     * @return
+     * @throws ObjectStoreException
+     */
     private DataSource getDataSource() throws ObjectStoreException {
         if (StringUtils.isEmpty(dataSourceName)) {
             throw new RuntimeException("dataSourceName not set");

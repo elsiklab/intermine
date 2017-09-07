@@ -52,6 +52,7 @@ public class FastaLoaderTask extends FileDirectDataLoaderTask
 
     private String sequenceType = "dna";
     private String classAttribute = "primaryIdentifier";
+    private String assemblyVersion = null;
     private Organism org;
     private String className;
     private int storeCount = 0;
@@ -72,6 +73,9 @@ public class FastaLoaderTask extends FileDirectDataLoaderTask
 
     private Map<String, DataSet> dataSets = new HashMap<String, DataSet>();
 
+    public void setAssemblyVersion(String assemblyVersion) {
+        this.assemblyVersion = assemblyVersion;
+    }
     /**
      * Set the Taxon Id of the Organism we are loading.  Can be space delimited list of taxonIds
      * @param fastaTaxonId the taxon id to set.

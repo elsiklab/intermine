@@ -1,7 +1,7 @@
 package org.intermine.bio.dataconversion;
 
 /*
- * Copyright (C) 2002-2013 FlyMine
+ * Copyright (C) 2002-2016 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -24,28 +24,30 @@ import org.intermine.model.bio.SequenceFeature;
 import org.intermine.objectstore.ObjectStoreException;
 
 /**
- * Code for loading fasta for BovineMine/HymenopteraMine, setting feature attribute from the FASTA header.
- * This script has been adapted from AIPFeatureFastaLoaderTask.java and FlyBaseFeatureFastaLoaderTask.java
- * @author Kim Rutherford
+ * Code for loading fasta for MaizeMine, setting feature attribute from the FASTA header
+ * @author
  */
 public class RefSeqFeatureFastaLoaderTask extends FastaLoaderTask
 {
     private Map<String, Chromosome> chrMap = new HashMap<String, Chromosome>();
+    protected static final String HEADER_REGEX = ".\\S+:\\S+\\s\\S+:(\\S+\\s\\S+):(\\S+):([0-9]+-[0-9]+)\\s+(\\S+)\\s(\\S+)\\s\\S+=(\\S+)$";
 
     /**
      * Return a Chromosome object for the given item.
      * @param chromosomeId the id
      * @param organism the Organism to reference from the Chromosome
+     * @param assemblyVersion the assembly version for the Chromosome
      * @return the Chromosome
      * @throws ObjectStoreException if problem fetching Chromosome
      */
-    protected Chromosome getChromosome(String chromosomeId, Organism organism)
+    protected Chromosome getChromosome(String chromosomeId, Organism organism, String assemblyVersion)
         throws ObjectStoreException {
         if (chrMap.containsKey(chromosomeId)) {
             return chrMap.get(chromosomeId);
         }
         Chromosome chr = getDirectDataLoader().createObject(Chromosome.class);
         chr.setPrimaryIdentifier(chromosomeId);
+        chr.setAssembly(assemblyVersion);
         chr.setOrganism(organism);
         chr.addDataSets(getDataSet());
         getDirectDataLoader().store(chr);
@@ -62,16 +64,14 @@ public class RefSeqFeatureFastaLoaderTask extends FastaLoaderTask
      * @return the Location
      * @throws ObjectStoreException there is a problem while creating the Location
      */
-    protected Location getLocationFromHeader(String header, SequenceFeature lsf,
-                                             Organism organism)
-        throws ObjectStoreException {
-        final String regexp = "^.+\\s+(\\S+):([0-9]+-[0-9]+)\\s+(\\S+).+$";
-        Pattern p = Pattern.compile(regexp);
+    protected Location getLocationFromHeader(String header, SequenceFeature lsf, Organism organism) throws ObjectStoreException {
+        Pattern p = Pattern.compile(HEADER_REGEX);
         Matcher m = p.matcher(header);
         if (m.matches()) {
-            String chromosomeId = m.group(1);
-            String locationString = m.group(2);
-            String strand = m.group(3);
+            String assemblyVersion = m.group(1);
+            String chromosomeId = m.group(2);
+            String locationString = m.group(3);
+            String strand = m.group(4);
             int min = getMin(locationString);
             int max = getMax(locationString);
             Location loc = getDirectDataLoader().createObject(Location.class);
@@ -83,13 +83,13 @@ public class RefSeqFeatureFastaLoaderTask extends FastaLoaderTask
                 loc.setStrand("1");
             }
             loc.setFeature(lsf);
-            Chromosome chromosome = getChromosome(chromosomeId, organism);
+            Chromosome chromosome = getChromosome(chromosomeId, organism, assemblyVersion);
             loc.setLocatedOn(chromosome);
             lsf.setChromosomeLocation(loc);
             lsf.setChromosome(chromosome);
             return loc;
         }
-        throw new RuntimeException("header doesn't match pattern \"" + regexp + "\": " + header);
+        throw new RuntimeException("header doesn't match pattern \"" + HEADER_REGEX + "\": " + header);
     }
 
     /**
@@ -157,8 +157,7 @@ public class RefSeqFeatureFastaLoaderTask extends FastaLoaderTask
      * @return an InterMineObject representing an MRNA or null of MRNA not in the data model
      * @throws ObjectStoreException if problem storing
      */
-    protected InterMineObject getMRNA(String mrnaIdentifier, Organism organism, Model model)
-        throws ObjectStoreException {
+    protected InterMineObject getMRNA(String mrnaIdentifier, Organism organism, Model model) throws ObjectStoreException {
         InterMineObject mrna = null;
         if (model.hasClassDescriptor(model.getPackageName() + ".MRNA")) {
             @SuppressWarnings("unchecked") Class<? extends InterMineObject> mrnaCls =

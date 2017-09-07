@@ -30,6 +30,9 @@ import org.intermine.model.bio.SequenceFeature;
 import org.intermine.objectstore.ObjectStore;
 import org.intermine.objectstore.ObjectStoreException;
 import org.intermine.util.DynamicUtil;
+import org.intermine.objectstore.query.PendingClob;
+import org.intermine.metadata.Util;
+import org.apache.tools.ant.BuildException;
 
 /**
  * A fasta loader that understand the headers of Maize Peptide fasta files and can make the
@@ -38,6 +41,12 @@ import org.intermine.util.DynamicUtil;
  */
 public class MaizePolypeptideFastaLoaderTask extends MaizeFeatureFastaLoaderTask
 {
+
+    private String classAttribute = "primaryIdentifier";
+    private int storeCount = 0;
+    private String suffix = "-PEP";
+    private String suffixPattern = "\\S+(_P\\d\\d)$";
+
     // hashmap to keep track of InterMineObject of type Gene
     private Map<String, InterMineObject> geneIdMap = new HashMap<String, InterMineObject>();
     // hashmap to keep track of InterMineObject of type MRNA
@@ -47,26 +56,112 @@ public class MaizePolypeptideFastaLoaderTask extends MaizeFeatureFastaLoaderTask
      * {@inheritDoc}
      */
     @Override
-    protected void extraProcessing(Sequence bioJavaSequence,
-                                   org.intermine.model.bio.Sequence flymineSequence,
-                                   BioEntity bioEntity, Organism organism, DataSet dataSet)
-            throws ObjectStoreException {
+    protected void processSequence(Organism organism, Sequence bioJavaSequence) throws ObjectStoreException {
 
-        Annotation annotation = bioJavaSequence.getAnnotation();
+        if (organism == null) {
+            return;
+        }
+
+        org.intermine.model.bio.Sequence proteinSequenceObject = getDirectDataLoader().createObject(
+                org.intermine.model.bio.Sequence.class);
+
+        String sequence = bioJavaSequence.seqString();
+        String md5checksum = Util.getMd5checksum(sequence);
+        proteinSequenceObject.setResidues(new PendingClob(sequence));
+        proteinSequenceObject.setLength(bioJavaSequence.length());
+        proteinSequenceObject.setMd5checksum(md5checksum);
+
+        Class<? extends InterMineObject> imClass;
+        Class<?> c;
+        try {
+            c = Class.forName(getClassName());
+            if (InterMineObject.class.isAssignableFrom(c)) {
+                imClass = (Class<? extends InterMineObject>) c;
+            } else {
+                throw new RuntimeException("Feature className must be a valid class in the model that inherits from InterMineObject, but was: " + getClassName());
+            }
+        } catch (ClassNotFoundException e1) {
+            throw new RuntimeException("unknown class: " + getClassName() + " while creating new Sequence object");
+        }
+
+        BioEntity imo = (BioEntity) getDirectDataLoader().createObject(imClass);
+        String sequenceName = getIdentifier(bioJavaSequence);
+        String attributeValue;
+        Pattern p = Pattern.compile(suffixPattern);
+        Matcher m = p.matcher(sequenceName);
+
+        if (sequenceName.endsWith(suffix)) {
+            attributeValue = sequenceName;
+        }
+        else if (m.matches()) {
+            attributeValue = sequenceName;
+        }
+        else {
+            attributeValue = sequenceName + suffix;
+        }
+
+        // set primaryIdentifier
+        try {
+            System.out.println("Setting " + classAttribute + " as " + attributeValue);
+            imo.setFieldValue(classAttribute, attributeValue);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Error setting: " + getClassName() + "." + classAttribute + " to: " + attributeValue + ". Does the attribute exist?");
+        }
+
+        // set sequence
+        try {
+            imo.setFieldValue("sequence", proteinSequenceObject);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Error setting: " + getClassName() + ".sequence to: " + attributeValue + ". Does the attribute exist?");
+        }
+
+        // set organism
+        imo.setOrganism(organism);
+
+        // set length
+        try {
+            imo.setFieldValue("length", new Integer(proteinSequenceObject.getLength()));
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Error setting: " + getClassName() + ".length to: " + proteinSequenceObject.getLength() + ". Does the attribute exist?");
+        }
+
+        // set md5checksum
+        try {
+            imo.setFieldValue("md5checksum", md5checksum);
+        } catch (Exception e) {
+        }
+
+        extraProcessing(bioJavaSequence, proteinSequenceObject, imo, organism, getDataSet());
+
+        DataSet dataSet = getDataSet();
+        imo.addDataSets(dataSet);
+
+        try {
+            getDirectDataLoader().store(proteinSequenceObject);
+            getDirectDataLoader().store(imo);
+            storeCount += 2;
+        } catch (ObjectStoreException e) {
+            throw new BuildException("store failed", e);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void extraProcessing(Sequence bioJavaSequence, org.intermine.model.bio.Sequence flymineSequence, BioEntity bioEntity, Organism organism, DataSet dataSet) throws ObjectStoreException {
+
         String geneIdentifier = null;
         String mrnaIdentifier = null;
+        Annotation annotation = bioJavaSequence.getAnnotation();
         String header = (String) annotation.getProperty("description");
-        String[] headerSplitStringList = header.trim().split(" ");
-        String source = getSource(header);
-        HashMap dict = new HashMap();
-        for (String element :  header.trim().split(" ")) {
-            String[] elementSplitList = element.split(":",2);
-            if (elementSplitList.length == 2){
-                dict.put(elementSplitList[0], elementSplitList[1]);
-            }
+        String regexp = ".\\S+\\s\\S+:\\S+\\s\\S+:\\S+:\\d+:\\d+:\\S+\\s\\S+:(\\S+)\\s\\S+:(\\S+)\\s.+";
+        Pattern p = Pattern.compile(regexp);
+        Matcher m = p.matcher(header);
+        if (m.matches()) {
+            geneIdentifier = m.group(1);
+            mrnaIdentifier = m.group(2);
         }
-        geneIdentifier = dict.get("gene").toString();
-        mrnaIdentifier = dict.get("transcript").toString();
 
         ObjectStore os = getIntegrationWriter().getObjectStore();
         Model model = os.getModel();
@@ -77,7 +172,6 @@ public class MaizePolypeptideFastaLoaderTask extends MaizeFeatureFastaLoaderTask
                         + "MaizePolypeptideFastaLoaderTask.extraProcessing() is not a "
                         + "Polypeptide: " + bioEntity);
             }
-            bioEntity.setFieldValue("source",source);
 
             if (geneIdentifier != null) {
                 InterMineObject gene = null;
@@ -85,7 +179,7 @@ public class MaizePolypeptideFastaLoaderTask extends MaizeFeatureFastaLoaderTask
                     gene = geneIdMap.get(geneIdentifier);
                 }
                 else {
-                    gene = getGene(geneIdentifier, organism, model, source);
+                    gene = getGene(geneIdentifier, organism, model);
                 }
                 if(gene != null) {
                     bioEntity.setFieldValue("gene", gene);
@@ -107,7 +201,7 @@ public class MaizePolypeptideFastaLoaderTask extends MaizeFeatureFastaLoaderTask
                     mrna = mrnaIdMap.get(mrnaIdentifier);
                 }
                 else {
-                    mrna = getMRNA(mrnaIdentifier, organism, model, source);
+                    mrna = getMRNA(mrnaIdentifier, organism, model);
                 }
                 if (mrna != null) {
                     bioEntity.setFieldValue("mrna", mrna);
@@ -123,8 +217,6 @@ public class MaizePolypeptideFastaLoaderTask extends MaizeFeatureFastaLoaderTask
                     e.printStackTrace();
                 }
             }
-            Location loc = getLocationFromHeader(header, (SequenceFeature) bioEntity, organism);
-            getDirectDataLoader().store(loc);
         } else {
             throw new RuntimeException("Trying to load Polypeptide sequence but Polypeptide does not exist in the data model");
         }
