@@ -51,6 +51,7 @@ public class GFF3Converter extends DataConverter
     private static final Logger LOG = Logger.getLogger(GFF3Converter.class);
     private Reference orgRef;
     private String seqClsName, orgTaxonId;
+    private String seqAssemblyVersion;
     private Item organism, dataSet, dataSource;
     private Model tgtModel;
     private Map<String, Item> seqs = new HashMap<String, Item>();
@@ -86,11 +87,12 @@ public class GFF3Converter extends DataConverter
      * @param sequenceHandler the GFF3SeqHandler use to create sequence Items
      * @throws ObjectStoreException if something goes wrong
      */
-    public GFF3Converter(ItemWriter writer, String seqClsName, String orgTaxonId,
+    public GFF3Converter(ItemWriter writer, String seqClsName, String seqAssemblyVersion, String orgTaxonId,
             String dataSourceName, String dataSetTitle, Model tgtModel,
             GFF3RecordHandler handler, GFF3SeqHandler sequenceHandler) throws ObjectStoreException {
         super(writer, tgtModel);
         this.seqClsName = seqClsName;
+        this.seqAssemblyVersion = seqAssemblyVersion;
         this.orgTaxonId = orgTaxonId;
         this.tgtModel = tgtModel;
         this.handler = handler;
@@ -317,7 +319,7 @@ public class GFF3Converter extends DataConverter
         }
         String refId = identifierMap.get(primaryIdentifier);
         handler.clear(); // get rid of previous record Items from handler
-        Item seq = getSeq(record.getSequenceID(), record.getSource());
+        Item seq = getSeq(record.getSequenceID(), seqAssemblyVersion);
         String className = TypeUtil.javaiseClassName(term);
         String fullClassName = tgtModel.getPackageName() + "." + className;
         ClassDescriptor cd = tgtModel.getClassDescriptorByName(fullClassName);
@@ -709,6 +711,12 @@ public class GFF3Converter extends DataConverter
     }
 
     /**
+     *
+     * @return
+     */
+    public String getSeqAssemblyVersion() { return seqAssemblyVersion; }
+
+    /**
      * Return the
      * @return the target Model
      */
@@ -731,7 +739,7 @@ public class GFF3Converter extends DataConverter
      * @return return/create item of class seqClsName for given identifier
      * @throws ObjectStoreException if the Item can't be stored
      */
-    private Item getSeq(String id, String source)
+    private Item getSeq(String id, String seqAssemblyVersion)
         throws ObjectStoreException {
         // the seqHandler may have changed the id used, e.g. if using an IdResolver
         String identifier = sequenceHandler.getSeqIdentifier(id);
@@ -746,7 +754,11 @@ public class GFF3Converter extends DataConverter
 
         Item seq = seqs.get(identifier);
         if (seq == null) {
-            seq = sequenceHandler.makeSequenceItem(this, identifier, source);
+            if (seqAssemblyVersion == null || seqAssemblyVersion.contains("gff3.seqAssemblyVersion")) {
+                System.out.println("gff3.seqAssemblyVersion property required and is not defined in project.xml");
+                System.exit(1);
+            }
+            seq = sequenceHandler.makeSequenceItem(this, identifier, seqAssemblyVersion);
             // sequence handler may choose not to create sequence
             if (seq != null) {
                 seq.addReference(getOrgRef());

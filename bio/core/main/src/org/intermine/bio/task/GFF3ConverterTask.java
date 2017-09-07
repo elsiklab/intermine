@@ -46,7 +46,7 @@ public class GFF3ConverterTask extends Task
     protected String converter, targetAlias, seqClsName, orgTaxonId;
     protected String seqDataSourceName, model, handlerClassName;
     protected GFF3Parser parser;
-
+    private String seqAssemblyVersion;
     private String dataSourceName;
     private String dataSetTitle;
 
@@ -88,6 +88,13 @@ public class GFF3ConverterTask extends Task
         this.seqClsName = seqClsName;
     }
 
+    /**
+     * Set the assemblyVersion
+     * @param assemblyVersion
+     */
+    public void setSeqAssemblyVersion(String seqAssemblyVersion) {
+        this.seqAssemblyVersion = seqAssemblyVersion;
+    }
 
     /**
      * Set the organism taxon id
@@ -171,6 +178,9 @@ public class GFF3ConverterTask extends Task
         if (seqClsName == null) {
             throw new BuildException("seqClsName attribute not set");
         }
+        if (seqAssemblyVersion == null) {
+            throw new BuildException("seqClsName attribute not set");
+        }
         if (orgTaxonId == null) {
             throw new BuildException("orgTaxonId attribute not set");
         }
@@ -225,7 +235,7 @@ public class GFF3ConverterTask extends Task
             }
 
             GFF3Converter gff3converter =
-                new GFF3Converter(writer, seqClsName, orgTaxonId, dataSourceName,
+                new GFF3Converter(writer, seqClsName, seqAssemblyVersion, orgTaxonId, dataSourceName,
                                   dataSetTitle, tgtModel, recordHandler, sequenceHandler);
             if (dontCreateLocations) {
                 gff3converter.setDontCreateLocations(dontCreateLocations);
