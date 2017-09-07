@@ -31,8 +31,8 @@ import java.util.Iterator;
 public class CrossReferencesConverter extends BioFileConverter
 {
 
-    private static final String DATASET_TITLE = null;
-    private static final String DATA_SOURCE_NAME = null;
+    private static final String DATASET_TITLE = "Cross References";
+    private static final String DATA_SOURCE_NAME = "Cross References";
     Map<String, Item> geneItemMap = new HashMap<String, Item>();
     String taxonId;
     String organismReferenceId;
@@ -87,7 +87,6 @@ public class CrossReferencesConverter extends BioFileConverter
                 String[] refereeInfo = refereeEntry.split(":");
                 String refereePrimaryIdentifier = refereeInfo[0];
                 String refereeSource = refereeInfo[1];
-                System.out.println("REFERRER: " + referrerPrimaryIdentifier + " <> REFERREE: " + refereePrimaryIdentifier);
 
                 Item geneItem2;
                 if (geneItemMap.containsKey(refereePrimaryIdentifier)) {
