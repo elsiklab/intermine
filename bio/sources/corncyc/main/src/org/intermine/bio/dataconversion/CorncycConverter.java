@@ -56,7 +56,7 @@ public class CorncycConverter extends BioFileConverter
      * @param model the Model
      */
     public CorncycConverter(ItemWriter writer, Model model) {
-        super(writer, model, "KEGG", "KEGG pathways data set");
+        super(writer, model, "Corncyc", "Corncyc  data set");
         readConfig();
     }
 
