@@ -57,3 +57,9 @@
 
 <definition name="help.tile" path="/Help.jsp"/>
 
+<definition name="updates.page" extends="layout.template">
+    <put name="body" value="updates.tile"/>
+    <put name="pageName" value="updates"/>
+</definition>
+
+<definition name="updates.tile" path="/updates.jsp"/>
