@@ -1888,7 +1888,6 @@
 
     <source name="ensembl-compara" type="ensembl-compara">
       <property name="src.data.dir" location="/irving-array4/db/intermine/hymenopteramine_release_1.2_July2017/datasets/ensemblcompara"/>
-      <property name="ensemblcompara.version" value="Ensembl 36"/>
       <property name="ensemblcompara.organisms" value="12957 7460 132113 13686 7227 7425"/>
       <property name="ensemblcompara.homologues" value="12957 7460 132113 13686 7227 7425"/>
     </source>
