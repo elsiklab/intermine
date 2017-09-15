@@ -375,7 +375,7 @@
                              description="Pathways enriched for genes in this list - data from Reactome"
                              label="Pathways"
                              filterLabel="DataSet"
-                             filters="All,Reactome data set"
+                             filters="KEGG pathways data set,Reactome data set"
                              startClass="Gene"
                              startClassDisplay="primaryIdentifier"
                              enrich="pathways.name"
