@@ -210,6 +210,7 @@
             </p>
         </div>
     </c:if>
+      <div><p>Please contact us if you would like any additional template queries or if you have a concern about a query not completing.</p></div>
 
                 <div id="low">
                         <div id="rss" style="display:none;">
