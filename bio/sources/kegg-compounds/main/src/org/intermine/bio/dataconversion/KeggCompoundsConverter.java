@@ -42,7 +42,7 @@ public class KeggCompoundsConverter extends BioFileConverter
     private String orgRefId;
     private HashMap<String,Item> compoundsItems = new HashMap<String, Item>();
     private HashMap<String,Item> compsItems = new HashMap<String, Item>();
-    private static final String DATASET_TITLE = "KEGG pathways metadata";
+    private static final String DATASET_TITLE = "KEGG pathways compound";
     private static final String DATA_SOURCE_NAME = "KEGG";
 
     /**
