@@ -117,10 +117,6 @@ public class EnsemblComparaConverter extends BioFileConverter
             rslv = IdResolverService.getEnsemblIdResolver();
         }
 
-        if (version == null) {
-            throw new IllegalArgumentException("No version provided for Ensembl Compara");
-        }
-
         if (taxonIds == null || taxonIds.isEmpty()) {
             throw new IllegalArgumentException("No organism data provided for Ensembl Compara");
         }
@@ -220,7 +216,6 @@ public class EnsemblComparaConverter extends BioFileConverter
             }
             Item item = createItem("Gene");
             item.setAttribute(fieldName, newIdentifier);
-            item.setAttribute("source", version);
             item.setReference("organism", getOrganism(taxonId));
             store(item);
             refId = item.getIdentifier();
