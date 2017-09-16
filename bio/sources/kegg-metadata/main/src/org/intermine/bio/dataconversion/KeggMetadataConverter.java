@@ -44,7 +44,7 @@ public class KeggMetadataConverter extends BioFileConverter
     private HashMap<String,Item> goItems = new HashMap<String, Item>();
     private HashMap<String,Item> goAnnotation = new HashMap<String, Item>();
     private Map<String, String> goTerms = new HashMap<String, String>();
-    private static final String DATASET_TITLE = "KEGG pathways metadata";
+    private static final String DATASET_TITLE = "KEGG pathways data set";
     private static final String DATA_SOURCE_NAME = "KEGG";
 
     /**
