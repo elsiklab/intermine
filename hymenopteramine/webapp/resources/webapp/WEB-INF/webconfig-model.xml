@@ -372,7 +372,7 @@
 
   <enrichmentwidgetdisplayer id="pathway_enrichment"
                              title="Pathway Enrichment"
-                             description="Pathways enriched for genes in this list - data from Reactome"
+                             description="Pathways enriched for genes in this list"
                              label="Pathways"
                              filterLabel="DataSet"
                              filters="KEGG pathways data set,Reactome data set"
