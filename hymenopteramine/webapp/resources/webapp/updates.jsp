@@ -44,43 +44,46 @@ tr:nth-child(even) {
     <th>Notes</th>
   </tr>
   <tr>
-    <td>Edits and Updates</td>
-    <td>Maria Anders</td>
-    <td>Germany</td>
+    <td>September 2017</td>
+    <td>KEGG data set-July 2017 release</td>
+    <td></td>
   </tr>
   <tr>
-    <td>Centro comercial Moctezuma</td>
-    <td>Francisco Chang</td>
-    <td>Mexico</td>
+    <td>September 2017</td>
+    <td>Ensembl Metazoa release 36 - August 2017</td>
+    <td></td>
+  </tr>  
+  <tr>
+    <td>September 2017</td>
+    <td> RefSeq gene dataset for Apis cerana</td>
+    <td></td>
   </tr>
   <tr>
-    <td>Ernst Handel</td>
-    <td>Roland Mendel</td>
-    <td>Austria</td>
+    <td>September 2017</td>
+    <td> RefSeq gene dataset for Ceratina calcarata</td>
+    <td></td>
   </tr>
   <tr>
-    <td>Island Trading</td>
-    <td>Helen Bennett</td>
-    <td>UK</td>
+    <td>September 2017</td>
+    <td> RefSeq gene dataset for Monomorium pharaonis</td>
+    <td></td>
   </tr>
   <tr>
-    <td>Laughing Bacchus Winecellars</td>
-    <td>Yoshi Tannamuri</td>
-    <td>Canada</td>
+    <td>September 2017</td>
+    <td> RefSeq gene dataset for Atta cephalotes</td>
+    <td></td>
   </tr>
-  <tr>
-    <td>Magazzini Alimentari Riuniti</td>
-    <td>Giovanni Rovelli</td>
-    <td>Italy</td>
-  </tr>
+
+
+
 </table>
 <br>
 <code>HymenopteraMine has been updated to the latest version 1.3. Please see the data sources page for a full list of data and their versions. 
 <br>
 <br>
-If you have any questions, please see our docs and videos. Please do not hesitate to contact us should you require any further assistance. For all types of help and feedback email hymenopteragenomedatabase@gmail.com</code><br>
+If you have any questions, please see our docs and youtube videos. Please do not hesitate to contact us should you require any further assistance. For all types of help and feedback email hymenopteragenomedatabase@gmail.com</code><br>
 
-
+<h1>HymenopteraMine 1.2 Updates</h1>
 
 </body>
 </html>
