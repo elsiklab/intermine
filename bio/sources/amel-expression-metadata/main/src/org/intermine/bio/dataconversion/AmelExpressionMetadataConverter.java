@@ -41,8 +41,9 @@ public class AmelExpressionMetadataConverter extends BioFileConverter
     protected static final Logger LOG = Logger.getLogger(AmelExpressionMetadataConverter.class);
     private String orgRefId;
     private HashMap<String,Item> publicationItems = new HashMap<String, Item>();
-    private static final String DATASET_TITLE = "Expression metadata for Hymenoptera";
-    private static final String DATA_SOURCE_NAME = "Expression metadata for Hymenoptera from NCBI SRA";
+
+    private static final String DATASET_TITLE = "Apis mellifera RNASeq Expression dataset";
+    private static final String DATA_SOURCE_NAME = "Apis mellifera RNASeq Expression dataset from NCBI SRA
 
     /**
      * Constructor
