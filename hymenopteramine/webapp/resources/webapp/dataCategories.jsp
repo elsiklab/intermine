@@ -23,7 +23,7 @@
          <th>Link</th>
       </tr>
       <tr>
-         <td rowspan="34" class="leftcol">
+         <td rowspan="38" class="leftcol">
             <h2>
                <p>Genes</p>
             </h2>
@@ -143,10 +143,10 @@
 
 
       <tr>
-         <td rowspan="16">NCBI Annotation  (RefSeq and Gene)</td>
+         <td rowspan="20">NCBI Annotation  (RefSeq and Gene)</td>
          <td>A.   dorsata</td>
          <td>Ador_NCBI-Release 100</td>
-         <td rowspan="16"><p>O'Leary NA et al - PubMed: <a href="https://www.ncbi.nlm.nih.gov/pubmed/?term=26553804">26553804</a></td>
+         <td rowspan="20"><p>O'Leary NA et al - PubMed: <a href="https://www.ncbi.nlm.nih.gov/pubmed/?term=26553804">26553804</a></td>
          <td><a href="ftp://ftp.ncbi.nlm.nih.gov/genomes/refseq/invertebrate/Apis_dorsata/latest_assembly_versions/GCF_000469605.1_Apis_dorsata_1.3/">NCBI ftp</a></td>
       </tr>
       <tr>
@@ -224,80 +224,81 @@
          <td>             RefSeq-Release 101</td>
          <td><a href="ftp://ftp.ncbi.nlm.nih.gov/genomes/refseq/invertebrate/Megachile_rotundata/latest_assembly_versions/GCF_000220905.1_MROT_1.0">NCBI ftp</a></td>
       </tr>
+     <tr>
+         <td>               A. cephalotes</td>
+         <td>             RefSeq-Release 100</td>
+         <td><a href="ftp://ftp.ncbi.nlm.nih.gov/genomes/refseq/invertebrate/Atta_cephalotes/latest_assembly_versions/GCF_000143395.1_Attacep1.0">NCBI ftp</a></td>
+      </tr>
+      <tr>
+         <td>               A. cerana</td>
+         <td>             RefSeq-Release 100</td>
+         <td><a href="ftp://ftp.ncbi.nlm.nih.gov/genomes/refseq/invertebrate/Apis_cerana/latest_assembly_versions/GCF_001442555.1_ACSNU-2.0">NCBI ftp</a></td>
+      </tr>
+     <tr>
+         <td>               C. calcarata</td>
+         <td>             RefSeq-Release 100</td>
+         <td><a href="ftp://ftp.ncbi.nlm.nih.gov/genomes/refseq/invertebrate/Ceratina_calcarata/latest_assembly_versions/GCF_001652005.1_ASM165200v1">NCBI ftp</a></td>
+      </tr>
+      <tr>
+         <td>               M. rotundata</td>
+         <td>             RefSeq-Release 100</td>
+         <td><a href="ftp://ftp.ncbi.nlm.nih.gov/genomes/refseq/invertebrate/Monomorium_pharaonis/latest_assembly_versions/GCF_000980195.1_M.pharaonis_V2.0">NCBI ftp</a></td>
+      </tr>
+
       <tr>
 
 
+      <td class="leftcol" rowspan="2"><p><h2>Homology</h2></p></td>
+   
+    <td> Orthologue relationships from OrthoDB</td>
+              <td>
 
-         <td class="leftcol" rowspan="22"><h2>Homology</h2></td>
-         <td rowspan="22">Orthologue relationships from OrthoDB</td>
-         <td>A. dorsata</td>
-         <td rowspan="22">OrthoDB Version 9</td>
-         <td rowspan="22">Zdobnov EM et al - PubMed: <a href="https://www.ncbi.nlm.nih.gov/pubmed/?term=27899580">27899580</a></td>
-         <td rowspan="22"><a href="ftp://cegg.unige.ch/OrthoDB9"> OrthoDB ftp</a></td>
-      </tr>
-      <tr>
-         <td>A. mellifera</td>
-      </tr>
-      <tr>
-         <td>A. echinatior</td>
-      </tr>
-      <tr>
-         <td>A. florea</td>
-      </tr>
-      <tr>
-         <td>B. impatiens</td>
-      </tr>
-      <tr>
-         <td>B. terrestris</td>
-      </tr>
-      <tr>
-         <td>C. floridanus</td>
-      </tr>
-      <tr>
-         <td>H. saltator</td>
-      </tr>
-      <tr>
-         <td>L. humile</td>
-      </tr>
-      <tr>
-         <td>N. vitripennis</td>
-      </tr>
-      <tr>
-         <td>P. barbatus</td>
-      </tr>
-      <tr>
-         <td>S. invicta</td>
-      </tr>
-      <tr>
-         <td>D. melanogaster</td>
-      </tr>
-           <tr>
-         <td>C. obscurior </td>
-      </tr>
-            <tr>
-         <td>C. biroi</td>
-      </tr>
-            <tr>
-         <td>D. novaeangliae </td>
-      </tr>
-            <tr>
-         <td>E. mexicana</td>
-      </tr>
-             <tr>
-         <td>H. laboriosa</td>
-      </tr>
-            <tr>
-         <td>L. albipes </td>
-      </tr>
-              <tr>
-         <td>M. rotundata</td>
-      </tr>
-            <tr>
-         <td>W. auropunctata </td>
-      </tr>
-           <tr>
-         <td>M. quadrifasciata</td>
-      </tr>
+            <p>A. dorsata	</p>
+<p>A. mellifera</p>
+<p>A. echinatior</p>
+<p>A. florea</p>
+<p>B. impatiens</p>
+<p>B. terrestris</p>
+<p>C. floridanus</p>
+<p>H. saltator</p>
+<p>L. humile</p>
+<p>N. vitripennis</p>
+<p>P. barbatus</p>
+<p>S. invicta</p>
+<p>D. melanogaster</p>
+<p>C. obscurior</p>
+<p>C. biroi</p>
+<p>D. novaeangliae</p>
+<p>E. mexicana</p>
+<p>H. laboriosa</p>
+<p>L. albipes</p>
+<p>M. rotundata</p>
+<p>W. auropunctata</p>
+<p>M. quadrifasciata</p>
+    </td>
+     <td> OrthoDB Version 9</td>
+    <td> Zdobnov EM et al - PubMed: <a href="https://www.ncbi.nlm.nih.gov/pubmed/?term=27899580">27899580</a></td>
+    <td><a href="ftp://cegg.unige.ch/OrthoDB9"> OrthoDB ftp</a></td>
+  </tr>
+  <tr>
+    <td>Orthologue relationships from Ensembl Compara</td>
+          <td>
+       
+<p>A. mellifera</p>
+<p>B. impatiens</p>
+<p>N. vitripennis</p>
+<p>S. invicta</p>
+<p>D. melanogaster</p>
+<p>A. cephalotes</p> 
+
+    </td>
+    <td>Ensembl Metazoa release 36</td>
+     <td>Aken BL et al - PubMed <a href=https://www.ncbi.nlm.nih.gov/pubmed/27899575>27899575</a></td>
+    <td><a href="https://metazoa.ensembl.org/biomart/martview/82ce3f00b9679b387bd6231707b23b1c">Ensembl Metazoa</a>
+  </tr>
+
+
+
 
 
  
@@ -479,8 +480,8 @@
          <td><a href="http://www.ncbi.nlm.nih.gov/sra/?term=apis+mellifera">NCBI SRA</a></td>
       </tr>
       <tr>
-         <td class="leftcol" rowspan="21"><h2>Genome Assembly</h2></td>
-         <td rowspan="21">Chromosome Assembly</td>
+         <td class="leftcol" rowspan="25"><h2>Genome Assembly</h2></td>
+         <td rowspan="25">Chromosome Assembly</td>
          <td>A. dorsata</td>
          <td>Ador_1.3(GCF_000469605.1)</td>
          <td>Suen et al PubMed: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=21347285">21347285</a></td>
@@ -573,14 +574,14 @@
             <tr>
          <td>C. biroi</td>
          <td>armyant.OGS.V1.8.6(GCF_000611835.1)<br/>&nbsp;</td>
-         <td><a href="ftp://ftp.ncbi.nlm.nih.gov/genomes/refseq/invertebrate/Cerapachys_biroi/latest_assembly_versions/GCF_000611835.1_CerBir1.0">NCBI ftp</a></td>
          <td></td>
+         <td><a href="ftp://ftp.ncbi.nlm.nih.gov/genomes/refseq/invertebrate/Cerapachys_biroi/latest_assembly_versions/GCF_000611835.1_CerBir1.0">NCBI ftp</a></td>
       </tr>
             <tr>
          <td>D. novaeangliae</td>
          <td>ASM127255v1(GCF_001272555.1)<br/>&nbsp;</td>
+         <td></td>
          <td><a href="ftp://ftp.ncbi.nlm.nih.gov/genomes/refseq/invertebrate/Dufourea_novaeangliae/latest_assembly_versions/GCF_001272555.1_ASM127255v1">NCBI ftp</a></td>
-          <td></td>
       </tr>
            <tr>
          <td>E. mexicana</td>
@@ -606,10 +607,43 @@
           <td><a href="http://hymenopteragenome.org/beebase/?q=consortium_datasets">HGD BeeBase</a></td>
           <td></td>
       </tr>
+      
+       <tr>
+         <td>A. cephalotes</td>
+         <td>acep_1.0(GCF_000143395.1)<br/>&nbsp;</td>
+            <td></td>
+          <td><a href="ftp://ftp.ncbi.nlm.nih.gov/genomes/refseq/invertebrate/Atta_cephalotes/latest_assembly_versions/GCF_000143395.1_Attacep1.0">NCBI ftp</a></td>
+      </tr>
+    
+     <tr>
+         <td>A. cerana</td>
+         <td>acer_ACSNU-2.0(GCF_001442555.1)<br/>&nbsp;</td>
+         <td></td>
+          <td><a href="ftp://ftp.ncbi.nlm.nih.gov/genomes/refseq/invertebrate/Apis_cerana/latest_assembly_versions/GCF_001442555.1_ACSNU-2.0">NCBI ftp</a></td>
+      </tr>
+
+     <tr>
+         <td>C. calcarata</td>
+         <td>Ccal_ASM165200v1(GCF_001652005.1)<br/>&nbsp;</td>
+          <td></td>
+          <td><a href="ftp://ftp.ncbi.nlm.nih.gov/genomes/refseq/invertebrate/Ceratina_calcarata/latest_assembly_versions/GCF_001652005.1_ASM165200v1">NCBI ftp</a></td>
+      </tr>
+
+    <tr>
+
+         <td>M. pharaonis</td>
+         <td>mpha_v2.0(GCF_000980195.1)<br/>&nbsp;</td>
+         <td></td>
+          <td><a href="ftp://ftp.ncbi.nlm.nih.gov/genomes/refseq/invertebrate/Monomorium_pharaonis/latest_assembly_versions/GCF_000980195.1_M.pharaonis_V2.0">NCBI ftp</a></td>
+      </tr> 
+   
+
+
+
       <tr>
          <td class="leftcol" rowspan="14"><h2>Publications</h2></td>
          <td rowspan="14"> Gene versus publications</td>
-         <td>A. dorsata</td>
+         <td>A. florea</td>
          <td rowspan="14"> NCBI PubMed - Dec 2014 </td>
          <td rowspan="14">    NCBI Resource Coordinators PubMed: <a href="https://www.ncbi.nlm.nih.gov/pubmed/27899561">27899561</a></td>
          <td rowspan="14"><a href="ftp://ftp.ncbi.nlm.nih.gov/gene/DATA/">NCBI FTP</a></td>
@@ -651,7 +685,7 @@
          <td>D. melanogaster</td>
       </tr>
               <tr>
-         <td>M. rotundata</td>
+         <td>C. biroi</td>
       </tr>
    <tr>
     
@@ -678,9 +712,17 @@
     <tr>
     <td>Pathway information</td>
        <td>
+            <p>A. cephalotes</p>
+            <p>A. echinator</p>
             <p>A. mellifera</p>
+           <p>B. impatiens</p>
+           <p>B. terestris</p>
+           <p>C. floridanus</p>
+           <p>D. melanogaster</p>
+            <p>H. saltator</p>
+            <p>L. humile</p>
             <p>N. vitripennis</p>
-             <p>D. mellifera</p>     
+             <p>S. invicta</p>     
        </td>   
         
  
