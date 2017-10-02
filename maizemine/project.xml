@@ -6,90 +6,90 @@
   <property name="default.intermine.properties.file" location="../default.intermine.integrate.properties"/>
   <sources>
     <source name="go" type="go">
-      <property name="src.data.file" location="@DATA_DIR@/ontologies/gene-ontology/go-basic.obo"/>
+      <property name="src.data.file" location="@DATALINK@/GO/go.obo"/>
     </source>
     <source name="maize-dna-v3-fasta" type="fasta" dump="true">
       <property name="fasta.className" value="org.intermine.model.bio.Chromosome"/>
       <property name="fasta.sequenceType" value="dna"/>
-      <property name="fasta.assemblyVersion" value="B73 RefGen_v3"/>
+      <property name="fasta.assemblyVersion" value="B73_RefGen_v3"/>
       <property name="fasta.loaderClassName" value="org.intermine.bio.dataconversion.MaizeFastaLoaderTask"/>
-      <property name="fasta.dataSourceName" value="GRAMENE"/>
-      <property name="fasta.dataSetTitle" value="B73 RefGen_v3 Assembly"/>
+      <property name="fasta.dataSourceName" value="Gramene"/>
+      <property name="fasta.dataSetTitle" value="B73_RefGen_v3 Assembly"/>
       <property name="fasta.taxonId" value="4577"/>
       <property name="fasta.includes" value="*.fa"/>
-      <property name="src.data.dir" value="@DATA_DIR@/fasta/V3/"/>
+      <property name="src.data.dir" value="@DATALINK@/fasta/V3/"/>
     </source>
     <source name="maize-dna-v4-fasta" type="fasta" dump="true">
       <property name="fasta.className" value="org.intermine.model.bio.Chromosome"/>
       <property name="fasta.sequenceType" value="dna"/>
-      <property name="fasta.assemblyVersion" value="B73 RefGen_v4"/>
+      <property name="fasta.assemblyVersion" value="B73_RefGen_v4"/>
       <property name="fasta.loaderClassName" value="org.intermine.bio.dataconversion.MaizeFastaLoaderTask"/>
-      <property name="fasta.dataSourceName" value="GRAMENE"/>
-      <property name="fasta.dataSetTitle" value="Zm-B73-REFERENCE-GRAMENE-4.0 Assembly"/>
+      <property name="fasta.dataSourceName" value="Gramene"/>
+      <property name="fasta.dataSetTitle" value="B73_RefGen_v4 Assembly"/>
       <property name="fasta.taxonId" value="4577"/>
       <property name="fasta.includes" value="*.fa"/>
-      <property name="src.data.dir" value="@DATA_DIR@/fasta/V4/"/>
+      <property name="src.data.dir" value="@DATALINK@/fasta/V4/"/>
     </source>
     <source name="maize-gene-model-v3-gff" type="maize-gff">
       <property name="gff3.seqClsName" value="Chromosome"/>
-      <property name="gff3.seqAssemblyVersion" value="B73 RefGen_v3"/>
+      <property name="gff3.seqAssemblyVersion" value="B73_RefGen_v3"/>
       <property name="gff3.taxonId" value="4577"/>
-      <property name="gff3.dataSourceName" value="GRAMENE"/>
-      <property name="gff3.dataSetTitle" value="GRAMENE gene annotations for Zea mays B73 RefGen_v3"/>
-      <property name="src.data.dir" value="@DATA_DIR@/gff3/V3"/>
+      <property name="gff3.dataSourceName" value="Gramene"/>
+      <property name="gff3.dataSetTitle" value="Gramene gene annotations for B73_RefGen_v3"/>
+      <property name="src.data.dir" value="@DATALINK@/gff3/V3"/>
     </source>
     <source name="maize-gene-model-v4-gff" type="maize-gff">
       <property name="gff3.seqClsName" value="Chromosome"/>
-      <property name="gff3.seqAssemblyVersion" value="B73 RefGen_v4"/>
+      <property name="gff3.seqAssemblyVersion" value="B73_RefGen_v4"/>
       <property name="gff3.taxonId" value="4577"/>
-      <property name="gff3.dataSourceName" value="GRAMENE"/>
-      <property name="gff3.dataSetTitle" value="GRAMENE gene annotations for Zea mays B73 RefGen_v4"/>
-      <property name="src.data.dir" value="@DATA_DIR@/gff3/V4"/>
+      <property name="gff3.dataSourceName" value="Gramene"/>
+      <property name="gff3.dataSetTitle" value=" Ensembl(Gramene) gene annotations for B73_RefGen_v4"/>
+      <property name="src.data.dir" value="@DATALINK@/gff3/V4"/>
     </source>
     <source name="maize-refseq-proteincoding-gff" type="refseq-proteincoding-gff" dump="true">
       <property name="gff3.taxonId" value="4577"/>
       <property name="gff3.seqClsName" value="Chromosome"/>
-      <property name="gff3.seqAssemblyVersion" value="B73 RefGen_v4"/>
-      <property name="gff3.dataSourceName" value="NCBI RefSeq Annotation"/>
-      <property name="gff3.dataSetTitle" value="NCBI RefSeq protein coding gene annotations for Zea mays B73 RefGen_v4"/>
-      <property name="src.data.dir" location="@DATA_DIR@/gff3/RefSeq/proteincoding"/>
+      <property name="gff3.seqAssemblyVersion" value="B73_RefGen_v4"/>
+      <property name="gff3.dataSourceName" value="RefSeq"/>
+      <property name="gff3.dataSetTitle" value="NCBI RefSeq protein coding gene annotations for B73_RefGen_v4"/>
+      <property name="src.data.dir" location="@DATALINK@/gff3/RefSeq/proteincoding"/>
     </source>
     <source name="maize-refseq-noncoding-gff" type="refseq-noncoding-gff" dump="true">
       <property name="gff3.taxonId" value="4577"/>
       <property name="gff3.seqClsName" value="Chromosome"/>
-      <property name="gff3.seqAssemblyVersion" value="B73 RefGen_v4"/>
-      <property name="gff3.dataSourceName" value="NCBI RefSeq Annotation"/>
-      <property name="gff3.dataSetTitle" value="NCBI RefSeq non-coding gene annotations for Zea mays B73 RefGen_v4"/>
-      <property name="src.data.dir" location="@DATA_DIR@/gff3/RefSeq/noncoding"/>
+      <property name="gff3.seqAssemblyVersion" value="B73_RefGen_v4"/>
+      <property name="gff3.dataSourceName" value="RefSeq"/>
+      <property name="gff3.dataSetTitle" value="NCBI RefSeq non-coding gene annotations for B73_RefGen_v4"/>
+      <property name="src.data.dir" location="@DATALINK@/gff3/RefSeq/noncoding"/>
     </source>
     <source name="maize-cds-v3-fasta" type="fasta" dump="true">
       <property name="fasta.taxonId" value="4577"/>
       <property name="fasta.className" value="org.intermine.model.bio.CDS"/>
       <property name="fasta.loaderClassName" value="org.intermine.bio.dataconversion.MaizeCDSFastaLoaderTask"/>
-      <property name="fasta.dataSourceName" value="GRAMENE"/>
-      <property name="fasta.dataSetTitle" value="CDS sequence for transcripts from GRAMENE gene annotations for Zea mays B73 RefGen_v3"/>
+      <property name="fasta.dataSourceName" value="Gramene"/>
+      <property name="fasta.dataSetTitle" value="CDS sequences from Gramene for B73_RefGen_v3"/>
       <property name="fasta.includes" value="*.fa"/>
       <property name="fasta.sequenceType" value="dna"/>
-      <property name="src.data.dir" location="@DATA_DIR@/CDS/V3/"/>
+      <property name="src.data.dir" location="@DATALINK@/CDS/V3/"/>
     </source>
     <source name="maize-cds-v4-fasta" type="fasta" dump="true">
       <property name="fasta.taxonId" value="4577"/>
       <property name="fasta.className" value="org.intermine.model.bio.CDS"/>
       <property name="fasta.classAttribute" value="primaryIdentifier"/>
       <property name="fasta.loaderClassName" value="org.intermine.bio.dataconversion.MaizeCDSFastaLoaderTask"/>
-      <property name="fasta.dataSourceName" value="GRAMENE"/>
-      <property name="fasta.dataSetTitle" value="CDS sequence for transcripts from GRAMENE gene annotations for Zea mays B73 RefGen_v4"/>
+      <property name="fasta.dataSourceName" value="Gramene"/>
+      <property name="fasta.dataSetTitle" value="CDS sequences from  Ensembl(Gramene) for B73 RefGen_v4"/>
       <property name="fasta.includes" value="*.fa"/>
       <property name="fasta.sequenceType" value="dna"/>
-      <property name="src.data.dir" location="@DATA_DIR@/CDS/V4/"/>
+      <property name="src.data.dir" location="@DATALINK@/CDS/V4/"/>
     </source>
     <source name="maize-cds-refseq-fasta" type="fasta" dump="true">
       <property name="fasta.taxonId" value="4577"/>
       <property name="fasta.className" value="org.intermine.model.bio.CDS"/>
       <property name="fasta.classAttribute" value="primaryIdentifier"/>
-      <property name="fasta.dataSourceName" value="NCBI RefSeq Annotation"/>
-      <property name="fasta.dataSetTitle" value="CDS sequence for transcripts from NCBI RefSeq gene annotations for Zea mays B73 RefGen_v4"/>
-      <property name="src.data.dir" location="@DATA_DIR@/CDS/RefSeq"/>
+      <property name="fasta.dataSourceName" value="RefSeq"/>
+      <property name="fasta.dataSetTitle" value="CDS sequences from NCBI for B73_RefGen_v4"/>
+      <property name="src.data.dir" location="@DATALINK@/CDS/RefSeq"/>
       <property name="fasta.includes" value="*.fa"/>
       <property name="fasta.sequenceType" value="dna"/>
       <property name="fasta.loaderClassName" value="org.intermine.bio.dataconversion.RefSeqCDSFastaLoaderTask"/>
@@ -98,134 +98,131 @@
       <property name="fasta.className" value="org.intermine.model.bio.Polypeptide"/>
       <property name="fasta.loaderClassName" value="org.intermine.bio.dataconversion.MaizePolypeptideFastaLoaderTask"/>
       <property name="fasta.sequenceType" value="protein" />
-      <property name="fasta.dataSourceName" value="GRAMENE"/>
-      <property name="fasta.dataSetTitle" value="Protein sequence for transcripts from GRAMENE gene annotations for Zea mays B73 RefGen_v3"/>
+      <property name="fasta.dataSourceName" value="Gramene"/>
+      <property name="fasta.dataSetTitle" value="Protein sequence from Gramene for B73_RefGen_v3"/>
       <property name="fasta.taxonId" value="4577"/>
       <property name="fasta.includes" value="*.fa"/>
-      <property name="src.data.dir" location="@DATA_DIR@/proteins/V3"/>
+      <property name="src.data.dir" location="@DATALINK@/proteins/V3"/>
     </source>
     <source name="maize-pep-v4-fasta" type="fasta" dump="true">
       <property name="fasta.className" value="org.intermine.model.bio.Polypeptide"/>
       <property name="fasta.loaderClassName" value="org.intermine.bio.dataconversion.MaizePolypeptideFastaLoaderTask"/>
       <property name="fasta.sequenceType" value="protein" />
-      <property name="fasta.dataSourceName" value="GRAMENE"/>
-      <property name="fasta.dataSetTitle" value="Protein sequence for transcripts from GRAMENE gene annotations for Zea mays B73 RefGen_v4"/>
+      <property name="fasta.dataSourceName" value="Gramene"/>
+      <property name="fasta.dataSetTitle" value="Protein sequences from Ensembl(Gramene) for B73_RefGen_v4"/>
       <property name="fasta.taxonId" value="4577"/>
       <property name="fasta.includes" value="*.fa"/>
-      <property name="src.data.dir" location="@DATA_DIR@/proteins/V4/"/>
+      <property name="src.data.dir" location="@DATALINK@/proteins/V4/"/>
     </source>
     <source name="maize-protein-refseq-fasta" type="fasta" dump="true">
       <property name="fasta.taxonId" value="4577"/>
       <property name="fasta.className" value="org.intermine.model.bio.Polypeptide"/>
       <property name="fasta.classAttribute" value="primaryIdentifier"/>
-      <property name="fasta.dataSourceName" value="NCBI RefSeq Annotation"/>
-      <property name="fasta.dataSetTitle" value="Protein sequence for transcripts from NCBI RefSeq gene annotations for Zea mays B73 RefGen_v4"/>
-      <property name="src.data.dir" location="@DATA_DIR@/proteins/RefSeq"/>
+      <property name="fasta.dataSourceName" value="RefSeq"/>
+      <property name="fasta.dataSetTitle" value="Protein sequences from NCBI for B73_RefGen_v4"/>
+      <property name="src.data.dir" location="@DATALINK@/proteins/RefSeq"/>
       <property name="fasta.includes" value="*.fa"/>
       <property name="fasta.sequenceType" value="protein"/>
       <property name="fasta.loaderClassName" value="org.intermine.bio.dataconversion.RefSeqProteinFastaLoaderTask"/>
     </source>
     <source name="maize-xref" type="cross-references">
-      <property name="src.data.dir" location="@DATA_DIR@/xref"/>
+      <property name="src.data.dir" location="@DATALINK@/xref"/>
       <property name="taxonId" value="4577"/>
     </source>
     <source name="maize-uniprot-to-refseq" type="uniprot" >
       <property name="uniprot.organisms" value="4577"/>
-      <property name="src.data.dir" location="@DATA_DIR@/uniprot"/>
+      <property name="src.data.dir" location="@DATALINK@/uniprot"/>
       <property name="creatego" value="true"/>
       <property name="creategenes" value="true"/>
       <property name="allowduplicates" value="false"/>
       <property name="loadfragments" value="false"/>
       <property name="loadtrembl" value="true"/>
     </source>
+
     <source name="maize-uniprot-to-ensembl" type="uniprot" >
       <property name="uniprot.organisms" value="4577"/>
-      <property name="src.data.dir" location="@DATA_DIR@/uniprot"/>
+      <property name="src.data.dir" location="@DATALINK@/uniprot"/>
       <property name="creatego" value="true"/>
       <property name="creategenes" value="true"/>
       <property name="allowduplicates" value="false"/>
       <property name="loadfragments" value="false"/>
       <property name="loadtrembl" value="true"/>
     </source>
+
     <source name="uniprot-keywords" type="uniprot-keywords" dump="true">
-      <property name="src.data.dir" location="@DATA_DIR@/uniprot/"/>
+      <property name="src.data.dir" location="@DATALINK@/uniprot/keywlist/"/>
       <property name="src.data.dir.includes" value="keywlist.xml"/>
     </source>
     <source name="uniprot-fasta" type="fasta">
       <property name="fasta.taxonId" value="4577"/>
       <property name="fasta.className" value="org.intermine.model.bio.Protein"/>
       <property name="fasta.classAttribute" value="primaryAccession"/>
-      <property name="fasta.dataSourceName" value="UniProt Fasta"/>
+      <property name="fasta.dataSourceName" value="UniProt"/>
       <property name="fasta.dataSetTitle" value="Fasta sequence for proteins from UniProt"/>
-      <property name="src.data.dir" location="@DATA_DIR@/uniprot"/>
+      <property name="src.data.dir" location="@DATALINK@/uniprot/current/"/>
       <property name="fasta.includes" value="uniprot_sprot_varsplic.fasta"/>
       <property name="fasta.sequenceType" value="protein" />
       <property name="fasta.loaderClassName" value="org.intermine.bio.dataconversion.UniProtFastaLoaderTask"/>
     </source>
     <source name="interpro" type="interpro">
-      <property name="src.data.dir" location="@DATA_DIR@/interpro"/>
+      <property name="src.data.dir" location="@DATALINK@/interpro"/>
     </source>
     <source name="protein2ipr" type="protein2ipr">
-      <property name="src.data.dir" location="@DATA_DIR@/ipr/"/>
+      <property name="src.data.dir" location="@DATALINK@/ipr/"/>
       <property name="src.data.dir.includes" value="protein2ipr.dat"/>
       <property name="protein2ipr.organisms" value="4577"/>
     </source>
     <source name="biomart-atha" type="ensemblhomolog">
-       <property name="src.data.dir" location="@DATA_DIR@/ensembl-plant-biomart/atha/"/>
+       <property name="src.data.dir" location="@DATALINK@/ensembl-plant-biomart/atha/"/>
        <property name="ensemblcompara.organisms" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 39947 4555 4565 4572 37682 15368 4513 4558"/>
        <property name="ensemblcompara.homologues" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 39947 4555 4565 4572 37682 15368 4513 4558"/>
     </source> 
     <source name="biomart-ojap" type="ensemblhomolog">
-       <property name="src.data.dir" location="@DATA_DIR@/ensembl-plant-biomart/Ojap/"/>
+       <property name="src.data.dir" location="@DATALINK@/ensembl-plant-biomart/Ojap/"/>
        <property name="ensemblcompara.organisms" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 39947 4555 4565 4572 37682 15368 4513 4558"/>
        <property name="ensemblcompara.homologues" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 39947 4555 4565 4572 37682 15368 4513 4558"/>
     </source>
        <source name="biomart-oind" type="ensemblhomolog">
-       <property name="src.data.dir" location="@DATA_DIR@/ensembl-plant-biomart/Oind/"/>
+       <property name="src.data.dir" location="@DATALINK@/ensembl-plant-biomart/Oind/"/>
        <property name="ensemblcompara.organisms" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 39947 4555 4565 4572 37682 15368 4513 4558"/>
        <property name="ensemblcompara.homologues" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 39947 4555 4565 4572 37682 15368 4513 4558"/>
     </source>
        <source name="biomart-zmay" type="ensemblhomolog">
-       <property name="src.data.dir" location="@DATA_DIR@/ensembl-plant-biomart/zmay/"/>
+       <property name="src.data.dir" location="@DATALINK@/ensembl-plant-biomart/zmay/"/>
        <property name="ensemblcompara.organisms" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 39947 4555 4565 4572 37682 15368 4513 4558"/>
        <property name="ensemblcompara.homologues" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 39947 4555 4565 4572 37682 15368 4513 4558"/>
     </source>
     <source name="biomart-paralogs" type="ensemblhomolog">
-       <property name="src.data.dir" location="@DATA_DIR@/ensembl-plant-biomart/paralogs/"/>
+       <property name="src.data.dir" location="@DATALINK@/ensembl-plant-biomart/paralogs/"/>
        <property name="ensemblcompara.organisms" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 39947 4555 4565 4572 37682 15368 4513 4558"/>
        <property name="ensemblcompara.homologues" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 39947 4555 4565 4572 37682 15368 4513 4558"/>
     </source>
 
-  <!--
-         <source name="treefam-extended" type="treefam-extended">
-            <property name="src.data.dir" location="@DATA_DIR@/TreeFam"/>
-            <property name="version" value="Ensembl 89"/>
-        </source>
-  -->
 
-    <!--<source name="kegg" type="kegg-pathway">-->
-      <!--<property name="src.data.dir" location="@DATA_DIR@/KEGG/"/>-->
-      <!--<property name="kegg.organisms" value="4577"/>-->
-    <!--</source>-->
+    <source name="kegg" type="kegg-pathway">
+      <property name="src.data.dir" location="@DATALINK@/KEGG_Genes/"/>
+      <property name="kegg.organisms" value="4577"/>
+    </source>
+
     <!--<source name="kegg-compounds" type="kegg-compounds">-->
-      <!--<property name="src.data.dir" location="@DATA_DIR@/KEGG_compounds"/>-->
+      <!--<property name="src.data.dir" location="@DATALINK@/KEGG_compounds"/>-->
       <!--<property name="src.data.dir.includes" value="*.tab"/>-->
     <!--</source>-->
     <!--<source name="kegg-metadata" type="kegg-metadata">-->
-      <!--<property name="src.data.dir" location="@DATA_DIR@/KEGG_meta/"/>-->
+      <!--<property name="src.data.dir" location="@DATALINK@/KEGG_meta/"/>-->
       <!--<property name="src.data.dir.includes" value="*.tab"/>-->
     <!--</source>-->
 
     <source name="reactome-gramene-pathway" type="reactomegramene">
-      <property name="src.data.dir" location="@DATA_DIR@/reactome_pathways"/>
+      <property name="src.data.dir" location="@DATALINK@/reactome_pathways"/>
       <property name="reactomegramene.organisms" value="4577 3702"/>
     </source>
     <source name="corncyc" type="corncyc">
-      <property name="src.data.dir" location="@DATA_DIR@/corncyc"/>
+      <property name="src.data.dir" location="@DATALINK@/corncyc"/>
       <property name="corncyc.organisms" value="4577"/>
     </source>
     <source name="go-annotation" type="go-annotation">
-      <property name="src.data.dir" location="@DATA_DIR@/GO-annotation/"/>
+      <property name="src.data.dir" location="@DATALINK@/GO-annotation/"/>
     </source>
     <source name="entrez-organism" type="entrez-organism" dump="true">
       <property name="src.data.file" location="build/organisms.xml"/>
