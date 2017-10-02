@@ -211,8 +211,8 @@
             </p>
         </div>
     </c:if>
-
-        </div>
+       <div><p><u><b>Please contact us if you would like any additional template queries or if you have a concern about a query not completing.</u></b></p></div> 
+       </div>
 </div>
 
 <script type="text/javascript">
