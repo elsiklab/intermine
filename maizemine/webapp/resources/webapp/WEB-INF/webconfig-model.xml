@@ -47,10 +47,19 @@
   </class>
 
   <class className="org.intermine.model.bio.Gene">
+   <inlinelist>
+      <table path="dataSets.name" />
+    </inlinelist>
+    <headerconfig>
+      <titles>
+        <title mainTitles="primaryIdentifier" subTitles="*organism.shortName*" />
+      </titles>
+    </headerconfig>
+
     <fields>
       <fieldconfig fieldExpr="primaryIdentifier"/>
       <fieldconfig fieldExpr="secondaryIdentifier"/>
-      <fieldconfig fieldExpr="symbol" label="Gene name"/>
+      <fieldconfig fieldExpr="symbol"/>
       <fieldconfig fieldExpr="name"/>
       <fieldconfig fieldExpr="length" displayer="/model/sequenceShortDisplayerWithField.jsp" />
       <fieldconfig fieldExpr="chromosomeLocation" displayer="/model/chromosomeLocDisplayer.jsp" showInResults="false" />
@@ -209,6 +218,15 @@
                      placement="Genomics"
                      types="Gene"/>
 
+
+    <reportdisplayer javaClass="org.thalemine.web.displayer.PhytomineOrthologDisplayer"
+                     jspName="model/phytomineOrthologDisplayer.jsp"
+                     replacesFields=""
+                     placement="Homology"
+                     types="Gene"/>
+
+
+
     <reportdisplayer javaClass="org.intermine.bio.web.displayer.GeneStructureDisplayer"
                      jspName="model/geneStructureDisplayer.jsp"
                      replacesFields="transcripts,exons,CDSs,introns,UTRs,fivePrimeUTR,threePrimeUTR"
@@ -237,22 +255,56 @@
 
 <!-- widgets -->
 <widgets>
-      <graphdisplayer id="chromosome_distribution_for_gene"
-                      title="Chromosome Distribution"
-                      description="Actual: number of items in this list found on each chromosome.  Expected: given the total number of items on the chromosome and the number of items in this list, the number of items expected to be found on each chromosome."
-                      graphType="ColumnChart"
-                      rangeLabel="Count"
-                      domainLabel="Chromosome"
-                      filterLabel="Organism"
-                      filters="organism.name=[list]"
-                      startClass="Gene"
-                      typeClass="Gene"
-                      categoryPath="chromosome.primaryIdentifier"
-                      seriesLabels="Actual,Expected"
-                      seriesPath="ActualExpectedCriteria"
-                      constraints="organism.name=[Organism]"
-                      views="primaryIdentifier, symbol, secondaryIdentifier, organism.name, chromosome.primaryIdentifier,
-                             chromosomeLocation.start, chromosomeLocation.end, chromosomeLocation.strand"/>
+     <enrichmentwidgetdisplayer id="go_enrichment_for_gene"
+                             title="Gene Ontology Enrichment"
+                             description="GO terms enriched for items in this list."
+                             label="GO Term"
+                             filterLabel="Ontology"
+                             filters="biological_process,cellular_component,molecular_function"
+                             startClass="Gene"
+                             startClassDisplay="primaryIdentifier"
+                             enrich="goAnnotation.ontologyTerm.parents.name"
+                             enrichIdentifier="goAnnotation.ontologyTerm.parents.identifier"
+                             constraints="goAnnotation.ontologyTerm.parents.namespace=[Ontology],organism.name=[list],
+                                                  primaryIdentifier != null, goAnnotation.qualifier = null,
+                                                  goAnnotation.ontologyTerm.parents.identifier != go:0008150,
+                                                  goAnnotation.ontologyTerm.parents.identifier != go:0003674,
+                                                  goAnnotation.ontologyTerm.parents.identifier != go:0005575"
+                             typeClass="Gene"
+                             views="secondaryIdentifier,symbol,primaryIdentifier,organism.name,
+                                           goAnnotation.ontologyTerm.identifier, goAnnotation.ontologyTerm.name,
+                                           goAnnotation.ontologyTerm.parents.identifier,goAnnotation.ontologyTerm.parents.name"
+                             externalLink="http://amigo.geneontology.org/cgi-bin/amigo/term_details?term="
+                             correctionCoefficient="org.intermine.bio.web.widget.GeneLenghtCorrectionCoefficient"/>
+
+  <enrichmentwidgetdisplayer id="publication_enrichment"
+                             title="Publication Enrichment"
+                             description="Publications enriched for genes in this list."
+                             label="Publication"
+                             startClass="Gene"
+                             startClassDisplay="primaryIdentifier"
+                             enrich="publications.title"
+                             enrichIdentifier="publications.pubMedId"
+                             constraints="organism.name=[list],primaryIdentifier != null"
+                             typeClass="Gene"
+                             views="secondaryIdentifier, symbol, organism.name, publications.title, publications.firstAuthor, publications.journal, publications.year, publications.pubMedId"
+                             externalLink="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;dopt=Abstract&amp;list_uids="/>
+
+  <enrichmentwidgetdisplayer id="pathway_enrichment"
+                             title="Pathway Enrichment"
+                             description="Pathways enriched for genes in this list"
+                             label="Pathways"
+                             filterLabel="DataSet"
+                             filters="KEGG pathways data set, Corncyc data set, Reactome Gramene data set"
+                             startClass="Gene"
+                             startClassDisplay="primaryIdentifier"
+                             enrich="pathways.name"
+                             enrichIdentifier="pathways.identifier"
+                             constraints="pathways.dataSets.name=[DataSet],organism.taxonId=[list], primaryIdentifier != null"
+                             typeClass="Gene"
+                             views="secondaryIdentifier, symbol, organism.name, pathways.identifier, pathways.name, pathways.dataSets.name"/>
+
+
 
 </widgets>
 </webconfig>
