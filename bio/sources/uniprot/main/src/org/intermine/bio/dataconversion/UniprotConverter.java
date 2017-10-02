@@ -89,7 +89,7 @@ public class UniprotConverter extends BioDirectoryConverter
      * @param model the Model
      */
     public UniprotConverter(ItemWriter writer, Model model) {
-        super(writer, model, "UniProt", "Swiss-Prot data set");
+        super(writer, model, "UniProt", "SwissProt");
         OrganismRepository.getOrganismRepository();
     }
 
@@ -343,7 +343,7 @@ public class UniprotConverter extends BioDirectoryConverter
             attName = null;
             if ("entry".equals(qName)) {
                 entry = new UniprotEntry();
-                String dataSetTitle = getAttrValue(attrs, "dataset") + " data set";
+                String dataSetTitle = getAttrValue(attrs, "dataset") + "";
                 entry.setDatasetRefId(getDataSet(dataSetTitle, datasourceRefId));
             } else if ("fullName".equals(qName) && stack.search("protein") == 2
                     &&  ("recommendedName".equals(previousQName)

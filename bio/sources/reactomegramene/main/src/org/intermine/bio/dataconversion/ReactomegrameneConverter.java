@@ -56,7 +56,7 @@ public class ReactomegrameneConverter extends BioFileConverter
      * @param model the Model
      */
     public  ReactomegrameneConverter(ItemWriter writer, Model model) {
-        super(writer, model, "Reactome Gramene", "Reactome Gramene  data set");
+        super(writer, model, "Reactome Gramene", "Reactome Gramene");
         readConfig();
     }
 

@@ -25,7 +25,7 @@
     <td>
         <p><i>Z. mays</i></p>
     </td>
-    <td>Zm-B73-REFERENCE-GRAMENE-4.0</td>
+    <td>B73_RefGen_v4-Ensembl(Gramene)</td>
     <td><p>Lawrence et al - PubMed <a href=https://www.ncbi.nlm.nih.gov/pubmed/14681441>14681441 </a></p></td>
     <td> <a href="http://www.maizegdb.org/assembly#downloads">maizeGDB Genomes</a></td>
   </tr>
@@ -40,7 +40,7 @@
     <tr>
      <td>NCBI Annotation (RefSeq and Gene)</td>
     <td> <i>Z. mays</i> </td>
-    <td>GCF_000005005.2_B73_RefGen_v4</td>
+    <td>B73_RefGen_v4</td>
     <td><p>Lawrence et al - PubMed <a href=https://www.ncbi.nlm.nih.gov/pubmed/14681441>14681441 </a></p></td>
     <td><a href="ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/005/005/GCF_000005005.2_B73_RefGen_v4">NCBI ftp</a></td>
   </tr>
@@ -71,7 +71,7 @@
 	<p><i>S. bicolor</i></p>
         <p><i>Z. mays</i></p>
     </td>
-    <td>EnsemblCompara Plant - Version 34</td>
+    <td>EnsemblCompara Plant - Version 36</td>
     <td>Monaco et al - PubMed <a href=https://www.ncbi.nlm.nih.gov/pubmed/24217918>24217918</a></td>
     <td><a href="http://plants.ensembl.org/info/website/ftp/index.html">EnsemblCompara Plant</a></td>
   </tr>
@@ -115,7 +115,7 @@
         <p><i>A. thaliana</i></p>
         <p><i>Z. mays</i></p>
     </td>
-    <td>Reactome pathways - release 52</td>
+    <td>Plant Reactome - release 52</td>
     <td> Tello-Ruiz MK et al - PubMed <a href=https://www.ncbi.nlm.nih.gov/pubmed/26553803>26553803</a></td>
     <td> <a href="http://plantreactome.gramene.org/download/">Reactome Gramene FTP</a></td> 
  </tr>
@@ -138,8 +138,8 @@
     <td class="leftcol"><p><h2>Publications</h2></p></td>
     <td> A mapping from genes to publications</td>
     <td> <i>Z. mays</i> </td>
-    <td> Uniprot publications</td>
-    <td>Uniprot Knowledgebase <a href=https://www.ncbi.nlm.nih.gov/pubmed/28150232>28150232</a></td>
+    <td> UniProt publications</td>
+    <td>UniProt Knowledgebase <a href=https://www.ncbi.nlm.nih.gov/pubmed/28150232>28150232</a></td>
     <td></td>
   </tr>
  <tr>

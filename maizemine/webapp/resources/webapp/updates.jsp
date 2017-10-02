@@ -55,7 +55,7 @@ tr:nth-child(even) {
   </tr>
    <tr>
     <td>September 2017</td>
-    <td>UniProt and  InterPro with Zea mays RefSeq GCF_000005005.2_B73_RefGen_v4  gene set Identifiers added</td>
+    <td>UniProt and  InterPro with Zea mays RefSeq B73_RefGen_v4 gene set Identifiers added</td>
   </tr>
   <tr>
     <td>September 2017</td>
@@ -99,7 +99,7 @@ tr:nth-child(even) {
   </tr>
   <tr>
     <td>May 2016</td>
-    <td>UniProt and  InterPro with Zea mays B73_RefGen_v4 gene set Identifiers added</td>
+    <td>UniProt and  InterPro with Zea mays Ensembl(Gramene) B73_RefGen_v4 gene set Identifiers added</td>
   </tr>
 
 
