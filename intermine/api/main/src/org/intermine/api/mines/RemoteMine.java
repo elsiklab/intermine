@@ -1,7 +1,7 @@
 package org.intermine.api.mines;
 
 /*
- * Copyright (C) 2002-2017 FlyMine
+ * Copyright (C) 2002-2016 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -58,6 +58,7 @@ public class RemoteMine implements ConfigurableMine
     private String url;
     private String logo;
     private Set<String> defaultValues = new HashSet<String>();
+    private Set<String> linkClasses = new HashSet<String>();
     private String bgcolor;
     private String frontcolor;
     private String description;
@@ -88,6 +89,7 @@ public class RemoteMine implements ConfigurableMine
         url = props.getProperty("url");
         logo = props.getProperty("logo");
         defaultValues.addAll(Arrays.asList(props.getProperty("defaultValues", "").split(",")));
+        linkClasses.addAll(Arrays.asList(props.getProperty("linkClasses", "homologue").split(",")));
         bgcolor = props.getProperty("bgcolor");
         frontcolor = props.getProperty("frontcolor");
         description = props.getProperty("description");
@@ -194,6 +196,19 @@ public class RemoteMine implements ConfigurableMine
     @Override
     public String getDefaultValue() {
         for (String value : defaultValues) {
+            return value;
+        }
+        return null;
+    }
+
+    @Override
+    public Set<String> getLinkClasses() {
+        return linkClasses;
+    }
+
+    @Override
+    public String getLinkClass() {
+        for (String value : linkClasses) {
             return value;
         }
         return null;

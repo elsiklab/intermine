@@ -1,7 +1,7 @@
 package org.intermine.api.mines;
 
 /*
- * Copyright (C) 2002-2017 FlyMine
+ * Copyright (C) 2002-2016 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -76,6 +76,17 @@ public interface Mine
      * @return the defaultValue
      */
     String getDefaultValue();
+
+    /**
+     * @return the linkClass
+     */
+    Set<String> getLinkClasses();
+
+    /**
+     * get first link class. used in remotemine to build specific link types
+     * @return the linkClass
+     */
+    String getLinkClass();
 
     /**
      * Run a path query and get back all the results.
