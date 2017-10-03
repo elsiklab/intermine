@@ -23,6 +23,17 @@
     <aspect-source name="expression"/>
   </aspect>
 
+   <aspect name="Alias and DBxref">
+    <subtitle>Alias and DBxref</subtitle>
+    <icon-image>model/images/</icon-image>
+    <large-image>model/images/</large-image>
+    <intro-text>
+      Alias and DBxref
+    </intro-text>
+    <tile-name>model/</tile-name>
+    <aspect-source name="Alias and DBxref"/>
+  </aspect>
+
   <aspect name="Transcript">
     <subtitle>Transcript</subtitle>
     <icon-image>model/images/genomics.gif</icon-image>
@@ -57,16 +68,6 @@
     <aspect-source name="UniProt" url="http://www.uniprot.org"/>
   </aspect>
 
-  <aspect name="Alias and DBxref">
-    <subtitle>Alias and DBxref</subtitle>
-    <icon-image>model/images/</icon-image>
-    <large-image>model/images/</large-image>
-    <intro-text>
-      Alias and DBxref
-    </intro-text>
-    <tile-name>model/</tile-name>
-    <aspect-source name="Alias and DBxref"/>
-  </aspect>
  
     <aspect name="Entire Gene Set">
     <subtitle>Entire Gene Set</subtitle>

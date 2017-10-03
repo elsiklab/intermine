@@ -212,12 +212,6 @@
 
   <reportdisplayers>
 
-   <reportdisplayer javaClass="org.intermine.bio.web.displayer.GeneOntologyDisplayer"
-                     jspName="model/geneOntologyDisplayer.jsp"
-                     replacesFields="goAnnotation,ontologyAnnotations"
-                     placement="Genomics"
-                     types="Gene"/>
-
 
     <reportdisplayer javaClass="org.thalemine.web.displayer.PhytomineOrthologDisplayer"
                      jspName="model/phytomineOrthologDisplayer.jsp"
@@ -225,12 +219,23 @@
                      placement="Homology"
                      types="Gene"/>
 
+    
+   <reportdisplayer javaClass="org.intermine.bio.web.displayer.GeneOntologyDisplayer"
+                     jspName="model/geneOntologyDisplayer.jsp"
+                     replacesFields="goAnnotation,ontologyAnnotations"
+                     placement="Function"
+                     types="Gene"/>
 
+    <reportdisplayer javaClass="org.intermine.bio.web.displayer.GeneStructureModel"
+                     jspName="model/geneStructureModel.jsp"
+                     replacesFields=""
+                     placement="Transcript"
+                     types="Gene,Transcript,PrimaryTranscript,MiRNA,Exon,Intron,UTR,CDS"/>
 
     <reportdisplayer javaClass="org.intermine.bio.web.displayer.GeneStructureDisplayer"
                      jspName="model/geneStructureDisplayer.jsp"
                      replacesFields="transcripts,exons,CDSs,introns,UTRs,fivePrimeUTR,threePrimeUTR"
-                     placement="Genomics"
+                     placement="Transcript"
                      types="Gene,Transcript,Exon,Intron,UTR,CDS"/>
 
     <reportdisplayer javaClass="org.intermine.bio.web.displayer.SequenceFeatureDisplayer"
@@ -251,6 +256,13 @@
                      placement="Homology"
                      parameters="{'dataSets': []}"
                      types="Gene"/>
+
+    <reportdisplayer javaClass="org.intermine.bio.web.displayer.CytoscapeNetworkDisplayer"
+                     jspName="model/cytoscapeNetworkDisplayer.jsp"
+                     replacesFields="interactions"
+                     placement="Interactions"
+                     types="Gene"/>
+
   </reportdisplayers>
 
 <!-- widgets -->
