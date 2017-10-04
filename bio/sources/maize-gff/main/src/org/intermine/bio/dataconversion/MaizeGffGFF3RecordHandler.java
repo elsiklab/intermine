@@ -66,14 +66,14 @@ public class MaizeGffGFF3RecordHandler extends GFF3RecordHandler
             if(record.getAttributes().get("Alias") != null) {
                 List<String> aliasIdentifiers = record.getAttributes().get("Alias");
                 for (String aliasIdentifier : aliasIdentifiers){
-                    setAliasName(aliasIdentifier);
+           //         setAliasName(aliasIdentifier);
                 }
             }
             if(record.getAttributes().get("xRef") != null){
                 List<String> xRefList = record.getAttributes().get("xRef");
                 Iterator<String> xRefIterator = xRefList.iterator();
                 while (xRefIterator.hasNext()) {
-                    setCrossReference(xRefIterator.next());
+            //        setCrossReference(xRefIterator.next());
                 }
             }
             if (record.getAttributes().get("description") != null) {
