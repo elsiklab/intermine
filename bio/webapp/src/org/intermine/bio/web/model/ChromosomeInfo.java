@@ -21,6 +21,7 @@ public class ChromosomeInfo
     private String orgName;
     private String chrPID;
     private String chrPIDLowerCase;
+    private String chrAssembly;
     private Integer chrLength = null;
 
     /**
@@ -48,6 +49,15 @@ public class ChromosomeInfo
         this.chrPID = chrPID;
         this.chrPIDLowerCase = chrPID.toLowerCase();
     }
+
+    public String getChrAssembly() {
+        return chrAssembly;
+    }
+
+    public void setChrAssembly(String chrAssembly) {
+        this.chrAssembly = chrAssembly;
+    }
+
     /**
      * @return the chrLength
      */

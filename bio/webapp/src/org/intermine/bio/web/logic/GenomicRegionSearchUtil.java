@@ -267,11 +267,9 @@ public final class GenomicRegionSearchUtil
     private static Map<GenomicRegion, Query> createRegionQueries(
             Collection<GenomicRegion> genomicRegions, int extension, String organismName,
             Set<Class<?>> featureTypes, boolean strandSpecific, boolean idOnly) {
-
         Map<GenomicRegion, Query> queryMap = new LinkedHashMap<GenomicRegion, Query>();
 
         for (GenomicRegion aSpan : genomicRegions) {
-
             Integer start;
             Integer end;
 
@@ -288,6 +286,7 @@ public final class GenomicRegionSearchUtil
             q.setDistinct(true);
 
             String chrPID = aSpan.getChr();
+            String chrAssembly = aSpan.getChrAssembly();
 
             QueryClass qcOrg = new QueryClass(Organism.class);
             QueryClass qcChr = new QueryClass(Chromosome.class);
@@ -302,6 +301,7 @@ public final class GenomicRegionSearchUtil
             QueryField qfFeatureClass = new QueryField(qcFeature, "class");
 
             QueryField qfChr = new QueryField(qcChr, "primaryIdentifier");
+            QueryField qfChrAssembly = new QueryField(qcChr, "assembly");
 
             QueryField qfLocStart = new QueryField(qcLoc, "start");
             QueryField qfLocEnd = new QueryField(qcLoc, "end");
@@ -317,6 +317,7 @@ public final class GenomicRegionSearchUtil
                 q.addToSelect(qfFeatureSymbol);
                 q.addToSelect(qfFeatureClass);
                 q.addToSelect(qfChr);
+                q.addToSelect(qfChrAssembly);
                 q.addToSelect(qfLocStart);
                 q.addToSelect(qfLocEnd);
                 q.addToSelect(qfLocStrand);
@@ -365,6 +366,10 @@ public final class GenomicRegionSearchUtil
             SimpleConstraint scChr = new SimpleConstraint(qfChr, ConstraintOp.EQUALS,
                     new QueryValue(chrPID));
             constraints.addConstraint(scChr);
+
+            // Chromosome.assembly = chrAssembly
+            SimpleConstraint scChrAssembly = new SimpleConstraint(qfChrAssembly, ConstraintOp.EQUALS, new QueryValue(chrAssembly));
+            constraints.addConstraint(scChrAssembly);
 
             // SequenceFeature.class in a list
             constraints.addConstraint(new BagConstraint(qfFeatureClass, ConstraintOp.IN,

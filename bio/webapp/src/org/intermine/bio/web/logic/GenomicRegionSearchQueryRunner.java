@@ -177,7 +177,6 @@ public class GenomicRegionSearchQueryRunner implements Runnable
                     else {
                         for (Iterator<?> iter = results.iterator(); iter.hasNext();) {
                             ResultsRow<?> row = (ResultsRow<?>) iter.next();
-
                             List<String> resultRow = new ArrayList<String>();
 
                             for (Object o : row) {
@@ -256,15 +255,18 @@ public class GenomicRegionSearchQueryRunner implements Runnable
 
             QueryField qfOrgName = new QueryField(qcOrg, "shortName");
             QueryField qfChrIdentifier = new QueryField(qcChr, "primaryIdentifier");
+            QueryField qfChrAssembly = new QueryField(qcChr, "assembly");
             QueryField qfChrLength = new QueryField(qcChr, "length");
 
             q.addToSelect(qfOrgName);
             q.addToSelect(qfChrIdentifier);
+            q.addToSelect(qfChrAssembly);
             q.addToSelect(qfChrLength);
 
             QueryObjectReference orgRef = new QueryObjectReference(qcChr, "organism");
             ContainsConstraint ccOrg = new ContainsConstraint(orgRef,
                     ConstraintOp.CONTAINS, qcOrg);
+
             q.setConstraint(ccOrg);
 
             Results results = im.getObjectStore().execute(q, batchSize, true, true, true);
@@ -279,7 +281,8 @@ public class GenomicRegionSearchQueryRunner implements Runnable
 
                 String orgName = (String) row.get(0);
                 String chrIdentifier = (String) row.get(1);
-                Integer chrLength = (Integer) row.get(2);
+                String assembly = (String) row.get(2);
+                Integer chrLength = (Integer) row.get(3);
 
                 // Add orgName to HashSet to filter out duplication
                 orgSet.add(orgName);
@@ -287,6 +290,7 @@ public class GenomicRegionSearchQueryRunner implements Runnable
                 ChromosomeInfo chrInfo = new ChromosomeInfo();
                 chrInfo.setOrgName(orgName);
                 chrInfo.setChrPID(chrIdentifier);
+                chrInfo.setChrAssembly(assembly);
                 if (chrLength != null) {
                     chrInfo.setChrLength(chrLength);
                 }

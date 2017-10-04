@@ -20,6 +20,7 @@ public class GenomicRegion implements Comparable<GenomicRegion>
 {
     private String organism;
     private String chr;
+    private String chrAssembly;
     private Integer start;
     private Integer end;
     private Integer extendedRegionSize = new Integer(0); // user add region flanking
@@ -66,6 +67,14 @@ public class GenomicRegion implements Comparable<GenomicRegion>
      */
     public void setChr(String chr) {
         this.chr = chr;
+    }
+
+    public String getChrAssembly() {
+        return chrAssembly;
+    }
+
+    public void setChrAssembly(String chrAssembly) {
+        this.chrAssembly = chrAssembly;
     }
 
     /**

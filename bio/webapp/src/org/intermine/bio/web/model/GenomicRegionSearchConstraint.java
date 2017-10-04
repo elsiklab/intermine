@@ -22,6 +22,7 @@ import java.util.Set;
 public class GenomicRegionSearchConstraint
 {
     private String orgName = null;
+    private String chrAssembly = null;
     private Set<Class<?>> featureTypes = null;
     private List<GenomicRegion> genomicRegionList = null;
     private int extendedRegionSize = 0;
@@ -41,6 +42,14 @@ public class GenomicRegionSearchConstraint
      */
     public void setOrgName(String orgName) {
         this.orgName = orgName;
+    }
+
+    public String getChrAssembly() {
+        return chrAssembly;
+    }
+
+    public void setChrAssembly(String chrAssembly) {
+        this.chrAssembly = chrAssembly;
     }
 
     /**
@@ -108,6 +117,7 @@ public class GenomicRegionSearchConstraint
                     && genomicRegionList.equals(c.getGenomicRegionList())
                     && featureTypes.equals(c.getFeatureTypes())
                     && orgName.equals(c.getOrgName())
+                    && chrAssembly.equals(c.getChrAssembly())
                     && strandSpecific == c.getStrandSpecific());
         }
         return false;
@@ -119,7 +129,7 @@ public class GenomicRegionSearchConstraint
     @Override
     public int hashCode() {
         return extendedRegionSize + genomicRegionList.hashCode() + featureTypes.hashCode()
-            + orgName.hashCode();
+            + orgName.hashCode() + chrAssembly.hashCode();
     }
 
 }
