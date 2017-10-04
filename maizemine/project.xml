@@ -6,7 +6,7 @@
   <property name="default.intermine.properties.file" location="../default.intermine.integrate.properties"/>
   <sources>
     <source name="go" type="go">
-      <property name="src.data.file" location="@DATALINK@/GO/go.obo"/>
+      <property name="src.data.file" location="@DATALINK@/dataset/GO/go-basic.obo"/>
     </source>
     <source name="maize-dna-v3-fasta" type="fasta" dump="true">
       <property name="fasta.className" value="org.intermine.model.bio.Chromosome"/>
@@ -52,7 +52,7 @@
       <property name="gff3.seqAssemblyVersion" value="B73_RefGen_v4"/>
       <property name="gff3.dataSourceName" value="RefSeq"/>
       <property name="gff3.dataSetTitle" value="NCBI RefSeq protein coding gene annotations for B73_RefGen_v4"/>
-      <property name="src.data.dir" location="@DATALINK@/gff3/RefSeq/proteincoding"/>
+      <property name="src.data.dir" location="@DATALINK@/dataset/gff3/RefSeq/proteincoding"/>
     </source>
     <source name="maize-refseq-noncoding-gff" type="refseq-noncoding-gff" dump="true">
       <property name="gff3.taxonId" value="4577"/>
@@ -120,7 +120,7 @@
       <property name="fasta.classAttribute" value="primaryIdentifier"/>
       <property name="fasta.dataSourceName" value="RefSeq"/>
       <property name="fasta.dataSetTitle" value="Protein sequences from NCBI for B73_RefGen_v4"/>
-      <property name="src.data.dir" location="@DATALINK@/proteins/RefSeq"/>
+      <property name="src.data.dir" location="@DATALINK@/dataset/proteins/RefSeq"/>
       <property name="fasta.includes" value="*.fa"/>
       <property name="fasta.sequenceType" value="protein"/>
       <property name="fasta.loaderClassName" value="org.intermine.bio.dataconversion.RefSeqProteinFastaLoaderTask"/>
@@ -131,7 +131,7 @@
     </source>
     <source name="maize-uniprot-to-refseq" type="uniprot" >
       <property name="uniprot.organisms" value="4577"/>
-      <property name="src.data.dir" location="@DATALINK@/uniprot"/>
+      <property name="src.data.dir" location="@DATALINK@/dataset/uniprot"/>
       <property name="creatego" value="true"/>
       <property name="creategenes" value="true"/>
       <property name="allowduplicates" value="false"/>
@@ -200,7 +200,7 @@
 
 
     <source name="kegg" type="kegg-pathway">
-      <property name="src.data.dir" location="@DATALINK@/KEGG_Genes/"/>
+      <property name="src.data.dir" location="@DATALINK@/dataset/KEGG_Genes/"/>
       <property name="kegg.organisms" value="4577"/>
     </source>
 
@@ -214,16 +214,19 @@
     <!--</source>-->
 
     <source name="reactome-gramene-pathway" type="reactomegramene">
-      <property name="src.data.dir" location="@DATALINK@/reactome_pathways"/>
+      <property name="src.data.dir" location="@DATALINK@/dataset/reactome_pathways"/>
       <property name="reactomegramene.organisms" value="4577 3702"/>
     </source>
     <source name="corncyc" type="corncyc">
-      <property name="src.data.dir" location="@DATALINK@/corncyc"/>
+      <property name="src.data.dir" location="@DATALINK@/dataset/corncyc"/>
       <property name="corncyc.organisms" value="4577"/>
     </source>
-    <source name="go-annotation" type="go-annotation">
-      <property name="src.data.dir" location="@DATALINK@/GO-annotation/"/>
-    </source>
+   
+           <source name="go-annotation" type="go-annotation">
+            <property name="ontologyfile" location="@DATALINK@/dataset/GO/go-basic.obo"/>
+            <property name="src.data.dir" location="@DATALINK@/dataset/GO-annotation/"/>
+        </source>
+
     <source name="entrez-organism" type="entrez-organism" dump="true">
       <property name="src.data.file" location="build/organisms.xml"/>
     </source>
