@@ -52,7 +52,7 @@
       <property name="gff3.seqAssemblyVersion" value="B73_RefGen_v4"/>
       <property name="gff3.dataSourceName" value="RefSeq"/>
       <property name="gff3.dataSetTitle" value="NCBI RefSeq protein coding gene annotations for B73_RefGen_v4"/>
-      <property name="src.data.dir" location="@DATALINK@/dataset/gff3/RefSeq/proteincoding"/>
+      <property name="src.data.dir" location="@DATALINK@/gff3/RefSeq/proteincoding"/>
     </source>
     <source name="maize-refseq-noncoding-gff" type="refseq-noncoding-gff" dump="true">
       <property name="gff3.taxonId" value="4577"/>
@@ -200,7 +200,7 @@
 
 
     <source name="kegg" type="kegg-pathway">
-      <property name="src.data.dir" location="@DATALINK@/dataset/KEGG_Genes/"/>
+      <property name="src.data.dir" location="@DATALINK@/KEGG_Genes/"/>
       <property name="kegg.organisms" value="4577"/>
     </source>
 
@@ -208,10 +208,11 @@
       <!--<property name="src.data.dir" location="@DATALINK@/KEGG_compounds"/>-->
       <!--<property name="src.data.dir.includes" value="*.tab"/>-->
     <!--</source>-->
-    <!--<source name="kegg-metadata" type="kegg-metadata">-->
-      <!--<property name="src.data.dir" location="@DATALINK@/KEGG_meta/"/>-->
-      <!--<property name="src.data.dir.includes" value="*.tab"/>-->
-    <!--</source>-->
+
+    <source name="kegg-metadata" type="kegg-metadata">
+      <property name="src.data.dir" location="@DATALINK@/KEGG_Meta/"/>
+      <property name="src.data.dir.includes" value="*.tab"/>
+    </source>
 
     <source name="reactome-gramene-pathway" type="reactomegramene">
       <property name="src.data.dir" location="@DATALINK@/dataset/reactome_pathways"/>
