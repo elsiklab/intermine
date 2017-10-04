@@ -63,26 +63,26 @@ public class MaizeGffGFF3RecordHandler extends GFF3RecordHandler
         feature.setAttribute("primaryIdentifier", primaryIdentifier.substring(primaryIdentifier.indexOf(':') + 1));
         feature.setAttribute("source", record.getSource());
         if("gene".equalsIgnoreCase(record.getType())){
-            if(record.getAttributes().get("Alias") != null) {
-                List<String> aliasIdentifiers = record.getAttributes().get("Alias");
-                for (String aliasIdentifier : aliasIdentifiers){
+       //     if(record.getAttributes().get("Alias") != null) {
+        //        List<String> aliasIdentifiers = record.getAttributes().get("Alias");
+       //         for (String aliasIdentifier : aliasIdentifiers){
            //         setAliasName(aliasIdentifier);
-                }
-            }
-            if(record.getAttributes().get("xRef") != null){
-                List<String> xRefList = record.getAttributes().get("xRef");
-                Iterator<String> xRefIterator = xRefList.iterator();
-                while (xRefIterator.hasNext()) {
+       //         }
+       //     }
+        //    if(record.getAttributes().get("xRef") != null){
+       //         List<String> xRefList = record.getAttributes().get("xRef");
+       //         Iterator<String> xRefIterator = xRefList.iterator();
+       //         while (xRefIterator.hasNext()) {
             //        setCrossReference(xRefIterator.next());
-                }
-            }
+      //          }
+      //      }
             if (record.getAttributes().get("description") != null) {
                 String description = record.getAttributes().get("description").iterator().next();
                 feature.setAttribute("description", description);
             }
         }
     }
-
+/*
     public void setCrossReference(String xRef) {
         Item feature = getFeature();
         List<String> xRefPair = new ArrayList<String>(Arrays.asList(StringUtil.split(xRef, ":")));
@@ -139,4 +139,5 @@ public class MaizeGffGFF3RecordHandler extends GFF3RecordHandler
         feature.addToCollection("aliases", aliasItem);
         addItem(aliasItem);
     }
+*/
 }
