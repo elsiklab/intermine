@@ -38,6 +38,15 @@
     </fields>
   </class>
 
+    <class className="org.intermine.model.bio.Pathway">
+    <fields>
+      <fieldconfig fieldExpr="identifier"/>
+      <fieldconfig fieldExpr="name"/>
+      <fieldconfig fieldExpr="dataSets.name" label="Dataset"/>
+    </fields>
+  </class>
+
+
   <class className="org.intermine.model.bio.DataSource">
     <fields>
       <fieldconfig fieldExpr="name"/>
@@ -76,6 +85,27 @@
       <fieldconfig fieldExpr="homologue.primaryIdentifier"/>
       <fieldconfig fieldExpr="homologue.organism.shortName"/>
       <fieldconfig fieldExpr="type"/>
+    </fields>
+  </class>
+
+    <class className="org.intermine.model.bio.GOEvidenceCode">
+    <fields>
+      <fieldconfig fieldExpr="source"/>
+      <fieldconfig fieldExpr="code"/>
+      <fieldconfig fieldExpr="evidenceOntology.name" label="name"/>
+    </fields>
+  </class>
+ 
+  
+  <class className="org.intermine.model.bio.OntologyAnnotation">
+    <inlinelist>
+      <table path="dataSets.name" />
+    </inlinelist>
+    <fields>
+      <fieldconfig fieldExpr="ontologyTerm.identifier"/>
+      <fieldconfig fieldExpr="ontologyTerm.name"/>
+      <fieldconfig fieldExpr="ontologyTerm.description"/>
+      <fieldconfig fieldExpr="dataSets.name" label="Dataset"/>
     </fields>
   </class>
 
@@ -191,6 +221,14 @@
   <class className="org.intermine.model.bio.Synonym">
     <fields>
       <fieldconfig fieldExpr="value"/>
+    </fields>
+  </class>
+
+ <class className="org.intermine.model.bio.Polypeptide">
+    <fields>
+      <fieldconfig fieldExpr="primaryIdentifier"/>
+      <fieldconfig fieldExpr="mrnaIdentifier" label="mRNA Identifier"/>
+      <fieldconfig fieldExpr="dataSets.name" label="Dataset"/>
     </fields>
   </class>
 
