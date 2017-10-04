@@ -56,7 +56,7 @@ public class CorncycConverter extends BioFileConverter
      * @param model the Model
      */
     public CorncycConverter(ItemWriter writer, Model model) {
-        super(writer, model, "CornCyc", "CornCyc");
+        super(writer, model, "CornCyc", "CornCyc pathways");
         readConfig();
     }
 
@@ -65,7 +65,7 @@ public class CorncycConverter extends BioFileConverter
      *
      * @param taxonIds a space-separated list of taxonIds
      */
-    public void setKeggOrganisms(String taxonIds) {
+    public void setCorncycOrganisms(String taxonIds) {
         this.taxonIds = new HashSet<String>(Arrays.asList(StringUtils.split(taxonIds, " ")));
         LOG.info("Setting list of organisms to " + this.taxonIds);
     }
