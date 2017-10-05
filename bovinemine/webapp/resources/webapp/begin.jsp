@@ -140,6 +140,7 @@
         <div style="clear:both"></div>
 
         <div id="bottom-wrap">
+            <div><p>Please contact us if you would like any additional template queries or if you have a concern about a query not completing.</p></div>
             <c:if test="${!empty tabs}">
                 <div id="templates">
                         <table id="menu" border="0" cellspacing="0">
@@ -158,7 +159,6 @@
                                     </c:forEach>
                                 </tr>
                         </table>
-
                         <div id="tab-content">
                                 <div id="ribbon"></div>
                                 <div id="try"></div>
@@ -214,8 +214,6 @@
             </p>
         </div>
     </c:if>
-
-            <div><p>Please contact us if you would like any additional template queries or if you have a concern about a query not completing.</p></div>
 
         </div>
 </div>
