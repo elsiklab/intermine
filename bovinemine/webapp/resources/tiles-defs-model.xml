@@ -42,6 +42,7 @@
 </definition>
         
 <definition name="help.tile" path="/help.jsp"/>
+
 <definition name="network.page" extends="layout.template">
     <put name="body" value="network.tile"/>
     <put name="pageName" value="network"/>
@@ -49,3 +50,8 @@
 
 <definition name="network.tile" path="/network.jsp"/>
 
+<definition name="releaseUpdates.page" extends="layout.template">
+  <put name="body" value="releaseUpdates.title"/>
+  <put name="pageName" value="releaseUpdates"/>
+</definition>
+<definition name="releaseUpdates.title" path="/releaseUpdates.jsp" />
