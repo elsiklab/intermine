@@ -43,3 +43,8 @@
 
 <definition name="updates.tile" path="/updates.jsp"/>
 
+<definition name="releaseUpdates.page" extends="layout.template">
+  <put name="body" value="releaseUpdates.title"/>
+  <put name="pageName" value="releaseUpdates"/>
+</definition>
+<definition name="releaseUpdates.title" path="/releaseUpdates.jsp" />
