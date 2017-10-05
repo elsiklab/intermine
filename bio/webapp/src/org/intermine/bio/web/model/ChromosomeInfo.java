@@ -21,6 +21,8 @@ public class ChromosomeInfo
     private String orgName;
     private String chrPID;
     private String chrPIDLowerCase;
+    private String chrSecondaryIdentifier;
+    private String chrName;
     private Integer chrLength = null;
 
     /**
@@ -29,18 +31,21 @@ public class ChromosomeInfo
     public String getOrgName() {
         return orgName;
     }
+
     /**
      * @param orgName the orgName to set
      */
     public void setOrgName(String orgName) {
         this.orgName = orgName;
     }
+
     /**
      * @return the chrPID
      */
     public String getChrPID() {
         return chrPID;
     }
+
     /**
      * @param chrPID the chrPID to set
      */
@@ -48,12 +53,56 @@ public class ChromosomeInfo
         this.chrPID = chrPID;
         this.chrPIDLowerCase = chrPID.toLowerCase();
     }
+
+    /**
+     *
+     * @return
+     */
+    public String getChrSecondaryIdentifier() {
+        return chrSecondaryIdentifier;
+    }
+
+    /**
+     *
+     * @param chrSecondaryIdentifier
+     */
+    public void setChrSecondaryIdentifier(String chrSecondaryIdentifier) {
+        if(chrSecondaryIdentifier != null) {
+            this.chrSecondaryIdentifier = chrSecondaryIdentifier;
+        }
+        else {
+            this.chrSecondaryIdentifier = "";
+        }
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getChrName() {
+        return chrName;
+    }
+
+    /**
+     *
+     * @param chrName
+     */
+    public void setChrName(String chrName) {
+        if(chrName != null) {
+            this.chrName = chrName;
+        }
+        else {
+            this.chrName = "";
+        }
+    }
+
     /**
      * @return the chrLength
      */
     public Integer getChrLength() {
         return chrLength;
     }
+
     /**
      * @param chrLength the chrLength to set
      */

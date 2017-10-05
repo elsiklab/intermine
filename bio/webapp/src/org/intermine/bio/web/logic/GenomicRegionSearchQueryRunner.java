@@ -256,10 +256,14 @@ public class GenomicRegionSearchQueryRunner implements Runnable
 
             QueryField qfOrgName = new QueryField(qcOrg, "shortName");
             QueryField qfChrIdentifier = new QueryField(qcChr, "primaryIdentifier");
+            QueryField qfChrSecondaryIdentifier = new QueryField(qcChr, "secondaryIdentifier");
+            QueryField qfChrName = new QueryField(qcChr, "name");
             QueryField qfChrLength = new QueryField(qcChr, "length");
 
             q.addToSelect(qfOrgName);
             q.addToSelect(qfChrIdentifier);
+            q.addToSelect(qfChrSecondaryIdentifier);
+            q.addToSelect(qfChrName);
             q.addToSelect(qfChrLength);
 
             QueryObjectReference orgRef = new QueryObjectReference(qcChr, "organism");
@@ -279,7 +283,9 @@ public class GenomicRegionSearchQueryRunner implements Runnable
 
                 String orgName = (String) row.get(0);
                 String chrIdentifier = (String) row.get(1);
-                Integer chrLength = (Integer) row.get(2);
+                String chrSecondaryIdentifier = (String) row.get(2);
+                String chrName = (String) row.get(3);
+                Integer chrLength = (Integer) row.get(4);
 
                 // Add orgName to HashSet to filter out duplication
                 orgSet.add(orgName);
@@ -287,6 +293,8 @@ public class GenomicRegionSearchQueryRunner implements Runnable
                 ChromosomeInfo chrInfo = new ChromosomeInfo();
                 chrInfo.setOrgName(orgName);
                 chrInfo.setChrPID(chrIdentifier);
+                chrInfo.setChrSecondaryIdentifier(chrSecondaryIdentifier);
+                chrInfo.setChrName(chrName);
                 if (chrLength != null) {
                     chrInfo.setChrLength(chrLength);
                 }
@@ -303,8 +311,8 @@ public class GenomicRegionSearchQueryRunner implements Runnable
 
                 for (ChromosomeInfo chrInfo : chrInfoList) {
                     if (o.equals(chrInfo.getOrgName())) {
-                        chrInfoSubMap
-                                .put(chrInfo.getChrPIDLowerCase(), chrInfo);
+                        String key = chrInfo.getChrPIDLowerCase() + "#" + chrInfo.getChrSecondaryIdentifier().toLowerCase() + "#" + chrInfo.getChrName().toLowerCase();
+                        chrInfoSubMap.put(key, chrInfo);
                         chrInfoMap.put(o, chrInfoSubMap);
                     }
                 }

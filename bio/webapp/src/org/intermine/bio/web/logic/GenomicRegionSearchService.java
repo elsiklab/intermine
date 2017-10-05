@@ -847,18 +847,28 @@ public class GenomicRegionSearchService
             }
             String chr = gr.getChr().toLowerCase();
 
-            if (chrInfo.containsKey(chr)) {
-                ci = chrInfo.get(chr);
-            } else {
-                if (chr.startsWith("chr")) { // UCSC format
-                    if (chrInfo.containsKey(chr.substring(3))) {
-                        ci = chrInfo.get(chr.substring(3));
-                    } else {
-                        continue;
-                    }
-                } else {
-                    continue;
+//            if (chrInfo.containsKey(chr)) {
+//                ci = chrInfo.get(chr);
+//            } else {
+//                if (chr.startsWith("chr")) { // UCSC format
+//                    if (chrInfo.containsKey(chr.substring(3))) {
+//                        ci = chrInfo.get(chr.substring(3));
+//                    } else {
+//                        continue;
+//                    }
+//                } else {
+//                    continue;
+//                }
+//            }
+            for (String key : chrInfo.keySet()) {
+                ArrayList<String> chrIdentifiers = new ArrayList<String>(Arrays.asList(key.split("#")));
+                if (chrIdentifiers.contains(chr)) {
+                    ci = chrInfo.get(key);
+                    break;
                 }
+            }
+            if (ci == null) {
+                continue;
             }
 
             boolean passed = false; // flag to add to errorSpanList
@@ -1226,8 +1236,10 @@ public class GenomicRegionSearchService
         String firstSymbol = firstFeature.get(2);
         String firstFeatureType = firstFeature.get(3); // Class name
         String firstChr = firstFeature.get(4);
-        String firstStart = firstFeature.get(5);
-        String firstEnd = firstFeature.get(6);
+        String firstChrSecondaryIdentifier = firstFeature.get(5);
+        String firstChrName = firstFeature.get(6);
+        String firstStart = firstFeature.get(7);
+        String firstEnd = firstFeature.get(8);
 
         String loc = firstChr + ":" + firstStart + ".." + firstEnd;
 
@@ -1491,8 +1503,10 @@ public class GenomicRegionSearchService
         String symbol = features.get(i).get(2);
         String featureType = features.get(i).get(3);
         String chr = features.get(i).get(4);
-        String start = features.get(i).get(5);
-        String end = features.get(i).get(6);
+        String chrSecondaryIdentifier = features.get(i).get(5);
+        String chrName = features.get(i).get(6);
+        String start = features.get(i).get(7);
+        String end = features.get(i).get(8);
 
         String soTerm = WebUtil.formatPath(featureType, interMineAPI,
                 webConfig);
@@ -1547,8 +1561,10 @@ public class GenomicRegionSearchService
             String symbol = features.get(i).get(2);
             String featureType = features.get(i).get(3);
             String chr = features.get(i).get(4);
-            String start = features.get(i).get(5);
-            String end = features.get(i).get(6);
+            String chrSecondaryIdentifier = features.get(i).get(5);
+            String chrName = features.get(i).get(6);
+            String start = features.get(i).get(7);
+            String end = features.get(i).get(8);
 
             String soTerm = WebUtil.formatPath(featureType, interMineAPI,
                     webConfig);
