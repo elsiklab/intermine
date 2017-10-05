@@ -105,7 +105,7 @@
    function appendAssemblyVersions(org) {
         for(var i = 0; i < webDataJSON.assemblies.size(); i++) {
             if(webDataJSON.assemblies[i].organism == org) {
-                var assemblies = webDataJSON.assemblies[i].assembly.reverse();
+                var assemblies = webDataJSON.assemblies[i].assembly.sort().reverse();
                 for(var j = 0; j < assemblies.size(); j++) {
                     jQuery("#assembly").append("<option value='" + assemblies[j] + "'>" + assemblies[j] + "</option>");
                 }
