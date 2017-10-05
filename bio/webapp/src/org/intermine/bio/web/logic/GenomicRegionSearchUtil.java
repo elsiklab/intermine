@@ -269,9 +269,7 @@ public final class GenomicRegionSearchUtil
             Set<Class<?>> featureTypes, boolean strandSpecific, boolean idOnly) {
 
         Map<GenomicRegion, Query> queryMap = new LinkedHashMap<GenomicRegion, Query>();
-
         for (GenomicRegion aSpan : genomicRegions) {
-
             Integer start;
             Integer end;
 
@@ -302,6 +300,8 @@ public final class GenomicRegionSearchUtil
             QueryField qfFeatureClass = new QueryField(qcFeature, "class");
 
             QueryField qfChr = new QueryField(qcChr, "primaryIdentifier");
+            QueryField qfChrSecondary = new QueryField(qcChr, "secondaryIdentifier");
+            QueryField qfChrName = new QueryField(qcChr, "name");
 
             QueryField qfLocStart = new QueryField(qcLoc, "start");
             QueryField qfLocEnd = new QueryField(qcLoc, "end");
@@ -317,6 +317,8 @@ public final class GenomicRegionSearchUtil
                 q.addToSelect(qfFeatureSymbol);
                 q.addToSelect(qfFeatureClass);
                 q.addToSelect(qfChr);
+                q.addToSelect(qfChrSecondary);
+                q.addToSelect(qfChrName);
                 q.addToSelect(qfLocStart);
                 q.addToSelect(qfLocEnd);
                 q.addToSelect(qfLocStrand);
@@ -362,9 +364,19 @@ public final class GenomicRegionSearchUtil
             }
 
             // Chromosome.primaryIdentifier = chrPID
-            SimpleConstraint scChr = new SimpleConstraint(qfChr, ConstraintOp.EQUALS,
-                    new QueryValue(chrPID));
-            constraints.addConstraint(scChr);
+//            SimpleConstraint scChr = new SimpleConstraint(qfChr, ConstraintOp.EQUALS,
+//                    new QueryValue(chrPID));
+//            constraints.addConstraint(scChr);
+//            ConstraintSet chrConstraints = new ConstraintSet(ConstraintOp.AND);
+//            q.setConstraint(chrConstraints);
+//            ConstraintSet orConstraints = new ConstraintSet(ConstraintOp.OR);
+//            q.setConstraint(orConstraints);
+            ConstraintSet tmp = new ConstraintSet(ConstraintOp.OR);
+            tmp.addConstraint(new SimpleConstraint(qfChr, ConstraintOp.EQUALS, new QueryValue(chrPID)));
+            tmp.addConstraint(new SimpleConstraint(qfChrSecondary, ConstraintOp.EQUALS, new QueryValue(chrPID)));
+            tmp.addConstraint(new SimpleConstraint(qfChrName, ConstraintOp.EQUALS, new QueryValue(chrPID)));
+            constraints.addConstraint(tmp);
+            //q.setConstraint(constraints);
 
             // SequenceFeature.class in a list
             constraints.addConstraint(new BagConstraint(qfFeatureClass, ConstraintOp.IN,
