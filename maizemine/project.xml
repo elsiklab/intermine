@@ -30,6 +30,13 @@
       <property name="fasta.includes" value="*.fa"/>
       <property name="src.data.dir" value="@DATALINK@/fasta/V4/"/>
     </source>
+
+    <source name="additional_identifiers" type="additionalChrIdentifiers" dump="true">
+      <property name="src.data.dir" value="@DATALINK@/fasta/additional_identifiers/"/>
+    </source>
+
+
+
     <source name="maize-gene-model-v3-gff" type="maize-gff">
       <property name="gff3.seqClsName" value="Chromosome"/>
       <property name="gff3.seqAssemblyVersion" value="B73_RefGen_v3"/>
@@ -46,6 +53,16 @@
       <property name="gff3.dataSetTitle" value=" Ensembl(Gramene) gene annotations for B73_RefGen_v4"/>
       <property name="src.data.dir" value="@DATALINK@/gff3/V4"/>
     </source>
+    <source name="maize-gene-model-v4-gff-rejected" type="maize-gff">
+      <property name="gff3.seqClsName" value="Chromosome"/>
+      <property name="gff3.seqAssemblyVersion" value="B73_RefGen_v4"/>
+      <property name="gff3.taxonId" value="4577"/>
+      <property name="gff3.dataSourceName" value="Gramene"/>
+      <property name="gff3.dataSetTitle" value=" Ensembl(Gramene) gene annotations for B73_RefGen_v4"/>
+      <property name="src.data.dir" value="@DATALINK@/gff3/rejected_genes"/>
+    </source>
+
+
     <source name="maize-refseq-proteincoding-gff" type="refseq-proteincoding-gff" dump="true">
       <property name="gff3.taxonId" value="4577"/>
       <property name="gff3.seqClsName" value="Chromosome"/>
@@ -129,7 +146,7 @@
       <property name="src.data.dir" location="@DATALINK@/xref"/>
       <property name="taxonId" value="4577"/>
     </source>
-    <source name="maize-uniprot-to-refseq" type="uniprot" >
+      <source name="maize-uniprot-to-refseq" type="uniprot" >
       <property name="uniprot.organisms" value="4577"/>
       <property name="src.data.dir" location="@DATALINK@/dataset/uniprot"/>
       <property name="creatego" value="true"/>
