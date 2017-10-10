@@ -144,8 +144,8 @@ public class EnsemblhomologConverter extends BioFileConverter
             String gene2 = line[1];
 
             String ancestor = line[2];
-            String kind = line[3];
-            String confidence = line[4];
+          //  String kind = line[3];
+          //  String confidence = line[4];
 
 
             if (gene1.startsWith("Ensembl")) {
@@ -166,22 +166,22 @@ public class EnsemblhomologConverter extends BioFileConverter
             }
 
             // store homologues
-            processHomologue(refId1, refId2, ancestor, kind, confidence);
-            processHomologue(refId2, refId1, ancestor, kind, confidence);
+            processHomologue(refId1, refId2, ancestor);
+            processHomologue(refId2, refId1, ancestor);
             lastGene1 = gene1;
             lastGene2 = gene2;
         }
     }
 
     // save homologue pair
-    private void processHomologue(String gene1, String gene2, String ancestor, String kind, String confidence)
+    private void processHomologue(String gene1, String gene2, String ancestor)
         throws ObjectStoreException {
         Item homologue = createItem("Homologue");
         homologue.setReference("gene", gene1);
         homologue.setReference("homologue", gene2);
         homologue.setAttribute("lastCommonAncestor", ancestor);
-        homologue.setAttribute("type", kind);
-        homologue.setAttribute("confidenceScore", confidence);
+      //  homologue.setAttribute("type", kind);
+     //   homologue.setAttribute("confidenceScore", confidence);
         homologue.addToCollection("evidence", getEvidence());
        // homologue.setAttribute("type", "homologue");
         store(homologue);
