@@ -80,6 +80,13 @@ public class MaizeGffGFF3RecordHandler extends GFF3RecordHandler
                 String description = record.getAttributes().get("description").iterator().next();
                 feature.setAttribute("description", description);
             }
+           if (record.getAttributes().get("status") != null) {
+                String status = record.getAttributes().get("status").iterator().next();
+                feature.setAttribute("status", status);
+            }
+
+
+
         }
     }
 /*
