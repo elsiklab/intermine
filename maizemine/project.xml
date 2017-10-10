@@ -189,26 +189,11 @@
       <property name="src.data.dir.includes" value="protein2ipr.dat"/>
       <property name="protein2ipr.organisms" value="4577"/>
     </source>
-    <source name="biomart-atha" type="ensemblhomolog">
-       <property name="src.data.dir" location="@DATALINK@/ensembl-plant-biomart/atha/"/>
+    <source name="biomart" type="ensemblhomolog">
+       <property name="src.data.dir" location="@DATALINK@/ensembl-plant-biomart/"/>
        <property name="ensemblcompara.organisms" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 39947 4555 4565 4572 37682 15368 4513 4558"/>
        <property name="ensemblcompara.homologues" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 39947 4555 4565 4572 37682 15368 4513 4558"/>
     </source> 
-    <source name="biomart-ojap" type="ensemblhomolog">
-       <property name="src.data.dir" location="@DATALINK@/ensembl-plant-biomart/Ojap/"/>
-       <property name="ensemblcompara.organisms" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 39947 4555 4565 4572 37682 15368 4513 4558"/>
-       <property name="ensemblcompara.homologues" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 39947 4555 4565 4572 37682 15368 4513 4558"/>
-    </source>
-       <source name="biomart-oind" type="ensemblhomolog">
-       <property name="src.data.dir" location="@DATALINK@/ensembl-plant-biomart/Oind/"/>
-       <property name="ensemblcompara.organisms" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 39947 4555 4565 4572 37682 15368 4513 4558"/>
-       <property name="ensemblcompara.homologues" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 39947 4555 4565 4572 37682 15368 4513 4558"/>
-    </source>
-       <source name="biomart-zmay" type="ensemblhomolog">
-       <property name="src.data.dir" location="@DATALINK@/ensembl-plant-biomart/zmay/"/>
-       <property name="ensemblcompara.organisms" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 39947 4555 4565 4572 37682 15368 4513 4558"/>
-       <property name="ensemblcompara.homologues" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 39947 4555 4565 4572 37682 15368 4513 4558"/>
-    </source>
     <source name="biomart-paralogs" type="ensemblhomolog">
        <property name="src.data.dir" location="@DATALINK@/ensembl-plant-biomart/paralogs/"/>
        <property name="ensemblcompara.organisms" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 39947 4555 4565 4572 37682 15368 4513 4558"/>
