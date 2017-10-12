@@ -30,8 +30,8 @@ import org.intermine.objectstore.ObjectStoreException;
 public class RefSeqFeatureFastaLoaderTask extends FastaLoaderTask
 {
     private Map<String, Chromosome> chrMap = new HashMap<String, Chromosome>();
-    protected static final String HEADER_REGEX = ".\\S+:\\S+\\s\\S+:(\\S+\\s\\S+):(\\S+):([0-9]+-[0-9]+)\\s+(\\S+)\\s(\\S+)\\s\\S+=(\\S+)$";
-
+  //  protected static final String HEADER_REGEX = ".\\S+:\\S+\\s\\S+:(\\S+\\s\\S+):(\\S+):([0-9]+-[0-9]+)\\s+(\\S+)\\s(\\S+)\\s\\S+=(\\S+)$";
+    protected static final String HEADER_REGEX = ".+\\s+\\S+:(\\S+\\S+):(\\S+):([0-9]+:[0-9]+):(\\S+)\\s\\S+:(\\S+)\\s\\S+:(\\S+).+$";
     /**
      * Return a Chromosome object for the given item.
      * @param chromosomeId the id
