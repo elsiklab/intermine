@@ -21,6 +21,7 @@
 <class name="Gene" is-interface="true">
      <reference name="organism" referenced-type="Organism"/>
      <attribute name="primaryIdentifier" type="java.lang.String"/>
+     <attribute name="source" type="java.lang.String"/>
      <collection name="homologues" referenced-type="Homologue" reverse-reference="gene"/>
 </class>
     

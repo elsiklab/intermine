@@ -11,5 +11,6 @@
 </class>
 <class name="Gene" is-interface="true">
   <collection name="pathways" referenced-type="Pathway" reverse-reference="genes"/>
+  <attribute name="source" type="java.lang.String"/>
 </class>
 </classes>
