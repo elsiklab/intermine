@@ -38,8 +38,8 @@ import org.apache.tools.ant.BuildException;
  */
 public class MaizeCDSFastaLoaderTask extends MaizeFeatureFastaLoaderTask
 {
-    protected static final String HEADER_REGEX1 = ".+\\s+\\S+:(\\S+\\s\\S+):(\\S+):([0-9]+:[0-9]+):(\\S+)\\sgene:(\\S+)\\stranscript:(\\S+).+$";
-    protected static final String HEADER_REGEX2 = ".+\\s+\\S+:(\\S+\\s\\S+):(\\S+):([0-9]+:[0-9]+):(\\S+)\\sgene:(\\S+)\\s.+";
+    protected static final String HEADER_REGEX1 = "\\s+\\S+:(\\S+\\s\\S+):(\\S+):([0-9]+:[0-9]+):(\\S+)\\sgene:(\\S+)\\stranscript:(\\S+).+$";
+    protected static final String HEADER_REGEX2 = "\\s+\\S+:(\\S+\\s\\S+):(\\S+):([0-9]+:[0-9]+):(\\S+)\\sgene:(\\S+)\\s.+";
 
     private String classAttribute = "primaryIdentifier";
     private String suffix = "-CDS";
@@ -139,21 +139,20 @@ public class MaizeCDSFastaLoaderTask extends MaizeFeatureFastaLoaderTask
         String header = (String) annotation.getProperty("description");
         Pattern p1 = Pattern.compile(HEADER_REGEX1);
         Matcher m1 = p1.matcher(header);
-        String geneIdentifier = null;
-        String mrnaIdentifier = null;
-        if (m1.matches()) {
-            geneIdentifier = m1.group(5);
-            mrnaIdentifier = m1.group(6);
-        }
-        else {
-            Pattern p2 = Pattern.compile(HEADER_REGEX2);
-            Matcher m2 = p2.matcher(header);
-            if (m2.matches()) {
-                geneIdentifier = m2.group(5);
-                // assuming that the sequence name is the mrnaIdentifier
-                mrnaIdentifier = bioJavaSequence.getName();
-            }
-        }
+        String mrnaIdentifier = getIdentifier(bioJavaSequence);;
+//        if (m1.matches()) {
+//            geneIdentifier = m1.group(5);
+//            mrnaIdentifier = m1.group(6);
+//        }
+//        else {
+//            Pattern p2 = Pattern.compile(HEADER_REGEX2);
+//            Matcher m2 = p2.matcher(header);
+//            if (m2.matches()) {
+//                geneIdentifier = m2.group(5);
+//                // assuming that the sequence name is the mrnaIdentifier
+//                mrnaIdentifier = bioJavaSequence.getName();
+//            }
+//        }
 
         ObjectStore os = getIntegrationWriter().getObjectStore();
         Model model = os.getModel();
