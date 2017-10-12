@@ -210,7 +210,14 @@ public class EnsemblhomologConverter extends BioFileConverter
             }
             Item item = createItem("Gene");
             item.setAttribute(fieldName, newIdentifier);
+            if ("4577".equals(taxonId)) {
+            item.setAttribute("source","B73_RefGen_v4");
             item.setReference("organism", getOrganism(taxonId));
+            } else {
+             item.setReference("organism", getOrganism(taxonId));
+            }
+
+
             store(item);
             refId = item.getIdentifier();
             genes.put(newIdentifier, refId);
