@@ -31,6 +31,23 @@ import org.intermine.objectstore.query.PendingClob;
 import org.intermine.metadata.Util;
 import org.apache.tools.ant.BuildException;
 
+import java.lang.System;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.net.URLDecoder;
+import org.apache.commons.lang.StringUtils;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import org.intermine.metadata.Model;
+import org.intermine.metadata.StringUtil;
+import org.intermine.xml.full.Item;
+import java.util.Map;
+import java.util.Map.Entry;
 /**
  * A fasta loader that understand the headers of Maize fasta CDS fasta files and can make the
  * appropriate extra objects and references.
@@ -44,7 +61,7 @@ public class MaizeCDSFastaLoaderTask extends MaizeFeatureFastaLoaderTask
     private String classAttribute = "primaryIdentifier";
     private String suffix = "-CDS";
     private int storeCount = 0;
-
+    private String source;
     /**
      * {@inheritDoc}
      */
@@ -140,19 +157,17 @@ public class MaizeCDSFastaLoaderTask extends MaizeFeatureFastaLoaderTask
         Pattern p1 = Pattern.compile(HEADER_REGEX1);
         Matcher m1 = p1.matcher(header);
         String mrnaIdentifier = getIdentifier(bioJavaSequence);;
-//        if (m1.matches()) {
-//            geneIdentifier = m1.group(5);
-//            mrnaIdentifier = m1.group(6);
-//        }
-//        else {
-//            Pattern p2 = Pattern.compile(HEADER_REGEX2);
-//            Matcher m2 = p2.matcher(header);
-//            if (m2.matches()) {
-//                geneIdentifier = m2.group(5);
-//                // assuming that the sequence name is the mrnaIdentifier
-//                mrnaIdentifier = bioJavaSequence.getName();
-//            }
-//        }
+        if (m1.matches()) {
+        String dataSourceRaw = m1.group(1);
+        List<String> splitVal = new ArrayList<String>(Arrays.asList(StringUtil.split(dataSourceRaw, ":")));
+         source = splitVal.get(1);
+        }
+        else {
+           throw new RuntimeException("the source in  "
+                           + "MaizeCDSFastaLoaderTask.extraProcessing() is not properly "
+                                           + "edited" + bioEntity);
+
+        }
 
         ObjectStore os = getIntegrationWriter().getObjectStore();
         Model model = os.getModel();
@@ -163,10 +178,11 @@ public class MaizeCDSFastaLoaderTask extends MaizeFeatureFastaLoaderTask
                 + "MaizeCDSFastaLoaderTask.extraProcessing() is not a "
                 + "CDS: " + bioEntity);
             }
-
-            InterMineObject mrna = getMRNA(mrnaIdentifier, organism, model);
+    //      String source = "B73_RefGen_v3";
+            InterMineObject mrna = getMRNA(mrnaIdentifier,source, organism, model);
             if (mrna != null) {
                 bioEntity.setFieldValue("transcript", mrna);
+                bioEntity.setFieldValue("source", source );
             }
             Location loc = getLocationFromHeader(header, (SequenceFeature) bioEntity, organism);
             getDirectDataLoader().store(loc);
