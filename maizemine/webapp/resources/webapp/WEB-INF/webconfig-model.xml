@@ -251,12 +251,6 @@
   <reportdisplayers>
 
 
-    <reportdisplayer javaClass="org.thalemine.web.displayer.PhytomineOrthologDisplayer"
-                     jspName="model/phytomineOrthologDisplayer.jsp"
-                     replacesFields=""
-                     placement="Homology"
-                     types="Gene"/>
-
     
    <reportdisplayer javaClass="org.intermine.bio.web.displayer.GeneOntologyDisplayer"
                      jspName="model/geneOntologyDisplayer.jsp"
@@ -288,11 +282,12 @@
                      placement="Proteins"
                      types="Gene,Protein"/>
 
-    <reportdisplayer javaClass="org.intermine.bio.web.displayer.HomologueDisplayer"
+
+   <reportdisplayer javaClass="org.intermine.bio.web.displayer.HomologueDisplayer"
                      jspName="model/homologueDisplayer.jsp"
                      replacesFields="homologues"
                      placement="Homology"
-                     parameters="{'dataSets': []}"
+                     parameters="{'dataSets': ['Ensembl Compara']}"
                      types="Gene"/>
 
     <reportdisplayer javaClass="org.intermine.bio.web.displayer.CytoscapeNetworkDisplayer"
