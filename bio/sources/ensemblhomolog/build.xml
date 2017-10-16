@@ -1,5 +1,0 @@
-<project name="ensemblhomolog" default="default" basedir=".">
-  <description>build, test, package ensemblhomolog</description>
-  
-  <import file="../../../imbuild/source.xml"/>
-</project>
