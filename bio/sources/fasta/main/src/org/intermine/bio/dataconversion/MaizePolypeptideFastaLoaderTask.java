@@ -205,7 +205,7 @@ public class MaizePolypeptideFastaLoaderTask extends MaizeFeatureFastaLoaderTask
                     gene = geneIdMap.get(geneIdentifier);
                 }
                 else {
-                    gene = getGene(geneIdentifier, organism, model);
+                    gene = getGene(geneIdentifier, source, organism, model);
                 }
                 if(gene != null) {
                     bioEntity.setFieldValue("gene", gene);
@@ -227,7 +227,7 @@ public class MaizePolypeptideFastaLoaderTask extends MaizeFeatureFastaLoaderTask
                     mrna = mrnaIdMap.get(mrnaIdentifier);
                 }
                 else {
-                    mrna = getMRNA(mrnaIdentifier,source,  organism, model);
+                    mrna = getMRNA(mrnaIdentifier, source, organism, model);
                 }
                 if (mrna != null) {
                     bioEntity.setFieldValue("mrna", mrna);
