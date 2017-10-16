@@ -38,8 +38,8 @@ public class AdditionalChrIdentifiersConverter extends BioFileConverter
 {
     //
     protected static final Logger LOG = Logger.getLogger(AdditionalChrIdentifiersConverter.class);
-    private static final String DATASET_TITLE = "Ensembl gramene symbols and description";
-    private static final String DATA_SOURCE_NAME = "Ensembl gramene";
+    private static final String DATASET_TITLE = "Additional Chromosome Identifiers";
+    private static final String DATA_SOURCE_NAME = "Additional Chromosome Identifiers";
 
 
     /**
