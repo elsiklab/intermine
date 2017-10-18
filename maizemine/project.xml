@@ -8,6 +8,18 @@
     <source name="go" type="go">
       <property name="src.data.file" location="@DATA_LINK@/dataset/GO/go-basic.obo"/>
     </source>
+    <source name="biomart" type="ensembl-compara">
+      <property name="src.data.dir" location="@DATA_LINK@/dataset/ensembl-plant-biomart/"/>
+      <property name="ensemblcompara.version" value="Ensembl 36"/>
+      <property name="ensemblcompara.organisms" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 39947 4555 4565 4572 37682 15368 4513 4558"/>
+      <property name="ensemblcompara.homologues" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 39947 4555 4565 4572 37682 15368 4513 4558"/>
+    </source>
+    <source name="paralogs" type="paralogs">
+      <property name="src.data.dir" location="@DATA_LINK@/dataset/ensembl-plant-biomart-paralogs/"/>
+      <property name="ensemblcompara.version" value="Ensembl 36"/>
+      <property name="paralogs.organisms" value="4577"/>
+      <property name="paralogs.homologues" value="4577"/>
+    </source>
     <source name="maize-dna-v3-fasta" type="fasta" dump="true">
       <property name="fasta.className" value="org.intermine.model.bio.Chromosome"/>
       <property name="fasta.sequenceType" value="dna"/>
@@ -30,12 +42,9 @@
       <property name="fasta.includes" value="*.fa"/>
       <property name="src.data.dir" value="@DATA_LINK@/dataset/fasta/V4/"/>
     </source>
-
     <source name="additional_identifiers" type="additionalChrIdentifiers" dump="true">
       <property name="src.data.dir" value="@DATA_LINK@/dataset/fasta/additional_identifiers/"/>
     </source>
-
-
     <source name="maize-gene-model-v3-gff" type="maize-gff">
       <property name="gff3.seqClsName" value="Chromosome"/>
       <property name="gff3.seqAssemblyVersion" value="B73_RefGen_v3"/>
@@ -60,8 +69,6 @@
       <property name="gff3.dataSetTitle" value=" Ensembl(Gramene) gene annotations for B73_RefGen_v4"/>
       <property name="src.data.dir" value="@DATA_LINK@/dataset/gff3/rejected_genes"/>
     </source>
-
-
     <source name="maize-refseq-proteincoding-gff" type="refseq-proteincoding-gff" dump="true">
       <property name="gff3.taxonId" value="4577"/>
       <property name="gff3.seqClsName" value="Chromosome"/>
@@ -145,6 +152,26 @@
       <property name="src.data.dir" location="@DATA_LINK@/dataset/xref"/>
       <property name="taxonId" value="4577"/>
     </source>
+    <source name="kegg" type="kegg-pathway">
+      <property name="src.data.dir" location="@DATA_LINK@/dataset/KEGG_Genes/"/>
+      <property name="kegg.organisms" value="4577"/>
+    </source>
+    <!--<source name="kegg-compounds" type="kegg-compounds">-->
+    <!--<property name="src.data.dir" location="@DATA_LINK@/dataset/KEGG_compounds"/>-->
+    <!--<property name="src.data.dir.includes" value="*.tab"/>-->
+    <!--</source>-->
+    <source name="kegg-metadata" type="kegg-metadata">
+      <property name="src.data.dir" location="@DATA_LINK@/dataset/KEGG_Meta/"/>
+      <property name="src.data.dir.includes" value="*.tab"/>
+    </source>
+    <source name="reactome-gramene-pathway" type="reactomegramene">
+      <property name="src.data.dir" location="@DATA_LINK@/dataset/reactome_pathways"/>
+      <property name="reactomegramene.organisms" value="4577 3702"/>
+    </source>
+    <source name="corncyc" type="corncyc">
+      <property name="src.data.dir" location="@DATA_LINK@/dataset/corncyc"/>
+      <property name="corncyc.organisms" value="4577"/>
+    </source>
       <source name="maize-uniprot-to-refseq" type="uniprot" >
       <property name="uniprot.organisms" value="4577"/>
       <property name="src.data.dir" location="@DATA_LINK@/dataset/uniprot"/>
@@ -154,7 +181,6 @@
       <property name="loadfragments" value="false"/>
       <property name="loadtrembl" value="true"/>
     </source>
-
     <source name="maize-uniprot-to-ensembl" type="uniprot" >
       <property name="uniprot.organisms" value="4577"/>
       <property name="src.data.dir" location="@DATA_LINK@/dataset/uniprot"/>
@@ -164,7 +190,6 @@
       <property name="loadfragments" value="false"/>
       <property name="loadtrembl" value="true"/>
     </source>
-
     <source name="uniprot-keywords" type="uniprot-keywords" dump="true">
       <property name="src.data.dir" location="@DATA_LINK@/dataset/uniprot/keywlist/"/>
       <property name="src.data.dir.includes" value="keywlist.xml"/>
@@ -180,6 +205,10 @@
       <property name="fasta.sequenceType" value="protein" />
       <property name="fasta.loaderClassName" value="org.intermine.bio.dataconversion.UniProtFastaLoaderTask"/>
     </source>
+    <source name="go-annotation" type="go-annotation">
+      <property name="ontologyfile" location="@DATA_LINK@/dataset/GO/go-basic.obo"/>
+      <property name="src.data.dir" location="@DATA_LINK@/dataset/GO-annotation/"/>
+    </source>
     <source name="interpro" type="interpro">
       <property name="src.data.dir" location="@DATA_LINK@/dataset/interpro"/>
     </source>
@@ -188,49 +217,6 @@
       <property name="src.data.dir.includes" value="protein2ipr.dat"/>
       <property name="protein2ipr.organisms" value="4577"/>
     </source>
-     
-        <source name="biomart" type="ensembl-compara">
-            <property name="src.data.dir" location="@DATA_LINK@/dataset/ensembl-plant-biomart/"/>
-            <property name="ensemblcompara.version" value="Ensembl 36"/>
-            <property name="ensemblcompara.organisms" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 39947 4555 4565 4572 37682 15368 4513 4558"/>
-            <property name="ensemblcompara.homologues" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 39947 4555 4565 4572 37682 15368 4513 4558"/>
-        </source>
-        <source name="paralogs" type="paralogs">
-            <property name="src.data.dir" location="@DATA_LINK@/dataset/ensembl-plant-biomart-paralogs/"/>
-            <property name="ensemblcompara.version" value="Ensembl 36"/>
-            <property name="paralogs.organisms" value="4577"/>
-            <property name="paralogs.homologues" value="4577"/>
-        </source>
-
-    <source name="kegg" type="kegg-pathway">
-      <property name="src.data.dir" location="@DATA_LINK@/dataset/KEGG_Genes/"/>
-      <property name="kegg.organisms" value="4577"/>
-    </source>
-
-    <!--<source name="kegg-compounds" type="kegg-compounds">-->
-      <!--<property name="src.data.dir" location="@DATA_LINK@/dataset/KEGG_compounds"/>-->
-      <!--<property name="src.data.dir.includes" value="*.tab"/>-->
-    <!--</source>-->
-
-    <source name="kegg-metadata" type="kegg-metadata">
-      <property name="src.data.dir" location="@DATA_LINK@/dataset/KEGG_Meta/"/>
-      <property name="src.data.dir.includes" value="*.tab"/>
-    </source>
-
-    <source name="reactome-gramene-pathway" type="reactomegramene">
-      <property name="src.data.dir" location="@DATA_LINK@/dataset/reactome_pathways"/>
-      <property name="reactomegramene.organisms" value="4577 3702"/>
-    </source>
-    <source name="corncyc" type="corncyc">
-      <property name="src.data.dir" location="@DATA_LINK@/dataset/corncyc"/>
-      <property name="corncyc.organisms" value="4577"/>
-    </source>
-   
-           <source name="go-annotation" type="go-annotation">
-            <property name="ontologyfile" location="@DATA_LINK@/dataset/GO/go-basic.obo"/>
-            <property name="src.data.dir" location="@DATA_LINK@/dataset/GO-annotation/"/>
-        </source>
-
     <source name="entrez-organism" type="entrez-organism" dump="true">
       <property name="src.data.file" location="build/organisms.xml"/>
     </source>
