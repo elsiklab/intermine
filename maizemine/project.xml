@@ -121,6 +121,7 @@
       <property name="fasta.className" value="org.intermine.model.bio.Polypeptide"/>
       <property name="fasta.loaderClassName" value="org.intermine.bio.dataconversion.MaizePolypeptideFastaLoaderTask"/>
       <property name="fasta.sequenceType" value="protein" />
+      <property name="fasta.geneSource" value="AGPv3"/>
       <property name="fasta.dataSourceName" value="Gramene"/>
       <property name="fasta.dataSetTitle" value="Protein sequence from Gramene for B73_RefGen_v3"/>
       <property name="fasta.taxonId" value="4577"/>
@@ -131,6 +132,7 @@
       <property name="fasta.className" value="org.intermine.model.bio.Polypeptide"/>
       <property name="fasta.loaderClassName" value="org.intermine.bio.dataconversion.MaizePolypeptideFastaLoaderTask"/>
       <property name="fasta.sequenceType" value="protein" />
+      <property name="fasta.geneSource" value="AGPv4"/>
       <property name="fasta.dataSourceName" value="Gramene"/>
       <property name="fasta.dataSetTitle" value="Protein sequences from Ensembl(Gramene) for B73_RefGen_v4"/>
       <property name="fasta.taxonId" value="4577"/>

@@ -42,7 +42,8 @@
                 dataSourceName="${fasta.dataSourceName}"
                 sequenceType="${fasta.sequenceType}"
                 fastaTaxonId="${fasta.taxonId}"
-                assemblyVersion="${fasta.assemblyVersion}">
+                assemblyVersion="${fasta.assemblyVersion}"
+                geneSource="${fasta.geneSource}">
       <fileset dir="${src.data.dir}" includes="${fasta.includes}"/>
     </read-fasta>
   </target>

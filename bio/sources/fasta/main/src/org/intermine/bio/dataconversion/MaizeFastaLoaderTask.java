@@ -54,6 +54,7 @@ public class MaizeFastaLoaderTask extends FileDirectDataLoaderTask
     private String sequenceType = "dna";
     private String classAttribute = "primaryIdentifier";
     private String assemblyVersion = null;
+    private String geneSource = null;
     private Organism org;
     private String className;
     private int storeCount = 0;
@@ -101,6 +102,16 @@ public class MaizeFastaLoaderTask extends FileDirectDataLoaderTask
      */
     public void setAssemblyVersion(String assemblyVersion) {
         this.assemblyVersion = assemblyVersion;
+    }
+
+    public String getGeneSource() {
+        return geneSource;
+    }
+
+    public void setGeneSource(String geneSource) {
+        if (! "${fasta.geneSource}".equals(geneSource)) {
+            this.geneSource = geneSource;
+        }
     }
 
     /**

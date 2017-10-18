@@ -157,18 +157,6 @@ public class MaizeCDSFastaLoaderTask extends MaizeFeatureFastaLoaderTask
         Pattern p1 = Pattern.compile(HEADER_REGEX1);
         Matcher m1 = p1.matcher(header);
         String mrnaIdentifier = getIdentifier(bioJavaSequence);;
-        if (m1.matches()) {
-        String dataSourceRaw = m1.group(1);
-        List<String> splitVal = new ArrayList<String>(Arrays.asList(StringUtil.split(dataSourceRaw, ":")));
-         source = splitVal.get(1);
-        }
-        else {
-           throw new RuntimeException("the source in  "
-                           + "MaizeCDSFastaLoaderTask.extraProcessing() is not properly "
-                                           + "edited" + bioEntity);
-
-        }
-
         ObjectStore os = getIntegrationWriter().getObjectStore();
         Model model = os.getModel();
         if (model.hasClassDescriptor(model.getPackageName() + ".CDS")) {
@@ -181,7 +169,6 @@ public class MaizeCDSFastaLoaderTask extends MaizeFeatureFastaLoaderTask
             InterMineObject mrna = getMRNA(mrnaIdentifier, organism, model);
             if (mrna != null) {
                 bioEntity.setFieldValue("transcript", mrna);
-                bioEntity.setFieldValue("source", source );
             }
             Location loc = getLocationFromHeader(header, (SequenceFeature) bioEntity, organism);
             getDirectDataLoader().store(loc);

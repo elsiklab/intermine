@@ -57,6 +57,7 @@ public class FastaLoaderTask extends FileDirectDataLoaderTask
     private String className;
     private int storeCount = 0;
     private String dataSourceName = null;
+    private String geneSource = null;
     private DataSource dataSource = null;
     private String fastaTaxonId = null;
     private Map<String, Integer> taxonIds = new HashMap<String, Integer>();
@@ -146,6 +147,16 @@ public class FastaLoaderTask extends FileDirectDataLoaderTask
      */
     public void setDataSourceName(String dataSourceName) {
         this.dataSourceName = dataSourceName;
+    }
+
+    public void setGeneSource(String geneSource) {
+        if (! "${fasta.geneSource}".equals(geneSource)) {
+            this.geneSource = geneSource;
+        }
+    }
+
+    public String getGeneSource() {
+        return this.geneSource;
     }
 
     /**

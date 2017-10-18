@@ -63,7 +63,7 @@ public class MaizePolypeptideFastaLoaderTask extends MaizeFeatureFastaLoaderTask
     private int storeCount = 0;
     private String suffix = "-PEP";
     private String suffixPattern = "\\S+(_P\\d\\d)$";
-    private String source;
+    private String source = null;
     // hashmap to keep track of InterMineObject of type Gene
     private Map<String, InterMineObject> geneIdMap = new HashMap<String, InterMineObject>();
     // hashmap to keep track of InterMineObject of type MRNA
@@ -174,15 +174,11 @@ public class MaizePolypeptideFastaLoaderTask extends MaizeFeatureFastaLoaderTask
         String header = (String) annotation.getProperty("description");
         String regexp =  "\\s+\\S+:(\\S+\\s\\S+):(\\S+):([0-9]+:[0-9]+):(\\S+)\\sgene:(\\S+)\\stranscript:(\\S+).+$";
       //  >GRMZM5G816453_P01 pep:known chromosome:B73_RefGen_v3:Mt:8752:9915:1 gene:GRMZM5G816453 transcript:GRMZM5G816453_T01 description:"protein"
-
         Pattern p = Pattern.compile(regexp);
         Matcher m = p.matcher(header);
         if (m.matches()) {
             geneIdentifier = m.group(5);
             mrnaIdentifier = m.group(6);
-            String dataSourceRaw = m.group(1);
-            List<String> splitVal = new ArrayList<String>(Arrays.asList(StringUtil.split(dataSourceRaw, ":")));
-            source = splitVal.get(1);
         }
 
         ObjectStore os = getIntegrationWriter().getObjectStore();
@@ -201,7 +197,7 @@ public class MaizePolypeptideFastaLoaderTask extends MaizeFeatureFastaLoaderTask
                     gene = geneIdMap.get(geneIdentifier);
                 }
                 else {
-                    gene = getGene(geneIdentifier, source, organism, model);
+                    gene = getGene(geneIdentifier, getGeneSource(), organism, model);
                 }
                 if(gene != null) {
                     bioEntity.setFieldValue("gene", gene);
