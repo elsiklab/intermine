@@ -150,6 +150,7 @@ public class RefSeqProteinFastaLoaderTask extends RefSeqFeatureFastaLoaderTask {
 
         String geneIdentifier = null;
         String mrnaIdentifier = null;
+        String source = "RefSeq";
         Annotation annotation = bioJavaSequence.getAnnotation();
         String header = (String) annotation.getProperty("description");
         String regexp = ".(\\S+)\\s(\\S+)";
@@ -172,7 +173,7 @@ public class RefSeqProteinFastaLoaderTask extends RefSeqFeatureFastaLoaderTask {
             }
 
             if (geneIdentifier != null) {
-                InterMineObject gene = getGene(geneIdentifier, organism, model);
+                InterMineObject gene = getGene(geneIdentifier, source, organism, model);
                 // setting the 'geneIdentifier' attribute for class 'Polypeptide'
                 bioEntity.setFieldValue("geneIdentifier", geneIdentifier);
                 // setting the 'gene' reference for class 'Polypeptide'
@@ -219,7 +220,7 @@ public class RefSeqProteinFastaLoaderTask extends RefSeqFeatureFastaLoaderTask {
      * {@inheritDoc}
      */
     @Override
-    protected InterMineObject getGene(String identifier, Organism organism, Model model) throws ObjectStoreException {
+    protected InterMineObject getGene(String identifier, String source, Organism organism, Model model) throws ObjectStoreException {
         // overriding getGene method to get more control over how and when the Gene objects are stored
         InterMineObject gene = null;
         if (geneIdMap.containsKey(identifier)) {
@@ -233,6 +234,7 @@ public class RefSeqProteinFastaLoaderTask extends RefSeqFeatureFastaLoaderTask {
                 @SuppressWarnings("unchecked") Class<? extends InterMineObject> geneCls = (Class<? extends InterMineObject>) model.getClassDescriptorByName("Gene").getType();
                 gene = getDirectDataLoader().createObject(geneCls);
                 gene.setFieldValue("primaryIdentifier", identifier);
+                gene.setFieldValue("source", source);
                 gene.setFieldValue("organism", organism);
                 geneIdMap.put(identifier, gene);
             }

@@ -40,7 +40,7 @@ import org.intermine.metadata.Util;
 public class RefSeqCDSFastaLoaderTask extends RefSeqFeatureFastaLoaderTask
 {
 
-    protected static final String HEADER_REGEX = ".\\S+:\\S+\\s\\S+:(\\S+\\s\\S+):(\\S+):([0-9]+-[0-9]+)\\s+(\\S+)\\s(\\S+)\\s\\S+=(\\S+)$";
+    protected static final String HEADER_REGEX = "\\s\\S+:\\S+\\s\\S+:(\\S+):(\\S+):([0-9]+-[0-9]+)\\s+(\\S+)\\s(\\S+)\\s\\S+=(\\S+)$";
 
     private String classAttribute = "primaryIdentifier";
     private String suffix = "-CDS";

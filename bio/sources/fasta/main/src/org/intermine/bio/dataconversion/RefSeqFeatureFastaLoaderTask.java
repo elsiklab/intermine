@@ -168,7 +168,7 @@ public class RefSeqFeatureFastaLoaderTask extends FastaLoaderTask
         }
         return mrna;
     }
-      protected InterMineObject getGene(String identifier, Organism organism, Model model)
+      protected InterMineObject getGene(String identifier, String source, Organism organism, Model model)
         throws ObjectStoreException {
         InterMineObject gene = null;
         if (model.hasClassDescriptor(model.getPackageName() + ".Gene")) {
@@ -176,6 +176,7 @@ public class RefSeqFeatureFastaLoaderTask extends FastaLoaderTask
                 (Class<? extends InterMineObject>) model.getClassDescriptorByName("Gene").getType();
             gene = getDirectDataLoader().createObject(geneCls);
             gene.setFieldValue("primaryIdentifier", identifier);
+            gene.setFieldValue("source", source);
             gene.setFieldValue("organism", organism);
             getDirectDataLoader().store(gene);
         }
