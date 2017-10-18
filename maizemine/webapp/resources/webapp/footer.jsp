@@ -45,19 +45,6 @@
 <div class="body bottom-footer">
 
     <ul class="footer-links">
-        <c:set value="${WEB_PROPERTIES['header.links']}" var="headerLinks"/>
-        <!-- web properties -->
-        <c:forEach var="entry" items="${headerLinks}" varStatus="status">
-            <c:set value="header.links.${entry}" var="linkProp"/>
-            <c:choose>
-                <c:when test="${!empty WEB_PROPERTIES[linkProp]}">
-                    <li><a href="${WEB_PROPERTIES[linkProp]}">${entry}</a></li>
-                </c:when>
-                <c:otherwise>
-                    <li><a href="${WEB_PROPERTIES['project.sitePrefix']}/${entry}.shtml">${entry}</a></li>
-                </c:otherwise>
-            </c:choose>
-        </c:forEach>
 
     </ul>
 
