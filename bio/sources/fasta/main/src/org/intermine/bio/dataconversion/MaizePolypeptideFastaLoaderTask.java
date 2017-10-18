@@ -179,14 +179,10 @@ public class MaizePolypeptideFastaLoaderTask extends MaizeFeatureFastaLoaderTask
         Matcher m = p.matcher(header);
         if (m.matches()) {
             geneIdentifier = m.group(5);
-            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" +geneIdentifier);
             mrnaIdentifier = m.group(6);
-            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" +mrnaIdentifier);
-
-             String dataSourceRaw = m.group(1);
-             List<String> splitVal = new ArrayList<String>(Arrays.asList(StringUtil.split(dataSourceRaw, ":")));
-             source = splitVal.get(1);
-             System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + source);
+            String dataSourceRaw = m.group(1);
+            List<String> splitVal = new ArrayList<String>(Arrays.asList(StringUtil.split(dataSourceRaw, ":")));
+            source = splitVal.get(1);
         }
 
         ObjectStore os = getIntegrationWriter().getObjectStore();
@@ -227,7 +223,7 @@ public class MaizePolypeptideFastaLoaderTask extends MaizeFeatureFastaLoaderTask
                     mrna = mrnaIdMap.get(mrnaIdentifier);
                 }
                 else {
-                    mrna = getMRNA(mrnaIdentifier, source, organism, model);
+                    mrna = getMRNA(mrnaIdentifier, organism, model);
                 }
                 if (mrna != null) {
                     bioEntity.setFieldValue("mrna", mrna);
