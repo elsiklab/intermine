@@ -166,7 +166,7 @@ public class MaizeCDSFastaLoaderTask extends MaizeFeatureFastaLoaderTask
                 + "MaizeCDSFastaLoaderTask.extraProcessing() is not a "
                 + "CDS: " + bioEntity);
             }
-            InterMineObject mrna = getMRNA(mrnaIdentifier, organism, model);
+            InterMineObject mrna = getMRNA(mrnaIdentifier, getGeneSource(), organism, model);
             if (mrna != null) {
                 bioEntity.setFieldValue("transcript", mrna);
             }
