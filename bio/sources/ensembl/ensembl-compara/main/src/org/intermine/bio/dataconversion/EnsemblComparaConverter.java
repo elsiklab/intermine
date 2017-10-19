@@ -211,7 +211,7 @@ public class EnsemblComparaConverter extends BioFileConverter
             Item item = createItem("Gene");
             item.setAttribute(fieldName, newIdentifier);
             if ("4577".equals(taxonId)) {
-            item.setAttribute("source","B73_RefGen_v4");
+            item.setAttribute("source","Ensembl (Gramene)");
             } 
             item.setReference("organism", getOrganism(taxonId));
             store(item);

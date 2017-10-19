@@ -212,11 +212,9 @@ public class CorncycConverter extends BioFileConverter
             gene = createItem("Gene");
             gene.setAttribute(config.get(organism)[1], identifier);
             if ("4577".equals(taxonId)) {
-            gene.setAttribute("source","B73_RefGen_v4");
-            gene.setReference("organism", getOrganism(taxonId));
-            } else {
-             gene.setReference("organism", getOrganism(taxonId));
+            gene.setAttribute("source","AGPv4");
             }
+             gene.setReference("organism", getOrganism(taxonId));
             gene.addCollection(referenceList);
             geneItems.put(identifier, gene);
             store(gene);

@@ -213,10 +213,8 @@ public class KeggPathwayConverter extends BioFileConverter
             gene.setAttribute(config.get(organism)[1], identifier);
             if ("4577".equals(taxonId)) {
             gene.setAttribute("source","RefSeq");
+            } 
             gene.setReference("organism", getOrganism(taxonId));
-            } else {
-             gene.setReference("organism", getOrganism(taxonId));
-            }
             gene.addCollection(referenceList);
             geneItems.put(identifier, gene);
             store(gene);
