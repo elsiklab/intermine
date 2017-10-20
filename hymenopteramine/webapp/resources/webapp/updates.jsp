@@ -12,7 +12,7 @@
 <body>
 
 
-<h1>HymenopteraMine 1.3 Updates</h1>
+<h2>HymenopteraMine 1.3 Updates</h2>
 
 <!DOCTYPE html>
 <html>
@@ -41,49 +41,41 @@ tr:nth-child(even) {
   <tr>
     <th>Date</th>
     <th>Edits and Updates</th>
-    <th>Notes</th>
   </tr>
   <tr>
     <td>September 2017</td>
-    <td>KEGG data set-July 2017 release</td>
-    <td></td>
+    <td>KEGG data set-July 2017 release added</td>
   </tr>
   <tr>
     <td>September 2017</td>
-    <td>Ensembl Metazoa release 36 - August 2017</td>
-    <td></td>
-  </tr>  
+    <td>Ensembl Metazoa release 36 - August 2017 added</td>
+  </tr> 
+    <tr>
+    <td>September 2017</td>
+    <td> GCF_000143395.1 Assembly and RefSeq gene set for Atta cephalotes(Attacep1.0) added</td>
+  </tr> 
   <tr>
     <td>September 2017</td>
-    <td> RefSeq gene dataset for Apis cerana</td>
-    <td></td>
+    <td> GCF_001442555.1 Assembly and RefSeq gene set for Apis cerana(ACSNU-2.0) added</td>
   </tr>
   <tr>
     <td>September 2017</td>
-    <td> RefSeq gene dataset for Ceratina calcarata</td>
-    <td></td>
+    <td> GCF_001652005.1 Assembly and RefSeq gene set for Ceratina calcarata(ASM165200v1) added</td>
   </tr>
   <tr>
     <td>September 2017</td>
-    <td> RefSeq gene dataset for Monomorium pharaonis</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>September 2017</td>
-    <td> RefSeq gene dataset for Atta cephalotes</td>
-    <td></td>
+    <td> GCF_000980195.1 Assembly and RefSeq gene set for Monomorium pharaonis(M.pharaonis_V2.0) added </td>
   </tr>
 
 
 
 </table>
 <br>
-<code>HymenopteraMine has been updated to the latest version 1.3. Please see the data sources page for a full list of data and their versions. 
+<p>HymenopteraMine has been updated to the latest version 1.3. Please see the data sources page for a full list of data and their versions. 
 <br>
+If you have any questions, please see our docs and youtube videos. Please do not hesitate to contact us should you require any further assistance. For all types of help and feedback email hymenopteragenomedatabase@gmail.com</p><br>
 <br>
-If you have any questions, please see our docs and youtube videos. Please do not hesitate to contact us should you require any further assistance. For all types of help and feedback email hymenopteragenomedatabase@gmail.com</code><br>
-
-<h1>HymenopteraMine 1.2 Updates</h1>
+<h2>HymenopteraMine 1.2 Updates</h2>
 
 </body>
 </html>
