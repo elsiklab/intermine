@@ -30,7 +30,7 @@
     <intro-text>
       Alias and DBxref
     </intro-text>
-    <tile-name>model/</tile-name>
+    <tile-name>model/alias.jsp</tile-name>
     <aspect-source name="Alias and DBxref"/>
   </aspect>
 
@@ -76,7 +76,7 @@
     <intro-text>
       Entire Gene Set
     </intro-text>
-    <tile-name>model/</tile-name>
+    <tile-name>model/entiregeneset.jsp</tile-name>
     <aspect-source name="Entire Gene Set"/>
   </aspect>
 
