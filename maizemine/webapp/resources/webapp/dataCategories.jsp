@@ -25,7 +25,7 @@
     <td>
         <p><i>Z. mays</i></p>
     </td>
-    <td>B73_RefGen_v4-Ensembl(Gramene)</td>
+    <td>AGPv4</td>
     <td><p>Lawrence et al - PubMed <a href=https://www.ncbi.nlm.nih.gov/pubmed/14681441>14681441 </a></p></td>
     <td> <a href="http://www.maizegdb.org/assembly#downloads">maizeGDB Genomes</a></td>
   </tr>
@@ -33,14 +33,14 @@
   <tr>
     <td>Maize Community Gene Set</td>
     <td> <i>Z. mays</i> </td>
-    <td>B73_RefGen_v3</td>
+    <td>AGPv3</td>
     <td><p>Lawrence et al - PubMed <a href=https://www.ncbi.nlm.nih.gov/pubmed/14681441>14681441 </a></p></td>
     <td><a href="http://www.maizegdb.org/assembly#downloads">maizeGDB Genomes</a></td>
   </tr>
     <tr>
      <td>NCBI Annotation (RefSeq and Gene)</td>
     <td> <i>Z. mays</i> </td>
-    <td>B73_RefGen_v4</td>
+    <td>RefSeq</td>
     <td><p>Lawrence et al - PubMed <a href=https://www.ncbi.nlm.nih.gov/pubmed/14681441>14681441 </a></p></td>
     <td><a href="ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/005/005/GCF_000005005.2_B73_RefGen_v4">NCBI ftp</a></td>
   </tr>
