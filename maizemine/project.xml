@@ -112,7 +112,7 @@
       <property name="fasta.taxonId" value="4577"/>
       <property name="fasta.className" value="org.intermine.model.bio.CDS"/>
       <property name="fasta.classAttribute" value="primaryIdentifier"/>
-      <property name="fasta.dataSourceName" value="RefSeq"/>
+      <property name="fasta.geneSource" value="RefSeq"/>
       <property name="fasta.dataSourceName" value="RefSeq"/>
       <property name="fasta.dataSetTitle" value="CDS sequences from NCBI for B73_RefGen_v4"/>
       <property name="src.data.dir" location="@DATA_LINK@/CDS/RefSeq"/>
