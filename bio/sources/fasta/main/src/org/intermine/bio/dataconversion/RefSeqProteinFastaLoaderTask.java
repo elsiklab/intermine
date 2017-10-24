@@ -193,7 +193,7 @@ public class RefSeqProteinFastaLoaderTask extends RefSeqFeatureFastaLoaderTask {
 
             }
             if (mrnaIdentifier != null) {
-                InterMineObject mrna = getMRNA(mrnaIdentifier, organism, model);
+                InterMineObject mrna = getMRNA(mrnaIdentifier, source, organism, model);
                 // setting the 'mrnaIdentifier' attribute for class 'Polypeptide'
                 bioEntity.setFieldValue("mrnaIdentifier", mrnaIdentifier);
                 // setting the 'mrna' reference for class 'Polypeptide'
@@ -246,7 +246,7 @@ public class RefSeqProteinFastaLoaderTask extends RefSeqFeatureFastaLoaderTask {
      * {@inheritDoc}
      */
     @Override
-    protected InterMineObject getMRNA(String mrnaIdentifier, Organism organism, Model model) throws ObjectStoreException {
+    protected InterMineObject getMRNA(String mrnaIdentifier, String source, Organism organism, Model model) throws ObjectStoreException {
         // overriding getMRNA method to get more control over how and when the MRNA objects are stored
         InterMineObject mrna = null;
         if (mrnaIdMap.containsKey(mrnaIdentifier)) {
@@ -260,6 +260,7 @@ public class RefSeqProteinFastaLoaderTask extends RefSeqFeatureFastaLoaderTask {
                 @SuppressWarnings("unchecked") Class<? extends InterMineObject> mrnaCls = (Class<? extends InterMineObject>) model.getClassDescriptorByName("MRNA").getType();
                 mrna = getDirectDataLoader().createObject(mrnaCls);
                 mrna.setFieldValue("primaryIdentifier", mrnaIdentifier);
+                mrna.setFieldValue("source", source);
                 mrna.setFieldValue("organism", organism);
                 mrnaIdMap.put(mrnaIdentifier, mrna);
             }

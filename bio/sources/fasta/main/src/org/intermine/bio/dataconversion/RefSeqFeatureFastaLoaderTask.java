@@ -156,13 +156,14 @@ public class RefSeqFeatureFastaLoaderTask extends FastaLoaderTask
      * @return an InterMineObject representing an MRNA or null of MRNA not in the data model
      * @throws ObjectStoreException if problem storing
      */
-    protected InterMineObject getMRNA(String mrnaIdentifier, Organism organism, Model model) throws ObjectStoreException {
+    protected InterMineObject getMRNA(String mrnaIdentifier, String source, Organism organism, Model model) throws ObjectStoreException {
         InterMineObject mrna = null;
         if (model.hasClassDescriptor(model.getPackageName() + ".MRNA")) {
             @SuppressWarnings("unchecked") Class<? extends InterMineObject> mrnaCls =
                 (Class<? extends InterMineObject>) model.getClassDescriptorByName("MRNA").getType();
             mrna = getDirectDataLoader().createObject(mrnaCls);
             mrna.setFieldValue("primaryIdentifier", mrnaIdentifier);
+            mrna.setFieldValue("source", source);
             mrna.setFieldValue("organism", organism);
             getDirectDataLoader().store(mrna);
         }
