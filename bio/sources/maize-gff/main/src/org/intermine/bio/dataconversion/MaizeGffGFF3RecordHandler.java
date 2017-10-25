@@ -84,7 +84,10 @@ public class MaizeGffGFF3RecordHandler extends GFF3RecordHandler
                 String status = record.getAttributes().get("status").iterator().next();
                 feature.setAttribute("status", status);
             }
-
+           if (record.getAttributes().get("biotype") != null) {
+                String biotype = record.getAttributes().get("biotype").iterator().next();
+                feature.setAttribute("biotype", biotype);
+            }
 
 
         }
