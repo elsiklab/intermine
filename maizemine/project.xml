@@ -187,7 +187,16 @@
       <property name="loadfragments" value="false"/>
       <property name="loadtrembl" value="true"/>
     </source>
-    <source name="maize-uniprot-to-ensembl" type="uniprot" >
+    <source name="maize-uniprot-to-gramene" type="uniprot" >
+      <property name="uniprot.organisms" value="4577"/>
+      <property name="src.data.dir" location="@DATA@/uniprot"/>
+      <property name="creatego" value="true"/>
+      <property name="creategenes" value="true"/>
+      <property name="allowduplicates" value="false"/>
+      <property name="loadfragments" value="false"/>
+      <property name="loadtrembl" value="true"/>
+    </source>
+    <source name="maize-uniprot-to-ensemblplants" type="uniprot" >
       <property name="uniprot.organisms" value="4577"/>
       <property name="src.data.dir" location="@DATA@/uniprot"/>
       <property name="creatego" value="true"/>
