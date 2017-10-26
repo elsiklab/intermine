@@ -961,7 +961,6 @@ public class UniprotConverter extends BioDirectoryConverter
                     for (String goTerm : values) {
                         Item goEvidence = null;
                         String evidenceCodeString = entry.getGOEvidence(goTerm);
-                        System.out.println("EVIDENCE CODE STRING: " + evidenceCodeString);
                         String code = getGOEvidenceCode(evidenceCodeString);
                         goEvidence = createItem("GOEvidence");
                         goEvidence.setReference("code", code);
@@ -1065,6 +1064,11 @@ public class UniprotConverter extends BioDirectoryConverter
                 String taxId, String uniqueIdentifierField) {
             String identifier = resolveGene(taxId, geneIdentifier);
             if (identifier == null) {
+                return null;
+            }
+
+            if (identifier.startsWith("GRMZM")) {
+                System.out.println("ignoring GRMZM gene: " + identifier);
                 return null;
             }
 
