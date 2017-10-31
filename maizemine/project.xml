@@ -8,6 +8,10 @@
     <source name="go" type="go">
       <property name="src.data.file" location="@DATA@/GO/go-basic.obo"/>
     </source>
+   <source name="evidence-ontology" type="evidence-ontology">
+    <property name="src.data.file" location="@DATA@/ECO/eco.obo"/>
+  </source>
+
     <source name="biomart" type="ensembl-compara">
       <property name="src.data.dir" location="@DATA@/ensembl-plant-biomart/"/>
       <property name="ensemblcompara.version" value="Ensembl 36"/>
@@ -170,13 +174,13 @@
       <property name="src.data.dir" location="@DATA@/KEGG_Meta/"/>
       <property name="src.data.dir.includes" value="*.tab"/>
     </source>
-    <source name="reactome-gramene-pathway" type="reactomegramene">
-      <property name="src.data.dir" location="@DATA@/reactome_pathways"/>
-      <property name="reactomegramene.organisms" value="4577 3702"/>
-    </source>
     <source name="corncyc" type="corncyc">
       <property name="src.data.dir" location="@DATA@/corncyc"/>
       <property name="corncyc.organisms" value="4577"/>
+    </source>
+    <source name="reactome-gramene-pathway" type="reactomegramene">
+      <property name="src.data.dir" location="@DATA@/reactome_pathways"/>
+      <property name="reactomegramene.organisms" value="4577 3702"/>
     </source>
       <source name="maize-uniprot-to-refseq" type="uniprot" >
       <property name="uniprot.organisms" value="4577"/>
