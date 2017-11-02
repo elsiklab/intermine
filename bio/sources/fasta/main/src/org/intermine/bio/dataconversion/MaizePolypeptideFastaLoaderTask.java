@@ -220,6 +220,7 @@ public class MaizePolypeptideFastaLoaderTask extends MaizeFeatureFastaLoaderTask
                 }
                 else {
                     mrna = getMRNA(mrnaIdentifier, getGeneSource(), organism, model);
+                    mrna.setFieldValue("proteinIdentifier", bioEntity.getPrimaryIdentifier());
                 }
                 if (mrna != null) {
                     bioEntity.setFieldValue("mrna", mrna);
