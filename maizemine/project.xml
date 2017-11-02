@@ -28,6 +28,7 @@
       <property name="paralogs.organisms" value="4577"/>
       <property name="paralogs.homologues" value="4577"/>
     </source>
+
     <source name="maize-dna-v3-fasta" type="fasta" dump="true">
       <property name="fasta.className" value="org.intermine.model.bio.Chromosome"/>
       <property name="fasta.sequenceType" value="dna"/>
@@ -185,6 +186,14 @@
     <source name="corncyc" type="corncyc">
       <property name="src.data.dir" location="@DATA@/corncyc"/>
       <property name="corncyc.organisms" value="4577"/>
+    </source>
+    <source name="symbol" type="symbols">
+      <property name="src.data.dir" location="@DATA@/Symbols/"/>
+      <property name="src.data.dir.includes" value="*.tab"/>
+    </source>
+       <source name="description" type="description">
+      <property name="src.data.dir" location="@DATA@/Description/"/>
+      <property name="src.data.dir.includes" value="*.tab"/>
     </source>
       <source name="maize-uniprot-to-refseq" type="uniprot" >
       <property name="uniprot.organisms" value="4577"/>

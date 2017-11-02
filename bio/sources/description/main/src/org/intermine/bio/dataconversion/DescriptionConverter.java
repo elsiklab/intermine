@@ -33,10 +33,10 @@ import org.intermine.util.FormattedTextParser;
  *
  * @author
  */
-public class SymbolsConverter extends BioFileConverter
+public class DescriptionConverter extends BioFileConverter
 {
     //
-    protected static final Logger LOG = Logger.getLogger(SymbolsConverter.class);
+    protected static final Logger LOG = Logger.getLogger(DescriptionConverter.class);
   //  private String orgRefId;
     private static final String DATASET_TITLE = "Ensembl gramene symbols and description";
     private static final String DATA_SOURCE_NAME = "Ensembl gramene";
@@ -48,7 +48,7 @@ public class SymbolsConverter extends BioFileConverter
      * @param writer the ItemWriter used to handle the resultant items
      * @param model the Model
      */
-    public SymbolsConverter(ItemWriter writer, Model model) {
+    public DescriptionConverter(ItemWriter writer, Model model) {
         super(writer, model, DATA_SOURCE_NAME, DATASET_TITLE);
     }
 
@@ -73,13 +73,13 @@ public class SymbolsConverter extends BioFileConverter
 
             System.out.println(line.toString());
             String geneId = line[0];
-            String symbol = line[1];
-           // String description = line[2];
+           // String symbol = line[1];
+            String description = line[1];
 
             Item item = createItem("Gene");
          //   item.setReference("organism", organismReferenceId);
-         //   if (!description.isEmpty()) { item.setAttribute("description", description); }
-            if (!symbol.isEmpty()) { item.setAttribute("symbol", symbol); }
+            if (!description.isEmpty()) { item.setAttribute("description", description); }
+         //   if (!symbol.isEmpty()) { item.setAttribute("symbol", symbol); }
             if (!geneId.isEmpty()) { item.setAttribute("primaryIdentifier", geneId); }
 
 
