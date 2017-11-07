@@ -61,7 +61,7 @@ public class MaizePolypeptideFastaLoaderTask extends MaizeFeatureFastaLoaderTask
 
     private String classAttribute = "primaryIdentifier";
     private int storeCount = 0;
-    private String suffix = "-PEP";
+    private String suffix = "";
     private String suffixPattern = "\\S+(_P\\d\\d)$";
     private String source = null;
     // hashmap to keep track of InterMineObject of type Gene
