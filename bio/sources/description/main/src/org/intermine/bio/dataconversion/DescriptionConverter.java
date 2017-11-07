@@ -38,8 +38,8 @@ public class DescriptionConverter extends BioFileConverter
     //
     protected static final Logger LOG = Logger.getLogger(DescriptionConverter.class);
   //  private String orgRefId;
-    private static final String DATASET_TITLE = "Ensembl gramene symbols and description";
-    private static final String DATA_SOURCE_NAME = "Ensembl gramene";
+    private static final String DATASET_TITLE = "Description";
+    private static final String DATA_SOURCE_NAME = "Description";
 //    String taxonId;
 //    String organismReferenceId;
 

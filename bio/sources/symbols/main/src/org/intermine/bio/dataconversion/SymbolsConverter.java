@@ -38,8 +38,8 @@ public class SymbolsConverter extends BioFileConverter
     //
     protected static final Logger LOG = Logger.getLogger(SymbolsConverter.class);
   //  private String orgRefId;
-    private static final String DATASET_TITLE = "Ensembl gramene symbols and description";
-    private static final String DATA_SOURCE_NAME = "Ensembl gramene";
+    private static final String DATASET_TITLE = "Symbols";
+    private static final String DATA_SOURCE_NAME = "Symbols";
 //    String taxonId;
 //    String organismReferenceId;
 
