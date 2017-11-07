@@ -114,7 +114,7 @@ public class MaizePolypeptideFastaLoaderTask extends MaizeFeatureFastaLoaderTask
             attributeValue = sequenceName;
         }
         else {
-            attributeValue = sequenceName + suffix;
+            attributeValue = sequenceName;
         }
 
         // set primaryIdentifier
