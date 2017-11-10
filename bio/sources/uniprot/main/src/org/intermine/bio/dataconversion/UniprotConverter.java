@@ -89,7 +89,7 @@ public class UniprotConverter extends BioDirectoryConverter
      * @param model the Model
      */
     public UniprotConverter(ItemWriter writer, Model model) {
-        super(writer, model, "UniProt", "SwissProt");
+        super(writer, model, "UniProt", "Swiss-Prot");
         OrganismRepository.getOrganismRepository();
     }
 
