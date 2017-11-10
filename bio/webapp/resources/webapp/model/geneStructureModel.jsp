@@ -79,7 +79,7 @@ require({
    'JBrowse/Store/Sequence/StaticChunked'
 ],
 function (cookie,dom,domConstruct,domStyle,domClass,Browser,HTMLFeatures,NCList,SimpleFeature,Layout,StaticChunkedSequence) {
-   var maizemine = new intermine.Service({root: "http://128.206.234.22:8080/maizemine-dev"});
+   var maizemine = new intermine.Service({root: "http://128.206.234.22:8080/maizemine"});
    var query = {
        from: 'Gene',
        select: [
