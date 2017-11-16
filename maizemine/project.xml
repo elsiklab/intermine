@@ -7,7 +7,6 @@
   <sources>
    
 
-
     <source name="go" type="go">
       <property name="src.data.file" location="@DATA@/GO/go-basic.obo"/>
     </source>
@@ -18,11 +17,29 @@
   <source name="plant-ontology" type="plant-ontology">
     <property name="src.data.file" location="@DATA@/PO/po.obo"/>
   </source>
-   <source name="dbsnp-variation" type="dbsnp-variation" dump="true">
-    <property name="src.data.dir" location="@DATA@/dbsnp/"/>
+   <source name="dbsnp-variation-part1" type="dbsnp-variation" dump="true">
+    <property name="src.data.dir" location="@DATA@/dbsnp/part_I/"/>
     <property name="src.data.dir.includes" value="*.vcf"/>
   </source>
 
+     <source name="dbsnp-variation-part2" type="dbsnp-variation" dump="true">
+    <property name="src.data.dir" location="@DATA@/dbsnp/part_II/"/>
+    <property name="src.data.dir.includes" value="*.vcf"/>
+  </source>
+  
+     <source name="dbsnp-variation-part3" type="dbsnp-variation" dump="true">
+    <property name="src.data.dir" location="@DATA@/dbsnp/part_III/"/>
+    <property name="src.data.dir.includes" value="*.vcf"/>
+  </source>
+
+   <source name="dbsnp-variation-part4" type="dbsnp-variation" dump="true">
+    <property name="src.data.dir" location="@DATA@/dbsnp/part_IV/"/>
+    <property name="src.data.dir.includes" value="*.vcf"/>
+  </source>
+     <source name="dbsnp-variation-part5" type="dbsnp-variation" dump="true">
+    <property name="src.data.dir" location="@DATA@/dbsnp/part_V/"/>
+    <property name="src.data.dir.includes" value="*.vcf"/>
+  </source>
 
 
     <source name="biomart" type="ensembl-compara">
