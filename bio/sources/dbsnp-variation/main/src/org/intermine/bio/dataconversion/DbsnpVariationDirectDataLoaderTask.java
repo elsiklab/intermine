@@ -396,45 +396,55 @@ public class DbsnpVariationDirectDataLoaderTask extends FileDirectDataLoaderTask
         HashSet<Transcript> transcriptSet = new HashSet<Transcript>();
 
         for (int i = 0; i < annotations.length; i++) {
-            // order of info: [ GeneID, TranscriptID, consequence, impact, cDNA_pos, CDS_pos, Protein_pos, AA_change, Codon_change ]
+            // order of info: [Source, GeneID, TranscriptID, consequence, impact, cDNA_pos, CDS_pos, Protein_pos, AA_change, Codon_change ]
             HashSet<ConsequenceType> consequenceTypeSet = new HashSet<ConsequenceType>();
             String[] annotationInfo = annotations[i].split(":");
+           
 
-            if (FUNCTION_CLASS_TO_IGNORE.contains(annotationInfo[2])) {
+            if (FUNCTION_CLASS_TO_IGNORE.contains(annotationInfo[3])) {
                 continue;
             }
             else {
-                String[] consequenceTypes = annotationInfo[2].split("\\|");
+                String[] consequenceTypes = annotationInfo[3].split("\\/");
                 for (String consequenceType : consequenceTypes) {
                     consequenceTypeSet.add(getConsequence(consequenceType));
                 }
             }
-
-            Transcript transcript = getTranscript(annotationInfo[1]);
+            System.out.print ("0>>>" + annotationInfo[0]);
+            System.out.print ("1>>>>>" + annotationInfo[1]);
+            System.out.print ("2>>>>" + annotationInfo[2]);
+            System.out.print ("3>>>>>" + annotationInfo[3]);
+            System.out.print ("4>>>" + annotationInfo[4]);
+            System.out.print ("5>>>>" + annotationInfo[5]);
+            System.out.print ("6>>>>" + annotationInfo[6]);
+            System.out.print ("7>>>>" + annotationInfo[7]);
+            System.out.print ("8>>>>>" + annotationInfo[8]);
+            System.out.print ("9>>>>>" + annotationInfo[9]);
+            Transcript transcript = getTranscript(annotationInfo[2],annotationInfo[0]);
             Consequence consequence = getDirectDataLoader().createObject(Consequence.class);
             imoTracker.put(consequence.getId(), consequence);
             consequence.setRsId(saFeature.getPrimaryIdentifier());
-            consequence.setTranscriptIdentifier(annotationInfo[1]);
-            consequence.setCdnaPosition(annotationInfo[4]);
-            consequence.setCdsPosition(annotationInfo[5]);
-            consequence.setAminoAcidPosition(annotationInfo[6]);
+            consequence.setTranscriptIdentifier(annotationInfo[2]);
+            consequence.setCdnaPosition(annotationInfo[5]);
+            consequence.setCdsPosition(annotationInfo[6]);
+            consequence.setAminoAcidPosition(annotationInfo[7]);
 
             // set Consequence -> consequenceType collection
             // TODO: Issue on the webapp while trying to access consequenceType
             consequence.setConsequenceTypes(consequenceTypeSet);
 
-            String[] substitution = annotationInfo[7].split("/");
+            String[] substitution = annotationInfo[8].split("/");
             if (substitution.length > 0) {
                 consequence.setReferenceResidue(substitution[0]);
                 if (substitution.length != 2) {
-                    LOG.warn("Consequence type " + annotationInfo[2] + " with just one residue info: " + annotationInfo[7] + ". Treating it as referenceResidue");
+                    LOG.warn("Consequence type " + annotationInfo[3] + " with just one residue info: " + annotationInfo[8] + ". Treating it as referenceResidue");
                 } else {
                     consequence.setAlternateResidue(substitution[1]);
                 }
             }
 
-            if (! "-".equals(annotationInfo[8])) {
-                String[] codons = annotationInfo[8].split("/");
+            if (! "-".equals(annotationInfo[9])) {
+                String[] codons = annotationInfo[9].split("/");
                 if (codons.length > 0) {
                     consequence.setReferenceCodon(codons[0].toUpperCase());
                     consequence.setAlternateCodon(codons[1].toUpperCase());
@@ -610,7 +620,7 @@ public class DbsnpVariationDirectDataLoaderTask extends FileDirectDataLoaderTask
      * @return
      * @throws ObjectStoreException
      */
-    private Transcript getTranscript(String identifier) throws ObjectStoreException {
+    private Transcript getTranscript(String identifier, String source) throws ObjectStoreException {
         Transcript transcript;
         if (createdTranscriptMap.containsKey(identifier)) {
             transcript = createdTranscriptMap.get(identifier);
@@ -619,6 +629,7 @@ public class DbsnpVariationDirectDataLoaderTask extends FileDirectDataLoaderTask
             transcript = getDirectDataLoader().createObject(Transcript.class);
             transcript.setSequenceOntologyTerm(getSoTerm("transcript"));
             transcript.setPrimaryIdentifier(identifier);
+            transcript.setSource(source);
             transcript.setOrganism(getOrganism());
             imoTracker.put(transcript.getId(), transcript);
             createdTranscriptMap.put(identifier, transcript);
