@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
-import org.intermine.objectstore.ObjectStoreException;
+
 import org.intermine.dataconversion.ItemWriter;
 import org.intermine.metadata.Model;
 import org.intermine.xml.full.Item;
@@ -40,10 +40,10 @@ public class ExpressionMetadataConverter extends BioFileConverter
     //
     protected static final Logger LOG = Logger.getLogger(ExpressionMetadataConverter.class);
     private String orgRefId;
-    private Map<String, String> genes = new HashMap<String, String>();
-    private static final String DATASET_TITLE = "Expression dataset";
-    private static final String DATA_SOURCE_NAME = "Expression dataset";
+    private HashMap<String,Item> publicationItems = new HashMap<String, Item>();
 
+    private static final String DATASET_TITLE = "Apis mellifera RNASeq Expression dataset";
+    private static final String DATA_SOURCE_NAME = "Apis mellifera RNASeq Expression dataset from NCBI SRA";
     /**
      * Constructor
      * @param writer the ItemWriter used to handle the resultant items
@@ -52,7 +52,6 @@ public class ExpressionMetadataConverter extends BioFileConverter
     public ExpressionMetadataConverter(ItemWriter writer, Model model) {
         super(writer, model, DATA_SOURCE_NAME, DATASET_TITLE);
     }
-
     /**
      * 
      *
@@ -61,12 +60,10 @@ public class ExpressionMetadataConverter extends BioFileConverter
     public void process(Reader reader) throws Exception {
         // assumes that the metadata file has unique entries
         Iterator<String[]> lineIter = FormattedTextParser.parseTabDelimitedReader(reader);
-
-        while (lineIter.hasNext()) {
+       while (lineIter.hasNext()) {
             String[] line = lineIter.next(); 
-            System.out.println(line.toString());
-            String Sample_rep_id = line[0];
-            String SampleID = line[1];
+            String sampleName = line[0];
+            String sampleMean = line[1];
             String bioSample = line[2];	
 	String run = line[3];	
 	String experiment = line[4];	
@@ -81,72 +78,40 @@ public class ExpressionMetadataConverter extends BioFileConverter
 	String PO_name	= line[13];
 	String growth_stage = line[14];	
 	String replicate = line[15];
-
-
-            String refId1 = parseSample1(Sample_rep_id);
-            String refId2 = parseSample2(SampleID);
-
-            processReps(refId1, refId2, bioSample, run, experiment, SRAStudy, bioProject, libraryLayout, sample, bioSample_description, organ_group, tissue_description, PO_term, PO_name, growth_stage, replicate);
-            processReps(refId2, refId1, bioSample, run, experiment, SRAStudy, bioProject, libraryLayout, sample, bioSample_description, organ_group, tissue_description, PO_term, PO_name, growth_stage, replicate);
-   }
-}
-
-    private void processReps(String Sample_rep_id, String SampleID, String bioSample, String run, String experiment, 
-                    String SRAStudy, String bioProject, String libraryLayout, String sample, String bioSample_description, String organ_group, String tissue_description, String PO_term, String PO_name, String growth_stage, String replicate)throws ObjectStoreException {
-        Item reference = createItem("ExpressionMetaData");
-        reference.setAttribute("bioSample", bioSample);
-        reference.setAttribute("run", run);
-         reference.setAttribute("experiment", experiment);
-         reference.setAttribute("SRAStudy", SRAStudy);
-         reference.setAttribute("bioProject", bioProject);
-         reference.setAttribute("libraryLayout", libraryLayout);
-         reference.setAttribute("sample", sample);
-         reference.setAttribute("bioSample_description", bioSample_description);
-         reference.setAttribute("organ_group", organ_group);
-         reference.setAttribute("tissue_description", tissue_description);      
-         reference.setAttribute("PO_term", PO_term);
-          reference.setAttribute("PO_name", PO_name);
-          reference.setAttribute("growth_stage", growth_stage);
-         reference.setAttribute("replicate", replicate);
-                reference.setAttribute("sampleRepId",Sample_rep_id);
-        reference.setAttribute("sampleId", SampleID);
-
-        reference.setReference("sampleRepId",Sample_rep_id);
-        reference.setReference("sampleId", SampleID);
-        store(reference);
+ 
+            Item item = createItem("ExpressionMetadata");
+            if (!sampleName.isEmpty()) {
+                item.setAttribute("sampleName", sampleName);
+            }
+            else {
+                System.out.println("sampleName cannot be empty as it serves as a primaryIdentifier");
+                System.exit(1);
+            }
+            if (!sampleMean.isEmpty()) { item.setAttribute("sampleMean", sampleMean); }
+            if (!bioSample.isEmpty()) { item.setAttribute("bioSample", bioSample); }
+            if (!run.isEmpty()) { item.setAttribute("run", run); }
+           if (!experiment.isEmpty()) { item.setAttribute("experiment", experiment); }
+            if (!SRAStudy.isEmpty()) { item.setAttribute("SRAStudy", SRAStudy); }
+            if (!bioProject.isEmpty()) { item.setAttribute("bioProject", bioProject); }
+            if (!libraryLayout.isEmpty()) { item.setAttribute("libraryLayout", libraryLayout); }
+            if (!bioSample_description.isEmpty()) { item.setAttribute("bioSample_description", bioSample_description); }
+             if (!sample.isEmpty()) { item.setAttribute("sample", sample); }
+            if (!organ_group.isEmpty()) { item.setAttribute("organ_group", organ_group); }
+            if (!tissue_description.isEmpty()) { item.setAttribute("tissue_description", tissue_description); }
+            if (!PO_term.isEmpty()) { item.setAttribute("PO_term", PO_term); }
+            if (!PO_name.isEmpty()) { item.setAttribute("PO_name", PO_name); }
+            if (!growth_stage.isEmpty()) { item.setAttribute("growth_stage", growth_stage); }
+            if (!replicate.isEmpty()) { item.setAttribute("replicate", replicate); }
+           
+            
+            
+            
+            try {
+                store(item);
+            } catch(Exception e) {
+                System.out.println("Error while storing ExpressionMetadata item: " + item + "\nStacktrace: " + e);
+            }
+        }
     }
-
     
-
-
-    private String parseSample1(String identifier) throws ObjectStoreException {
-        String newIdentifier = identifier;
-        
-        String refId = genes.get(newIdentifier);
-        if (refId == null) {
-            Item item = createItem("SampleReplicate");
-            item.setAttribute("sampleRepId", newIdentifier);
-            store(item);
-            refId = item.getIdentifier();
-            genes.put(newIdentifier, refId);
-        }
-        return refId;
-    }
-
-
-private String parseSample2(String identifier) throws ObjectStoreException {
-        String newIdentifier = identifier;
-        
-        String refId = genes.get(newIdentifier);
-        if (refId == null) {
-            Item item = createItem("SampleMean");
-            item.setAttribute("sampleId", newIdentifier);
-            store(item);
-            refId = item.getIdentifier();
-            genes.put(newIdentifier, refId);
-        }
-        return refId;
-    }
-
-
 }

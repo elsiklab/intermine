@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!-- This file details any extensions needed to the data model to store data from this source, everything else is automatically generated from the model description so this is all we need to do to add to the model. -->
+
+<classes>
+    <!-- add any <class> elements here -->
+    <class name="Transcript" extends="SequenceFeature" is-interface="true">
+        <collection name="meanExpressionValues" referenced-type="sampleMean" reverse-reference="isoforms"/>
+    </class>
+    <class name="sampleMean" is-interface="true">
+        <reference name="isoforms" referenced-type="Transcript" reverse-reference="meanExpressionValues"/>
+        <attribute name="sampleId" type="java.lang.String"/>
+        <attribute name="meanNormalized" type="java.lang.Float"/>
+        <attribute name="meanFpkm" type="java.lang.Float"/>
+        <!--<attribute name="RPKM" type="java.lang.Float"/>-->
+<!--  
+      <reference name="sampleMetadata" referenced-type="ExpressionMetaData" reverse-reference="isoformtmps"/>
+-->   
+   </class>
+<!--
+    <class name="ExpressionMetaData" is-interface="true">
+        <collection name="isoformtmps" referenced-type="sraSampleMean" reverse-reference="sampleMetadata"/>
+    </class>
+-->
+</classes>
+
+

@@ -2,18 +2,7 @@
 <!-- This file details any extensions needed to the data model to store data from this source, everything else is automatically generated from the model description so this is all we need to do to add to the model. -->
 
 <classes>
-    <!-- add any <class> elements here -->
-<class name="SampleReplicate" is-interface="true" >
-        <attribute name="sampleRepId" type="java.lang.String"/>
-  <collection name="SampleMean" referenced-type="SampleMean" reverse-reference="SampleReplicate"/>
-   <collection name="ExpressionMetaData" referenced-type="ExpressionMetaData" reverse-reference="SampleReplicate"/>
-</class>
-<class name="SampleMean" is-interface="true">
-         <attribute name="sampleId" type="java.lang.String"/>
-  <collection name="SampleReplicate" referenced-type="SampleReplicate" reverse-reference="SampleMean"/>
-  <collection name="ExpressionMetaData" referenced-type="ExpressionMetaData" reverse-reference="SampleMean"/>
-</class>
-    <class name="ExpressionMetaData" is-interface="true">
+    <class name="ExpressionMetadata" is-interface="true">
   <attribute name="bioSample" type="java.lang.String"/>
   <attribute name="run" type="java.lang.String"/>
    <attribute name="experiment" type="java.lang.String"/>
@@ -28,11 +17,7 @@
    <attribute name="PO_name" type="java.lang.String"/>
    <attribute name="growth_stage" type="java.lang.String"/>
    <attribute name="replicate" type="java.lang.String"/>
-   <attribute name="sampleId" type="java.lang.String"/>
-   <attribute name="sampleRepId" type="java.lang.String"/>
-  <reference name="sampleId" referenced-type="SampleMean"/>
-  <reference name="sampleRepId" referenced-type="SampleReplicate"/>
- <collection name="SampleReplicate" referenced-type="SampleReplicate" reverse-reference="ExpressionMetaData"/>
- <collection name="SampleMean" referenced-type="SampleMean" reverse-reference="ExpressionMetaData"/>
+   <attribute name="sampleMean" type="java.lang.String"/>
+   <attribute name="sampleName" type="java.lang.String"/>
 </class>
 </classes>

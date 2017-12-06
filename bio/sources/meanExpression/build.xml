@@ -1,0 +1,5 @@
+<project name="meanExpression" default="default" basedir=".">
+  <description>build, test, package meanExpression</description>
+  
+  <import file="../../../imbuild/source.xml"/>
+</project>
