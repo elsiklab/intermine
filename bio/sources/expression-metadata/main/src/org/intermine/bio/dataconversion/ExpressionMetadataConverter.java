@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
-
+import org.intermine.objectstore.ObjectStoreException;
 import org.intermine.dataconversion.ItemWriter;
 import org.intermine.metadata.Model;
 import org.intermine.xml.full.Item;
@@ -41,7 +41,7 @@ public class ExpressionMetadataConverter extends BioFileConverter
     protected static final Logger LOG = Logger.getLogger(ExpressionMetadataConverter.class);
     private String orgRefId;
     private HashMap<String,Item> publicationItems = new HashMap<String, Item>();
-
+   private Map<String, String> genes = new HashMap<String, String>();
     private static final String DATASET_TITLE = "Apis mellifera RNASeq Expression dataset";
     private static final String DATA_SOURCE_NAME = "Apis mellifera RNASeq Expression dataset from NCBI SRA";
     /**
@@ -78,7 +78,6 @@ public class ExpressionMetadataConverter extends BioFileConverter
 	String PO_name	= line[13];
 	String growth_stage = line[14];	
 	String replicate = line[15];
- 
             Item item = createItem("ExpressionMetadata");
             if (!sampleName.isEmpty()) {
                 item.setAttribute("sampleName", sampleName);
@@ -87,6 +86,14 @@ public class ExpressionMetadataConverter extends BioFileConverter
                 System.out.println("sampleName cannot be empty as it serves as a primaryIdentifier");
                 System.exit(1);
             }
+
+          
+
+
+
+
+  
+
             if (!sampleMean.isEmpty()) { item.setAttribute("sampleMean", sampleMean); }
             if (!bioSample.isEmpty()) { item.setAttribute("bioSample", bioSample); }
             if (!run.isEmpty()) { item.setAttribute("run", run); }
@@ -102,8 +109,14 @@ public class ExpressionMetadataConverter extends BioFileConverter
             if (!PO_name.isEmpty()) { item.setAttribute("PO_name", PO_name); }
             if (!growth_stage.isEmpty()) { item.setAttribute("growth_stage", growth_stage); }
             if (!replicate.isEmpty()) { item.setAttribute("replicate", replicate); }
-           
-            
+          
+
+
+
+
+
+
+
             
             
             try {
@@ -113,5 +126,6 @@ public class ExpressionMetadataConverter extends BioFileConverter
             }
         }
     }
-    
+
+
 }

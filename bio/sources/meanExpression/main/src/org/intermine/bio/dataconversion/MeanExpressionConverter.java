@@ -41,9 +41,9 @@ public class MeanExpressionConverter extends BioFileConverter
     protected static final Logger LOG = Logger.getLogger(MeanExpressionConverter.class);
     private String orgRefId;
     private static final String DATASET_TITLE = "Expression dataset";
-    private static final String DATA_SOURCE_NAME = "Expression dataset";
+    private static final String DATA_SOURCE_NAME = "Expression dataset from NCBI SRA";
     private static final String TAXON_ID = "4577";
-    private ArrayList<String> sampleNames = new ArrayList<String>();
+    private ArrayList<String> sampleMeans = new ArrayList<String>();
     private HashMap<String,Item> items = new HashMap<String, Item>();
     private HashMap<String,Item> transcriptItems = new HashMap<String, Item>();
     private HashMap<String, Item> sampleEntityMap = new HashMap<String, Item>();
@@ -68,79 +68,60 @@ public class MeanExpressionConverter extends BioFileConverter
 
         Iterator<String[]> lineIter = FormattedTextParser.parseTabDelimitedReader(reader);
         while (lineIter.hasNext()) {
-            
-            
             String[] line = lineIter.next();
             if (Pattern.matches("Transcript", line[0])) {
                 // parsing header
                 for (int i = 1; i < line.length; i++) {
-                    sampleNames.add(line[i]);
+                    sampleMeans.add(line[i]);
                 }
                 continue;
             }
             File currentFile = getCurrentFile();
             String currentFileName = currentFile.getName().toUpperCase();
-      //      if (currentFileName.contains("FPKM")) {
-       //         valueType = "FPKM";
-       //     }
-            if (currentFileName.contains("MEANKM")) {
-               valueType = "MEANKM";
-             }
-         else if (currentFileName.contains("MEANNORMALIZED")) {
-                valueType = "MEANNORMALIZED";
-           }
-      //      else if (currentFileName.contains("NORMALIZED")) {
-      //          valueType = "NORMALIZED";
-      //      }
+            if (currentFileName.contains("FPKMMEAN")) {
+                valueType = "FPKMMEAN";
+            }
+            
+            else if (currentFileName.contains("NORMALIZEDMEAN")) {
+                valueType = "NORMALIZEDMEAN";
+            }
             else {
                 System.out.println("Error: valueType never determined");
                 System.exit(1);
             }
-           
             String transcriptId = line[0];
             for (int i = 1; i < line.length; i++) {
                 String value = line[i];
-                String sampleName = sampleNames.get(i - 1);
-                String key = transcriptId + "_" + sampleName;
+                String sampleMean = sampleMeans.get(i - 1);
+                String key = transcriptId + "_" + sampleMean;
                 if (items.containsKey(key)) {
                     Item item = items.get(key);
-        //           if (valueType.equals("FPKM")) {
-        //               item.setAttribute("fpkm", value);
-        //           }
-                 if (valueType.equals("MEANKM")) {
-                       item.setAttribute("meanFpkm", value);
-                    } else if (valueType.equals("MEANNORMALIZED")) {
-                       item.setAttribute("meanNormalized", value);
-                   }
-       //            else if (valueType.equals("NORMALIZED")) {
-       //                 item.setAttribute("normalized", value);
-       //             }
+                    if (valueType.equals("FPKMMEAN")) {
+                        item.setAttribute("fpkmMean", value);
+                    }
+                   else if (valueType.equals("NORMALIZEDMEAN")) {
+                        item.setAttribute("normalizedMean", value);
+                    }
                     items.put(key, item);
                 }
                 else {
-                    Item item = createItem("sampleMean");
-                    item.setAttribute("sampleId", sampleName);
-         //          if (valueType.equals("FPKM")) {
-          //              item.setAttribute("fpkm", value);
-         //          }
-                    if (valueType.equals("MEANKM")) {
-                        item.setAttribute("meanFpkm", value);
-                   } else if (valueType.equals("MEANNORMALIZED")) {
-                       item.setAttribute("meanNormalized", value);
-                   }
-           //        else if (valueType.equals("NORMALIZED")) {
-          //              item.setAttribute("normalized", value);
-          //         }
+                    Item item = createItem("MeanExpression");
+                    item.setAttribute("sampleMean", sampleMean);
+                    if (valueType.equals("FPKMMEAN")) {
+                        item.setAttribute("fpkmMean", value);
+                    }
+                    
+                    else if (valueType.equals("NORMALIZEDMEAN")) {
+                        item.setAttribute("normalizedMean", value);
+                    }
                     items.put(key, item);
                 }
-              
-                         //
 
-                if (transcriptItems.containsKey(transcriptId)) {
+                   if (transcriptItems.containsKey(transcriptId)) {
                     Item item = items.get(key);
                     Item tmpTranscriptItem = transcriptItems.get(transcriptId);
-                    item.setReference("isoforms", tmpTranscriptItem.getIdentifier());
-                    tmpTranscriptItem.addToCollection("meanExpressionValues", item.getIdentifier());
+                    item.setReference("iform", tmpTranscriptItem.getIdentifier());
+                    tmpTranscriptItem.addToCollection("expressionNumbers", item.getIdentifier());
                     items.put(key, item);
                     transcriptItems.put(transcriptId, tmpTranscriptItem);
                 }
@@ -148,13 +129,42 @@ public class MeanExpressionConverter extends BioFileConverter
                     Item transcriptItem = createItem("MRNA");
                     Item item = items.get(key);
                     transcriptItem.setAttribute("primaryIdentifier", transcriptId);
-                    transcriptItem.addToCollection("meanExpressionValues", item.getIdentifier());
-                    item.setReference("isoforms", transcriptItem.getIdentifier());
+                    transcriptItem.addToCollection("expressionNumbers", item.getIdentifier());
+                    item.setReference("iform", transcriptItem.getIdentifier());
                     items.put(key, item);
                     transcriptItems.put(transcriptId, transcriptItem);
                 }
-       
-         
+
+
+                if (sampleEntityMap.containsKey(sampleMean)) {
+                   Item tmpItem  = items.get(key);
+                     Item tmpSampleItem = sampleEntityMap.get(sampleMean);
+                     tmpItem.setReference("sampleMetadata", tmpSampleItem.getIdentifier());
+                     items.put(key, tmpItem);
+                     sampleEntityMap.put(sampleMean, tmpSampleItem);
+                 }
+                 else {
+                     Item sampleItem = createItem("ExpressionMetadata");
+                     Item tmpItem = items.get(key);
+                     System.out.println("CREATING SAMPLE ITEM: " + sampleMean);
+                     sampleItem.setAttribute("sampleMean", sampleMean);
+                     sampleEntityMap.put(sampleMean, sampleItem);
+                     tmpItem.setReference("sampleMetadata", sampleItem.getIdentifier());
+                     items.put(key, tmpItem);
+                 }
+
+
+
+
+
+
+
+
+
+
+
+
+
             }
         }
     }
@@ -185,7 +195,18 @@ public class MeanExpressionConverter extends BioFileConverter
         }
     }
 
-    
+    /**
+     * Storing all Sample Items
+     */
+    public void storeAllSampleItems() {
+        for (String key : sampleEntityMap.keySet()) {
+            try {
+                store(sampleEntityMap.get(key));
+            } catch (Exception e) {
+                System.out.println("Error while storing Sample item:\n" + sampleEntityMap.get(key) + "\nStackTrace:\n" + e);
+            }
+        }
+    }
 
     /**
      *
@@ -195,5 +216,6 @@ public class MeanExpressionConverter extends BioFileConverter
     public void close() throws Exception {
         storeAllItems();
         storeAllTranscriptItems();
+        storeAllSampleItems();
     }
 }
