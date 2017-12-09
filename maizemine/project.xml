@@ -17,6 +17,7 @@
   <source name="plant-ontology" type="plant-ontology">
     <property name="src.data.file" location="@DATA@/PO/po.obo"/>
   </source>
+
    <source name="dbsnp-variation-part1" type="dbsnp-variation" dump="true">
     <property name="src.data.dir" location="@DATA@/dbsnp/part_I/"/>
     <property name="src.data.dir.includes" value="*.vcf"/>
@@ -40,6 +41,28 @@
     <property name="src.data.dir" location="@DATA@/dbsnp/part_V/"/>
     <property name="src.data.dir.includes" value="*.vcf"/>
   </source>
+
+
+
+    <source name="maize-expression-metadata" type="expression-metadata">
+      <property name="src.data.dir" location="@DATA@/expression-metadata"/>
+      <property name="src.data.dir.includes" value="*.tab"/>
+    </source>
+    <source name="maize-v4-expression-for-replicates" type="maize-expression">
+      <property name="entityType" value="Replicate"/>
+      <property name="type" value="single"/>
+      <property name="geneSource" value="AGPv4"/>
+      <property name="src.data.dir" location="@DATA@/expression-for-replicates"/>
+      <property name="src.data.dir.includes" value="*.tab"/>
+    </source>
+    <source name="maize-v4-expression-for-samples" type="maize-expression">
+      <property name="entityType" value="Sample"/>
+      <property name="type" value="mean"/>
+      <property name="geneSource" value="AGPv4"/>
+      <property name="src.data.dir" location="@DATA@/expression-for-samples"/>
+      <property name="src.data.dir.includes" value="*.tab"/>
+    </source>
+
 
 
     <source name="biomart" type="ensembl-compara">
