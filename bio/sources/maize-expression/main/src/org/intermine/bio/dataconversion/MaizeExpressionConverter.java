@@ -139,7 +139,19 @@ public class MaizeExpressionConverter extends BioFileConverter {
                     expressionItem.setAttribute("type", type);
                     Item entityItem = entityItems.get(entityName);
                     expressionItem.setAttribute("entityName", entityName);
-                    expressionItem.setReference("entity", entityItem.getIdentifier());
+                    if (entityType.equals("Sample")) {
+                        expressionItem.setReference("sample", entityItem.getIdentifier());
+                        entityItem.addToCollection("expression", expressionItem.getIdentifier());
+                    }
+                    else if (entityType.equals("Replicate")) {
+                        expressionItem.setReference("replicate", entityItem.getIdentifier());
+                        entityItem.addToCollection("expression", expressionItem.getIdentifier());
+                    }
+                    else {
+                        System.out.println("entityType is neither 'Sample' nor 'Replicate'");
+                        System.exit(1);
+                    }
+
                     entityItem.addToCollection("expression", expressionItem.getIdentifier());
                     if (valueType.equals("FPKM")) {
                         expressionItem.setAttribute("FPKM", value);

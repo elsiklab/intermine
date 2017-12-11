@@ -6,7 +6,6 @@
  <class name="Entity" is-interface="true">
   <attribute name="name" type="java.lang.String"/>
   <reference name="organism" referenced-type="Organism"/>
-  <collection name="expression" referenced-type="Expression" reverse-reference="entity"/>
  </class>
  <class name="Sample" extends="Entity" is-interface="true">
   <attribute name="sampleName" type="java.lang.String"/>
@@ -18,6 +17,7 @@
   <attribute name="growthStage" type="java.lang.String"/>
   <collection name="replicates" referenced-type="Replicate" reverse-reference="sample"/>
   <reference name="poName" referenced-type="POTerm"/>
+  <collection name="expression" referenced-type="Expression" reverse-reference="sample"/>
  </class>
  <class name="Replicate" extends="Entity" is-interface="true">
   <reference name="sample" referenced-type="Sample"/>
@@ -28,8 +28,10 @@
   <attribute name="sraBioSampleId" type="java.lang.String"/>
   <attribute name="sraExperimentId" type="java.lang.String"/>
   <attribute name="bioSampleDescription" type="java.lang.String"/>
+  <collection name="expression" referenced-type="Expression" reverse-reference="replicate"/>
  </class>
  <class name="Expression" is-interface="true">
-  <reference name="entity" referenced-type="Entity" reverse-reference="expression"/>
+  <reference name="sample" referenced-type="Sample" reverse-reference="expression"/>
+  <reference name="replicate" referenced-type="Replicate" reverse-reference="expression"/>
  </class>
 </classes>
