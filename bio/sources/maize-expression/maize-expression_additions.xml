@@ -4,23 +4,23 @@
 <classes>
   <!-- add any <class> elements here -->
   <class name="Transcript" extends="SequenceFeature" is-interface="true">
-    <collection name="expressionValues" referenced-type="Expression" reverse-reference="isoform"/>
+    <collection name="expression" referenced-type="Expression" reverse-reference="isoform"/>
   </class>
   <class name="Expression" is-interface="true">
-    <reference name="isoform" referenced-type="Transcript" reverse-reference="expressionValues"/>
+    <reference name="isoform" referenced-type="Transcript" reverse-reference="expression"/>
     <attribute name="entityName" type="java.lang.String"/>
     <attribute name="normalizedCounts" type="java.lang.Float"/>
     <attribute name="FPKM" type="java.lang.Float"/>
     <attribute name="type" type="java.lang.String"/>
-    <reference name="sample" referenced-type="Sample" reverse-reference="expression"/>
-    <reference name="replicate" referenced-type="Replicate" reverse-reference="expression"/>
+    <reference name="sample" referenced-type="Sample" reverse-reference="meanExpression"/>
+    <reference name="replicate" referenced-type="Replicate" reverse-reference="singleExpression"/>
   </class>
   <class name="Entity" is-interface="true">
   </class>
   <class name="Sample" extends="Entity" is-interface="true">
-    <collection name="expression" referenced-type="Expression" reverse-reference="sample"/>
+    <collection name="meanExpression" referenced-type="Expression" reverse-reference="sample"/>
   </class>
   <class name="Replicate" extends="Entity" is-interface="true">
-    <collection name="expression" referenced-type="Expression" reverse-reference="replicate"/>
+    <collection name="singleExpression" referenced-type="Expression" reverse-reference="replicate"/>
   </class>
 </classes>

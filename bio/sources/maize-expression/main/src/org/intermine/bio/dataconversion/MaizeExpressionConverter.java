@@ -141,18 +141,17 @@ public class MaizeExpressionConverter extends BioFileConverter {
                     expressionItem.setAttribute("entityName", entityName);
                     if (entityType.equals("Sample")) {
                         expressionItem.setReference("sample", entityItem.getIdentifier());
-                        entityItem.addToCollection("expression", expressionItem.getIdentifier());
+                        entityItem.addToCollection("meanExpression", expressionItem.getIdentifier());
                     }
                     else if (entityType.equals("Replicate")) {
                         expressionItem.setReference("replicate", entityItem.getIdentifier());
-                        entityItem.addToCollection("expression", expressionItem.getIdentifier());
+                        entityItem.addToCollection("singleExpression", expressionItem.getIdentifier());
                     }
                     else {
                         System.out.println("entityType is neither 'Sample' nor 'Replicate'");
                         System.exit(1);
                     }
 
-                    entityItem.addToCollection("expression", expressionItem.getIdentifier());
                     if (valueType.equals("FPKM")) {
                         expressionItem.setAttribute("FPKM", value);
                     }
@@ -166,14 +165,14 @@ public class MaizeExpressionConverter extends BioFileConverter {
                     Item expressionItem = items.get(key);
                     Item transcriptItem = transcriptItems.get(transcriptId);
                     expressionItem.setReference("isoform", transcriptItem.getIdentifier());
-                    transcriptItem.addToCollection("expressionValues", expressionItem.getIdentifier());
+                    transcriptItem.addToCollection("expression", expressionItem.getIdentifier());
                 }
                 else {
                     Item transcriptItem = createItem("MRNA");
                     Item expressionItem = items.get(key);
                     transcriptItem.setAttribute("primaryIdentifier", transcriptId);
                     transcriptItem.setAttribute("source", geneSource);
-                    transcriptItem.addToCollection("expressionValues", expressionItem.getIdentifier());
+                    transcriptItem.addToCollection("expression", expressionItem.getIdentifier());
                     expressionItem.setReference("isoform", transcriptItem.getIdentifier());
                     transcriptItems.put(transcriptId, transcriptItem);
                 }
