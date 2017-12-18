@@ -3,10 +3,14 @@
 
 <classes>
   <!-- add any <class> elements here -->
+  <class name="Gene" extends="SequenceFeature" is-interface="true">
+    <collection name="expression" referenced-type="Expression" reverse-reference="gene"/>
+  </class>
   <class name="Transcript" extends="SequenceFeature" is-interface="true">
     <collection name="expression" referenced-type="Expression" reverse-reference="isoform"/>
   </class>
   <class name="Expression" is-interface="true">
+    <reference name="gene" referenced-type="Gene" reverse-reference="expression"/>
     <reference name="isoform" referenced-type="Transcript" reverse-reference="expression"/>
     <attribute name="entityName" type="java.lang.String"/>
     <attribute name="normalizedCounts" type="java.lang.Float"/>
