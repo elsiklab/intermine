@@ -69,7 +69,7 @@ public class MaizeExpressionGeneConverter extends BioFileConverter {
     }
 
     public void setGeneSource(String geneSource) {
-        System.out.println("Setting geneSource as " + entityType);
+        System.out.println("Setting geneSource as " + geneSource);
         this.geneSource = geneSource;
     }
 
@@ -83,22 +83,11 @@ public class MaizeExpressionGeneConverter extends BioFileConverter {
         File currentFile = getCurrentFile();
         String currentFileName = currentFile.getName().toUpperCase();
         System.out.println(currentFile.getName());
-        if (currentFileName.contains("FPKM")) {
-            valueType = "FPKM";
-        }
-
-        else if (currentFileName.contains("NORMALIZED")) {
-            valueType = "NORMALIZED";
-        }
-        else {
-            System.out.println("Error: valueType never determined");
-            System.exit(1);
-        }
 
         Iterator<String[]> lineIter = FormattedTextParser.parseTabDelimitedReader(reader);
         while(lineIter.hasNext()) {
             String[] line = lineIter.next();
-            if (Pattern.matches("Transcript", line[0])) {
+            if (Pattern.matches("Gene", line[0])) {
                 // parsing header
                 for (int i = 1; i < line.length; i++) {
                     entities.add(line[i]);
@@ -120,18 +109,14 @@ public class MaizeExpressionGeneConverter extends BioFileConverter {
 
             String transcriptId = line[0];
             for (int i = 1; i < line.length; i++) {
-                String value = line[i];
+                String[] values = line[i].split(",");
                 String entityName = entities.get(i - 1);
                 String key = transcriptId + "-" + entityName;
                 System.out.println(key);
                 if (items.containsKey(key)) {
                     Item expressionItem = items.get(key);
-                    if (valueType.equals("FPKM")) {
-                        expressionItem.setAttribute("FPKM", value);
-                    }
-                    else if (valueType.equals("NORMALIZED")) {
-                        expressionItem.setAttribute("normalizedCounts", value);
-                    }
+                    expressionItem.setAttribute("FPKM", values[0]);
+                    expressionItem.setAttribute("normalizedCounts", values[1]);
                 }
                 else {
                     Item expressionItem = createItem("Expression");
@@ -151,12 +136,8 @@ public class MaizeExpressionGeneConverter extends BioFileConverter {
                         System.exit(1);
                     }
 
-                    if (valueType.equals("FPKM")) {
-                        expressionItem.setAttribute("FPKM", value);
-                    }
-                    else if (valueType.equals("NORMALIZED")) {
-                        expressionItem.setAttribute("normalizedCounts", value);
-                    }
+                    expressionItem.setAttribute("FPKM", values[0]);
+                    expressionItem.setAttribute("normalizedCounts", values[1]);
                     items.put(key, expressionItem);
                 }
 
