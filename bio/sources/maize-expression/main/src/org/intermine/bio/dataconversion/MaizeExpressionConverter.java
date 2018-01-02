@@ -91,7 +91,9 @@ public class MaizeExpressionConverter extends BioFileConverter {
             if (Pattern.matches("Transcript", line[0])) {
                 // parsing header
                 for (int i = 1; i < line.length; i++) {
-                    entities.add(line[i]);
+                   String[] val = line[i].split("/");
+                    entities.add(val[0]);
+
                 }
 
                 // create items for each entity where entityType can be Sample or Replicate

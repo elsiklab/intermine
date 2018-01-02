@@ -90,8 +90,10 @@ public class MaizeExpressionGeneConverter extends BioFileConverter {
             if (Pattern.matches("Gene", line[0])) {
                 // parsing header
                 for (int i = 1; i < line.length; i++) {
-                    entities.add(line[i]);
+                    String[] val = line[i].split("/");
+                    entities.add(val[0]);
                 }
+
 
                 // create items for each entity where entityType can be Sample or Replicate
                 // depending on configuration
@@ -109,7 +111,7 @@ public class MaizeExpressionGeneConverter extends BioFileConverter {
 
             String transcriptId = line[0];
             for (int i = 1; i < line.length; i++) {
-                String[] values = line[i].split(",");
+                String[] values = line[i].split("/");
                 String entityName = entities.get(i - 1);
                 String key = transcriptId + "-" + entityName;
                 System.out.println(key);

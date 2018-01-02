@@ -248,10 +248,8 @@
   <tableExportConfig id="gff3" className="org.intermine.bio.web.export.GFF3HttpExporter"/>
   <tableExportConfig id="bed" className="org.intermine.bio.web.export.BEDHttpExporter"/>
 
-  <reportdisplayers>
+  <reportdisplayers> 
 
-
-    
    <reportdisplayer javaClass="org.intermine.bio.web.displayer.GeneOntologyDisplayer"
                      jspName="model/geneOntologyDisplayer.jsp"
                      replacesFields="goAnnotation,ontologyAnnotations"
