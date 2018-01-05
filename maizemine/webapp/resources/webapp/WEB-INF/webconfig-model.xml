@@ -338,7 +338,7 @@
                              description="Pathways enriched for genes in this list"
                              label="Pathways"
                              filterLabel="DataSet"
-                             filters="KEGG pathways, CornCyc, Reactome Gramene"
+                             filters="KEGG,CornCyc,Reactome Gramene"
                              startClass="Gene"
                              startClassDisplay="primaryIdentifier"
                              enrich="pathways.name"

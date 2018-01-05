@@ -26,7 +26,10 @@
         <p><i>Z. mays</i></p>
     </td>
     <td>AGPv4</td>
-    <td><p>Lawrence et al - PubMed <a href=https://www.ncbi.nlm.nih.gov/pubmed/14681441>14681441 </a></p></td>
+    <td>
+       <p>Lawrence et al - PubMed <a href=https://www.ncbi.nlm.nih.gov/pubmed/14681441>14681441 </a></p>
+       <p>Jiao et al. - PubMed <a href=https://www.ncbi.nlm.nih.gov/pubmed/28605751>28605751</a></p>
+   </td>
     <td> <a href="http://www.maizegdb.org/assembly#downloads">maizeGDB Genomes</a></td>
   </tr>
 
@@ -34,14 +37,18 @@
     <td>Maize Community Gene Set</td>
     <td> <i>Z. mays</i> </td>
     <td>AGPv3</td>
-    <td><p>Lawrence et al - PubMed <a href=https://www.ncbi.nlm.nih.gov/pubmed/14681441>14681441 </a></p></td>
-    <td><a href="http://www.maizegdb.org/assembly#downloads">maizeGDB Genomes</a></td>
+    <td>
+       <p>Law et al  - PubMed <a href=https://www.ncbi.nlm.nih.gov/pubmed/25384563>25384563</a></p> 
+       <p>Lawrence et al - PubMed <a href=https://www.ncbi.nlm.nih.gov/pubmed/14681441>14681441 </a></p>
+    </td>
+  
+     <td><a href="http://www.maizegdb.org/assembly#downloads">maizeGDB Genomes</a></td>
   </tr>
     <tr>
      <td>NCBI Annotation (RefSeq and Gene)</td>
     <td> <i>Z. mays</i> </td>
     <td>RefSeq</td>
-    <td><p>Lawrence et al - PubMed <a href=https://www.ncbi.nlm.nih.gov/pubmed/14681441>14681441 </a></p></td>
+    <td><p>O'Leary et al - PubMed <a href=https://www.ncbi.nlm.nih.gov/pubmed/26553804>26553804</a></p></td>
     <td><a href="ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/005/005/GCF_000005005.2_B73_RefGen_v4">NCBI ftp</a></td>
   </tr>
 
@@ -143,13 +150,29 @@
     <td></td>
   </tr>
  <tr>
+  <tr>
+    <td class="leftcol"><p><h2>Gene Expression</h2></p></td>
+    <td> Gene expression computed on reference gene set RefSeq, AGPv3 and AGPv4</td>
+    <td> <i>Z. mays</i> </td>
+    <td>NCBI SRA</td>
+    <td>
+         <p>Stelpflug et al - PubMed <a href=https://www.ncbi.nlm.nih.gov/pubmed/27898762>27898762</a></p>
+         <p>Sekhon et al - PubMed <a href=https://www.ncbi.nlm.nih.gov/pubmed/23637782>23637782</a></p>
+    
+    </td>
+    <td><a href=https://www.ncbi.nlm.nih.gov/sra?linkname=bioproject_sra_all&from_uid=171684>NCBI BioProject 171684</a></td>
+  </tr>
+ <tr>
+
+
+
     <td rowspan="2"  class="leftcol"><p><h2>Genome Assembly</h2></p></td>
     <td> Chromosome Assembly</td>
     <td>
         <p><i>Z. mays</i></p>
     </td>
-    <td> B73_RefGen_v4(GCF_000005005.2)</td>
-    <td></td>
+    <td> B73_RefGen_v4 (GCF_000005005.2)</td>
+    <td><p>Jiao et al - PubMed <a href=https://www.ncbi.nlm.nih.gov/pubmed/28605751>28605751</a></p></td>
     <td> <a href="ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/005/005/GCF_000005005.2_B73_RefGen_v4">NCBI FTP</a></td>
   </tr>
 
@@ -159,7 +182,7 @@
         <p><i>Z. mays</i></p>
     </td>
     <td>B73_RefGen_v3</td>
-    <td></td>
+    <td><p>Schnable et al  - PubMed <a href=https://www.ncbi.nlm.nih.gov/pubmed/19965430>19965430</a></p></td>
     <td> <a href="ftp://ftp.ensemblgenomes.org/pub/plants/release-31/fasta/zea_mays/dna">Ensembl Genomes FTP</a></td>
   </tr>
     <tr>
