@@ -43,8 +43,9 @@
 <script>
 var pid = '<c:out value="${gene.primaryIdentifier}"/>';
 
-var organismMap = {
-    "Place. Holder": "22875"
+var assemblyMap = {
+    "B73_RefGen_v3" : "20",
+    "B73_RefGen_v4" : "545"
 };
 
 // Require bare bones jbrowse components without using the main browser object
@@ -84,6 +85,7 @@ function (cookie,dom,domConstruct,domStyle,domClass,Browser,HTMLFeatures,NCList,
        from: 'Gene',
        select: [
            'chromosome.primaryIdentifier',
+           'chromosome.assembly',
            'transcripts.chromosomeLocation.start',
            'transcripts.chromosomeLocation.end',
            'transcripts.chromosomeLocation.strand',
@@ -98,7 +100,7 @@ function (cookie,dom,domConstruct,domStyle,domClass,Browser,HTMLFeatures,NCList,
            primaryIdentifier: pid
        }
    };
-   var createJBrowse=function(features, organism){
+   var createJBrowse=function(features, organism, assembly){
        var node=dom.byId("gene-structure-model");
        var height=15+Object.keys(features).length*31;
        domStyle.set(node,"height",height+'px');
@@ -117,11 +119,11 @@ function (cookie,dom,domConstruct,domStyle,domClass,Browser,HTMLFeatures,NCList,
           "menuTemplate":null
        };
 
-       if (organism in organismMap) {
+       if (assembly in assemblyMap) {
           trackConfig.onClick = {
               "label": "Feature name {name}\nFeature start {start}\nFeature end {end}",
-       //       "url": "http://bovinegenome.org/Apollo2/" + organismMap[organism] + "/jbrowse/index.html?loc={seq}:{start}..{end}",
-       //       "action": "newWindow"
+              "url": "http://128.206.234.23:8080/apollo/" + assemblyMap[assembly] + "/jbrowse/index.html?loc={seq}:{start}..{end}",
+              "action": "newWindow"
           }
        }
        else {
@@ -186,29 +188,31 @@ function (cookie,dom,domConstruct,domStyle,domClass,Browser,HTMLFeatures,NCList,
    maizemine.rows(query).then(function(rows) {
        var features={};
        rows.forEach(function printRow(row) {
-           var transcript=row[6];
+           var transcript=row[7];
            if(!(transcript in features)) {
                features[transcript]={
                        "type":"mRNA",
                        "seq": row[0],
-                       "start": row[1],
-                       "end": row[2],
-                       "strand": parseInt(row[3]),
+                       "assembly": row[1],
+                       "start": row[2],
+                       "end": row[3],
+                       "strand": parseInt(row[4]),
                        "subfeatures":[],
-                       "uniqueID":row[6],
-                       "name":row[6]
+                       "uniqueID":row[7],
+                       "name":row[7]
                    };
            }
-           organism=row[9];
+           assembly=row[1];
+           organism=row[10];
            features[transcript].subfeatures.push({
-                   "start": row[4],
-                   "end": row[5],
+                   "start": row[5],
+                   "end": row[6],
                    "type": "CDS",
                    "strand": features[transcript].strand
                 });
        });
        
-       createJBrowse(features, organism);
+       createJBrowse(features, organism, assembly);
    });
 });
 </script>
