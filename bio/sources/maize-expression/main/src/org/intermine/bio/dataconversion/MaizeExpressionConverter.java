@@ -91,7 +91,7 @@ public class MaizeExpressionConverter extends BioFileConverter {
             if (Pattern.matches("Transcript", line[0])) {
                 // parsing header
                 for (int i = 1; i < line.length; i++) {
-                   String[] val = line[i].split("/");
+                       String[] val = line[i].split("/");
                     entities.add(val[0]);
 
                 }
@@ -112,7 +112,7 @@ public class MaizeExpressionConverter extends BioFileConverter {
 
             String transcriptId = line[0];
             for (int i = 1; i < line.length; i++) {
-                String[] values = line[i].split(",");
+                String[] values = line[i].split("/");
                 String entityName = entities.get(i - 1);
                 String key = transcriptId + "-" + entityName;
                 System.out.println(key);

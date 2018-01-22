@@ -12,17 +12,7 @@
      <aspect-source name="GeneDB" url="http://www.genedb.org"/>
     <aspect-source name="NCBI" url="http://www.ncbi.nlm.nih.gov"/>
   </aspect>
-    <aspect name="Gene Expression">
-    <subtitle>Gene Expression</subtitle>
-    <icon-image>model/images/marray.gif</icon-image>
-    <large-image>model/images/marray.gif</large-image>
-    <intro-text>
-      Gene Expression
-    </intro-text>
-    <tile-name>model/Gene_expression.jsp</tile-name>
-    <aspect-source name="expression"/>
-  </aspect>
-
+    
    <aspect name="Alias and DBxref">
     <subtitle>Alias and DBxref</subtitle>
     <icon-image>model/images/</icon-image>

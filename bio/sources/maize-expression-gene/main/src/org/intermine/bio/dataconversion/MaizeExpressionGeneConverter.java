@@ -90,8 +90,8 @@ public class MaizeExpressionGeneConverter extends BioFileConverter {
             if (Pattern.matches("Gene", line[0])) {
                 // parsing header
                 for (int i = 1; i < line.length; i++) {
-                    String[] val = line[i].split("/");
-                    entities.add(val[0]);
+                      String[] val = line[i].split("/");
+                    entities.add(val[0]);  
                 }
 
 
