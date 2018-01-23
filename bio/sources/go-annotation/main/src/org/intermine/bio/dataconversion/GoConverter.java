@@ -186,7 +186,7 @@ public class GoConverter extends BioFileConverter
                         + array.length + ") in line: " + line);
             }
 
-            String taxonId = parseTaxonId(array[12]);
+            String taxonId = "4577";
             Config config = configs.get(taxonId);
             if (config == null) {
                 config = defaultConfig;
