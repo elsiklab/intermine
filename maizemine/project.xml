@@ -8,48 +8,48 @@
    
 
     <source name="go" type="go">
-      <property name="src.data.file" location="@DATA@/dataset/GO/go-basic.obo"/>
+      <property name="src.data.file" location="@DATA@dataset/GO/go-basic.obo"/>
     </source>
    <source name="evidence-ontology" type="evidence-ontology">
-    <property name="src.data.file" location="@DATA@/dataset/ECO/eco.obo"/>
+    <property name="src.data.file" location="@DATA@dataset/ECO/eco.obo"/>
   </source>
 
   <source name="plant-ontology" type="plant-ontology">
-    <property name="src.data.file" location="@DATA@/dataset/PO/po.obo"/>
+    <property name="src.data.file" location="@DATA@dataset/PO/po.obo"/>
   </source>
    <source name="dbsnp-variation-part1" type="dbsnp-variation" dump="true">
-    <property name="src.data.dir" location="@DATA@/dataset/dbsnp/"/>
-    <property name="src.data.dir.includes" value="q*.vcf"/>
+    <property name="src.data.dir" location="@DATA@dataset/dbsnp/part_I"/>
+    <property name="src.data.dir.includes" value="*.vcf"/>
   </source>
 
      <source name="dbsnp-variation-part2" type="dbsnp-variation" dump="true">
-    <property name="src.data.dir" location="@DATA@/dataset/dbsnp/part_II/"/>
+    <property name="src.data.dir" location="@DATA@dataset/dbsnp/part_II/"/>
     <property name="src.data.dir.includes" value="*.vcf"/>
   </source>
   
      <source name="dbsnp-variation-part3" type="dbsnp-variation" dump="true">
-    <property name="src.data.dir" location="@DATA@/dataset/dbsnp/part_III/"/>
+    <property name="src.data.dir" location="@DATA@dataset/dbsnp/part_III/"/>
     <property name="src.data.dir.includes" value="*.vcf"/>
   </source>
 
    <source name="dbsnp-variation-part4" type="dbsnp-variation" dump="true">
-    <property name="src.data.dir" location="@DATA@/dataset/dbsnp/part_IV/"/>
+    <property name="src.data.dir" location="@DATA@dataset/dbsnp/part_IV/"/>
     <property name="src.data.dir.includes" value="*.vcf"/>
   </source>
      <source name="dbsnp-variation-part5" type="dbsnp-variation" dump="true">
-    <property name="src.data.dir" location="@DATA@/dataset/dbsnp/part_V/"/>
+    <property name="src.data.dir" location="@DATA@dataset/dbsnp/part_V/"/>
     <property name="src.data.dir.includes" value="*.vcf"/>
   </source>
 
 
     <source name="biomart" type="ensembl-compara">
-      <property name="src.data.dir" location="@DATA@/dataset/test/meta"/>
+      <property name="src.data.dir" location="@DATA@dataset/ensembl-plant-biomart/"/>
       <property name="ensemblcompara.version" value="Ensembl 36"/>
       <property name="ensemblcompara.organisms" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 39947 4555 4565 4572 37682 15368 4513 4558"/>
       <property name="ensemblcompara.homologues" value="4577 39946 3702 65489 4533 4538 40148 4528 40149 4536 4537 4529 39947 4555 4565 4572 37682 15368 4513 4558"/>
     </source>
     <source name="paralogs" type="paralogs">
-      <property name="src.data.dir" location="@DATA@/dataset/ensembl-plant-biomart-paralogs/"/>
+      <property name="src.data.dir" location="@DATA@dataset/ensembl-plant-biomart-paralogs/"/>
       <property name="ensemblcompara.version" value="Ensembl 36"/>
       <property name="paralogs.organisms" value="4577"/>
       <property name="paralogs.homologues" value="4577"/>
@@ -64,7 +64,7 @@
       <property name="fasta.dataSetTitle" value="B73_RefGen_v3"/>
       <property name="fasta.taxonId" value="4577"/>
       <property name="fasta.includes" value="*.fa"/>
-      <property name="src.data.dir" value="@DATA@/dataset/fasta/V3/"/>
+      <property name="src.data.dir" value="@DATA@dataset/fasta/V3/"/>
     </source>
     <source name="maize-dna-v4-fasta" type="fasta" dump="true">
       <property name="fasta.className" value="org.intermine.model.bio.Chromosome"/>
@@ -75,10 +75,10 @@
       <property name="fasta.dataSetTitle" value="B73_RefGen_v4"/>
       <property name="fasta.taxonId" value="4577"/>
       <property name="fasta.includes" value="*.fa"/>
-      <property name="src.data.dir" value="@DATA@/dataset/fasta/V4/"/>
+      <property name="src.data.dir" value="@DATA@dataset/fasta/V4/"/>
     </source>
     <source name="additional_identifiers" type="additionalChrIdentifiers" dump="true">
-      <property name="src.data.dir" value="@DATA@/dataset/fasta/additional_identifiers/"/>
+      <property name="src.data.dir" value="@DATA@dataset/fasta/additional_identifiers/"/>
     </source>
     <source name="maize-gene-model-v3-gff" type="maize-gff">
       <property name="gff3.seqClsName" value="Chromosome"/>
@@ -86,7 +86,7 @@
       <property name="gff3.taxonId" value="4577"/>
       <property name="gff3.dataSourceName" value="Gramene"/>
       <property name="gff3.dataSetTitle" value="AGPv3.21 gene set for B73_RefGen_v3"/>
-      <property name="src.data.dir" value="@DATA@/dataset/gff3/V3"/>
+      <property name="src.data.dir" value="@DATA@dataset/gff3/V3"/>
     </source>
     <source name="maize-gene-model-v4-gff" type="maize-gff">
       <property name="gff3.seqClsName" value="Chromosome"/>
@@ -94,7 +94,7 @@
       <property name="gff3.taxonId" value="4577"/>
       <property name="gff3.dataSourceName" value="Gramene"/>
       <property name="gff3.dataSetTitle" value="AGPv4 gene set for B73_RefGen_v4"/>
-      <property name="src.data.dir" value="@DATA@/dataset/gff3/V4"/>
+      <property name="src.data.dir" value="@DATA@dataset/gff3/V4"/>
     </source>
     <source name="maize-gene-model-v4-gff-rejected" type="maize-gff">
       <property name="gff3.seqClsName" value="Chromosome"/>
@@ -102,7 +102,7 @@
       <property name="gff3.taxonId" value="4577"/>
       <property name="gff3.dataSourceName" value="Gramene"/>
       <property name="gff3.dataSetTitle" value="AGPv4 gene set for B73_RefGen_v4"/>
-      <property name="src.data.dir" value="@DATA@/dataset/gff3/rejected_genes"/>
+      <property name="src.data.dir" value="@DATA@dataset/gff3/rejected_genes"/>
     </source>
     <source name="maize-refseq-proteincoding-gff" type="refseq-proteincoding-gff" dump="true">
       <property name="gff3.taxonId" value="4577"/>
@@ -110,7 +110,7 @@
       <property name="gff3.seqAssemblyVersion" value="B73_RefGen_v4"/>
       <property name="gff3.dataSourceName" value="RefSeq"/>
       <property name="gff3.dataSetTitle" value="NCBI RefSeq protein coding gene set for B73_RefGen_v4"/>
-      <property name="src.data.dir" location="@DATA@/dataset/gff3/RefSeq/proteincoding"/>
+      <property name="src.data.dir" location="@DATA@dataset/gff3/RefSeq/proteincoding"/>
     </source>
     <source name="maize-refseq-noncoding-gff" type="refseq-noncoding-gff" dump="true">
       <property name="gff3.taxonId" value="4577"/>
@@ -118,7 +118,7 @@
       <property name="gff3.seqAssemblyVersion" value="B73_RefGen_v4"/>
       <property name="gff3.dataSourceName" value="RefSeq"/>
       <property name="gff3.dataSetTitle" value="NCBI RefSeq non-coding gene set for B73_RefGen_v4"/>
-      <property name="src.data.dir" location="@DATA@/dataset/gff3/RefSeq/noncoding"/>
+      <property name="src.data.dir" location="@DATA@dataset/gff3/RefSeq/noncoding"/>
     </source>
     <source name="maize-cds-v3-fasta" type="fasta" dump="true">
       <property name="fasta.taxonId" value="4577"/>
@@ -129,7 +129,7 @@
       <property name="fasta.dataSetTitle" value="CDS sequences from AGPv3.21 for B73_RefGen_v3"/>
       <property name="fasta.includes" value="*.fa"/>
       <property name="fasta.sequenceType" value="dna"/>
-      <property name="src.data.dir" location="@DATA@/dataset/CDS/V3/"/>
+      <property name="src.data.dir" location="@DATA@dataset/CDS/V3/"/>
     </source>
     <source name="maize-cds-v4-fasta" type="fasta" dump="true">
       <property name="fasta.taxonId" value="4577"/>
@@ -141,7 +141,7 @@
       <property name="fasta.dataSetTitle" value="CDS sequences from AGPv4 for B73_RefGen_v4"/>
       <property name="fasta.includes" value="*.fa"/>
       <property name="fasta.sequenceType" value="dna"/>
-      <property name="src.data.dir" location="@DATA@/dataset/CDS/V4/"/>
+      <property name="src.data.dir" location="@DATA@dataset/CDS/V4/"/>
     </source>
     <source name="maize-cds-refseq-fasta" type="fasta" dump="true">
       <property name="fasta.taxonId" value="4577"/>
@@ -150,7 +150,7 @@
       <property name="fasta.dataSourceName" value="RefSeq"/>
       <property name="fasta.geneSource" value="RefSeq"/>
       <property name="fasta.dataSetTitle" value="CDS sequences from NCBI for B73_RefGen_v4"/>
-      <property name="src.data.dir" location="@DATA@/dataset/CDS/RefSeq"/>
+      <property name="src.data.dir" location="@DATA@dataset/CDS/RefSeq"/>
       <property name="fasta.includes" value="*.fa"/>
       <property name="fasta.sequenceType" value="dna"/>
       <property name="fasta.loaderClassName" value="org.intermine.bio.dataconversion.RefSeqCDSFastaLoaderTask"/>
@@ -164,7 +164,7 @@
       <property name="fasta.dataSetTitle" value="Protein sequences from AGPv3.21 for B73_RefGen_v3"/>
       <property name="fasta.taxonId" value="4577"/>
       <property name="fasta.includes" value="*.fa"/>
-      <property name="src.data.dir" location="@DATA@/dataset/proteins/V3"/>
+      <property name="src.data.dir" location="@DATA@dataset/proteins/V3"/>
     </source>
     <source name="maize-pep-v4-fasta" type="fasta" dump="true">
       <property name="fasta.className" value="org.intermine.model.bio.Polypeptide"/>
@@ -175,7 +175,7 @@
       <property name="fasta.dataSetTitle" value="Protein sequences from AGPv4 for B73_RefGen_v4"/>
       <property name="fasta.taxonId" value="4577"/>
       <property name="fasta.includes" value="*.fa"/>
-      <property name="src.data.dir" location="@DATA@/dataset/proteins/V4/"/>
+      <property name="src.data.dir" location="@DATA@dataset/proteins/V4/"/>
     </source>
     <source name="maize-protein-refseq-fasta" type="fasta" dump="true">
       <property name="fasta.taxonId" value="4577"/>
@@ -184,46 +184,46 @@
       <property name="fasta.dataSourceName" value="RefSeq"/>
       <property name="fasta.geneSource" value="RefSeq"/>
       <property name="fasta.dataSetTitle" value="Protein sequences from NCBI for B73_RefGen_v4"/>
-      <property name="src.data.dir" location="@DATA@/dataset/proteins/RefSeq"/>
+      <property name="src.data.dir" location="@DATA@dataset/proteins/RefSeq"/>
       <property name="fasta.includes" value="*.fa"/>
       <property name="fasta.sequenceType" value="protein"/>
       <property name="fasta.loaderClassName" value="org.intermine.bio.dataconversion.RefSeqProteinFastaLoaderTask"/>
     </source>
     <source name="maize-xref" type="cross-references">
-      <property name="src.data.dir" location="@DATA@/dataset/xref"/>
+      <property name="src.data.dir" location="@DATA@dataset/xref"/>
       <property name="taxonId" value="4577"/>
     </source>
     <source name="kegg" type="kegg-pathway">
-      <property name="src.data.dir" location="@DATA@/dataset/KEGG_Genes/"/>
+      <property name="src.data.dir" location="@DATA@dataset/KEGG_Genes/"/>
       <property name="kegg.organisms" value="4577"/>
     </source>
     <!--<source name="kegg-compounds" type="kegg-compounds">-->
-    <!--<property name="src.data.dir" location="@DATA@/dataset/KEGG_compounds"/>-->
+    <!--<property name="src.data.dir" location="@DATA@dataset/KEGG_compounds"/>-->
     <!--<property name="src.data.dir.includes" value="*.tab"/>-->
     <!--</source>-->
     <source name="kegg-metadata" type="kegg-metadata">
-      <property name="src.data.dir" location="@DATA@/dataset/KEGG_Meta/"/>
+      <property name="src.data.dir" location="@DATA@dataset/KEGG_Meta/"/>
       <property name="src.data.dir.includes" value="*.tab"/>
     </source>
     <source name="reactome-gramene-pathway" type="reactomegramene">
-      <property name="src.data.dir" location="@DATA@/dataset/reactome_pathways"/>
+      <property name="src.data.dir" location="@DATA@dataset/reactome_pathways"/>
       <property name="reactomegramene.organisms" value="4577 3702"/>
     </source>
     <source name="corncyc" type="corncyc">
-      <property name="src.data.dir" location="@DATA@/dataset/corncyc"/>
+      <property name="src.data.dir" location="@DATA@dataset/corncyc"/>
       <property name="corncyc.organisms" value="4577"/>
     </source>
     <source name="symbol" type="symbols">
-      <property name="src.data.dir" location="@DATA@/dataset/Symbols/"/>
+      <property name="src.data.dir" location="@DATA@dataset/Symbols/"/>
       <property name="src.data.dir.includes" value="*.tab"/>
     </source>
        <source name="description" type="description">
-      <property name="src.data.dir" location="@DATA@/dataset/Description/"/>
+      <property name="src.data.dir" location="@DATA@dataset/Description/"/>
       <property name="src.data.dir.includes" value="*.tab"/>
     </source>
       <source name="maize-uniprot-to-refseq" type="uniprot" >
       <property name="uniprot.organisms" value="4577"/>
-      <property name="src.data.dir" location="@DATA@/dataset/uniprot"/>
+      <property name="src.data.dir" location="@DATA@dataset/uniprot"/>
       <property name="creatego" value="true"/>
       <property name="creategenes" value="true"/>
       <property name="allowduplicates" value="false"/>
@@ -232,7 +232,7 @@
     </source>
     <source name="maize-uniprot-to-gramene" type="uniprot" >
       <property name="uniprot.organisms" value="4577"/>
-      <property name="src.data.dir" location="@DATA@/dataset/uniprot"/>
+      <property name="src.data.dir" location="@DATA@dataset/uniprot"/>
       <property name="creatego" value="true"/>
       <property name="creategenes" value="true"/>
       <property name="allowduplicates" value="false"/>
@@ -241,7 +241,7 @@
     </source>
     <source name="maize-uniprot-to-ensemblplants" type="uniprot" >
       <property name="uniprot.organisms" value="4577"/>
-      <property name="src.data.dir" location="@DATA@/dataset/uniprot"/>
+      <property name="src.data.dir" location="@DATA@dataset/uniprot"/>
       <property name="creatego" value="true"/>
       <property name="creategenes" value="true"/>
       <property name="allowduplicates" value="false"/>
@@ -249,7 +249,7 @@
       <property name="loadtrembl" value="true"/>
     </source>
     <source name="uniprot-keywords" type="uniprot-keywords" dump="true">
-      <property name="src.data.dir" location="@DATA@/dataset/uniprot/keywlist/"/>
+      <property name="src.data.dir" location="@DATA@dataset/uniprot/keywlist/"/>
       <property name="src.data.dir.includes" value="keywlist.xml"/>
     </source>
     <source name="uniprot-fasta" type="fasta">
@@ -258,65 +258,65 @@
       <property name="fasta.classAttribute" value="primaryAccession"/>
       <property name="fasta.dataSourceName" value="UniProt"/>
       <property name="fasta.dataSetTitle" value="Fasta sequence for proteins from UniProt"/>
-      <property name="src.data.dir" location="@DATA@/dataset/uniprot/current/"/>
+      <property name="src.data.dir" location="@DATA@dataset/uniprot/current/"/>
       <property name="fasta.includes" value="uniprot_sprot_varsplic.fasta"/>
       <property name="fasta.sequenceType" value="protein" />
       <property name="fasta.loaderClassName" value="org.intermine.bio.dataconversion.UniProtFastaLoaderTask"/>
     </source>
 
 
-    <source name="expression-metadata" type="expression-metadata">
-      <property name="src.data.dir" location="@DATA@/dataset/expression/metadata/"/>
+    <source name="expression-metadata" type="expressionmetadata">
+      <property name="src.data.dir" location="@DATA@dataset/expression/metadata/"/>
       <property name="src.data.dir.includes" value="*.tab"/>
     </source>
 
-
-
+<!--
      <source name="expression-transcript-rep-refseq" type="maize-expression">
       <property name="entityType" value="Replicate"/>
       <property name="type" value="single"/>
       <property name="geneSource" value="RefSeq"/>
-      <property name="src.data.dir" location="@DATA@/dataset/expression/exp-transcript/replicates/"/>
-      <property name="src.data.dir.includes" value="ref.tab"/>
+      <property name="src.data.dir" location="@DATA@dataset/expression/combined/exp-transcript/replicates/"/>
+      <property name="src.data.dir.includes" value="ref*.tab"/>
     </source>
     <source name="expression-transcript-sam-refseq" type="maize-expression">
       <property name="entityType" value="Sample"/>
       <property name="type" value="mean"/>
       <property name="geneSource" value="RefSeq"/>
-      <property name="src.data.dir" location="@DATA@/dataset/expression/exp-transcript/sample/"/>
-      <property name="src.data.dir.includes" value="ref*.tab"/>
+      <property name="src.data.dir" location="@DATA@dataset/expression/combined/exp-transcript/sample/"/>
+      <property name="src.data.dir.includes" value="r*.tab"/>
     </source>
 
     <source name="expression-gene-rep-refseq" type="maize-expression-gene">
       <property name="entityType" value="Replicate"/>
       <property name="type" value="single"/>
       <property name="geneSource" value="RefSeq"/>
-      <property name="src.data.dir" location="@DATA@/dataset/expression/exp-transcript/replicates"/>
+      <property name="src.data.dir" location="@DATA@dataset/expression/combined/exp-gene/replicates"/>
       <property name="src.data.dir.includes" value="ref*.tab"/>
     </source>
+-->
     <source name="expression-gene-sam-refseq" type="maize-expression-gene">
       <property name="entityType" value="Sample"/>
       <property name="type" value="mean"/>
       <property name="geneSource" value="RefSeq"/>
-      <property name="src.data.dir" location="@DATA@/dataset/expression/exp-transcript/sample"/>
-      <property name="src.data.dir.includes" value="ref*.tab"/>
+      <property name="src.data.dir" location="@DATA@dataset/expression/combined/exp-gene/sample"/>
+      <property name="src.data.dir.includes" value="r*.tab"/>
     </source>
 
-   
+<!--
 
 
    <source name="expression-transcript-rep-v4" type="maize-expression">
       <property name="entityType" value="Replicate"/>
       <property name="type" value="single"/>
       <property name="geneSource" value="AGPv4"/>
-      <property name="src.data.dir" location="@DATA@/dataset/expression/exp-transcript/replicates/"/>
+      <property name="src.data.dir" location="@DATA@dataset/expression/exp-transcript/replicates/"/>
       <property name="src.data.dir.includes" value="ensem*.tab"/>
     </source>
     <source name="expression-transcript-sam-v4" type="maize-expression">
       <property name="entityType" value="Sample"/>
       <property name="type" value="mean"/>
       <property name="geneSource" value="AGPv4"/>
-      <property name="src.data.dir" location="@DATA@/dataset/expression/exp-transcript/sample/"/>
+      <property name="src.data.dir" location="@DATA@dataset/expression/exp-transcript/sample/"/>
       <property name="src.data.dir.includes" value="ens*.tab"/>
     </source>
 
@@ -324,31 +324,32 @@
       <property name="entityType" value="Replicate"/>
       <property name="type" value="single"/>
       <property name="geneSource" value="AGPv4"/>
-      <property name="src.data.dir" location="@DATA@/dataset/expression/exp-transcript/replicates"/>
+      <property name="src.data.dir" location="@DATA@dataset/expression/exp-transcript/replicates"/>
       <property name="src.data.dir.includes" value="ens*.tab"/>
     </source>
+-->
     <source name="expression-gene-sam-v4" type="maize-expression-gene">
      <property name="entityType" value="Sample"/>
       <property name="type" value="mean"/>
       <property name="geneSource" value="AGPv4"/>
-      <property name="src.data.dir" location="@DATA@/dataset/expression/exp-transcript/sample"/>
+      <property name="src.data.dir" location="@DATA@dataset/expression/combined/exp-gene/sample"/>
       <property name="src.data.dir.includes" value="ens*.tab"/>
     </source>
 
-
+<!--
 
     <source name="expression-transcript-rep-v3" type="maize-expression">
       <property name="entityType" value="Replicate"/>
       <property name="type" value="single"/>
       <property name="geneSource" value="AGPv3"/>
-      <property name="src.data.dir" location="@DATA@/dataset/expression/exp-transcript/replicates/"/>
+      <property name="src.data.dir" location="@DATA@dataset/expression/exp-transcript/replicates/"/>
       <property name="src.data.dir.includes" value="A*.tab"/>
     </source>
     <source name="expression-transcript-sam-v3" type="maize-expression">
       <property name="entityType" value="Sample"/>
       <property name="type" value="mean"/>
       <property name="geneSource" value="AGPv3"/>
-      <property name="src.data.dir" location="@DATA@/dataset/expression/exp-transcript/sample/"/>
+      <property name="src.data.dir" location="@DATA@dataset/expression/exp-transcript/sample/"/>
       <property name="src.data.dir.includes" value="A*.tab"/>
     </source>
 
@@ -356,48 +357,28 @@
       <property name="entityType" value="Replicate"/>
       <property name="type" value="single"/>
       <property name="geneSource" value="AGPv3"/>
-      <property name="src.data.dir" location="@DATA@/dataset/expression/exp-transcript/replicates"/>
+      <property name="src.data.dir" location="@DATA@dataset/expression/exp-transcript/replicates"/>
       <property name="src.data.dir.includes" value="A*.tab"/>
     </source>
+-->
     <source name="expression-gene-sam-v3" type="maize-expression-gene">
       <property name="entityType" value="Sample"/>
       <property name="type" value="mean"/>
-      <property name="geneSource" value="AGPv3"/>
-      <property name="src.data.dir" location="@DATA@/dataset/expression/exp-transcript/sample"/>
+      <property name="geneSource" value="AGPv3.21"/>
+      <property name="src.data.dir" location="@DATA@dataset/expression/combined/exp-gene/sample"/>
       <property name="src.data.dir.includes" value="A*.tab"/>
     </source>   
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <source name="go-annotation" type="go-annotation">
-      <property name="ontologyfile" location="@DATA@/dataset/GO/go-basic.obo"/>
-      <property name="src.data.dir" location="@DATA@/dataset/GO-annotation/"/>
+      <property name="ontologyfile" location="@DATA@dataset/GO/go-basic.obo"/>
+      <property name="src.data.dir" location="@DATA@dataset/GO-annotation/"/>
     </source>
     <source name="interpro" type="interpro">
-      <property name="src.data.dir" location="@DATA@/dataset/interpro"/>
+      <property name="src.data.dir" location="@DATA@dataset/interpro"/>
     </source>
     <source name="protein2ipr" type="protein2ipr">
-      <property name="src.data.dir" location="@DATA@/dataset/ipr/"/>
+      <property name="src.data.dir" location="@DATA@dataset/ipr/"/>
       <property name="src.data.dir.includes" value="protein2ipr.dat"/>
       <property name="protein2ipr.organisms" value="4577"/>
     </source>
