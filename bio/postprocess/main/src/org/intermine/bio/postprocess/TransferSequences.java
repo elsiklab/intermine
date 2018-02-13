@@ -218,7 +218,10 @@ public class TransferSequences
                     continue;
                 }
 
-                if (feature instanceof Gene) {
+                  if (PostProcessUtil.isInstance(model, feature, "RepeatRegion")) {
+                     continue;
+                }      
+          if (feature instanceof Gene) {
                     Gene gene = (Gene) feature;
                     if (gene.getLength() != null && gene.getLength().intValue() > 2000000) {
                         LOG.warn("gene too long in transferToSequenceFeatures() ignoring: "

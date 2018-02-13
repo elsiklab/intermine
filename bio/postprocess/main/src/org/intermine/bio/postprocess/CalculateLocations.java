@@ -19,6 +19,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.intermine.model.bio.SNP;
+import org.intermine.model.bio.Indel;
 import org.apache.log4j.Logger;
 import org.intermine.bio.util.BioQueries;
 import org.intermine.bio.util.Constants;
@@ -379,8 +381,12 @@ public class CalculateLocations
         boolean storeLastFeature = true;  // will get set to false if duplicate locations seen
         Location lastLoc = null;
 
-        while (resIter.hasNext()) {
-            ResultsRow<?> rr = (ResultsRow<?>) resIter.next();
+           while (resIter.hasNext()) {
+              ResultsRow<?> rr = (ResultsRow<?>) resIter.next();
+          if (rr.get(1) instanceof SNP || rr.get(1) instanceof Indel) {
+                 // ignoring result entries of type SNP and Indel
+                 continue;
+             }
 
             Integer chrId = (Integer) rr.get(0);
             SequenceFeature lsf = (SequenceFeature) rr.get(1);
